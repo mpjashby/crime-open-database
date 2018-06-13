@@ -1,0 +1,293 @@
+---
+title: "US city open crime data availability"
+output: html_notebook
+---
+
+This file gives the status of open crime data in the [50 largest US cities by
+population](https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population) 
+as of June 2018. Cities are listed in descending order of population.
+
+City data are suitable for including in CODE if at least four years of data
+are available on all crimes.
+
+
+# New York, NY
+
+Data are available and included in CODE.
+
+
+# Los Angeles, CA
+
+Data are available and included in CODE.
+
+
+# Chicago, IL
+
+Data are available and included in CODE.
+
+
+# Houston, TX
+
+No open crime data are available. There is a recent incidents dataset but it 
+only covers calls for service over the past month.
+
+
+# Phoenix, AZ
+
+Data are only [available from November 2015](https://phoenixopendata.com/dataset/crime-data/resource/0ce3411a-2fc6-4302-a33f-167f68608a20)
+and then only for some types of serious crime.
+
+
+# Philadelphia
+
+Data are [available from 2006 onwards](https://www.opendataphilly.org/dataset/crime-incidents) 
+and appear to include [a code that can be used to match crime types](http://metadata.phila.gov/#home/datasetdetails/5543868920583086178c4f8e/representationdetails/570e7621c03327dc14f4b68d/). However, there is only a dispatch time and no offence 
+time.
+
+
+# San Antonio, TX
+
+No open crime data are available. There is a [San Antonio PD Open Data 
+Initiative](http://www.sanantonio.gov/SAPD/SAPD-Open-Data-Initiative), but it
+only relates to officer data (e.g. use of force).
+
+
+# San Diego, CA
+
+No open crime data are available. [CFS data are available](https://data.sandiego.gov/datasets/police-calls-for-service/), 
+but aren't translatable to crimes.
+
+
+# Dallas, TX (POSSIBLE)
+
+Crime data are [available from June 2014 onwards](https://www.dallasopendata.com/Public-Safety/Police-Incidents/tbnj-w5hb)
+and appear to include categories that could be matched to the CODE categories.
+
+
+# San Jose, CA
+
+No open crime data are available.
+
+
+# Austin, TX
+
+Data are only available for UCR Part 1 crimes.
+
+
+# Jacksonville, FL
+
+No open crime data are available.
+
+
+# San Francisco, CA
+
+Data are available and included in CODE.
+
+
+# Columbus, OH
+
+No open crime data are available.
+
+
+# Fort Worth, TX
+
+Data are available and included in CODE.
+
+
+# Indianapolis, IN
+
+Data are only available for UCR Part 1 crimes.
+
+
+# Charlotte, NC
+
+No open crime data are available.
+
+
+# Seattle, WA (POSSIBLE)
+
+Data [appear to be available](https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f), 
+with some cases excluded, for several years. However, the website suggests these
+data will be removed in September 2018. Since they are CC0 licensed, they can
+continue to be used even after they are withdrawn from the Seattle Open Data
+website.
+
+
+# Denver, CO (POSSIBLE)
+
+Data are [available for the previous five years](https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-crime)
+with some exclusions (e.g. juvenile victims).
+
+
+# Washington, DC
+
+No open crime data are available.
+
+
+# Boston, MA
+
+Data are [available from August 2015 onwards](https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system/resource/12cb3883-56f5-47de-afa5-3b1cf61b257b) with fields that could be used to
+create CODE categories.
+
+
+# El Paso, TX
+
+No open crime data are available.
+
+
+# Detroit, MI
+
+Data are available and included in CODE.
+
+
+# Nashville, TN
+
+No open crime data are available.
+
+
+# Memphis, TN
+
+No open crime data are available.
+
+
+# Portland, OR
+
+Data are [available back to at least 2015](https://www.portlandoregon.gov/police/71978)
+but are *slightly* difficult to download due to being run on Tableau Public.
+A substantial minority of cases have neither co-ordinates nor addresses.
+
+
+# Oklahoma City, OK
+
+No open crime data are available.
+
+
+# Las Vegas, NV
+
+No open crime data are available.
+
+
+# Louisville, KY
+
+Data are available and included in CODE.
+
+
+# Baltimore, MD
+
+No open crime data are available.
+
+
+# Milwaukee, WI
+
+Data are [available from 2005 onwards](https://data.milwaukee.gov/dataset/wibr/resource/87843297-a6fa-46d4-ba5d-cb342fb2d3bb) 
+but only for UCR Part 1 crimes.
+
+
+# Albuquerque, NM
+
+Data are [available](https://www.cabq.gov/abq-data) but only for rolling 180 
+days.
+
+
+# Tucson, AZ (POSSIBLE)
+
+Data are [available from 2009](http://gisdata.tucsonaz.gov/datasets?group_ids=b6a49faa168647d8b56e1a06bd53600f&page=2&sort=name&t=police)
+in the annual 'incident' datasets including categories that could be used to
+create CODE categories, but are mixed in with other calls for service.
+
+
+# Fresno, CA
+
+No open crime data are available.
+
+
+# Sacramento, CA
+
+Open [data are available](http://data.cityofsacramento.org/datasets?page=2&sort=name&t=Public%20Safety),
+but only for the most-recent two years and without addresses or co-ordinates.
+
+
+# Mesa, AZ
+
+Data are [available from 2016 onwards](https://data.mesaaz.gov/Public-Safety/Police-Incidents/39rt-2rfj)
+but without time of day.
+
+
+# Kansas City, MO
+
+The [KCMO open data portal](https://data.kcmo.org/) was down at the time of 
+checking, but Google suggests it includes crime data.
+
+
+# Atlanta, GA
+
+No open crime data are available.
+
+
+# Long Beach, CA
+
+No open crime data are available.
+
+
+# Omaha, NE
+
+No open crime data are available.
+
+
+# Raleigh, NC (POSSIBLE)
+
+Data are available [from 2005 to May 2014](http://data-ral.opendata.arcgis.com/datasets/raleigh-police-incidents-srs?geometry=-78.67%2C35.78%2C-78.616%2C35.792)
+and [from June 2014 onwards](http://data-ral.opendata.arcgis.com/datasets/24c0b37fa9bb4e16ba8bcaa7e806c615_0).
+The former dataset has categories that can be converted to CODE categories and
+the later has NIBRS codes.
+
+
+# Colorado Springs, CO
+
+No open crime data are available.
+
+
+# Miami, FL
+
+No open crime data are available.
+
+
+# Virginia Beach, VA
+
+Data are available and included in CODE.
+
+
+# Oakland, CA
+
+Data are [available but only for 2012, 2013 and 2015](https://data.oaklandnet.com/browse?category=Public+Safety&limitTo=datasets&sortBy=alpha&utf8=✓&page=2).
+
+
+# Minneapolis, MN
+
+Data are [available from 2010 onwards](http://opendata.minneapolismn.gov/datasets?page=2&sort=name&t=public%20safety),
+but may refer only to UCR Part 1 crimes.
+
+
+# Tulsa, OK
+
+Data are [available, but only from 2010 to 2014](https://www.cityoftulsa.org/government/departments/information-technology/open-tulsa/open-tulsa-dataset-list/)
+and are in Shapefile format so haven't been checked.
+
+
+# Arlington, TX
+
+No open crime data are available, but the open data portal says that a 'Public
+Safety' section is under construction.
+
+
+# New Orleans, LA
+
+Data are available but some records a duplicated many times, and the staff at
+the open data portal didn't know why.
+
+
+# Wichita, KS
+
+Data are [available, but only for the most recent 90 days](http://opendata.wichita.gov/datasets/wichita-crime-incidents/data).
+
+

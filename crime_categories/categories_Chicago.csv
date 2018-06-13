@@ -1,0 +1,402 @@
+NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type,Primary Type,Description
+09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,HOMICIDE,FIRST DEGREE MURDER
+09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,HOMICIDE,RECKLESS HOMICIDE
+09B,Crimes against person,Homicide Offenses,09B Negligent Manslaughter,HOMICIDE,INVOLUNTARY MANSLAUGHTER
+100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,KIDNAPPING,AGGRAVATED
+100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,KIDNAPPING,CHILD ABDUCTION/STRANGER
+100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,KIDNAPPING,FORCIBLE DETENTION
+100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,KIDNAPPING,KIDNAPPING
+100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,KIDNAPPING,UNLAWFUL INTERFERE/VISITATION
+100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,KIDNAPPING,UNLAWFUL RESTRAINT
+11D,Crimes against person,Sex Offenses,11D Fondling,OFFENSE INVOLVING CHILDREN,AGG CRIM SEX ABUSE FAM MEMBER
+11D,Crimes against person,Sex Offenses,11D Fondling,OFFENSE INVOLVING CHILDREN,CRIM SEX ABUSE BY FAM MEMBER
+11D,Crimes against person,Sex Offenses,11D Fondling,SEX OFFENSE,AGG CRIMINAL SEXUAL ABUSE
+11D,Crimes against person,Sex Offenses,11D Fondling,SEX OFFENSE,ATT AGG CRIM SEXUAL ABUSE
+11D,Crimes against person,Sex Offenses,11D Fondling,SEX OFFENSE,ATT AGG CRIMINAL SEXUAL ABUSE
+11D,Crimes against person,Sex Offenses,11D Fondling,SEX OFFENSE,ATT CRIM SEXUAL ABUSE
+11D,Crimes against person,Sex Offenses,11D Fondling,SEX OFFENSE,CRIMINAL SEXUAL ABUSE
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,AGGRAVATED: HANDGUN
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,AGGRAVATED: KNIFE/CUT INSTR
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,AGGRAVATED: OTHER
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,AGGRAVATED: OTHER DANG WEAPON
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,AGGRAVATED: OTHER FIREARM
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,ATTEMPT AGG: HANDGUN
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,ATTEMPT AGG: KNIFE/CUT INSTR
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,ATTEMPT AGG: OTHER
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,ATTEMPT AGG: OTHER DANG WEAPON
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,ATTEMPT AGG: OTHER FIREARM
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,ATTEMPT NON-AGGRAVATED
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,NON-AGGRAVATED
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,PREDATORY
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),OFFENSE INVOLVING CHILDREN,AGG SEX ASSLT OF CHILD FAM MBR
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),OFFENSE INVOLVING CHILDREN,SEX ASSLT OF CHILD BY FAM MBR
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,AGGRAVATED
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,AGGRAVATED VEHICULAR HIJACKING
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,ARMED: HANDGUN
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,ARMED: OTHER DANGEROUS WEAPON
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,ARMED: OTHER FIREARM
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,ARMED:KNIFE/CUTTING INSTRUMENT
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,ATTEMPT: AGGRAVATED
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,ATTEMPT: ARMED-HANDGUN
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,ATTEMPT: ARMED-KNIFE/CUT INSTR
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,ATTEMPT: ARMED-OTHER DANG WEAP
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,ATTEMPT: ARMED-OTHER FIREARM
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,ATTEMPT: STRONGARM-NO WEAPON
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,STRONGARM - NO WEAPON
+120,Crimes against property,Robbery,120 Robbery,ROBBERY,VEHICULAR HIJACKING
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGG PO HANDS NO/MIN INJURY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGG PRO.EMP: HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGG PRO.EMP: OTHER DANG WEAPON
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGG PRO.EMP: OTHER FIREARM
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGG PRO.EMP:KNIFE/CUTTING INST
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED PO: HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED PO: OTHER DANG WEAP
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED PO: OTHER FIREARM
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED PO:KNIFE/CUT INSTR
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED: HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED: OTHER DANG WEAPON
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED: OTHER FIREARM
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED:KNIFE/CUTTING INSTR
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,PRO EMP HANDS NO/MIN INJURY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGG PO HANDS ETC SERIOUS INJ
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGG PO HANDS NO/MIN INJURY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGG PRO EMP HANDS SERIOUS INJ
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGG PRO.EMP: HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGG PRO.EMP: OTHER DANG WEAPON
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGG PRO.EMP: OTHER FIREARM
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGG PRO.EMP:KNIFE/CUTTING INST
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGG: HANDS/FIST/FEET NO/MINOR INJURY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGG: HANDS/FIST/FEET SERIOUS INJURY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED DOMESTIC BATTERY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED DOMESTIC BATTERY: HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED DOMESTIC BATTERY: HANDS/FIST/FEET SERIOUS INJURY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED DOMESTIC BATTERY: KNIFE/CUTTING INST
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED DOMESTIC BATTERY: OTHER DANG WEAPON
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED DOMESTIC BATTERY: OTHER FIREARM
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED OF A CHILD
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED OF A SENIOR CITIZEN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED OF A UNBORN CHILD
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED PO: HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED PO: KNIFE/CUT INSTR
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED PO: OTHER DANG WEAP
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED PO: OTHER FIREARM
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED: HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED: OTHER DANG WEAPON
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED: OTHER FIREARM
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED:KNIFE/CUTTING INSTR
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,RITUALISM,AGG RIT MUT: HANDS/FIST/FEET NO/MINOR INJURY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,RITUALISM,AGG RIT MUT: HANDS/FIST/FEET SERIOUS INJURY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,RITUALISM,AGG RITUAL MUT:HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,RITUALISM,AGG RITUAL MUT:KNIFE/CUTTING I
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,RITUALISM,AGG RITUAL MUT:OTH DANG WEAPON
+13B,Crimes against person,Assault Offenses,13B Simple assault,ASSAULT,SIMPLE
+13B,Crimes against person,Assault Offenses,13B Simple assault,BATTERY,DOMESTIC BATTERY SIMPLE
+13B,Crimes against person,Assault Offenses,13B Simple assault,BATTERY,OF UNBORN CHILD
+13B,Crimes against person,Assault Offenses,13B Simple assault,BATTERY,PRO EMP HANDS NO/MIN INJURY
+13B,Crimes against person,Assault Offenses,13B Simple assault,BATTERY,SIMPLE
+13B,Crimes against person,Assault Offenses,13B Simple assault,DOMESTIC VIOLENCE,DOMESTIC VIOLENCE
+13B,Crimes against person,Assault Offenses,13B Simple assault,INTERFERENCE WITH PUBLIC OFFICER,RESIST/OBSTRUCT/DISARM OFFICER
+13C,Crimes against person,Assault Offenses,13C Intimidation,INTIMIDATION,COMPELLING CONFESSION
+13C,Crimes against person,Assault Offenses,13C Intimidation,INTIMIDATION,COMPELLING ORG MEMBERSHIP
+13C,Crimes against person,Assault Offenses,13C Intimidation,INTIMIDATION,EDUCATIONAL INTIMIDAITON
+13C,Crimes against person,Assault Offenses,13C Intimidation,INTIMIDATION,INTIMIDATION
+13C,Crimes against person,Assault Offenses,13C Intimidation,STALKING,AGGRAVATED
+13C,Crimes against person,Assault Offenses,13C Intimidation,STALKING,CYBERSTALKING
+13C,Crimes against person,Assault Offenses,13C Intimidation,STALKING,SIMPLE
+13C,Crimes against person,Assault Offenses,13C Intimidation,STALKING,VIOLATION OF STALKING NO CONTACT ORDER
+200,Crimes against property,Arson,200 Arson,ARSON,AGGRAVATED
+200,Crimes against property,Arson,200 Arson,ARSON,ATTEMPT ARSON
+200,Crimes against property,Arson,200 Arson,ARSON,BY EXPLOSIVE
+200,Crimes against property,Arson,200 Arson,ARSON,BY FIRE
+200,Crimes against property,Arson,200 Arson,ARSON,POS: CHEMICAL/DRY-ICE DEVICE
+200,Crimes against property,Arson,200 Arson,ARSON,POS: EXPLOSIVE/INCENDIARY DEV
+200,Crimes against property,Arson,200 Arson,OTHER OFFENSE,OTHER ARSON/EXPLOSIVE INCIDENT
+210,Crimes against property,Extortion/Blackmail,210 Extortion/Blackmail,INTIMIDATION,EXTORTION
+220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,ATTEMPT FORCIBLE ENTRY
+220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,FORCIBLE ENTRY
+220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,HOME INVASION
+220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,UNLAWFUL ENTRY
+23A,Crimes against property,Larceny/Theft Offenses,23A Pocket-picking,THEFT,POCKET-PICKING
+23B,Crimes against property,Larceny/Theft Offenses,23B Purse-snatching,THEFT,PURSE-SNATCHING
+23C,Crimes against property,Larceny/Theft Offenses,23C Shoplifting,THEFT,RETAIL THEFT
+23C,Crimes against property,Larceny/Theft Offenses,23C Shoplifting,THEFT,THEFT RETAIL
+23D,Crimes against property,Larceny/Theft Offenses,23D Theft From Building,THEFT,FROM BUILDING
+23E,Crimes against property,Larceny/Theft Offenses,23E Theft From Coin-Operated Machine or Device,THEFT,FROM COIN-OP MACHINE/DEVICE
+23U,Crimes against property,Larceny/Theft Offenses,23U Other Theft,DECEPTIVE PRACTICE,LIBRARY THEFT
+23U,Crimes against property,Larceny/Theft Offenses,23U Other Theft,DECEPTIVE PRACTICE,THEFT OF LOST/MISLAID PROP
+23U,Crimes against property,Larceny/Theft Offenses,23U Other Theft,THEFT,$300 AND UNDER
+23U,Crimes against property,Larceny/Theft Offenses,23U Other Theft,THEFT,$500 AND UNDER
+23U,Crimes against property,Larceny/Theft Offenses,23U Other Theft,THEFT,DELIVERY CONTAINER THEFT
+23U,Crimes against property,Larceny/Theft Offenses,23U Other Theft,THEFT,OVER $300
+23U,Crimes against property,Larceny/Theft Offenses,23U Other Theft,THEFT,OVER $500
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,ATT: AUTOMOBILE
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,"ATT: TRUCK, BUS, MOTOR HOME"
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,"ATTEMPT: CYCLE, SCOOTER, BIKE NO VIN"
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,"ATTEMPT: CYCLE, SCOOTER, BIKE W-VIN"
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,AUTOMOBILE
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,"CYCLE, SCOOTER, BIKE NO VIN"
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,"CYCLE, SCOOTER, BIKE W-VIN"
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,THEFT/RECOVERY: AUTOMOBILE
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,"THEFT/RECOVERY: CYCLE, SCOOTER, BIKE NO VIN"
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,"THEFT/RECOVERY: CYCLE, SCOOTER, BIKE W-VIN"
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,"THEFT/RECOVERY: TRUCK,BUS,MHOME"
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,MOTOR VEHICLE THEFT,"TRUCK, BUS, MOTOR HOME"
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,DECEPTIVE PRACTICE,ALTER COINS
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,DECEPTIVE PRACTICE,COUNTERFEIT CHECK
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,DECEPTIVE PRACTICE,COUNTERFEITING DOCUMENT
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,DECEPTIVE PRACTICE,FORGERY
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,DECEPTIVE PRACTICE,UNAUTHORIZED VIDEOTAPING
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,DECEPTIVE PRACTICE,UNIDENTIFIABLE RECORDING SOUND
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,DECEPTIVE PRACTICE,UNLAWFUL USE OF RECORDED SOUND
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,DECEPTIVE COLLECTION PRACTICES
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,FINAN EXPLOIT-ELDERLY/DISABLED
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,FRAUD OR CONFIDENCE GAME
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,INSURANCE FRAUD
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,PAY TV SERVICE OFFENSES
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,"THEFT BY LESSEE,MOTOR VEH"
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,"THEFT BY LESSEE,NON-VEH"
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,THEFT OF LABOR/SERVICES
+26B,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26B Credit Card/Automated Teller Machine Fraud,DECEPTIVE PRACTICE,CREDIT CARD FRAUD
+26B,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26B Credit Card/Automated Teller Machine Fraud,DECEPTIVE PRACTICE,ILLEGAL USE CASH CARD
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,DECEPTIVE PRACTICE,AGGRAVATED FINANCIAL IDENTITY THEFT
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,DECEPTIVE PRACTICE,ATTEMPT - FINANCIAL IDENTITY THEFT
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,DECEPTIVE PRACTICE,FINANCIAL IDENTITY THEFT $300 AND UNDER
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,DECEPTIVE PRACTICE,FINANCIAL IDENTITY THEFT OVER $ 300
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,DECEPTIVE PRACTICE,IMPERSONATION
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,THEFT,AGG: FINANCIAL ID THEFT
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,THEFT,ATTEMPT FINANCIAL IDENTITY THEFT
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,THEFT,ATTEMPT THEFT
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,THEFT,FINANCIAL ID THEFT: OVER $300
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,THEFT,FINANCIAL ID THEFT:$300 &UNDER
+26E,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26E Wire Fraud,DECEPTIVE PRACTICE,AGGRAVATED COMPUTER TAMPERING
+26E,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26E Wire Fraud,DECEPTIVE PRACTICE,COMPUTER FRAUD
+26E,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26E Wire Fraud,DECEPTIVE PRACTICE,UNLAWFUL USE OF A COMPUTER
+270,Crimes against property,Embezzlement,270 Embezzlement,DECEPTIVE PRACTICE,EMBEZZLEMENT
+280,Crimes against property,Stolen Property Offenses,280 Stolen Property Offenses,DECEPTIVE PRACTICE,STOLEN PROP: BUY/RECEIVE/POS.
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),CRIMINAL DAMAGE,CRIMINAL DEFACEMENT
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),CRIMINAL DAMAGE,INSTITUTIONAL VANDALISM
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),CRIMINAL DAMAGE,LIBRARY VANDALISM
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),CRIMINAL DAMAGE,TO CITY OF CHICAGO PROPERTY
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),CRIMINAL DAMAGE,TO FIRE FIGHT.APP.EQUIP
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),CRIMINAL DAMAGE,TO PROPERTY
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),CRIMINAL DAMAGE,TO STATE SUP PROP
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),CRIMINAL DAMAGE,TO VEHICLE
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,ALTER/FORGE PRESCRIPTION
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,ATTEMPT POSSESSION CANNABIS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,ATTEMPT POSSESSION NARCOTICS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,CALCULATED CANNABIS CONSPIRACY
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,CANNABIS PLANT
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,CONT SUBS:FAIL TO MAINT RECORD
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,CRIMINAL DRUG CONSPIRACY
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,DEL CONT SUBS TO PERSON <18
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,DELIVER CANNABIS TO PERSON <18
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,FAIL REGISTER LIC:CONT SUBS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,FAILURE TO KEEP HYPO RECORDS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,FORFEIT PROPERTY
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,FOUND SUSPECT NARCOTICS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DEL:CANNABIS 10GM OR LESS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DEL:CANNABIS OVER 10 GMS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER: HALLUCINOGEN
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER: HEROIN (WHITE)
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER: HEROIN(BRN/TAN)
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER: METHAMPHETAMINES
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER:AMPHETAMINES
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER:BARBITUATES
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER:COCAINE
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER:CRACK
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER:HEROIN(BLACK TAR)
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER:LOOK-ALIKE DRUG
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER:PCP
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/DELIVER:SYNTHETIC DRUGS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,MANU/POSS. W/INTENT TO DELIVER: SYNTHETIC MARIJUANA
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POS: HYPODERMIC NEEDLE
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: AMPHETAMINES
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: BARBITUATES
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: CANNABIS 30GMS OR LESS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: CANNABIS MORE THAN 30GMS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: COCAINE
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: CRACK
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: HALLUCINOGENS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: HEROIN(BLACK TAR)
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: HEROIN(BRN/TAN)
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: HEROIN(WHITE)
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: LOOK-ALIKE DRUGS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: METHAMPHETAMINES
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: PCP
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSS: SYNTHETIC DRUGS
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,POSSESSION: SYNTHETIC MARIJUANA
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,NARCOTICS,SOLICIT NARCOTICS ON PUBLICWAY
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,OTHER NARCOTIC VIOLATION,INTOXICATING COMPOUNDS
+35B,Crimes against society,Drug/Narcotic Offenses,35B Drug Equipment Violations,NARCOTICS,POSSESSION OF DRUG EQUIPMENT
+35B,Crimes against society,Drug/Narcotic Offenses,35B Drug Equipment Violations,NARCOTICS,SALE/DEL DRUG PARAPHERNALIA
+35B,Crimes against society,Drug/Narcotic Offenses,35B Drug Equipment Violations,NARCOTICS,SALE/DEL HYPODERMIC NEEDLE
+36A,Crimes against person,"Sex Offenses, Nonforcible",36A Incest,SEX OFFENSE,SEX RELATION IN FAMILY
+370,Crimes against society,Pornography/Obscene Material,370 Pornography/Obscene Material,OBSCENITY,OBSCENE MATTER
+370,Crimes against society,Pornography/Obscene Material,370 Pornography/Obscene Material,OBSCENITY,OBSCENITY
+370,Crimes against society,Pornography/Obscene Material,370 Pornography/Obscene Material,OBSCENITY,SALE/DIST OBSCENE MAT TO MINOR
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,BOLITA OR BOLI PUL/OFFICE
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,BOLITA OR BOLI PUL/RUNNER
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,BOLITA OR BOLI PUL/WRITER
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,BOOKMAKING/HORSES
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,BOOKMAKING/SPORTS
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,GAME/AMUSEMENT DEVICE
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,GAME/CARDS
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,GAME/DICE
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,ILLEGAL ILL LOTTERY
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,LOTTERY/OTHER
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,LOTTERY/PARI-MUTUEL
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,LOTTERY/PARLAY CARDS
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,NATIONAL LOTTERY
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,OTHER
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,POLICY/OTHER
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,REGISTER FED GAMBLING STAMP
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,VIOL CHARITABLE GAME ACT
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,WIREROOM/HORSES
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,GAMBLING,WIREROOM/SPORTS
+39D,Crimes against society,Gambling Offenses,39D Sports Tampering,GAMBLING,SPORTS TAMPERING
+40A,Crimes against society,Prostitution Offenses,40A Prostitution,PROSTITUTION,SOLICIT OFF PUBLIC WAY
+40A,Crimes against society,Prostitution Offenses,40A Prostitution,PROSTITUTION,SOLICIT ON PUBLIC WAY
+40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,PROSTITUTION,CAB OPERATION
+40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,PROSTITUTION,CALL OPERATION
+40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,PROSTITUTION,IN TAVERN
+40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,PROSTITUTION,JUVENILE PIMPING
+40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,PROSTITUTION,KEEP PLACE OF JUV PROSTITUTION
+40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,PROSTITUTION,KEEP PLACE OF PROSTITUTION
+40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,PROSTITUTION,OTHER PROSTITUTION OFFENSE
+40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,PROSTITUTION,PANDERING
+40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,PROSTITUTION,PIMPING
+40C,Crimes against society,Prostitution Offenses,40C Purchasing Prostitution,PROSTITUTION,PATRONIZE JUVENILE PROSTITUTE
+40C,Crimes against society,Prostitution Offenses,40C Purchasing Prostitution,PROSTITUTION,PATRONIZING A PROSTITUTE
+40C,Crimes against society,Prostitution Offenses,40C Purchasing Prostitution,PROSTITUTION,SOLICIT FOR BUSINESS
+40C,Crimes against society,Prostitution Offenses,40C Purchasing Prostitution,PROSTITUTION,SOLICIT FOR PROSTITUTE
+510,Crimes against property,Bribery,510 Bribery,INTERFERENCE WITH PUBLIC OFFICER,BRIBERY
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,CONCEALED CARRY LICENSE VIOLATION,ARMED WHILE UNDER THE INFLUENCE
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,CONCEALED CARRY LICENSE VIOLATION,OTHER
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,CONCEALED CARRY LICENSE VIOLATION,PROHIBITED PLACES
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,OTHER OFFENSE,BOARD PLANE WITH WEAPON
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,OTHER OFFENSE,FIREARM REGISTRATION VIOLATION
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,OTHER OFFENSE,OTHER WEAPONS VIOLATION
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,DEFACE IDENT MARKS OF FIREARM
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,POSS FIREARM/AMMO:NO FOID CARD
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,RECKLESS FIREARM DISCHARGE
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,REGISTER OF SALES BY DEALER
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,UNLAWFUL POSS AMMUNITION
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,UNLAWFUL POSS OF HANDGUN
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,UNLAWFUL POSS OTHER FIREARM
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,UNLAWFUL SALE HANDGUN
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,UNLAWFUL SALE OTHER FIREARM
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,UNLAWFUL SALE/DELIVERY OF FIREARM AT SCHOOL
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,UNLAWFUL USE HANDGUN
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,UNLAWFUL USE OTHER DANG WEAPON
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,UNLAWFUL USE OTHER FIREARM
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,UNLAWFUL USE/SALE AIR RIFLE
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,WEAPONS VIOLATION,USE OF METAL PIERCING BULLETS
+64A,Crimes against person,Human Trafficking,"64A Human Trafficking, Commercial Sex Acts",HUMAN TRAFFICKING,COMMERCIAL SEX ACTS
+64B,Crimes against person,Human Trafficking,"64B Human Trafficking, Involuntary Servitude",HUMAN TRAFFICKING,INVOLUNTARY SERVITUDE
+90A,Crimes against property,Bad Checks (except Counterfeit Checks or Forged Checks),90A Bad Checks (except Counterfeit Checks or Forged Checks),DECEPTIVE PRACTICE,BOGUS CHECK
+90C,Crimes against society,Disorderly Conduct,90C Disorderly Conduct,OTHER OFFENSE,OBSCENE TELEPHONE CALLS
+90C,Crimes against society,Disorderly Conduct,90C Disorderly Conduct,PUBLIC INDECENCY,LICENSED PREMISE
+90C,Crimes against society,Disorderly Conduct,90C Disorderly Conduct,SEX OFFENSE,PUBLIC INDECENCY
+90F,Crimes against society,"Family Offenses, Nonviolent","90F Family Offenses, Nonviolent",OFFENSE INVOLVING CHILDREN,CHILD ABANDONMENT
+90G,Crimes against society,Liquor Law Violations (except Driving Under the Influence and Drunkenness),90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),LIQUOR LAW VIOLATION,EMPLOY MINOR
+90G,Crimes against society,Liquor Law Violations (except Driving Under the Influence and Drunkenness),90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),LIQUOR LAW VIOLATION,ILLEGAL CONSUMPTION BY MINOR
+90G,Crimes against society,Liquor Law Violations (except Driving Under the Influence and Drunkenness),90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),LIQUOR LAW VIOLATION,ILLEGAL POSSESSION BY MINOR
+90G,Crimes against society,Liquor Law Violations (except Driving Under the Influence and Drunkenness),90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),LIQUOR LAW VIOLATION,LIQUOR LICENSE VIOLATION
+90G,Crimes against society,Liquor Law Violations (except Driving Under the Influence and Drunkenness),90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),LIQUOR LAW VIOLATION,MINOR MISREPRESENT AGE
+90G,Crimes against society,Liquor Law Violations (except Driving Under the Influence and Drunkenness),90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),LIQUOR LAW VIOLATION,SELL/GIVE/DEL LIQUOR TO MINOR
+90J,Crimes against society,Trespass of Real Property,90J Trespass of Real Property,CRIMINAL TRESPASS,TO AIRPORT
+90J,Crimes against society,Trespass of Real Property,90J Trespass of Real Property,CRIMINAL TRESPASS,TO LAND
+90J,Crimes against society,Trespass of Real Property,90J Trespass of Real Property,CRIMINAL TRESPASS,TO RESIDENCE
+90J,Crimes against society,Trespass of Real Property,90J Trespass of Real Property,CRIMINAL TRESPASS,TO STATE SUP LAND
+90J,Crimes against society,Trespass of Real Property,90J Trespass of Real Property,CRIMINAL TRESPASS,TO VEHICLE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,DECEPTIVE PRACTICE,ILLEGAL POSSESSION CASH CARD
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,DECEPTIVE PRACTICE,POSS. KEYS OR DEV.TO COIN MACH
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,INTERFERENCE WITH PUBLIC OFFICER,AIDING ARRESTEE ESCAPE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,INTERFERENCE WITH PUBLIC OFFICER,CONCEALING/AIDING A FUGITIVE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,INTERFERENCE WITH PUBLIC OFFICER,CONTRABAND IN PRISON
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,INTERFERENCE WITH PUBLIC OFFICER,ESCAPE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,INTERFERENCE WITH PUBLIC OFFICER,INTERFERENCE JUDICIAL PROCESS
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,INTERFERENCE WITH PUBLIC OFFICER,OBSTRUCTING IDENTIFICATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,INTERFERENCE WITH PUBLIC OFFICER,OBSTRUCTING JUSTICE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,INTERFERENCE WITH PUBLIC OFFICER,OBSTRUCTING SERVICE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,INTERFERENCE WITH PUBLIC OFFICER,OFFICIAL MISCONDUCT
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,INTERFERENCE WITH PUBLIC OFFICER,REFUSING TO AID AN OFFICER
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,CHILD ABDUCTION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,CHILD ABUSE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,CHILD PORNOGRAPHY
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,CONTRIBUTE CRIM DELINQUENCY JUVENILE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,CONTRIBUTE DELINQUENCY OF A CHILD
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,ENDANGERING LIFE/HEALTH CHILD
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,HARBOR RUNAWAY
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,OTHER OFFENSE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,POS: PORNOGRAPHIC PRINT
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,SALE TOBACCO PRODUCTS TO MINOR
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,ABUSE/NEGLECT: CARE FACILITY
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,ANIMAL ABUSE/NEGLECT
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,ANIMAL FIGHTING
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,ARSONIST: ANNUAL REGISTRATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,COMPOUNDING A CRIME
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,DISCLOSE DV VICTIM LOCATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,EAVESDROPPING
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,FALSE/STOLEN/ALTERED TRP
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,GUN OFFENDER: ANNUAL REGISTRATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,GUN OFFENDER: DUTY TO REGISTER
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,GUN OFFENDER: DUTY TO REPORT CHANGE OF INFORMATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,HARASSMENT BY ELECTRONIC MEANS
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,HARASSMENT BY TELEPHONE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,HAZARDOUS MATERIALS VIOLATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,INTERFERE W/ HIGHER EDUCATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,LICENSE VIOLATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,MONEY LAUNDERING
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,OTHER CRIME AGAINST PERSON
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,OTHER CRIME INVOLVING PROPERTY
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,OTHER VEHICLE OFFENSE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,PAROLE VIOLATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,POSSESSION OF BURGLARY TOOLS
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,PROBATION VIOLATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,SEX OFFENDER: FAIL REG NEW ADD
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,SEX OFFENDER: FAIL TO REGISTER
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,SEX OFFENDER: PROHIBITED ZONE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,TAMPER WITH MOTOR VEHICLE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,TELEPHONE THREAT
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,UNLAWFUL USE OF BODY ARMOR
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,VEHICLE TITLE/REG OFFENSE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,VIO BAIL BOND: DOM VIOLENCE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,VIOLATE ORDER OF PROTECTION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,VIOLATION GPS MONITORING DEVICE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,VIOLATION OF CIVIL NO CONTACT ORDER
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,VIOLATION OF SMOKING BAN
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,VIOLATION OF SUMMARY CLOSURE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,VIOLENT OFFENDER: ANNUAL REGISTRATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,VIOLENT OFFENDER: DUTY TO REGISTER
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER OFFENSE,VIOLENT OFFENDER: FAIL TO REGISTER NEW ADDRESS
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,ARMED VIOLENCE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,ARSON THREAT
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,BOMB THREAT
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,FALSE FIRE ALARM
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,FALSE POLICE REPORT
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,INTERFERE W/ EMERGENCY EQUIP
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,LOOTING
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,MOB ACTION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,OTHER VIOLATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,PEEPING TOM
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,PUBLIC DEMONSTRATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,RECKLESS CONDUCT
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,PUBLIC PEACE VIOLATION,SELL/ADVERTISE FIREWORKS
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX OFFENSE,ADULTRY
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX OFFENSE,BIGAMY
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX OFFENSE,CRIMINAL TRANSMISSION OF HIV
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX OFFENSE,FORNICATION
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX OFFENSE,INDECENT SOLICITATION/ADULT
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX OFFENSE,INDECENT SOLICITATION/CHILD
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX OFFENSE,MARRYING A BIGAMIST
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX OFFENSE,OTHER
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX OFFENSE,SEXUAL EXPLOITATION OF A CHILD
+99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,NON - CRIMINAL,FOID - REVOCATION
+99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,NON-CRIMINAL,CONCEALED CARRY LICENSE REVOCATION
+99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,NON-CRIMINAL,FOID - REVOCATION
+99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,NON-CRIMINAL,FOUND PASSPORT
+99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,NON-CRIMINAL,GUN OFFENDER NOTIFICATION-NO CONTACT
+99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,NON-CRIMINAL,LOST PASSPORT
+99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,NON-CRIMINAL,NOTIFICATION OF STALKING - NO CONTACT ORDER
+99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,NON-CRIMINAL (SUBJECT SPECIFIED),NOTIFICATION OF CIVIL NO CONTACT ORDER

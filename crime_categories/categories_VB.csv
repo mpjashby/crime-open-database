@@ -1,0 +1,133 @@
+NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type,Offense Code
+09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,09A
+09B,Crimes against person,Homicide Offenses,09B Negligent Manslaughter,09B1
+09B,Crimes against person,Homicide Offenses,09B Negligent Manslaughter,09B2
+99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,09C1
+100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,100A
+100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,100B
+11A,Crimes against person,Sex Offenses,11A Rape (except Statutory Rape),11A
+11B,Crimes against person,Sex Offenses,11B Sodomy,11B1
+11B,Crimes against person,Sex Offenses,11B Sodomy,11B2
+11C,Crimes against person,Sex Offenses,11C Sexual Assault With An Object,11C
+11D,Crimes against person,Sex Offenses,11D Fondling,11D1
+11D,Crimes against person,Sex Offenses,11D Fondling,11D2
+120,Crimes against property,Robbery,120 Robbery,120A
+120,Crimes against property,Robbery,120 Robbery,120B
+120,Crimes against property,Robbery,120 Robbery,120C
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,13A1
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,13A2
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,13A4
+13B,Crimes against person,Assault Offenses,13B Simple assault,13B1
+13B,Crimes against person,Assault Offenses,13B Simple assault,13B2
+13C,Crimes against person,Assault Offenses,13C Intimidation,13C1
+13C,Crimes against person,Assault Offenses,13C Intimidation,13C2
+13C,Crimes against person,Assault Offenses,13C Intimidation,13C3
+13C,Crimes against person,Assault Offenses,13C Intimidation,13C4
+13C,Crimes against person,Assault Offenses,13C Intimidation,13C5
+13C,Crimes against person,Assault Offenses,13C Intimidation,13C6
+13C,Crimes against person,Assault Offenses,13C Intimidation,13C7
+200,Crimes against property,Arson,200 Arson,200
+210,Crimes against property,Extortion/Blackmail,210 Extortion/Blackmail,210
+220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,220A
+220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,220B
+23A,Crimes against property,Larceny/Theft Offenses,23A Pocket-picking,23A
+23B,Crimes against property,Larceny/Theft Offenses,23B Purse-snatching,23B
+23C,Crimes against property,Larceny/Theft Offenses,23C Shoplifting,23C
+23D,Crimes against property,Larceny/Theft Offenses,23D Theft From Building,23D
+23E,Crimes against property,Larceny/Theft Offenses,23E Theft From Coin-Operated Machine or Device,23E
+23F,Crimes against property,Larceny/Theft Offenses,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),23F
+23G,Crimes against property,Larceny/Theft Offenses,23G Theft of Motor Vehicle Parts or Accessories,23G
+23H,Crimes against property,Larceny/Theft Offenses,23H All Other Larceny,23H
+23H,Crimes against property,Larceny/Theft Offenses,23H All Other Larceny,23H2
+23H,Crimes against property,Larceny/Theft Offenses,23H All Other Larceny,23H3
+240,Crimes against property,Motor Vehicle Theft,240 Motor Vehicle Theft,240
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,250A
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,250B
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,250C
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,250D
+250,Crimes against property,Counterfeiting/Forgery,250 Counterfeiting/Forgery,250E
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,26A1
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,26A2
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,26A3
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,26A4
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,26A5
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,26A6
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,26A7
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,26A8
+26B,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26B Credit Card/Automated Teller Machine Fraud,26B1
+26B,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26B Credit Card/Automated Teller Machine Fraud,26B2
+26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,26C
+26D,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26D Welfare Fraud,26D
+26E,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26E Wire Fraud,26E
+270,Crimes against property,Embezzlement,270 Embezzlement,270A
+270,Crimes against property,Embezzlement,270 Embezzlement,270B
+280,Crimes against property,Stolen Property Offenses,280 Stolen Property Offenses,280A
+280,Crimes against property,Stolen Property Offenses,280 Stolen Property Offenses,280B
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),290A
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),290B
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),290C
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),290D
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),290G
+290,Crimes against property,Destruction/Damage/Vandalism of Property (except Arson),290 Destruction/Damage/Vandalism of Property (except Arson),290H
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,35A1
+35A,Crimes against society,Drug/Narcotic Offenses,35A Drug/Narcotic Violations,35A2
+35B,Crimes against society,Drug/Narcotic Offenses,35B Drug Equipment Violations,35B
+36A,Crimes against person,"Sex Offenses, Nonforcible",36A Incest,36A
+36B,Crimes against person,"Sex Offenses, Nonforcible",36B Statutory Rape,36B
+370,Crimes against society,Pornography/Obscene Material,370 Pornography/Obscene Material,370
+39A,Crimes against society,Gambling Offenses,39A Betting/Wagering,39A1
+39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,39B
+40A,Crimes against society,Prostitution Offenses,40A Prostitution,40A
+40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,40B
+510,Crimes against property,Bribery,510 Bribery,510
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,520A
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,520B
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,520C
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,520D
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,520E
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,520F
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,520G
+90A,Crimes against property,Bad Checks (except Counterfeit Checks or Forged Checks),90A Bad Checks (except Counterfeit Checks or Forged Checks),90A
+90B,Crimes against society,Curfew/Loitering/Vagrancy Violations,90B Curfew/Loitering/Vagrancy Violations,90B1
+90B,Crimes against society,Curfew/Loitering/Vagrancy Violations,90B Curfew/Loitering/Vagrancy Violations,90B2
+90B,Crimes against society,Curfew/Loitering/Vagrancy Violations,90B Curfew/Loitering/Vagrancy Violations,90B3
+90B,Crimes against society,Curfew/Loitering/Vagrancy Violations,90B Curfew/Loitering/Vagrancy Violations,90B4
+90C,Crimes against society,Disorderly Conduct,90C Disorderly Conduct,90C1
+90C,Crimes against society,Disorderly Conduct,90C Disorderly Conduct,90C2
+90D,Crimes against society,Driving Under the Influence,90D Driving Under the Influence,90D1
+90D,Crimes against society,Driving Under the Influence,90D Driving Under the Influence,90D2
+90E,Crimes against society,Drunkenness (except Driving Under the Influence),90E Drunkenness (except Driving Under the Influence),90E
+90F,Crimes against society,"Family Offenses, Nonviolent","90F Family Offenses, Nonviolent",90F1
+90F,Crimes against society,"Family Offenses, Nonviolent","90F Family Offenses, Nonviolent",90F2
+90F,Crimes against society,"Family Offenses, Nonviolent","90F Family Offenses, Nonviolent",90F3
+90F,Crimes against society,"Family Offenses, Nonviolent","90F Family Offenses, Nonviolent",90F4
+90G,Crimes against society,Liquor Law Violations (except Driving Under the Influence and Drunkenness),90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),90G
+90H,Crimes against society,Peeping Tom,90H Peeping Tom,90H
+90J,Crimes against society,Trespass of Real Property,90J Trespass of Real Property,90J
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90P
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90X
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90Y
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90Z1
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90Z2
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90Z3
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90Z4
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90Z5
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90Z6
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90Z7
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90Z8
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90Z9
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZA
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZB
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZC
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZD
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZE
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZF
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZG
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZH
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZJ
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZK
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZL
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZM
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZP
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,90ZZ
+99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,99R

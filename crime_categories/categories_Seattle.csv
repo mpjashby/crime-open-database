@@ -1,0 +1,205 @@
+NIBRS_Offense_Code,Summarized Offense Description,Offense Type,NIBRS_Offense_Type,NIBRS_Offense_Category,NIBRS_Crime_Against
+99X,[INC - CASE DC USE ONLY],[INC - CASE DC USE ONLY],99X Non-Categorisable Offenses,Excluded cases,Excluded cases
+99Z,ANIMAL COMPLAINT,ANIMAL-BITE,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,ANIMAL COMPLAINT,ANIMAL-CRUELTY,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,ANIMAL COMPLAINT,ANIMAL-OTH,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+13A,ASSAULT,ASSLT-AGG-BODYFORCE,13A Aggravated assault,Assault Offenses,Crimes against person
+13A,ASSAULT,ASSLT-AGG-GUN,13A Aggravated assault,Assault Offenses,Crimes against person
+13A,ASSAULT,ASSLT-AGG-POLICE-BODYFORCE,13A Aggravated assault,Assault Offenses,Crimes against person
+13A,ASSAULT,ASSLT-AGG-POLICE-GUN,13A Aggravated assault,Assault Offenses,Crimes against person
+13A,ASSAULT,ASSLT-AGG-POLICE-WEAPON,13A Aggravated assault,Assault Offenses,Crimes against person
+13A,ASSAULT,ASSLT-AGG-WEAPON,13A Aggravated assault,Assault Offenses,Crimes against person
+13B,ASSAULT,ASSLT-NONAGG,13B Simple assault,Assault Offenses,Crimes against person
+13B,ASSAULT,ASSLT-NONAGG-POLICE,13B Simple assault,Assault Offenses,Crimes against person
+13B,ASSAULT,ASSLT-OTHER,13B Simple assault,Assault Offenses,Crimes against person
+13A,ASSAULT,DRIVE-BY,13A Aggravated assault,Assault Offenses,Crimes against person
+13A,ASSAULT,ENDANGER,13A Aggravated assault,Assault Offenses,Crimes against person
+13A,ASSAULT,ENDANGERMENT,13A Aggravated assault,Assault Offenses,Crimes against person
+99Y,BIAS INCIDENT,BIAS INCIDENT,99Y Non-Reportable Crimes,Excluded cases,Excluded cases
+23H,BIKE THEFT,THEFT-BICYCLE,23H All Other Larceny,Larceny/Theft Offenses,Crimes against property
+22B,BURGLARY,BURGLARY-FORCE-NONRES,22B Non-domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22A,BURGLARY,BURGLARY-FORCE-RES,22A Domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22B,BURGLARY,BURGLARY-NOFORCE-NONRES,22B Non-domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22A,BURGLARY,BURGLARY-NOFORCE-RES,22A Domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22C,BURGLARY,BURGLARY-OTHER,22U Other Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22B,BURGLARY,BURGLARY-SECURE PARKING-NONRES,22B Non-domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22A,BURGLARY-SECURE PARKING-RES,BURGLARY-SECURE PARKING-RES,22A Domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+240,CAR PROWL,THEFT-CARPROWL,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+99Z,COLLISION - HIT AND RUN - BIKE,COLLISION - HIT AND RUN - BIKE,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+250,COUNTERFEIT,COUNTERFEIT,250 Counterfeiting/Forgery,Counterfeiting/Forgery,Crimes against property
+90C,DISORDERLY CONDUCT,DISORDERLY CONDUCT,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+99Z,DISPUTE,DISPUTE-CIVIL PROPERTY (AUTO),99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,DISPUTE,DISPUTE-CIVIL PROPERTY (NON AU,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,DISPUTE,DISPUTE-OTH,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+90C,DISTURBANCE,DISTURBANCE-NOISE,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+90C,DISTURBANCE,DISTURBANCE-OTH,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+90D,DUI,DUI-DRUGS,90D Driving Under the Influence,Driving Under the Influence,Crimes against society
+90D,DUI,DUI-LIQUOR,90D Driving Under the Influence,Driving Under the Influence,Crimes against society
+90Z,ELUDING,ELUDING-FELONY FLIGHT,90Z All Other Offenses,All Other Offenses,All Other Offenses
+270,EMBEZZLE,EMBEZZLE,270 Embezzlement,Embezzlement,Crimes against property
+90Z,ESCAPE,ESCAPE,90Z All Other Offenses,All Other Offenses,All Other Offenses
+210,EXTORTION,EXTORTION,210 Extortion/Blackmail,Extortion/Blackmail,Crimes against property
+90Z,FALSE REPORT,FALSE REPORT,90Z All Other Offenses,All Other Offenses,All Other Offenses
+90Z,FIREWORK,FIREWORK-POSSESS,90Z All Other Offenses,All Other Offenses,All Other Offenses
+90Z,FIREWORK,FIREWORK-USE,90Z All Other Offenses,All Other Offenses,All Other Offenses
+250,FORGERY,FORGERY-CHECK,250 Counterfeiting/Forgery,Counterfeiting/Forgery,Crimes against property
+250,FORGERY,FORGERY-CREDIT CARD,250 Counterfeiting/Forgery,Counterfeiting/Forgery,Crimes against property
+250,FORGERY,FORGERY-OTH,250 Counterfeiting/Forgery,Counterfeiting/Forgery,Crimes against property
+90A,FRAUD,FRAUD-CHECK,90A Bad Checks (except Counterfeit Checks or Forged Checks),Bad Checks (except Counterfeit Checks or Forged Checks),Crimes against property
+26E,FRAUD,FRAUD-COMPUTER,26E Wire Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+26B,FRAUD,FRAUD-CREDIT CARD,26B Credit Card/Automated Teller Machine Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+26C,FRAUD,FRAUD-IDENTITY THEFT,26C Impersonation,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+26U,FRAUD,FRAUD-OTHER,26U Other Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+26D,FRAUD,FRAUD-WELFARE,26D Welfare Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+26E,FRAUD,FRAUD-WIRE-ELECTRONIC,26E Wire Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+510,FRAUD AND FINANCIAL,BRIBERY,510 Bribery,Bribery,Crimes against property
+39A,GAMBLE,GAMBLE-BETTING,39A Betting/Wagering,Gambling Offenses,Crimes against society
+39B,GAMBLE,GAMBLE-OPERATE,39B Operating/Promoting/Assisting Gambling,Gambling Offenses,Crimes against society
+90Z,HARBOR CALLs,HARBOR - CRIMINAL CODE VIOLATI,90Z All Other Offenses,All Other Offenses,All Other Offenses
+90Z,HARBOR CALLS,HARBOR - BOATING UNDER INFLUEN,90Z All Other Offenses,All Other Offenses,All Other Offenses
+99Z,HOMICIDE,HOMICIDE-JUST-GUN,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,HOMICIDE,HOMICIDE-JUST-WEAPON,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+09B,HOMICIDE,HOMICIDE-NEG-MANS-BODYFORCE,09B Negligent Manslaughter,Homicide Offenses,Crimes against person
+09B,HOMICIDE,HOMICIDE-NEG-MANS-GUN,09B Negligent Manslaughter,Homicide Offenses,Crimes against person
+09B,HOMICIDE,HOMICIDE-NEG-MANS-VEHICLE,09B Negligent Manslaughter,Homicide Offenses,Crimes against person
+09B,HOMICIDE,HOMICIDE-NEG-MANS-WEAPON,09B Negligent Manslaughter,Homicide Offenses,Crimes against person
+09A,HOMICIDE,HOMICIDE-PREMEDITATED-BODYFORC,09A Murder and Nonnegligent Manslaughter,Homicide Offenses,Crimes against person
+09A,HOMICIDE,HOMICIDE-PREMEDITATED-GUN,09A Murder and Nonnegligent Manslaughter,Homicide Offenses,Crimes against person
+09A,HOMICIDE,HOMICIDE-PREMEDITATED-WEAPON,09A Murder and Nonnegligent Manslaughter,Homicide Offenses,Crimes against person
+99Z,ILLEGAL DUMPING,ILLEGAL DUMPING,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,INJURY,INJURY - ACCIDENTAL,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,INJURY,INJURY - OTHER,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+90G,LIQUOR VIOLATION,LIQUOR LAW VIOLATION,90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),Liquor Law Violations (except Driving Under the Influence and Drunkenness),Crimes against society
+90B,LOITERING,LOITERING,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+99Z,LOST PROPERTY,PROPERTY LOST,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,LOST PROPERTY,PROPERTY LOST - POLICE EQUIPME,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+23H,MAIL THEFT,THEFT-MAIL,23H All Other Larceny,Larceny/Theft Offenses,Crimes against property
+99Z,METRO,"METRO TRANSIT - ON BUS, TUNNEL",99Z Non-Criminal Matters,Excluded cases,Excluded cases
+35A,NARCOTICS,NARC-DISTRIBUTE-HALLUCINOGEN,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-DRUG TRAFFIC LOITERING,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35B,NARCOTICS,NARC-EQUIPMENT/PARAPHENALIA,35B Drug Equipment Violations,Drug/Narcotic Offenses,Crimes against society
+250,NARCOTICS,NARC-FORGERY-PRESCRIPTION,250 Counterfeiting/Forgery,Counterfeiting/Forgery,Crimes against property
+99Z,NARCOTICS,NARC-FOUND-AMPHETAMINE,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,NARCOTICS,NARC-FOUND-COCAINE,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,NARCOTICS,NARC-FOUND-HALLUCINOGEN,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,NARCOTICS,NARC-FOUND-HEROIN,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,NARCOTICS,NARC-FOUND-MARIJU,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,NARCOTICS,NARC-FOUND-METH,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,NARCOTICS,NARC-FOUND-OPIUM,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,NARCOTICS,NARC-FOUND-OTHER,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,NARCOTICS,NARC-FOUND-PILL/TABLET,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,NARCOTICS,NARC-FOUND-SYNTHETIC,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+26U,NARCOTICS,NARC-FRAUD-PRESCRIPTION,26U Other Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+35A,NARCOTICS,NARC-MANUFACTURE-HALLUCINOGEN,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-MANUFACTURE-METH,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-MANUFACTURE-OTHER,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-AMPHETAMINE,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-BARBITUATE,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-COCAINE,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-HALLUCINOGEN,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-HEROIN,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-MARIJU,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-METH,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-OPIUM,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-OTHER,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-PILL/TABLET,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-PRESCRIPTION,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-POSSESS-SYNTHETIC,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-PRODUCE-MARIJU,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-AMPHETAMINE,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-BARBITUATE,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-COCAINE,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-HALLUCINOGEN,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-HEROIN,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-MARIJU,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-METH,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-OPIUM,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-OTHER,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-PILL/TABLET,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-PRESCRIPTION,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SELL-SYNTHETIC,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SMUGGLE-COCAINE,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SMUGGLE-MARIJU,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SMUGGLE-METH,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35A,NARCOTICS,NARC-SMUGGLE-OTHER,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+90Z,OBSTRUCT,OBSTRUCT,90Z All Other Offenses,All Other Offenses,All Other Offenses
+23G,OTHER PROPERTY,THEFT-AUTO PARTS,23G Theft of Motor Vehicle Parts or Accessories,Larceny/Theft Offenses,Crimes against property
+23F,OTHER PROPERTY,THEFT-AUTOACC,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),Larceny/Theft Offenses,Crimes against property
+23D,OTHER PROPERTY,THEFT-BUILDING,23D Theft From Building,Larceny/Theft Offenses,Crimes against property
+23E,OTHER PROPERTY,THEFT-COINOP,23E Theft From Coin-Operated Machine or Device,Larceny/Theft Offenses,Crimes against property
+23F,OTHER PROPERTY,THEFT-LICENSE PLATE,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),Larceny/Theft Offenses,Crimes against property
+23H,OTHER PROPERTY,THEFT-OTH,23H All Other Larceny,Larceny/Theft Offenses,Crimes against property
+90A,OTHER PROPERTY,THEFT-UNLAWFUL ISSUANCE OF BAN,90A Bad Checks (except Counterfeit Checks or Forged Checks),Bad Checks (except Counterfeit Checks or Forged Checks),Crimes against property
+23A,PICKPOCKET,THEFT-PKPOCKET,23A Pocket-picking,Larceny/Theft Offenses,Crimes against property
+370,PORNOGRAPHY,PORNOGRAPHY-OBSCENE MATERIAL,370 Pornography/Obscene Material,Pornography/Obscene Material,Crimes against society
+290,PROPERTY DAMAGE,PROPERTY DAMAGE - GRAFFITI,290 Destruction/Damage/Vandalism of Property (except Arson),Destruction/Damage/Vandalism of Property (except Arson),Crimes against property
+290,PROPERTY DAMAGE,PROPERTY DAMAGE-NON RESIDENTIA,290 Destruction/Damage/Vandalism of Property (except Arson),Destruction/Damage/Vandalism of Property (except Arson),Crimes against property
+290,PROPERTY DAMAGE,PROPERTY DAMAGE-RESIDENTIAL,290 Destruction/Damage/Vandalism of Property (except Arson),Destruction/Damage/Vandalism of Property (except Arson),Crimes against property
+40A,PROSTITUTION,PROSTITUTION,40A Prostitution,Prostitution Offenses,Crimes against society
+40A,PROSTITUTION,PROSTITUTION LOITERING,40A Prostitution,Prostitution Offenses,Crimes against society
+40C,PROSTITUTION,PROSTITUTION PATRONIZING,40C Purchasing Prostitution,Prostitution Offenses,Crimes against society
+40B,PROSTITUTION,PROSTITUTION-ASSIST-PROMOTE,40B Assisting or Promoting Prostitution,Prostitution Offenses,Crimes against society
+90C,PUBLIC NUISANCE,URINATING/DEFECATING-IN PUBLIC,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+23B,PURSE SNATCH,THEFT-PRSNATCH,23B Purse-snatching,Larceny/Theft Offenses,Crimes against property
+200,RECKLESS BURNING,RECKLESS BURNING,200 Arson,Arson,Crimes against property
+99Z,RECOVERED PROPERTY,PROP RECOVERED-OTHER AGENCY,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,RECOVERED PROPERTY,PROPERTY RECOVERED - POLICE EQ,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+12B,ROBBERY,ROBBERY-BANK-BODYFORCE,12B Commercial Robbery,Robbery,Crimes against property
+12B,ROBBERY,ROBBERY-BANK-GUN,12B Commercial Robbery,Robbery,Crimes against property
+12B,ROBBERY,ROBBERY-BANK-OTHER,12B Commercial Robbery,Robbery,Crimes against property
+12B,ROBBERY,ROBBERY-BANK-WEAPON,12B Commercial Robbery,Robbery,Crimes against property
+12B,ROBBERY,ROBBERY-BUSINESS-BODYFORCE,12B Commercial Robbery,Robbery,Crimes against property
+12B,ROBBERY,ROBBERY-BUSINESS-GUN,12B Commercial Robbery,Robbery,Crimes against property
+12B,ROBBERY,ROBBERY-BUSINESS-WEAPON,12B Commercial Robbery,Robbery,Crimes against property
+12C,ROBBERY,ROBBERY-OTHER,12U Other Robbery,Robbery,Crimes against property
+12A,ROBBERY,ROBBERY-RESIDENCE-BODYFORCE,12A Personal Robbery,Robbery,Crimes against property
+12A,ROBBERY,ROBBERY-RESIDENCE-GUN,12A Personal Robbery,Robbery,Crimes against property
+12A,ROBBERY,ROBBERY-RESIDENCE-WEAPON,12A Personal Robbery,Robbery,Crimes against property
+12A,ROBBERY,ROBBERY-STREET-BODYFORCE,12A Personal Robbery,Robbery,Crimes against property
+12A,ROBBERY,ROBBERY-STREET-GUN,12A Personal Robbery,Robbery,Crimes against property
+12A,ROBBERY,ROBBERY-STREET-WEAPON,12A Personal Robbery,Robbery,Crimes against property
+23C,SHOPLIFTING,THEFT-SHOPLIFT,23C Shoplifting,Larceny/Theft Offenses,Crimes against property
+90B,STAY OUT OF AREA OF DRUGS,SODA-VIOL-EAST,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+90B,STAY OUT OF AREA OF DRUGS,SODA-VIOL-NORTH,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+90B,STAY OUT OF AREA OF DRUGS,SODA-VIOL-WEST,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+90B,STAY OUT OF AREA OF PROSTITUTION,SOAP-VIOL - ZONE 1,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+90B,STAY OUT OF AREA OF PROSTITUTION,SOAP-VIOL - ZONE 2,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+90B,STAY OUT OF AREA OF PROSTITUTION,SOAP-VIOL - ZONE 3,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+90B,STAY OUT OF AREA OF PROSTITUTION,SOAP-VIOL - ZONE 4,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+90B,STAY OUT OF AREA OF PROSTITUTION,SOAP-VIOL - ZONE 6,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+99Z,STOLEN PROPERTY,PROPERTY FOUND,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+280,STOLEN PROPERTY,PROPERTY STOLEN - POLICE EQUIP,280 Stolen Property Offenses,Stolen Property Offenses,Crimes against property
+280,STOLEN PROPERTY,PROPERTY STOLEN-POSSESS,280 Stolen Property Offenses,Stolen Property Offenses,Crimes against property
+280,STOLEN PROPERTY,PROPERTY STOLEN-RECEIVE,280 Stolen Property Offenses,Stolen Property Offenses,Crimes against property
+280,STOLEN PROPERTY,PROPERTY STOLEN-SELL,280 Stolen Property Offenses,Stolen Property Offenses,Crimes against property
+280,STOLEN PROPERTY,PROPERTY STOLEN-TRAFFICKING,280 Stolen Property Offenses,Stolen Property Offenses,Crimes against property
+23H,THEFT OF SERVICES,THEFT OF SERVICES,23H All Other Larceny,Larceny/Theft Offenses,Crimes against property
+13C,THREATS,HARASSMENT,13C Intimidation,Assault Offenses,Crimes against person
+13C,THREATS,MALICIOUS HARASSMENT,13C Intimidation,Assault Offenses,Crimes against person
+13C,THREATS,THREATS-DIGNITARY,13C Intimidation,Assault Offenses,Crimes against person
+13C,THREATS,THREATS-KILL,13C Intimidation,Assault Offenses,Crimes against person
+13C,THREATS,THREATS-OTHER,13C Intimidation,Assault Offenses,Crimes against person
+13C,THREATS,THREATS-WEAPON,13C Intimidation,Assault Offenses,Crimes against person
+99Z,TRAFFIC,TRAFFIC,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+90J,TRESPASS,TRESPASS,90J Trespass of Real Property,Trespass of Real Property,Crimes against society
+240,VEHICLE THEFT,THEFT-BOAT,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+240,VEHICLE THEFT,VEH-RCVD-FOR OTHER AGENCY,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+240,VEHICLE THEFT,VEH-THEFT-AUTO,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+240,VEHICLE THEFT,VEH-THEFT-BUS,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+240,VEHICLE THEFT,VEH-THEFT-HVYEQUIP,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+240,VEHICLE THEFT,VEH-THEFT-MTRCYCLE,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+240,VEHICLE THEFT,VEH-THEFT-OTHVEH,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+240,VEHICLE THEFT,VEH-THEFT-RECREATION VEH,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+240,VEHICLE THEFT,VEH-THEFT-TRAILER,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+240,VEHICLE THEFT,VEH-THEFT-TRUCK,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+99Z,VIOLATION OF COURT ORDER,VIOL-COURT ORDER,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,WARRANT ARREST,WARRANT-FUGITIVE,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,WARRANT ARREST,WARRARR-FELONY,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+99Z,WARRANT ARREST,WARRARR-MISDEMEANOR,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+520,WEAPON,WEAPON-CONCEALED,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+520,WEAPON,WEAPON-DISCHARGE,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+520,WEAPON,WEAPON-POSSESSION,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+520,WEAPON,WEAPON-SELLING,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+520,WEAPON,WEAPON-SURRENDER-EXCLUDING FIR,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+520,WEAPON,WEAPON-UNLAWFUL USE,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+99X,NA,NA,99X Non-Categorisable Offenses,Excluded cases,Excluded cases

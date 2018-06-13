@@ -1,0 +1,299 @@
+STATUTDESC,NIBRS_Offense_Code,NIBRS_Offense_Type,NIBRS_Offense_Category,NIBRS_Crime_Against
+HOMICIDE/MURDER,09A,09A Murder and Nonnegligent Manslaughter,Homicide Offenses,Crimes against person
+HOMICIDE/MANSLAUGHTER,09B,09B Negligent Manslaughter,Homicide Offenses,Crimes against person
+SEXUAL ASSAULT/FORCIBLE RAPE,11A,11A Rape (except Statutory Rape),Sex Offenses,Crimes against person
+SEXUAL ASSAULT/OTHER,11D,11D Fondling,Sex Offenses,Crimes against person
+SEXUAL ASSAULT/ATTEMPTED RAPE,11A,11A Rape (except Statutory Rape),Sex Offenses,Crimes against person
+ROBBERY/HIGHWAY,12A,12A Personal Robbery,Robbery,Crimes against property
+ROBBERY/COMMERCIAL HOUSE,12B,12B Commercial Robbery,Robbery,Crimes against property
+ROBBERY/SERVICE STATION,12B,12B Commercial Robbery,Robbery,Crimes against property
+ROBBERY/CONVENIENCE STORE,12B,12B Commercial Robbery,Robbery,Crimes against property
+ROBBERY/RESIDENCE,12A,12A Personal Robbery,Robbery,Crimes against property
+ROBBERY/BANKS,12B,12B Commercial Robbery,Robbery,Crimes against property
+ROBBERY/MISCELLANEOUS,12U,12U Other Robbery,Robbery,Crimes against property
+ROBBERY/CARJACKING,12A,12A Personal Robbery,Robbery,Crimes against property
+"ASSAULT, AGGRAVATED/PEACE OFFICER (SERIOUS INJURY)",13A,13A Aggravated assault,Assault Offenses,Crimes against person
+"ASSAULT, AGGRAVATED/PEACE OFFICER (NON-SERIOUS INJ)",13A,13A Aggravated assault,Assault Offenses,Crimes against person
+"ASSAULT, AGGRAVATED/OTHER",13A,13A Aggravated assault,Assault Offenses,Crimes against person
+"ASSAULT, AGGRAVATED/DRIVEBY SHOOTING",13A,13A Aggravated assault,Assault Offenses,Crimes against person
+"ASSAULT, AGGRAVATED/OTHER - DOMESTIC VIOLENCE",13A,13A Aggravated assault,Assault Offenses,Crimes against person
+BURGLARY/FORCIBLE ENTRY,22U,22U Other Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+BURGLARY/UNLAWFUL ENTRY - NO FORCE,22U,22U Other Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+BURGLARY/ATTEMPTED FORCIBLE ENTRY,22U,22U Other Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+LARCENY/POCKET PICKING,23A,23A Pocket-picking,Larceny/Theft Offenses,Crimes against property
+LARCENY/PURSE SNATCHING,23B,23B Purse-snatching,Larceny/Theft Offenses,Crimes against property
+LARCENY/SHOPLIFTING,23C,23C Shoplifting,Larceny/Theft Offenses,Crimes against property
+LARCENY/FROM MOTOR VEHICLE,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),Larceny/Theft Offenses,Crimes against property
+LARCENY/FROM MOTOR VEHICLES (EXCEPT 0605),23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),Larceny/Theft Offenses,Crimes against property
+LARCENY/AUTO PARTS & ACCESSORIES,23G,23G Theft of Motor Vehicle Parts or Accessories,Larceny/Theft Offenses,Crimes against property
+LARCENY/BICYCLES,23H,23H All Other Larceny,Larceny/Theft Offenses,Crimes against property
+LARCENY/FROM RESIDENCE,23D,23D Theft From Building,Larceny/Theft Offenses,Crimes against property
+LARCENY/FROM BUILDING OPEN TO THE PUBLIC,23D,23D Theft From Building,Larceny/Theft Offenses,Crimes against property
+LARCENY/FROM ANY COIN OPERATED MACHINE,23E,23E Theft From Coin-Operated Machine or Device,Larceny/Theft Offenses,Crimes against property
+LARCENY/ALL OTHERS,23H,23H All Other Larceny,Larceny/Theft Offenses,Crimes against property
+LARCENY/METAL THEFT,23H,23H All Other Larceny,Larceny/Theft Offenses,Crimes against property
+GTA/STOLEN,240,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+GTA/RECOVERY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+GTA/RECOVERY FOR OTHR JURISDICTION,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ARSON/RESIDENTIAL STRUCTURE,200,200 Arson,Arson,Crimes against property
+ARSON/BUSINESS STRUCTURE,200,200 Arson,Arson,Crimes against property
+ARSON/RESIDENTIAL STRUCTURE,200,200 Arson,Arson,Crimes against property
+ARSON/OTHER STRUCTURE,200,200 Arson,Arson,Crimes against property
+ARSON/VEHICLE,200,200 Arson,Arson,Crimes against property
+ARSON/OTHER,200,200 Arson,Arson,Crimes against property
+ASSAULT/MINOR INJURY,13B,13B Simple assault,Assault Offenses,Crimes against person
+ASSAULT/NO INJURY,13B,13B Simple assault,Assault Offenses,Crimes against person
+ASSAULT/MINOR INJURY-DOMESTIC VIOLENCE,13B,13B Simple assault,Assault Offenses,Crimes against person
+ASSAULT/NO INJURY - DOMESTIC VIOLENCE,13B,13B Simple assault,Assault Offenses,Crimes against person
+FORGERY & COUNTERFEITING/FORGERY,250,250 Counterfeiting/Forgery,Counterfeiting/Forgery,Crimes against property
+FORGERY & COUNTERFEITING/COUNTERFEITING,250,250 Counterfeiting/Forgery,Counterfeiting/Forgery,Crimes against property
+FRAUD/BOGUS CHECKS,90A,90A Bad Checks (except Counterfeit Checks or Forged Checks),Bad Checks (except Counterfeit Checks or Forged Checks),Crimes against property
+FRAUD/DEFRAUDING,26A,26A False Pretenses/Swindle/Confidence Game,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+FRAUD/CONFIDENCE GAME,26A,26A False Pretenses/Swindle/Confidence Game,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+FRAUD/OTHER,26U,26U Other Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+FRAUD/IDENTITY THEFT,26C,26C Impersonation,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+FRAUD/PRESCRIPTION FRAUD,26A,26A False Pretenses/Swindle/Confidence Game,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+EMBEZZLEMENT/RENTAL PROPERTY,270,270 Embezzlement,Embezzlement,Crimes against property
+EMBEZZLEMENT/FROM EMPLOYER,270,270 Embezzlement,Embezzlement,Crimes against property
+EMBEZZLEMENT/MORTGAGED PROPERTY,270,270 Embezzlement,Embezzlement,Crimes against property
+EMBEZZLEMENT/OTHER,270,270 Embezzlement,Embezzlement,Crimes against property
+STOLEN PROPERTY/BUYING,280,280 Stolen Property Offenses,Stolen Property Offenses,Crimes against property
+STOLEN PROPERTY/RECEIVING,280,280 Stolen Property Offenses,Stolen Property Offenses,Crimes against property
+STOLEN PROPERTY/POSSESSION,280,280 Stolen Property Offenses,Stolen Property Offenses,Crimes against property
+CRIMINAL DAMAGE/MALICIOUS MISCHIEF,290,290 Destruction/Damage/Vandalism of Property (except Arson),Destruction/Damage/Vandalism of Property (except Arson),Crimes against property
+CRIMINAL DAMAGE/INTENTIONAL VANDALISM,290,290 Destruction/Damage/Vandalism of Property (except Arson),Destruction/Damage/Vandalism of Property (except Arson),Crimes against property
+CRIMINAL DAMAGE/GRAFFITI,290,290 Destruction/Damage/Vandalism of Property (except Arson),Destruction/Damage/Vandalism of Property (except Arson),Crimes against property
+CRIMINAL DAMAGE/INTENTIONAL VANDALISM - DOM VIOL,290,290 Destruction/Damage/Vandalism of Property (except Arson),Destruction/Damage/Vandalism of Property (except Arson),Crimes against property
+WEAPONS/CARRYING CONCEALED,520,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+WEAPONS/FURNISHING TO MINOR,520,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+WEAPONS/ILLEGAL,520,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+WEAPONS/OTHER,520,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+PROSTITUTION,40A,40A Prostitution,Prostitution Offenses,Crimes against society
+COMMERCIALIZED SEX/PANDERING,40A,40A Prostitution,Prostitution Offenses,Crimes against society
+COMMERCIALIZED SEX/HOUSE OF ILL FAME,40A,40A Prostitution,Prostitution Offenses,Crimes against society
+COMMERCIALIZED SEX/OTHER,40A,40A Prostitution,Prostitution Offenses,Crimes against society
+SEX OFFENSES/MOLESTING,11D,11D Fondling,Sex Offenses,Crimes against person
+SEX OFFENSES/CHILD MOLESTING,11D,11D Fondling,Sex Offenses,Crimes against person
+SEX OFFENSES/EXPOSURE,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+SEX OFFENSES/OBSCENE PHONE CALLS,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+SEX OFFENSES/LEWD & LASCIVIOUS ACTS,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+"SEX OFFENSES/OTHER (ADULTRY,INCEST,STAT RAPE,ETC)",36U,36U Other Sex Offenses,Sex Offenses,Crimes against person
+SEX OFFENSES/PEEPING TOM,90H,90H Peeping Tom,Peeping Tom,Crimes against society
+NARCOTIC DRUG LAWS/POSSESSION,35A,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+NARCOTIC DRUG LAWS/SALE,35A,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+NARCOTIC DRUG LAWS/POSSESSION OF PARAPHERNALIA,35B,35B Drug Equipment Violations,Drug/Narcotic Offenses,Crimes against society
+NARCOTIC DRUG LAWS/PAINT OR GLUE SNIFFING,35A,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+OFFENSES AGAINST FAMILY & CHILDREN/PHYSICAL ABUSE,90F,"90F Family Offenses, Nonviolent","Family Offenses, Nonviolent",Crimes against society
+OFFENSES AGAINST FAMILY & CHILDREN/NEGLECT,90F,"90F Family Offenses, Nonviolent","Family Offenses, Nonviolent",Crimes against society
+OFFENSES AGAINST FAMILY & CHILDREN/NON-SUPPORT,90F,"90F Family Offenses, Nonviolent","Family Offenses, Nonviolent",Crimes against society
+OFFENSES AGNST FAMILY & CHLDRN/DESERTION-ABANDON,90F,"90F Family Offenses, Nonviolent","Family Offenses, Nonviolent",Crimes against society
+OFFENSES AGNST FAMILY & CHLDRN/CUSTODIAL INTERFERE,90F,"90F Family Offenses, Nonviolent","Family Offenses, Nonviolent",Crimes against society
+OFFENSES AGAINST FAMILY & CHILDREN/OTHER,90F,"90F Family Offenses, Nonviolent","Family Offenses, Nonviolent",Crimes against society
+OFFENSES AGNST FAMILY & CHLDRN/CSTDL INTRFRNCE DV,90F,"90F Family Offenses, Nonviolent","Family Offenses, Nonviolent",Crimes against society
+DUI/FATAL ACCIDENT,90D,90D Driving Under the Influence,Driving Under the Influence,Crimes against society
+DUI/PERSONAL INJURY ACCIDENT,90D,90D Driving Under the Influence,Driving Under the Influence,Crimes against society
+DUI/PROPERTY DAMAGE ONLY ACCIDENT,90D,90D Driving Under the Influence,Driving Under the Influence,Crimes against society
+DUI/NON-ACCIDENT,90D,90D Driving Under the Influence,Driving Under the Influence,Crimes against society
+LIQUOR LAWS/FURNISHING LIQUOR TO MINOR,90G,90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),Liquor Law Violations (except Driving Under the Influence and Drunkenness),Crimes against society
+LIQUOR LAWS/MINOR IN POSSESSION,90G,90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),Liquor Law Violations (except Driving Under the Influence and Drunkenness),Crimes against society
+LIQUOR LAWS/DRINKING IN PUBLIC,90G,90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),Liquor Law Violations (except Driving Under the Influence and Drunkenness),Crimes against society
+LIQUOR LAWS/OTHER,90G,90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),Liquor Law Violations (except Driving Under the Influence and Drunkenness),Crimes against society
+INTOXICATION/DRUNK IN PUBLIC,90E,90E Drunkenness (except Driving Under the Influence),Drunkenness (except Driving Under the Influence),Crimes against society
+INTOXICATION/TRANSPORTED TO LARC,90E,90E Drunkenness (except Driving Under the Influence),Drunkenness (except Driving Under the Influence),Crimes against society
+INTOXICATION/OTHER,90E,90E Drunkenness (except Driving Under the Influence),Drunkenness (except Driving Under the Influence),Crimes against society
+DISORDERLY CONDUCT/DISTURBING THE PEACE,90C,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+DISORDERLY CONDUCT/FIGHTING,90C,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+DISORDERLY CONDUCT/FAMILY FIGHT,90C,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+DISORDERLY CONDUCT/OBSTRUCTING AN OFFICER,90C,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+DISORDERLY CONDUCT/DISCHARGING FIREARMS OR FIREWKS,90C,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+DISORDERLY CONDUCT/OTHER (TRESPASSING),90J,90J Trespass of Real Property,Trespass of Real Property,Crimes against society
+RED TAG ISSUED,90C,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+DISORDERLY CONDUCT/DISTURBING THE PEACE DV,90C,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+DISORDERLY CONDUCT/OTHER (TRESPASSING) DV,90J,90J Trespass of Real Property,Trespass of Real Property,Crimes against society
+VAGRANCY/BEGGING,90B,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+VAGRANCY/LOITERING,90B,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+VAGRANCY/OTHER,90B,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+OTHER OFFENSES/ESCAPE,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+OTHER OFFENSES/PHONE CALLS,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+OTHER OFFENSES/BOMB THREATS,13C,13C Intimidation,Assault Offenses,Crimes against person
+OTHER OFFENSES/OTHER FELONIES,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+OTHER OFFENSES/OTHER MISDEMEANORS,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+OTHER OFFENSES/KIDNAPPING,100,100 Kidnapping/Abduction,Kidnapping/Abduction,Crimes against person
+OTHER OFFENSES/ANIMAL ABUSE OR NEGLECT,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+OTHER OFFENSES/OTHER FELONIES DV,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+OTHER OFFENSES/OTHER MISDEMEANORS DV,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+OTHER OFFENSES/STALKING,13C,13C Intimidation,Assault Offenses,Crimes against person
+ARREST FOR OTHER JURISDICTION/FELONY WARRANT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ARREST FOR OTHER JURISDICTION/MISD CRIMINL WARRANT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ARREST FOR OTHER JURISDICTION/MISD TRAFFIC WARRANT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ARREST FOR OTHER JURISDICTION/OTHER (OUTSIDE RAJ),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+JUVENILE VIOLATIONS/CURFEW,90B,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+"JUVENILE VIOLATIONS/HEALTH, WELFARE, MORALS",90B,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+JUVENILE VIOLATIONS/OTHER,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+RUNAWAY JUVENILE/FROM PARENT OR GUARDIAN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+RUNAWAY JUVENILE/FROM INSTITUTION OR FOSTER HOME,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+RUNAWAY JUVENILE/ESCAPEE FROM INSTITUTION,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/PEDESTRIAN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/OTHER MOTOR VEHC,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/RAILROAD TRAIN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/BICYCLE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/FIXED OBJECT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/HIT-AND-RUN/PEDESTRIAN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/HIT-AND-RUN/AUTOMOBILE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/HIT-AND-RUN/BICYCLE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/HIT-AND-RUN/ANIMAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/FATAL/HIT-AND-RUN/FIXED OBJECT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/PEDESTRIAN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/OTHER MOTOR VEHC,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/RR TRAIN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/BICYCLE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/ANIMAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/FIXED OBJECT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/HIT-AND-RUN/PEDESTRIAN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/HIT-AND-RUN/OTHER MOTOR VEHC,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/HIT-AND-RUN/RR TRAIN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/HIT-AND-RUN/BICYCLE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/HIT-AND-RUN/ANIMAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/HIT-AND-RUN/FIXED OBJECT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/INJURY/HIT-AND-RUN/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/PEDESTRIAN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/OTHER MOTOR VEHC,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/RR TRAIN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/BICYCLE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/ANIMAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/FIXED OBJECT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/HIT-AND-RUN/PEDESTRIAN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/HIT-AND-RUN/MOTOR VEHC,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/HIT-AND-RUN/RR TRAIN,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/HIT-AND-RUN/BICYCLE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/HIT-AND-RUN/WITH ANIMAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/HIT-AND-RUN/FIXED OBJECT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC ACCIDENT/PRP DMG/HIT-AND-RUN/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+NON-TRAFFIC ACCIDENT/FATAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+NON-TRAFFIC ACCIDENT/PERSONAL INJURY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+NON-TRAFFIC ACCIDENT/PROPERTY DAMAGE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+NON-TRAFFIC ACCIDENT/FATAL-LEAVING THE SCENE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+NON-TRAFFIC ACCIDENT/PRSNL INJURY-LEAVING SCENE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+NON-TRAFFIC ACCIDENT/PRPRTY DMG-LEAVING SCENE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+OTHER VEHICLE ACCIDENTS/RAILROAD ACCIDENTS,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+OTHER VEHICLE ACCIDENTS/BICYCLE ACCIDENTS,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+OTHER VEHICLE ACCIDENTS/AIRPLANE ACCIDENTS,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+OTHER VEHICLE ACCIDENTS/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+TRAFFIC & MOTOR VEHC LAWS/MOVING VIOLATIONS,99Y,99Y Non-Reportable Crimes,Excluded cases,Excluded cases
+TRAFFIC & MOTOR VEHC LAWS/LICENSE & REGISTRATION,99Y,99Y Non-Reportable Crimes,Excluded cases,Excluded cases
+TRAFFIC & MOTOR VEHC LAWS/PARKING VIOLATIONS,99Y,99Y Non-Reportable Crimes,Excluded cases,Excluded cases
+TRAFFIC & MOTOR VEHC LAWS/ABANDONED VEHICLE,99Y,99Y Non-Reportable Crimes,Excluded cases,Excluded cases
+TRAFFIC & MOTOR VEHC LAWS/OTHER,99Y,99Y Non-Reportable Crimes,Excluded cases,Excluded cases
+TRAFFIC & MOTOR VEHC LAWS/ROAD RAGE,99Y,99Y Non-Reportable Crimes,Excluded cases,Excluded cases
+DEATH/NATURAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DEATH/ACCIDENTAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DEATH/SUICIDE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DEATH/UNKNOWN CAUSES,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+MENTAL CASES/TRANSPORTED TO TREATMENT FACILITY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+MENTAL CASES/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+SICK CARED FOR/TRANSPORTED TO MEDICAL FACILITY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+SICK CARED FOR/ATTEMPTED SUICIDE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+SICK CARED FOR/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ANIMAL BITES/DOG,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ANIMAL BITES/OTHER DOMESTIC ANIMAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ANIMAL BITES/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIREARM ACCIDENT/HUNTING OR RECREATIONAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIREARM ACCIDENT/HOME,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIREARM ACCIDENT/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PERSONAL INJURY ACCIDENTS/RESIDENTIAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PERSONAL INJURY ACCIDENTS/OCCUPATIONAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PERSONAL INJURY ACCIDENTS/PUBLIC PROPERTY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PERSONAL INJURY ACCIDENTS/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DISASTER/EXPLOSION,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DISASTER/FLOOD,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DISASTER/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PUBLIC HAZARD/NATURAL GAS LEAK,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PUBLIC HAZARD/CHEMICAL SPILLS,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PUBLIC HAZARD/DOWN POWER LINE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PUBLIC HAZARD/TRAFFIC,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PUBLIC HAZARD/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PUBLIC HAZARD/JUNKED MOTOR VEHICLE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/RESIDENTIAL STRUCTURE (FIRE NOT ARSON),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/BUSINES STRUCTURE (FIRE NOT ARSON),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/RESIDENTIAL STRUCTURE (FIRE ORIGIN UNKNOWN),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/OTHER STRUCTURE (FIRE NOT ARSON),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/VEHICLE (FIRE NOT ARSON),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/OTHER (FIRE NOT ARSON),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/RESIDENTIAL STRUCTURE (FIRE ORIGIN UNKNOWN),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/BUSINESS STRUCTURE (FIRE ORIGIN UNKNOWN),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/OTHER STRUCTURE (FIRE ORIGIN UNKNOWN),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/VEHICLE (UNKNOWN ORIGIN),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FIRE/OTHER (UNKNOWN ORIGIN),99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+LOST/ADULT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+LOST/ANIMAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+LOST/PROPERTY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+LOST/JUVENILE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FOUND/ADULT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FOUND ANIMAL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FOUND/PROPERTY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FOUND/JUVENILE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PUBLIC ASSIST/MOTORIST,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PUBLIC ASSIST/DELIVER EMERGENCY MESSAGE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PUBLIC ASSIST/CHECK WELFARE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+PUBLIC ASSIST/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+CIVIL MATTER/COURT ORDER ENFORCE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+CIVIL MATTER/PRESERVE THE PEACE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+CIVIL MATTER/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FALSE ALARM/BUSINESS-HOLD UP,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FALSE ALARM/BUSINESS-SILENT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FALSE ALARM/BUSINESS-AUDIBLE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FALSE ALARM/RESIDENTIAL-SILENT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FALSE ALARM/RESIDENTIAL-AUDIBLE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FALSE ALARM/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+FALSE ALARM/UNABLE TO LOCATE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+SUSPICIOUS ACTIVITY/VEHICLE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+SUSPICIOUS ACTIVITY/PERSON,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+SUSPICIOUS ACTIVITY/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+SUSPICIOUS ACTIVITY/UNABLE TO LOCATE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DISTURBANCE/UNABLE TO LOCATE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DISTURBANCE/NO COMPLAINANT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DISTURBANCE/NO CRIMINAL VIOLATION,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DISTURBANCE/PEACE RESTORED,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+DISTURBANCE/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+UNFOUNDED/NO BONAFIDE INCIDENT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+UNFOUNDED/NO VICTIM OR WITNESS FOUND,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+UNFOUNDED/NO SUCH ADDRESS,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ASSIST OTHER AGENCY/MUNICIPAL CRIMINAL JUSTICE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ASSIST OTHER AGENCY/COUNTY CRIMINAL JUSTICE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ASSIST OTHER AGENCY/STATE CRIMINAL JUSTICE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ASSIST OTHER AGENCY/FEDERAL CRIMINAL JUSTICE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ASSIST OTHER AGENCY/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+ASSIST OTHER AGENCY/IMMIGRATION AUTHORITY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+MISCELLANEOUS/OFFICER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+MISCELLANEOUS/PUBLIC,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+MISCELLANEOUS/PRISONER TRANSPORT - JAIL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+MISCELLANEOUS/POINT CONTROL,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+MISCELLANEOUS/EXAM NO CRIMINAL PROSECUTION,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+MISCELLANEOUS/OPERATION DEEP FREEZE,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+MISCELLANEOUS/PRISONER TRANSPORT - COURT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+COURT ORDER/ORDER OF PROTECTION,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+COURT ORDER/PRELIMINARY INJUNCTION,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+COURT ORDER/MENTAL HEALTH ORDER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+COURT ORDER/HARASSMENT ORDER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+COURT ORDER/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+WARRANTS/FELONY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+WARRANTS/MISDEMEANOR,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+WARRANTS/TRAFFIC,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+IMMIGRATION/LAWFUL/NON-ARREST SITUATION,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+IMMIGRATION/UNLAWFUL/NON-ARREST SITUATION,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+IMMIGRATION/BORDER PATROL CONTACTED RESPONDED,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+IMMIGRATION/BORDER PTRL CONTACTED UNABLE/FAILED TO RESPOND,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+IMMIGRATION/UNLAWFUL/NON-BOOKING ARREST SITUATION,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+IMMIGRATION/UNLAWFUL/CUSTODY XFERRED TO CBP,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+HUMAN TRAFFICKING/COMMERCIAL SEX ACTS,64A,"64A Human Trafficking, Commercial Sex Acts",Human Trafficking,Crimes against person
+HUMAN TRAFFICKING/INVOLUNTARY SERVITUDE,64B,"64B Human Trafficking, Involuntary Servitude",Human Trafficking,Crimes against person
+ARREST FOR OTHER JURISDICTION/FELONY WARRANT,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+BURGLARY/UNLAWFUL ENTRY - NO FORCE,22U,22U Other Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+DISORDERLY CONDUCT/OTHER (TRESPASSING),90J,90J Trespass of Real Property,Trespass of Real Property,Crimes against society
+LARCENY/AUTO PARTS & ACCESSORIES,23G,23G Theft of Motor Vehicle Parts or Accessories,Larceny/Theft Offenses,Crimes against property
+LIQUOR LAWS/FURNISHING LIQUOR TO MINOR,90G,90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),Liquor Law Violations (except Driving Under the Influence and Drunkenness),Crimes against society
+LOST/PROPERTY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
+OTHER OFFENSES/OTHER MISDEMEANORS DV,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
