@@ -98,13 +98,25 @@ add_date_var <- function (data, field_name, date_format, tz) {
     stop("tz must be a character string")
   }
   
-  data %>% mutate(
+  data <- data %>% mutate(
     Date.Temp = parse_date_time((!!as.name(field_name)), date_format, tz = tz),
     Date.Year = year(Date.Temp),
     Date.Single = strftime(Date.Temp, format = '%Y-%m-%d %H:%M', tz = tz),
     Multiple.Dates = FALSE
   ) %>% 
     select(-Date.Temp)
+  
+  if (sum(is.na(data$Date.Single)) > 0) {
+    cat("\n✖︎", format(sum(is.na(data$Date.Single)), big.mark = ","), 
+        "dates could not be parsed. Sample of original field:\n")
+    data %>% 
+      filter(is.na(data$Date.Single)) %>% 
+      sample_n(10) %>% { print(.[[field_name]]) }
+  } else {
+    cat("✔︎ All dates parsed\n")
+  }
+  
+  data
 }
 ```
 
@@ -138,7 +150,7 @@ filter_by_year <- function (data, year_first, year_last) {
       year_range[1], "and", year_range[2], "\n")
   
   if (min(table(filtered_data$Date.Year)) < 1000) {
-    warning("Some years have fewer than 1,000 crimes\n")
+    warning("✖ Some years have fewer than 1,000 crimes\n")
     print(table(filtered_data$Date.Year))
   }
 
@@ -146,6 +158,46 @@ filter_by_year <- function (data, year_first, year_last) {
 
 }
 ```
+
+## Join crime categories
+
+```{r}
+join_nibrs_cats <- function (data, file, by) {
+  
+  cats <- read_csv(file)
+  
+  data <- left_join(data, cats, by = by)
+  
+  check_nibrs_cats(data, file, by)
+  
+  data
+  
+}
+
+```
+
+## Check if crime categories are correctly matched
+
+```{r}
+check_nibrs_cats <- function (data, file, by) {
+  
+  if (sum(is.na(data$NIBRS_Offense_Type)) > 0) {
+    cat("✖︎", format(sum(is.na(data$NIBRS_Offense_Type)), big.mark = ","), 
+        "cases could not be matched to NIBRS categories\n")
+    filter(data, is.na(data$NIBRS_Offense_Type)) %>% 
+      group_by_at(vars(one_of(c(by, "Date.Year")))) %>% 
+      summarise(n = n()) %>% 
+      spread(Date.Year, n) %>% 
+      write_csv(paste0(file, "_failures.csv"))
+  } else {
+    cat("✔︎ All cases matched to NIBRS categories\n")
+  }
+  
+  data
+  
+}
+```
+
 
 ## Write temporary data file
 
@@ -173,6 +225,8 @@ save_city_data <- function (data, name) {
     nrow() %>% 
     format(big.mark = ',') %>% 
     cat("Data for", str_to_title(name), "contains", ., "rows\n")
+  
+  print(table(data$Date.Year))
   
   data
   

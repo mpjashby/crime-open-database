@@ -11,9 +11,9 @@ NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type
 11C,Crimes against person,Sex Offenses,11C Sexual Assault With An Object,11C
 11D,Crimes against person,Sex Offenses,11D Fondling,11D1
 11D,Crimes against person,Sex Offenses,11D Fondling,11D2
-120,Crimes against property,Robbery,120 Robbery,120A
-120,Crimes against property,Robbery,120 Robbery,120B
-120,Crimes against property,Robbery,120 Robbery,120C
+120,Crimes against property,Robbery,12U Other Robbery,120A
+120,Crimes against property,Robbery,12U Other Robbery,120B
+120,Crimes against property,Robbery,12U Other Robbery,120C
 13A,Crimes against person,Assault Offenses,13A Aggravated assault,13A1
 13A,Crimes against person,Assault Offenses,13A Aggravated assault,13A2
 13A,Crimes against person,Assault Offenses,13A Aggravated assault,13A4
@@ -28,8 +28,8 @@ NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type
 13C,Crimes against person,Assault Offenses,13C Intimidation,13C7
 200,Crimes against property,Arson,200 Arson,200
 210,Crimes against property,Extortion/Blackmail,210 Extortion/Blackmail,210
-220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,220A
-220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,220B
+220,Crimes against property,Burglary/Breaking & Entering,22A Domestic Burglary/Breaking & Entering,220A
+220,Crimes against property,Burglary/Breaking & Entering,22B Non-domestic Burglary/Breaking & Entering,220B
 23A,Crimes against property,Larceny/Theft Offenses,23A Pocket-picking,23A
 23B,Crimes against property,Larceny/Theft Offenses,23B Purse-snatching,23B
 23C,Crimes against property,Larceny/Theft Offenses,23C Shoplifting,23C

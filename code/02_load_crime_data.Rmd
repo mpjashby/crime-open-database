@@ -52,8 +52,10 @@ read_csv('../original_data/Chicago 2001 to date.csv') %>%
   # filter by year
   filter_by_year(yearFirst, yearLast) %>% 
   # add crime categories
-  left_join(read_csv("../crime_categories/categories_Chicago.csv"), 
-            by = c("Primary Type", "Description")) %>% 
+  join_nibrs_cats("../crime_categories/categories_Chicago.csv",
+                  by = c("Primary Type", "Description")) %>% 
+  # left_join(read_csv("../crime_categories/categories_Chicago.csv"), 
+  #           by = c("Primary Type", "Description")) %>% 
   # separate burglaries and robberies into sub-categories
   mutate(NIBRS_Offense_Type = case_when(
     # residential burglary
@@ -168,8 +170,10 @@ list(
   separate(LOCATION, c("Latitude", "Longitude"), ", ") %>% 
   add_date_var("INCIDENTDATE", "Ymd R", "America/Detroit") %>%
   filter_by_year(2009, yearLast) %>% 
-  left_join(read_csv("../crime_categories/categories_Detroit.csv"), 
+  join_nibrs_cats("../crime_categories/categories_Detroit.csv", 
             by = c("CATEGORY", "OFFENSEDESCRIPTION")) %>% 
+  # left_join(read_csv("../crime_categories/categories_Detroit.csv"), 
+  #           by = c("CATEGORY", "OFFENSEDESCRIPTION")) %>% 
   save_city_data("Detroit") %>% 
   glimpse()
   # filter(is.na(NIBRS_Offense_Category)) %>% 
@@ -183,56 +187,6 @@ list(
   # group_by(Date.Year, month) %>%
   # summarise(n = n()) %>% 
   # spread(month, n)
-```
-
-```{r}
-read_csv('../original_data/Detroit 2009 to date.csv', 
-                     col_types = cols(
-                       .default = col_character(),
-                       ROWNUM = col_integer(),
-                       CASEID = col_integer(),
-                       CRIMEID = col_integer(),
-                       HOUR = col_integer(),
-                       LON = col_double(),
-                       LAT = col_double()
-                     )) %>% 
-  rename(Longitude = LON, Latitude = LAT, NHOOD = NEIGHBORHOOD) %>% 
-  mutate(INCIDENTDATE = paste0(INCIDENTDATE, ' ', HOUR, ':00')) %>% 
-  add_date_var("INCIDENTDATE", "mdY R", "America/Detroit") %>% 
-  filter_by_year(yearFirst, yearLast) %>% 
-  left_join(read_csv("../crime_categories/categories_Detroit.csv"), 
-            by = c("CATEGORY", "OFFENSEDESCRIPTION")) %>% 
-  mutate(NIBRS_Offense_Type = case_when(
-    OFFENSEDESCRIPTION %in% c("BURGLARY - BURGLARY - FORCED ENTRY - RESIDENCE",
-      "BURGLARY - NO FORCED ENTRY - RESIDENCE", 
-      "BURGLARY - FORCED ENTRY -  RESIDENCE", 
-      "BURGLARY - ENTRY WITHOUT FORCE - RESIDENCE") ~ 
-      "22A Domestic Burglary/Breaking & Entering",
-    CATEGORY == "BURGLARY" ~ "22B Non-domestic Burglary/Breaking & Entering",
-    OFFENSEDESCRIPTION %in% c("ROBBERY - STREET - GUN", 
-      "ROBBERY - STREET - STRONG ARM", "ROBBERY - MOTOR VEHICLE (CAR JACKING)",
-      "ROBBERY - STREET - OTHER WEAPON", "ROBBERY - RESIDENCE - GUN", 
-      "ROBBERY - RESIDENCE - STRONG ARM", "ROBBERY - FORCIBLE PURSESNATCHING", 
-      "ROBBERY - RESIDENCE - OTHER WEAPON", 
-      "ROBBERY - MOTOR VEHICLE (CARJACKING)") ~ "12A Personal Robbery",
-    OFFENSEDESCRIPTION %in% c("ROBBERY - BUSINESS - GUN", 
-      "ROBBERY - BUSINESS - STRONG ARM", "ROBBERY - BUSINESS - OTHER WEAPON",
-      "ROBBERY - BANKING TYPE INSTITUTION") ~ "12B Commercial Robbery",
-    CATEGORY == "ROBBERY" ~ "12U Other Robbery",
-    TRUE ~ NIBRS_Offense_Type
-  ),
-  # where necessary, update the NIBRS code to match the new type
-  NIBRS_Offense_Code = case_when(
-    NIBRS_Offense_Type == "22A Domestic Burglary/Breaking & Entering" ~ "22A",
-    NIBRS_Offense_Type == "22B Non-domestic Burglary/Breaking & Entering" ~ 
-      "22B",
-    NIBRS_Offense_Type == "12A Personal Robbery" ~ "12A",
-    NIBRS_Offense_Type == "12B Commercial Robbery" ~ "12B",
-    NIBRS_Offense_Type == "12U Other Robbery" ~ "12U",
-    TRUE ~ NIBRS_Offense_Code
-  )) %>% 
-  save_city_data("Detroit") %>% 
-  glimpse()
 ```
 
 
@@ -260,7 +214,7 @@ read_csv('../original_data/Fort Worth time period to be checked.csv',
   mutate_at(vars(c("Latitude", "Longitude")), as.double) %>% 
   add_date_var("From Date", 'mdY T', "America/Chicago") %>% 
   filter_by_year(yearFirst, yearLast) %>% 
-  left_join(nibrs_categories, by = "Offense") %>% 
+  left_join(nibrs_categories, by = "Offense") %>%
   mutate(NIBRS_Offense_Type = case_when(
     NIBRS_Offense_Code == "220" & `Location Description` == "Residence, home" ~ 
       "22A Domestic Burglary/Breaking & Entering",
@@ -369,7 +323,8 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
         'OTHER ASSAULT', 'CHILD ABUSE (PHYSICAL) - SIMPLE ASSAULT', 
         'RESISTING ARREST') ~ '13B Simple assault',
       `Crime Code Description` %in% c('CRIMINAL THREATS - NO WEAPON DISPLAYED', 
-        'STALKING', 'BOMB SCARE', 'THREATENING PHONE CALLS/LETTERS') ~ 
+        'STALKING', 'BOMB SCARE', 'THREATENING PHONE CALLS/LETTERS',
+        "LETTERS, LEWD  -  TELEPHONE CALLS, LEWD") ~ 
         '13C Intimidation',
       
       # Bribery
@@ -396,7 +351,8 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
       `Crime Code Description` %in% c(
         'VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS) 0114', 
         'VANDALISM - MISDEAMEANOR ($399 OR UNDER)', 
-        'TELEPHONE PROPERTY - DAMAGE') ~ 
+        'TELEPHONE PROPERTY - DAMAGE', "TRAIN WRECKING", 
+        "VANDALISM - FELONY ($400 & OVER, ALL CHURCH VANDALISMS)") ~ 
         '290 Destruction/Damage/Vandalism of Property (except Arson)',
       
       # Embezzlement
@@ -460,7 +416,8 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
         'THEFT-GRAND ($950.01 & OVER)EXCPT,GUNS,FOWL,LIVESTK,PROD0036', 
         'BIKE - ATTEMPTED STOLEN', 'BIKE - STOLEN', 'BOAT - STOLEN', 
         'GRAND THEFT / AUTO REPAIR', 'PETTY THEFT - AUTO REPAIR', 
-        'THEFT, PERSON', 'THEFT FROM PERSON - ATTEMPT') ~ 
+        'THEFT, PERSON', 'THEFT FROM PERSON - ATTEMPT', 
+        "THEFT-GRAND ($950.01 & OVER)EXCPT,GUNS,FOWL,LIVESTK,PROD") ~ 
         '23H All Other Larceny',
       # some 23A and 23B offences are coded using a combination of crime codes 
       # and MO codes, so have to be done after the other larceny categories are 
@@ -556,9 +513,15 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
       `Crime Code Description` %in% c('CRM AGNST CHLD (13 OR UNDER) (14-15 & SUSP 10 YRS OLDER)0060') 
       & str_count(`MO Codes`, pattern = '0507|0512|0519|0521|0539|0540|0541|0548|0549') > 0
       ~ '11B Sodomy',
+      `Crime Code Description` == "SODOMY/SEXUAL CONTACT B/W PENIS OF ONE PERS TO ANUS OTH" 
+      ~ "11C Sexual Assault With An Object",
       `Crime Code Description` %in% c('CRM AGNST CHLD (13 OR UNDER) (14-15 & SUSP 10 YRS OLDER)0060') 
       & str_count(`MO Codes`, pattern = '0515') > 0 ~ 
         '11C Sexual Assault With An Object',
+      `Crime Code Description` %in% c("SEX,UNLAWFUL(INC MUTUAL CONSENT, PENETRATION W/ FRGN OBJ", 
+        "SEX,UNLAWFUL(INC MUTUAL CONSENT, PENETRATION W/ FRGN OBJ0059",
+        "SEXUAL PENETRATION W/FOREIGN OBJECT") ~ 
+        "11C Sexual Assault With An Object",
       `Crime Code Description` %in% c('CRM AGNST CHLD (13 OR UNDER) (14-15 & SUSP 10 YRS OLDER)0060') 
       & str_count(`MO Codes`, pattern = '0500|0501|0502|0503|0504|0505|0506|0509|0510|0511|0517|0518|0522|0528|0532|0537|0543|0544|0550|0551') > 0 
       ~ '11D Fondling',
@@ -568,6 +531,10 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
       `Crime Code Description` %in% c('CRM AGNST CHLD (13 OR UNDER) (14-15 & SUSP 10 YRS OLDER)0060') 
       ~ '90Z All Other Offenses',
       
+      # Pornography/Obscene Material
+      `Crime Code Description` == "CHILD PORNOGRAPHY" ~ 
+        "370 Pornography/Obscene Material",
+      
       # Weapon Law Violations
       `Crime Code Description` %in% c('BRANDISH WEAPON', 
         'WEAPONS POSSESSION/BOMBING', 
@@ -575,8 +542,16 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
         'DISCHARGE FIREARMS/SHOTS FIRED', 
         'REPLICA FIREARMS(SALE,DISPLAY,MANUFACTURE OR DISTRIBUTE)0132', 
         'SHOTS FIRED AT INHABITED DWELLING', 
-        'SHOTS FIRED AT MOVING VEHICLE, TRAIN OR AIRCRAFT') ~ 
+        'SHOTS FIRED AT MOVING VEHICLE, TRAIN OR AIRCRAFT', 
+        "FIREARMS RESTRAINING ORDER (FIREARMS RO)",
+        "REPLICA FIREARMS(SALE,DISPLAY,MANUFACTURE OR DISTRIBUTE)") ~ 
         '520 Weapon Law Violations',
+      
+      # Human Trafficking
+      `Crime Code Description` == "HUMAN TRAFFICKING - COMMERCIAL SEX ACTS" ~ 
+        "64A Human Trafficking, Commercial Sex Acts",
+      `Crime Code Description` == "HUMAN TRAFFICKING - INVOLUNTARY SERVITUDE" ~ 
+        "64B Human Trafficking, Involuntary Servitude",
       
       # Bad Checks (except Counterfeit Checks or Forged Checks)
       `Crime Code Description` %in% c('DOCUMENT WORTHLESS ($200 & UNDER)', 
@@ -595,7 +570,10 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
       
       # Family Offenses, Nonviolent
       `Crime Code Description` %in% c('CHILD ABANDONMENT', 
-        'CHILD NEGLECT (SEE 300 W.I.C.)') ~ '90F Family Offenses, Nonviolent',
+        'CHILD NEGLECT (SEE 300 W.I.C.)', 
+        "CRM AGNST CHLD (13 OR UNDER) (14-15 & SUSP 10 YRS OLDER)",
+        "LEWD/LASCIVIOUS ACTS WITH CHILD") ~ 
+        '90F Family Offenses, Nonviolent',
       
       # Peeping Tom
       `Crime Code Description` %in% c('PEEPING TOM') ~ '90H Peeping Tom',
@@ -613,6 +591,7 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
         'VIOLATION OF COURT ORDER', 'VIOLATION OF RESTRAINING ORDER', 
         'VIOLATION OF TEMPORARY RESTRAINING ORDER', 'LETTERS, LEWD', 
         'OTHER MISCELLANEOUS CRIME') ~ '90Z All Other Offenses',
+      is.na(`Crime Code Description`) ~ "90Z All Other Offenses",
       
       # Not-categorisable offences
       # Where it is clear that not all the offences that should be present are 
@@ -628,7 +607,11 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
 
     )
   ) %>% 
-  left_join(nibrs_categories, by = "NIBRS_Offense_Type") %>% 
+  left_join(nibrs_categories, by = "NIBRS_Offense_Type") %>%
+  check_nibrs_cats("../crime_categories/categories_LA",
+                   by = "Crime Code Description") %>% 
+  # join_nibrs_cats("../crime_categories/NIBRS categories.csv",
+  #                 by = "NIBRS_Offense_Type") %>% 
   # sample_n(50) %>% 
   # View()
   # where necessary, update the NIBRS code to match the new type
@@ -651,8 +634,9 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
 Louisville has a field called `NIBRS_CODE` that can be used to match the various 
 levels of the NIBRS hierarchy. However, some incidents that Louisville 
 categorises as 90Z should actually be in other categories, e.g. because they are 
-not criminal or are criminal but are not NIBRS reportable. These need to be 
-reallocated manually.
+not criminal or are criminal but are not NIBRS reportable. Other crimes are 
+recorded in category 999, in many cases despite a NIBRS code existing for that
+offence. These need to be reallocated manually.
 
 ```{r}
 dir(path = "../original_data", pattern = 'Louisville*', 
@@ -663,9 +647,244 @@ dir(path = "../original_data", pattern = 'Louisville*',
   )) %>% 
   reduce(rbind) %>% 
   add_date_var("DATE_OCCURED", "Ymd T", "America/Kentucky/Louisville") %>% 
-  filter_by_year(yearFirst, yearLast) %>% 
+  filter_by_year(2009, yearLast) %>% 
   left_join(nibrs_categories, by = c("NIBRS_CODE" = "Offense")) %>% 
   mutate(NIBRS_Offense_Type = case_when(
+    
+    # homcide
+    NIBRS_CODE == "999" & UOR_DESC %in% c("FETAL HOMICIDE - 1ST DEGREE",
+      "MURDER - DOMESTIC VIOLENCE") ~ 
+      "09A Murder and Nonnegligent Manslaughter",
+    NIBRS_CODE == "999" & UOR_DESC %in% c("RECKLESS HOMICIDE") ~ 
+      "09B Negligent Manslaughter",
+    
+    # kidnapping
+    NIBRS_CODE == "999" & UOR_DESC %in% c("UNLAWFUL IMPRISONMENT-1ST DEGREE",
+      "UNLAWFUL IMPRISONMENT-2ND DEGREE", 
+      "KIDNAPPING-WITH SERIOUS PHYSICAL INJURY") ~ "100 Kidnapping/Abduction",
+    
+    # sex offences
+    # it seems to be safe to search on the word 'rape', since there aren't any
+    # crimes coded as 999 and described as statutory rape
+    NIBRS_CODE == "999" & str_detect(UOR_DESC, "\\bRAPE\\b") == TRUE ~ 
+      "11A Rape (except Statutory Rape)",
+    NIBRS_CODE == "999" & UOR_DESC %in% c("SODOMY - 1ST DEGREE",
+      "SODOMY - 1ST DEGREE - DOMESTIC VIOLENCE", 
+      "SODOMY - 1ST DEGREE - VICTIM U/12 YEARS OF AGE") ~ "11B Sodomy",
+    NIBRS_CODE == "999" & UOR_DESC %in% c("SEXUAL ABUSE - 1ST DEGREE",
+      "SEXUAL ABUSE - 1ST DEGREE- VICTIM U/12 YOA", 
+      "SEXUAL ABUSE - 3RD DEGREE") ~ "11D Fondling",
+    
+    # robbery
+    (NIBRS_CODE == "120" | str_detect(UOR_DESC, "\\bROBBERY\\b")) & 
+      PREMISE_TYPE %in% c("HIGHWAY / ROAD / ALLEY", 
+      "RESIDENCE / HOME", "PARKING LOT / GARAGE", 
+      "OTHER RESIDENCE (APARTMENT/CONDO)", "SCHOOL - ELEMENTARY / SECONDARY", 
+      "FIELD / WOODS", "AIR / BUS / TRAIN TERMINAL", "ATM SEPARATE FROM BANK",
+      "SCHOOL - COLLEGE / UNIVERSITY") ~ "12A Personal Robbery",
+    (NIBRS_CODE == "120" | str_detect(UOR_DESC, "\\bROBBERY\\b")) & 
+      PREMISE_TYPE == "OTHER / UNKNOWN" ~ 
+      "12U Other Robbery",
+    (NIBRS_CODE == "120" | str_detect(UOR_DESC, "\\bROBBERY\\b")) ~ 
+      "12B Commercial Robbery",
+    
+    # Assault offences
+    # Some assault offences are listed under NIBRS_CODE 999, so must be
+    # categorised according to the degree of assault.
+    str_detect(UOR_DESC, "ASSAULT.+?(1ST|2ND)") == TRUE | UOR_DESC %in% c(
+      "CRIMINAL ABUSE-1ST DEGREE", 
+      "CRIMINAL ABUSE-1ST DEGREE-CHILD 12 OR UNDER", 
+      "CRIMINAL ABUSE-3RD DEGREE", "MURDER - DOMESTIC VIOLENCE ATTEMPTED",
+      "MURDER - POLICE OFFICER ATTEMPTED", "MURDER ATTEMPTED") ~ 
+      "13A Aggravated assault",
+    str_detect(UOR_DESC, "ASSAULT.+?(3RD|4TH)") == TRUE ~ "13B Simple assault",
+    NIBRS_CODE == "999" & UOR_DESC %in% c("ABUSE OF A TEACHER PROHIBITED",
+      "MENACING", "TERRORISTIC THREATENING 1ST DEGREE", 
+      "TERRORISTIC THREATENING 2ND DEGREE", 
+      "TERRORISTIC THREATENING 3RD DEGREE", 
+      "INTIMIDATING A PARTICIPANT IN LEGAL PROCESS", 
+      "HARASSMENT (NO PHYSICAL CONTACT)", 
+      "HARASSMENT - PHYSICAL CONTACT - NO INJURY", "HARASSING COMMUNICATIONS",
+      "RETALIATING AGAINST PARTICIPANT IN LEGAL PROCESS",
+      "STALKING-1ST DEGREE", "STALKING-2ND DEGREE") ~
+      "13C Intimidation",
+    
+    # burglary
+    (NIBRS_CODE == "220" | str_detect(UOR_DESC, "\\bBURGLARY\\b") == TRUE) & 
+      PREMISE_TYPE %in% c("RESIDENCE / HOME", 
+      "PARKING LOT / GARAGE", "OTHER RESIDENCE (APARTMENT/CONDO)", 
+      "ATTACHED RESIDENTIAL GARAGE", "PARKING LOT / GARAGE") ~ 
+      "22A Domestic Burglary/Breaking & Entering",
+    (NIBRS_CODE == "220" | str_detect(UOR_DESC, "\\bBURGLARY\\b") == TRUE) ~ 
+      "22B Non-domestic Burglary/Breaking & Entering",
+    
+    # theft
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "THEFT BY UNLAWFUL TAKING/DISP-PURSESNATCHING  FELONY CLASS D") ~ 
+      "23B Purse-snatching",
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "THEFT BY UNLAWFUL TAKING/DISP-SHOPLIFTING - FELONY CLASS D",
+      "THEFT BY UNLAWFUL TAKING/DISP-SHOPLIFTING -MISD") ~ "23C Shoplifting",
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "THEFT BY UNLAWFUL TAKING/DISP - FROM BUILDING - MISD", 
+      "THEFT BY UNLAWFUL TAKING/DISP-FROM BUILDING - $10,000 OR >",
+      "THEFT BY UNLAWFUL TAKING/DISP-FROM BUILDING - FELONY D") ~ "23D Theft From Building",
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "THEFT BY UNLAWFUL TAKING/DISP-CONTENTS FROM AUTO - FELONY", 
+      "THEFT BY UNLAWFUL TAKING/DISP-CONTENTS FROM AUTO - MISD") ~ 
+      "23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories)",
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "THEFT BY UNLAW TAKING/DISP-PARTS FROM VEHICLE $10,000 OR >",
+      "THEFT BY UNLAWFUL TAKING/DISP-PARTS FROM VEHICLE - MISD",
+      "THEFT OF MOTOR VEHICLE REGISTRATION PLATE/DECAL") ~ "23G Theft of Motor Vehicle Parts or Accessories",
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "THEFT BY UNLAWFUL TAKING - GASOLINE - 1ST OFFENSE", 
+      "THEFT BY UNLAWFUL TAKING - GASOLINE - U/$10,000", 
+      "THEFT BY UNLAWFUL TAKING - GASOLINE - U/$500 MISD", 
+      "THEFT BY UNLAWFUL TAKING-ALL OTHERS $10,000 OR MORE", 
+      "THEFT BY UNLAWFUL TAKING/DISP-ALL OTHERS - FELONY CLASS D", 
+      "THEFT BY UNLAWFUL TAKING/DISP-ALL OTHERS -MISD", "THEFT OF CARGO", 
+      "THEFT OF CONTROLLED SUBSTANCE", 
+      "THEFT OF CONTROLLED SUBSTANCE, 1ST OFFENSE OR UNDER $300", 
+      "THEFT OF CONTROLLED SUBSTANCE, 2ND OR  > OFFENSE OR OVER $30", 
+      "THEFT OF ID PRIOR TO JULY 2000", 
+      "THEFT OF IDENTITY OF ANOTHER WITHOUT CONSENT", "THEFT OF MAIL MATTER", 
+      "THEFT OF PROP LOST/MISLAID/DELIVERED BY MISTAKE FELONY D", 
+      "THEFT OF PROPERTY LOST/MISLAID/DELIVERED BY MISTAKE MISD",
+      "THEFT OF SERVICES - FELONY CLASS D", "THEFT OF SERVICES - MISD",
+      "LESSER INCLUDED THEFT", "TBUT OR DISP FIREARM") ~ 
+      "23H All Other Larceny",
+    
+    # motor vehicle theft
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "THEFT BY UNLAWFUL TAKING/DISP-AUTO - FELONY CLASS D",
+      "THEFT BY UNLAWFUL TAKING/DISP-AUTO - MISD",
+      "THEFT BY UNLAWFUL TAKING/DISP-AUTO $10,000 OR MORE") ~ 
+      "240 Motor Vehicle Theft",
+    
+    # forgery
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "CRIMINAL POSS OF A FORGED PERSCRIPTION, 1ST OFFENSE",
+      "CRIMINAL POSSESSION FORGED INSTRUMENT-1ST DEGREE-IDENTIFY",
+      "CRIMINAL POSSESSION FORGED INSTRUMENT-2ND DEGREE-IDENTIFY",
+      "CRIMINAL POSSESSION OF FORGED INSTRUMENT-3RD DEGREE",
+      "FORGERY - 1ST DEGREE", "FORGERY - 2ND DEGREE", 
+      "FORGERY OF A PRESCRIPTION - 1ST OFFENSE", "FORGERY-3RD DEGREE",
+      "POSSESSION OF FORGED PRESCRIPTION FOR LEGEND DRUG 1ST",
+      "UTTER FALSE/FORGED PRESCRIPTION", 
+      "FALSE MAKING/EMBOSSING OF CREDIT CARD", 
+      "POSSESSION OF A FORGERY DEVICE-IDENTIFY",
+      "PROHIBIT COMMERCE COUNTERFEIT GOODS/SERVICES >25 ITMS 1ST OF") ~ 
+      "250 Counterfeiting/Forgery",
+    
+    # fraud
+    NIBRS_CODE == "999" & (str_detect(UOR_DESC, "\\bFRAUD.+?\\bCARD") == TRUE |
+      UOR_DESC %in% c("MISUSE OF ELECTRONIC INFO-AUTOMATED BANKING DEVICE, ETC",
+      "RECEIPT OF CREDIT CARD IN VIOLATION KRS 434.570, 434.610")) ~
+      "26B Credit Card/Automated Teller Machine Fraud",
+    NIBRS_CODE == "999" & UOR_DESC %in% c("IMPERSONATING A PEACE OFFICER") ~
+      "26C Impersonation",
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "UNLAWFUL ACCESS TO COMPUTER-1ST DEGREE") ~ "26E Wire Fraud",
+  
+    # criminal damage
+    NIBRS_CODE == "999" & UOR_DESC %in% c("CRIMINAL MISCHIEF - 1ST DEGREE",
+      "CRIMINAL MISCHIEF-2ND DEGREE", "CRIMINAL MISCHIEF-3RD DEGREE",
+      "CRIMINAL USE OF NOXIOUS SUBSTANCE") ~ 
+      "290 Destruction/Damage/Vandalism of Property (except Arson)",
+      
+    # Drugs
+    # There are lots of drug offences listed under NIBRS_CODE 999 (which does
+    # not exist) and for which UOR_DESC involves variations on the phrase
+    # possession of a controlled substance (typically abbreivated)
+    str_detect(UOR_DESC, "\\bPOS.+?\\bCON.+?\\bSUB") == TRUE | 
+      str_detect(UOR_DESC, "\\bTRAF.+?\\bCON.+?\\bSUB") == TRUE | 
+      str_detect(UOR_DESC, "\\bTRF.+?\\bCON.+?\\bSUB") == TRUE |
+      str_detect(UOR_DESC, "\\bTRAF.+?\\bMARIJUANA") == TRUE |
+      (NIBRS_CODE == "999" & UOR_DESC %in% c(
+        "ASSUME FALSE TITLE TO OBTAIN CONT SUB-1ST OFFENSE",
+        "ATT/OBTAIN CONTSUB BY FRAUD/FLS STMT/FORGERY",
+        "ATTEMPT/OBTAIN CONT SUB BY FRAUD/FALSE STMT/FORGERY-1ST OFF",
+        "CULTIVATE IN MARIJUANA-< 5 PLANTS-1ST OFFENSE",
+        "CULTIVATE IN MARIJUANA-< 5 PLANTS-2ND OR > OFFENSE",
+        "CULTIVATE IN MARIJUANA-5 PLANTS OR >-1ST OFFENSE",
+        "CULTIVATE IN MARIJUANA-5 PLANTS OR >-2ND OR > OFFENSE",
+        "MANUFACTURING METHAMPHETAMINE 1ST OFFENSE",
+        "MANUFACTURING METHAMPHETAMINE 2ND OR > OFFENSE",
+        "POSS OF MARIJUANA", 
+        "PRESCRIPTION CONT SUB NOT IN ORIGINAL CONTAINER-1ST OFFENSE",
+        "UNLAWFUL DISTRIBUTION OF A METH PRECURSOR - 1ST OFFENSE",
+        "UNLAWFUL DISTRIBUTION OF A METH PRECURSOR - 2ND OR > OFFENSE",
+        "UNLAWFUL POSSESSION OF METH PRECURSOR 1ST OFFENSE",
+        "UNLAWFUL POSSESSION OF METH PRECURSOR 2ND OR > OFFENSE",
+        "TRAF IN SYNTHETIC CANNABINOIL AGOINTS OR PIPEAZINES",
+        "TRAFFICKING IN A LEGEND DRUG, 1ST OFFENSE", "TRAFFICKING IN SALVIA",
+        "ILLEGAL POSSESSION OF A LEGEND DRUG 1ST OFFENSE", 
+        "ILLEGAL POSSESSION OF LEGEND DRUG", "POSSESSION OF SALVIA",
+        "POSSESSION OF SYNTHETIC CANNABINOID AGONISTS OR PIPEAZINES",
+        "SELL CONTROL SUBSTANCE TO A MINOR-1ST OFFENSE",
+        "VOLATILE SUBSTANCE ABUSE")) ~ 
+      "35A Drug/Narcotic Violations",
+    NIBRS_CODE == "999" & UOR_DESC %in% c("DRUG PARAPHERNALIA - BUY/POSSESS",
+      "DRUG PARAPHERNALIA-BUY/POSSESS-1ST OFFENSE", 
+      "DRUG PARAPHERNALIA-BUY/POSSESS-2ND OR > OFFENSE") ~ 
+      "35B Drug Equipment Violations",
+    
+    # non-violent sex offences
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "INCEST - VICTIM U/12 YOA OR SERIOUS PHYSICAL INJURY") ~ "36A Incest",
+    
+    # stolen property
+    NIBRS_CODE == "999" & (str_detect(UOR_DESC, "STOLEN.+?PROPERTY") == TRUE |
+      UOR_DESC %in% c("THEFT-RECEIPT OF STOLEN CREDIT/DEBIT CARD-1 CARD",
+      "THEFT-RECEIPT OF STOLEN CREDIT/DEBIT CARD-2 OR MORE CARDS",
+      "TRAFFICKING IN STOLEN IDENTITIES", 
+      "OBSCURING THE IDENTITY OF A MACHINE U/$10000",
+      "OBSCURING THE IDENTITY OF A MACHINE U/$500")) ~ 
+      "280 Stolen Property Offenses",
+    
+    # obscene material
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "DIST OF MATTER PORTRAYING SEXUAL PERFORM BY MINOR 2ND > OFF",
+      "POSSESSION OF MATTER PORTRAYING SEX PERFORMANCE BY MINOR") ~ 
+      "370 Pornography/Obscene Material",
+    
+    # gambling
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "POSSESS OF GAMBLING RECORD-1ST DEGREE", 
+      "POSSESSION OF A GAMBLING DEVICE") ~ "39C Gambling Equipment Violations",
+    NIBRS_CODE == "999" & UOR_DESC %in% c("PROMOTING GAMBLING - 2ND DEGREE") ~
+      "39B Operating/Promoting/Assisting Gambling",
+    
+    # prostitution
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "LOITERING FOR PROSTITUTION PURPOSES - 1ST OFFENSE",
+      "LOITERING FOR PROSTITUTION PURPOSES - 2ND > OFFENSE", "PROSTITUTION") ~ 
+      "40A Prostitution",
+    
+    # weapons violations
+    NIBRS_CODE == "999" & UOR_DESC %in% c("CARRYING A CONCEALED DEADLY WEAPON",
+      "DEFACING A FIREARM", "POSSESSION OF DEFACED FIREARM", 
+      "POSSESSION OF FIREARM BY CONVICTED FELON", 
+      "POSSESSION OF HANDGUN BY CONVICTED FELON",
+      "UNLAWFUL POSSESSION OF WEAPON ON SCHOOL PROPERTY",
+      "UNLAWFULLY PROV/PERMIT MINOR TO POSSESS HANDGUN",
+      "USING RESTRICTED AMMO DURING A FELONY (NO SHOTS)", 
+      "POSS HANDGUN BY MINOR 1ST OFFENSE", 
+      "POSS,MANUF,TRANSPRT HANDGUN WITH EXC FOR UNLAWFUL",
+      "POSS,MANUF,TRANSPRT HANDGUN WITH EXC FOR UNLAWFUL 2ND OFFENS") ~ 
+      "520 Weapon Law Violations",
+    
+    # bad checks
+    NIBRS_CODE == "999" & UOR_DESC %in% c("THEFT BY DECEPTION-INCL COLD CHECKS",
+      "THEFT BY DECEPTION-INCL COLD CHECKS $10,000 OR MORE",
+      "THEFT BY DECEPTION-INCL COLD CHECKS U/$10,000",
+      "THEFT BY DECEPTION-INCL COLD CHECKS U/$500") ~ 
+      "90A Bad Checks (except Counterfeit Checks or Forged Checks)",
+    
+    # loitering
+    NIBRS_CODE == "999" & UOR_DESC %in% c("JUVENILE CURFEW ORD 17 & UNDER") ~ 
+      "90B Curfew/Loitering/Vagrancy Violations",
     
     # Disorderly conduct
     UOR_DESC %in% c('INDECENT EXPOSURE - 1ST DEGREE - 1ST OFFENSE',
@@ -673,6 +892,48 @@ dir(path = "../original_data", pattern = 'Louisville*',
       'INDECENT EXPOSURE - 1ST DEGREE - 3RD OFFENSE', 
       'INDECENT EXPOSURE - 1ST DEGREE - 4TH OR > OFFENSE', 
       'INDECENT EXPOSURE - 2ND DEGREE') ~ '90C Disorderly Conduct',
+    
+    # Child abuse (non-violent)
+    NIBRS_CODE == "999" & UOR_DESC %in% c(
+      "CONTROLLED SUBSTANCE ENDANGERMENT TO CHILD 2ND DEGREE",
+      "CONTROLLED SUBSTANCE ENDANGERMENT TO CHILD 4TH DEGREE") ~ 
+      "90F Family Offenses, Nonviolent",
+    
+    # trespass
+    NIBRS_CODE == "999" & UOR_DESC %in% c("CRIMINAL TRESPASSING-3RD DEGREE") ~ 
+      "90J Trespass of Real Property",
+    
+    # All other offences
+    UOR_DESC %in% c("ANY FELONY CATEGORY NOT LISTED", 
+      "ADVERTISING MATTER PORTRAY SEX PERFORMANCE BY MINOR 1ST OFF",
+      "CONTEMPT OF COURT - VIOL EMERGENCY PROTECTIVE ORDER",
+      "CRUELTY TO ANIMALS - 2ND DEGREE", "DANGEROUS ANIMAL",
+      "DANGEROUS DOG-CONTROL OF DOG", "DISARMING A PEACE OFFICER",
+      "FAILURE TO COMPLY W/SEX OFFENDER REGISTRATION - 1ST OFF",
+      "FLEEING OR EVADING POLICE - 1ST DEGREE (MOTOR VEHICLE)",
+      "FLEEING OR EVADING POLICE - 1ST DEGREE (ON FOOT)",
+      "FLEEING OR EVADING POLICE - 2ND DEGREE (MOTOR VEHICLE)",
+      "ILLEGAL DUMPING LOUISVILLE METRO ORDINANCE",
+      "LEAVING SCENE OF ACCIDENT - HIT & RUN",
+      "LEAVING SCENE OF ACCIDENT/FAILURE TO RENDER AID OR ASSISTANC",
+      "OBSTRUCTING GOVERNMENTAL OPERATIONS",
+      "WANTON ENDANGERMENT-1ST DEGREE", 
+      "WANTON ENDANGERMENT-1ST DEGREE-POLICE OFFICER", 
+      "WANTON ENDANGERMENT-2ND DEGREE",
+      "WANTON ENDANGERMENT-2ND DEGREE-POLICE OFFICER",
+      "VIOLATING GRAVES", "VIOLATION UNKNOWN", 
+      "WANTON ABUSE/NEGLECT OF ADULT BY PERON", 
+      "INTERFERE W/ENFORCEMENT PROHI", "INTERMEDIATE LICENSING VIOLATIONS",
+      "LICENSEE PERMIT NUDE PERFORMA", "OFFENSES AGAINST PUBLIC PEACE",
+      "OWNER TO CONTROL ANIMAL", "PROBATION VIOLATION (FOR FELONY OFFENSE)",
+      "PROBATION VIOLATION (FOR MISDEMEANOR OFFENSE)", 
+      "PROBATION VIOLATION (JUVENILE PUBLIC OFFENSE)",
+      "VIOLATION OF KENTUCKY EPO/DVO") ~ 
+      "90Z All Other Offenses",
+    
+    # Non-categorisable offences
+    UOR_DESC %in% c("DOMESTIC VIOLENCE INVOLVED INCIDENT") ~ 
+      "99X Non-Categorisable Offenses",
     
     # Non-reportable crimes
     UOR_DESC %in% c('DISPLAY OF ILLEGAL/ALTERED REGISTRATION PLATE',
@@ -685,7 +946,46 @@ dir(path = "../original_data", pattern = 'Louisville*',
       'LEAV SCENE OF ACCIDENT/FAIL TO RNDR AID/ASSIST W/DEATH OR SJ',
       'MOTOR VEH DEALER REQ TO GIVE TITLE TO PURCHASER',
       'MOTOR VEHICLE DEALER LICENSE REQUIRED',
-      'POSSESSING LICENSE WHEN PRIVILEGES ARE REVOKED') ~ 
+      'POSSESSING LICENSE WHEN PRIVILEGES ARE REVOKED', 
+      "OPERATING ON SUSPENDED/REVOKED OPERATORS LICENSE", "RECKLESS DRIVING",
+      "FAILURE TO OR IMPROPER SIGNAL", "NO OR EXPIRED REGISTRATION PLATES",
+      "NO OPERATORS/MOPED LICENSE", "FAILURE TO WEAR SEAT BELTS",
+      "FAILURE TO REGISTER TRANSFER OF MOTOR VEHICLE", 
+      "FAILURE TO NOTIFY ADDRESS CHANGE TO DEPT OF TRANSPORTATION",
+      "DISREGARDING STOP SIGN", "REAR LICENSE NOT ILLUMINATED",
+      "DISREGARDING TRAFFIC CONTROL DEVICE, TRAFFIC LIGHT", "CARELESS DRIVING",
+      "EXCESSIVE WINDSHIELD/ WINDOW TINTING", "FAILURE TO ILLUMINATE HEAD LAMPS",
+      "IMPROPER DISPLAY OF REGISTRATION PLATES", "NO CARRIER PERMIT",
+      "FAIL OF TRANSFEROR OF VEH TO PROP EXECUTE TITLE",
+      "FAILURE TO NOTIFY OWNER OF DAMAGE TO UNATTENDED VEHICLE",
+      "UNAUTHORIZED USE OF VEHICLE UNDER HARDSHIP DRIVERS LICENSE",
+      "FAILURE TO PRODUCE INSURANCE CARD", "IMPROPER REGISTRATION PLATE",
+      "HITCHHIKING/DISREGARDING TRAFFIC REGULATIONS BY PEDESTRIAN",
+      "IMPROPER TURNING", "OBSTRUCTED VISION AND/OR WINDSHIELD",
+      "ONE HEADLIGHT", "OPERATING VEHICLE WITH EXPIRED OPERATORS LICENSE",
+      "SPEEDING 15 MPH OVER LIMIT", "ABANDONMENT OF VEHICLE ON PUBLIC ROAD",
+      "LOCAL VIOLATION CODES 80000 - 80999", "SPEEDING - SPEED NO SPECIFIED",
+      "SPEEDING 12 MPH OVER LIMIT", "SPEEDING 14 MPH OVER LIMIT",
+      "SPEEDING 20 MPH OVER LIMIT", "SPEEDING 26 MPH OR GREATER OVER LIMIT",
+      "SPEEDING 7 MPH OVER LIMIT - LIMITED ACCESS HWY",
+      "DISPLAY/POSSESSOIN OF CANCELLED/FICTITIOUS OPERATOR LICENSE",
+      "DRIVING TOO FAST FOR TRAFFIC CONDITIONS", 
+      "FAIL TO GIVE RT OF WY TO VESS APPR SHORELINE", 
+      "FOLLOWING ANOTHER VEHICLE TOO CLOSELY",
+      "FAILURE TO GIVE RIGHT OF WAY TO EMERGENCY VEHICLE",
+      "FAILURE TO REPORT TRAFFIC ACCIDENT",
+      "FAILURE TO USE CHILD RESTRAINT DEVICE IN VEHICLE",
+      "IMPROPER SOUND DEVICE (WHISTLE, BELL, SIREN)",
+      "IMPROPER STOPPING AT FLASHING RED LIGHT", "IMPROPER USE OF BLUE LIGHTS",
+      "IMPROPER USE OF RED LIGHTS", "IMPROPERLY ON LEFT SIDE OF ROAD",
+      "HITCHHIKING ON LIMITED ACCESS FACILITIES", 
+      "INSTRUCTIONAL PERMIT VIOLATIONS", "LICENSE TO BE IN POSSESSION",
+      "NO PERSON SHALL HAVE MORE THAN ONE OPERATORS LICENSE", 
+      "NO REAR VIEW MIRROR", "NO/EXPIRED KENTUCKY REGISTRATION RECEIPT",
+      "PERMIT UNLICENSED OPERATOR TO OPERATE MOTOR VEHICLE",
+      "REPRESENTING AS ONES OWN ANOTHERS OPER LIC",
+      "RIM OR FRAME OBSCURING LETTERING OR DECAL ON PLATE",
+      "SEAT BELT ANCHORS,CHILD RESTRAINTS") ~ 
       '99Y Non-Reportable Crimes',
     
     # Non-criminal matters
@@ -701,48 +1001,70 @@ dir(path = "../original_data", pattern = 'Louisville*',
       'PROPERTY LOST OR ABANDONED NON CRIMINAL',
       'RECOVERY OF STOLEN PROPERTY',
       'SERVING BENCH WARRANT FOR COURT',
-      'SERVING WARRANT (FOR OTHER POLICE AGENCY)') ~ '99Z Non-Criminal Matters',
+      'SERVING WARRANT (FOR OTHER POLICE AGENCY)', "SEE ACCIDENT MODULE", 
+      "PRELIMINARY REPORT NUMBER", "REPORT NUMBER NOT REQUIRED", 
+      "VOIDED REPORT NUMBER", "FINANCIAL CRIME/OUT OF JURISDICTION",
+      "RECOVERY OF STOLEN VEHICLE-OUT OF JURISDICTION", 
+      "NARC INVESTIGATION PENDING", "INJURED PERSON REQUIRING POLICE REPORT",
+      "OVERDOSE", "CIT FORM COMPLETED", "SUICIDE", "UNSUBSTANTIATED RAPE",
+      "CACU INVESTIGATION PENDING", "CACU UNSUBSTANTIATED CASES", 
+      "SVU INVESTIGATION PENDING", "COLD CASE REPORT NUMBER", 
+      "9TH MOBILE PENDING", "RUNAWAY (STATUS OFFENDERS-UNIFIED JUVENILE CODE)",
+      "CACU ASSISTING OTHER AGENCY", "UNSUBSTANTIATED SODOMY",
+      "SUSPICIOUS ACTIVITY/POSSIBLE ABDUCTOR", "JUSTIFIABLE HOMICIDE",
+      "UNSUBSTANTIATED SEXUAL ABUSE", "DV WAITING ON CHARGE",
+      "DEATH INVESTIGATION - LMPD INVOLVED",
+      "DEATH INVESTIGATION - OTHER POLICE AGENCY INVOLVED",
+      "SHOOTING INVESTIGATION - LMPD INVOLVED", 
+      "SHOOTING INVESTIGATION - OTH POLICE AGENCY INVOLVED",
+      "IN-CUSTODY DEATH - CORRECTIONS - IN FACILITY",
+      "IN-CUSTODY DEATH - CORRECTIONS - NOT IN FACILITY",
+      "IN-CUSTODY DEATH - OTHER POLICE AGENCY INVOLVED",
+      "OFFICER NEEDS TO COMPLETE INCIDENT REPORT", 
+      "(NO OFFENSE COUNT) BURGLARY 1A",
+      "(NO OFFENSE COUNT) BURGLARY 2A", "(NO OFFENSE COUNT) BURGLARY 3A", 
+      "ABANDONED ON PRIVATE PROPERTY",
+      "ANY NON CRIMINAL CHARGE NOT COVERED BY THESE CODES", "MISC PENDING",
+      "UNIDENTIFIED PERSON OR REMAINS", "CYBER CRIME PENDING",
+      "SEX OFFENDER REGISTRANT, OUT-OF-STATE, MOVE TO KY",
+      "SUICIDE INVESTIGATION (POLICE ON SCENE)", 
+      "SUICIDE INVESTIGTION - CORRECTIONS - IN FACILITY", 
+      "SUICIDE INVESTIGATION (IN POLICE CUSTODY -OTHER AGENCY)",
+      "GARBAGE AND RUBBISH", "EMA INCIDENT", "FUGITIVE - WARRANT NOT REQUIRED",
+      "FUGITIVE FROM ANOTHER STATE - WARRANT REQUIRED",
+      "INJURED PERSON (LMPD INVOLVED)", "NARC UNSUBSTANTIATED CASES",
+      "NCIC NOT NOTIFIED", "SEE KRS ENTRY") ~ 
+      '99Z Non-Criminal Matters',
     
-    # burglary
-    NIBRS_CODE == "220" & PREMISE_TYPE %in% c("RESIDENCE / HOME", 
-      "PARKING LOT / GARAGE", "OTHER RESIDENCE (APARTMENT/CONDO)", 
-      "ATTACHED RESIDENTIAL GARAGE", "PARKING LOT / GARAGE") ~ 
-      "22A Domestic Burglary/Breaking & Entering",
-    NIBRS_CODE == "220" ~ "22B Non-domestic Burglary/Breaking & Entering",
-    
-    # robbery
-    NIBRS_CODE == "120" & PREMISE_TYPE %in% c("HIGHWAY / ROAD / ALLEY", 
-      "RESIDENCE / HOME", "PARKING LOT / GARAGE", 
-      "OTHER RESIDENCE (APARTMENT/CONDO)", "SCHOOL - ELEMENTARY / SECONDARY", 
-      "FIELD / WOODS", "AIR / BUS / TRAIN TERMINAL", "ATM SEPARATE FROM BANK",
-      "SCHOOL - COLLEGE / UNIVERSITY") ~ "12A Personal Robbery",
-    NIBRS_CODE == "120" & PREMISE_TYPE == "OTHER / UNKNOWN" ~ 
-      "12U Other Robbery",
-    NIBRS_CODE == "120" ~ "12B Commercial Robbery",
-    
-    # all other crimes
+    # all other crimes keep their existing code
     TRUE ~ NIBRS_Offense_Type
       
   )) %>% 
-  # consequently some higher-level NIBRS fields need to be changed
-  mutate(
-    NIBRS_Offense_Category = if_else(
-      NIBRS_Offense_Type %in% c('99Y Non-Reportable Crimes', 
-                                '99Z Non-Criminal Matters'), 
-      'Excluded cases', NIBRS_Offense_Category),
-    NIBRS_Crime_Against = if_else(
-      NIBRS_Offense_Type %in% c('99Y Non-Reportable Crimes', 
-                                '99Z Non-Criminal Matters'), 
-      'Excluded cases', NIBRS_Crime_Against),
-    NIBRS_Offense_Code = case_when(
-    NIBRS_Offense_Type == "22A Domestic Burglary/Breaking & Entering" ~ "22A",
-    NIBRS_Offense_Type == "22B Non-domestic Burglary/Breaking & Entering" ~ 
-      "22B",
-    NIBRS_Offense_Type == "12A Personal Robbery" ~ "12A",
-    NIBRS_Offense_Type == "12B Commercial Robbery" ~ "12B",
-    NIBRS_Offense_Type == "12U Other Robbery" ~ "12U",
-    TRUE ~ NIBRS_Offense_Code
-  )) %>% 
+  # Since we've changed NIBRS_Offense_Type for some offences it is necessary to
+  # also change the higher-level NIBRS categories. To do this we can remove the
+  # existing NIBRS fields and join them again from the NIBRS categories object.
+  select(-NIBRS_Offense_Code, -NIBRS_Offense_Category, -NIBRS_Crime_Against) %>% 
+  left_join(nibrs_categories, by = "NIBRS_Offense_Type") %>% 
+  # mutate(
+  #   NIBRS_Offense_Category = if_else(
+  #     NIBRS_Offense_Type %in% c('99Y Non-Reportable Crimes', 
+  #                               '99Z Non-Criminal Matters'), 
+  #     'Excluded cases', NIBRS_Offense_Category),
+  #   NIBRS_Crime_Against = if_else(
+  #     NIBRS_Offense_Type %in% c('99Y Non-Reportable Crimes', 
+  #                               '99Z Non-Criminal Matters'), 
+  #     'Excluded cases', NIBRS_Crime_Against),
+  #   NIBRS_Offense_Code = case_when(
+  #   NIBRS_Offense_Type == "22A Domestic Burglary/Breaking & Entering" ~ "22A",
+  #   NIBRS_Offense_Type == "22B Non-domestic Burglary/Breaking & Entering" ~ 
+  #     "22B",
+  #   NIBRS_Offense_Type == "12A Personal Robbery" ~ "12A",
+  #   NIBRS_Offense_Type == "12B Commercial Robbery" ~ "12B",
+  #   NIBRS_Offense_Type == "12U Other Robbery" ~ "12U",
+  #   TRUE ~ NIBRS_Offense_Code
+  # )) %>% 
+  check_nibrs_cats("../crime_categories/categories_Louisville", 
+                   by = c("NIBRS_CODE", "CRIME_TYPE", "UOR_DESC")) %>% 
   save_city_data("Louisville") %>% 
   glimpse()
 ```
@@ -751,7 +1073,6 @@ dir(path = "../original_data", pattern = 'Louisville*',
 # New York
 
 ```{r}
-# load datasets
 read_csv('../original_data/New York 2006 to 2017.csv', 
          col_types = cols(
            .default = col_character(),
@@ -817,8 +1138,10 @@ read_csv('../original_data/New York 2006 to 2017.csv',
   } %>% 
   filter_by_year(2007, yearLast) %>% 
   report_status("Matching cases to NIBRS categories") %>% 
-  left_join(read_csv("../crime_categories/categories_NYC.csv"), 
-            by = c('OFNS_DESC', 'PD_DESC')) %>% 
+  join_nibrs_cats("../crime_categories/categories_NYC.csv",
+                  by = c('OFNS_DESC', 'PD_DESC')) %>% 
+  # left_join(read_csv("../crime_categories/categories_NYC.csv"), 
+  #           by = c('OFNS_DESC', 'PD_DESC')) %>% 
   mutate(NIBRS_Offense_Type = case_when(
     # burglary
     NIBRS_Offense_Code == "220" & PD_DESC %in% c("BURGLARY,RESIDENCE,DAY", 
@@ -851,20 +1174,6 @@ read_csv('../original_data/New York 2006 to 2017.csv',
     NIBRS_Offense_Type == "12U Other Robbery" ~ "12U",
     TRUE ~ NIBRS_Offense_Code
   )) %>% 
-  {
-    if (sum(is.na(.$NIBRS_Offense_Type)) > 0) {
-      cat(" ", sum(is.na(.$NIBRS_Offense_Type)), 
-          "cases could not be matched to NIBRS categories\n")
-      filter(., is.na(.$NIBRS_Offense_Type)) %>% 
-        group_by(OFNS_DESC, PD_DESC, Date.Year) %>% 
-        summarise(n = n()) %>% 
-        spread(Date.Year, n) %>% 
-        write_csv("../crime_categories/categories_NYC_failures.csv")
-    } else {
-      cat("  All cases matched to NIBRS categories\n")
-    }
-    .
-  } %>% 
   save_city_data("New York") %>% 
   glimpse()
 ```
@@ -884,8 +1193,10 @@ read_csv('../original_data/San Francisco 2003 to date.csv', col_types = cols(
   mutate(Date = paste(Date, Time)) %>% 
   add_date_var("Date", "mdY R", "America/Los_Angeles") %>% 
   filter_by_year(yearFirst, yearLast) %>% 
-  left_join(read_csv("../crime_categories/categories_SF.csv"), 
-            by = c('Category', 'Descript')) %>% 
+  join_nibrs_cats("../crime_categories/categories_SF.csv",
+                  by = c('Category', 'Descript')) %>% 
+  # left_join(read_csv("../crime_categories/categories_SF.csv"), 
+  #           by = c('Category', 'Descript')) %>% 
   mutate(NIBRS_Offense_Type = case_when(
     # burglary
     NIBRS_Offense_Code == "220" & Descript %in% c(
@@ -979,20 +1290,6 @@ read_csv('../original_data/San Francisco 2003 to date.csv', col_types = cols(
     NIBRS_Offense_Type == "12U Other Robbery" ~ "12U",
     TRUE ~ NIBRS_Offense_Code
   )) %>% 
-  {
-    if (sum(is.na(.$NIBRS_Offense_Type)) > 0) {
-      cat(" ", sum(is.na(.$NIBRS_Offense_Type)), 
-          "cases could not be matched to NIBRS categories\n")
-      filter(., is.na(.$NIBRS_Offense_Type)) %>% 
-        group_by(Category, Descript, Date.Year) %>% 
-        summarise(n = n()) %>% 
-        spread(Date.Year, n) %>% 
-        write_csv("../crime_categories/categories_SF_failures.csv")
-    } else {
-      cat("  All cases matched to NIBRS categories\n")
-    }
-    .
-  } %>% 
   save_city_data("San Francisco") %>% 
   glimpse()
 ```
@@ -1013,7 +1310,7 @@ read_csv("../original_data/Seattle 2008 to date.csv", col_types = cols(
   Latitude = col_double(),
   Month = col_integer(),
   Year = col_integer()
-), n_max = 1000) %>% 
+)) %>% 
   # since Seattle includes both start and end dates, so we will process the 
   # dates manually rather than using add_date_var()
   mutate(
@@ -1035,8 +1332,10 @@ read_csv("../original_data/Seattle 2008 to date.csv", col_types = cols(
   # filter by year
   filter_by_year(2008, yearLast) %>% 
   # add crime categories
-  left_join(read_csv("../crime_categories/categories_Seattle.csv"), 
-            by = c("Summarized Offense Description", "Offense Type")) %>% 
+  join_nibrs_cats("../crime_categories/categories_Seattle.csv",
+                  by = c("Summarized Offense Description", "Offense Type")) %>% 
+  # left_join(read_csv("../crime_categories/categories_Seattle.csv"), 
+  #           by = c("Summarized Offense Description", "Offense Type")) %>% 
   # save data
   save_city_data("Seattle") %>% 
   glimpse()
@@ -1079,14 +1378,12 @@ read_csv("../original_data/Incidents__Tucson_Police_Department.csv") %>%
 
 
 ```{r}
-tucson_data <- dir(path = "../original_data", pattern = '^Tucson*', 
+dir(path = "../original_data", pattern = '^Tucson*', 
     full.names = TRUE) %>% 
-  # map(function (x) {
-  #   read_csv(x, n_max = 10) %>% 
-  #     spec() %>% 
-  #     { tibble(var = names(.$cols), present = TRUE) }
-  # }) %>% reduce(left_join, by = "var")
   map(function (x) {
+    
+    # there are several differences between the formats of the Tucson data from
+    # different years, which must be harmonised before the data can be joined
     
     # read data
     y <- read_csv(x, col_types = cols(.default = col_character())) %>% 
@@ -1142,11 +1439,15 @@ tucson_data <- dir(path = "../original_data", pattern = '^Tucson*',
   select(-date_occurred) %>% 
   filter_by_year(2009, yearLast) %>% 
   # A few crimes have no offence category listed. We will remove these now to
-  # make joining the NIBRS variables easier.
-  filter(!is.na(STATUTDESC)) %>% 
+  # make joining the NIBRS variables easier. This also removes the large number
+  # of cases in the 2017 file that do not relate to crime (e.g. traffic stops)
+  # and for which the STATUTDESC field is set to the string 'N/A'
+  filter(!is.na(STATUTDESC) & STATUTDESC != "N/A") %>% 
   # join NIBRS categories
-  left_join(read_csv("../crime_categories/categories_Tucson.csv"), 
-            by = 'STATUTDESC') %>% 
+  join_nibrs_cats("../crime_categories/categories_Tucson.csv",
+                  by = 'STATUTDESC') %>% 
+  # left_join(read_csv("../crime_categories/categories_Tucson.csv"), 
+  #           by = 'STATUTDESC') %>% 
   save_city_data("Tucson") %>% 
   glimpse()
 ```
@@ -1157,48 +1458,34 @@ tucson_data <- dir(path = "../original_data", pattern = '^Tucson*',
 Data are from https://data.vbgov.com/Public-Safety/Police-Incident-Reports/iqkq-gr5p
 
 ```{r}
-read_csv("../original_data/Virginia Beach time period to be checked.csv") %>% 
+list(
+  read_csv("../original_data/Virginia Beach (early).csv") %>% 
+    mutate(year = year(parse_date_time(`Date Occured`, "mdY T", 
+                                       tz = "America/New_York"))) %>% 
+    filter(year < 2016),
+  read_csv("../original_data/Virginia Beach (recent).csv") %>% 
+    mutate(year = year(parse_date_time(`Date Occured`, "mdY T", 
+                                       tz = "America/New_York"))) %>% 
+    filter(year >= 2016)
+) %>% 
+  bind_rows() %>% 
+# read_csv("../original_data/Virginia Beach time period to be checked.csv") %>% 
   mutate(
-    Address = str_extract(Location, '.*\\n') %>% trimws(),
-    Location = str_replace(Location, "\\((.+?)\\)", "\\1")
-  ) %>% 
-  separate(Location, c("Latitude", "Longitude"), ", ") %>% 
-  mutate_at(vars(c("Latitude", "Longitude")), as.double) %>% 
-  add_date_var("Date Occured", "mdY T", "America/New_York") %>% 
-  filter_by_year(yearFirst, yearLast) %>% 
-  left_join(read_csv("../crime_categories/categories_VB.csv"), 
-            by = 'Offense Code') %>% 
-  mutate(NIBRS_Offense_Type = case_when(
-    NIBRS_Offense_Code == "220" & `Offense Code` == "220A" ~ 
-      "22A Domestic Burglary/Breaking & Entering",
-    NIBRS_Offense_Code == "220" & `Offense Code` == "220B" ~ 
-      "22B Non-domestic Burglary/Breaking & Entering",
-    NIBRS_Offense_Code == "120" ~ "12U Other Robbery",
-    TRUE ~ NIBRS_Offense_Type
-  ),
-  # where necessary, update the NIBRS code to match the new type
-  NIBRS_Offense_Code = case_when(
-    NIBRS_Offense_Type == "22A Domestic Burglary/Breaking & Entering" ~ "22A",
-    NIBRS_Offense_Type == "22B Non-domestic Burglary/Breaking & Entering" ~ 
-      "22B",
-    NIBRS_Offense_Type == "12U Other Robbery" ~ "12U",
-    TRUE ~ NIBRS_Offense_Code
-  )) %>% 
-  {
-    if (sum(is.na(.$NIBRS_Offense_Type)) > 0) {
-      cat(" ", sum(is.na(.$NIBRS_Offense_Type)), 
-          "cases could not be matched to NIBRS categories\n")
-      filter(., is.na(.$NIBRS_Offense_Type)) %>% 
-        group_by(Category, Descript, Date.Year) %>% 
-        summarise(n = n()) %>% 
-        spread(Date.Year, n) %>% 
-        write_csv("../crime_categories/categories_VB_failures.csv")
-    } else {
-      cat("  All cases matched to NIBRS categories\n")
-    }
-    .
-  } %>% 
+    Address = str_replace_all(Location, "\\n", " ") %>% trimws(),
+    Location = str_extract(Location, "\\(.+?\\)$") %>% 
+      str_replace("\\((.+?)\\)", "\\1")
+  ) %>%
+  separate(Location, c("Latitude", "Longitude"), ", ") %>%
+  mutate_at(vars(c("Latitude", "Longitude")), as.double) %>%
+  add_date_var("Date Occured", "mdY T", "America/New_York") %>%
+  filter_by_year(2013, yearLast) %>% 
+  join_nibrs_cats("../crime_categories/categories_VB.csv",
+                  by = 'Offense Code') %>% 
+  # left_join(read_csv("../crime_categories/categories_VB.csv"), 
+  #           by = 'Offense Code') %>% 
   save_city_data("Virginia Beach") %>% 
   glimpse()
- ```
+```
+
+
 
