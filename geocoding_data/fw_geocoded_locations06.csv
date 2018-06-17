@@ -1,0 +1,1001 @@
+street,City,State,Latitude,Longitude,Accuracy Score,Accuracy Type,County,Zip,Country,Source
+3500 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.7117,-97.230695,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+800 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+4600 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.694794,-97.23618,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4800 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.682835,-97.395932,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+5500 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.677538,-97.241523,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4700 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.682323,-97.394865,1,range_interpolation,Tarrant County,76132,US,TIGER/Line® dataset from the US Census Bureau
+3700 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.709653,-97.232115,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3800 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.708045,-97.232446,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+5600 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.67626,-97.241531,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+6000 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.664455,-97.292001,0.8,street_center,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+1300 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.840718,-97.335116,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+5900 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.664455,-97.292001,0.8,street_center,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+5700 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.675008,-97.241325,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4100 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.701875,-97.235732,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3200 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.713742,-97.229536,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+6200 CARSWELL ACCESS RD,Fort Worth,TX,32.774415,-97.415632,1,range_interpolation,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+1100 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2400 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.666397,-97.296234,1,range_interpolation,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+1000 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.765823,-97.214181,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4500 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.7104,-97.487544,0.2,rooftop,Tarrant County,76126,US,Tarrant County
+100 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+1400 VANDERBILT E,Fort Worth,TX,32.758271,-97.165235,0.9,range_interpolation,Tarrant County,76120,US,TIGER/Line® dataset from the US Census Bureau
+500 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2500 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.668463,-97.355336,1,range_interpolation,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+3600 HIGHWAY,Fort Worth,TX,32.743094,-97.426847,0.33,place,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+3800 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.708045,-97.232446,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+5000 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3300 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+6100 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.668938,-97.242473,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+1400 VANDERBILT W,Fort Worth,TX,32.758271,-97.165235,1,range_interpolation,Tarrant County,76120,US,TIGER/Line® dataset from the US Census Bureau
+8500 EAST FREEWAY,Fort Worth,TX,32.901961,-97.313057,0.9,rooftop,Tarrant County,76177,US,Tarrant County
+3500 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+5800 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.664455,-97.292001,0.8,street_center,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+5100 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3500 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3800 AIRPORT FW,Fort Worth,TX,32.772437,-97.291895,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+5300 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.681069,-97.24154,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+7400 MCCART AV,Fort Worth,TX,32.637603,-97.370311,0.9,rooftop,Tarrant County,76133,US,Tarrant County
+4200 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3700 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1500 NORTH SOUTH FW,Fort Worth,TX,32.727572,-97.321112,0.6,rooftop,Tarrant County,76104,US,Tarrant County
+4100 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+100 30 INTERSTATE 35W,Fort Worth,TX,32.759753,-97.213612,0.8,street_center,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+4000 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+6100 OAKWAY LN,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3100 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.661016,-97.283084,1,range_interpolation,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+4700 PLAYERS PK,Fort Worth,TX,32.948474,-97.152368,0.33,place,Tarrant County,76092,US,TIGER/Line® dataset from the US Census Bureau
+5500 EAST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+5200 A ROBERSON BL,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+10500 SASLOW SK,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2600 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.668288,-97.355992,1,range_interpolation,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+3700 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.709653,-97.232115,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+6100 ZEPHYR WAY,Fort Worth,TX,32.85486,-97.322098,1,range_interpolation,Tarrant County,76131,US,TIGER/Line® dataset from the US Census Bureau
+3400 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+6100 WRIGLEY WAY,Fort Worth,TX,32.6559,-97.390653,1,rooftop,Tarrant County,76133,US,Tarrant County
+500 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.753319,-97.482281,0.2,rooftop,Tarrant County,76108,US,Tarrant County
+7400 E SOUTH MEADOW DR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1400 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2700 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2900 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.66248,-97.28836,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+6800 GREEN OAKS RD,Fort Worth,TX,32.745297,-97.432916,0.8,street_center,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+2800 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+300 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+3900 HIGHWAY,Fort Worth,TX,32.743094,-97.426847,0.33,place,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+10600 FLAGSTAFF RU,Fort Worth,TX,32.601095,-97.314852,1,range_interpolation,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+1400 NORTH SOUTH FW,Fort Worth,TX,32.728945,-97.321123,0.6,rooftop,Tarrant County,76104,US,Tarrant County
+1600 NORTH SOUTH FW,Fort Worth,TX,32.72683,-97.321098,0.6,rooftop,Tarrant County,76104,US,Tarrant County
+1800 NORTH SOUTH FW,Fort Worth,TX,32.741679,-97.345478,0.5,rooftop,Tarrant County,76102,US,Tarrant County
+6000 CARSWELL ACCESS RD,Fort Worth,TX,32.775595,-97.411732,1,range_interpolation,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+100 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.778482,-97.213082,0.9,range_interpolation,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+2500 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.839035,-97.317669,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+3500 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.7117,-97.230695,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4400 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.696655,-97.238821,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4700 SOUTH RIDGE TE,Fort Worth,TX,32.679273,-97.370191,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+4900 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3300 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3400 SOUTH HILLS AV,Fort Worth,TX,32.696199,-97.365063,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+7300 SOUTH RIDGE TR,Fort Worth,TX,32.637325,-97.362721,0.2,rooftop,Tarrant County,76133,US,Tarrant County
+1700 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+1800 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.839852,-97.330754,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+3400 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3900 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+5000 LAGO BE,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3100 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3900 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.705188,-97.234158,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+100 EAST FREEWAY E INTERSTATE,Fort Worth,TX,32.934203,-97.3135,0.9,rooftop,Tarrant County,76177,US,Tarrant County
+2300 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+6600 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.801505,-97.430193,0.9,range_interpolation,Tarrant County,76135,US,TIGER/Line® dataset from the US Census Bureau
+10500 FLAGSTAFF RU,Fort Worth,TX,32.603322,-97.314327,1,rooftop,Tarrant County,76140,US,Tarrant County
+1300 S FORUM WAY,Fort Worth,TX,32.620557,-97.310447,0.6,rooftop,Tarrant County,76140,US,Tarrant County
+1700 NORTH SOUTH FW,Fort Worth,TX,32.742243,-97.343929,0.5,rooftop,Tarrant County,76102,US,Tarrant County
+2300 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.791882,-97.20224,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3600 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4200 MILLER AV,Fort Worth,TX,32.702542,-97.262901,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+1000 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+1900 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2800 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.715375,-97.229369,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3800 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4000 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.704284,-97.234936,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4200 SOUTH FW,Fort Worth,TX,32.725551,-97.387142,1,rooftop,Tarrant County,76115,US,Tarrant County
+700 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+8600 EAST FREEWAY,Fort Worth,TX,32.894724,-97.31482,0.9,rooftop,Tarrant County,76177,US,Tarrant County
+10000 BULL RU,Fort Worth,TX,32.63822,-97.280597,0.8,street_center,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+2000 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.670724,-97.351276,1,range_interpolation,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2700 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.664455,-97.292001,1,range_interpolation,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+3000 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+7000 AVINGTON WAY,Fort Worth,TX,32.641014,-97.354115,0.8,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+1000 STONE CHAPEL WAY,Fort Worth,TX,32.839002,-97.378955,1,rooftop,Tarrant County,76179,US,Tarrant County
+1400 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.783242,-97.212541,1,range_interpolation,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+2500 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.664391,-97.294423,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+1700 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.666323,-97.345158,1,range_interpolation,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+3000 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.714648,-97.229307,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3100 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.820919,-97.396457,0.7,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+3400 OUTLET BL,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3500 SOUTH HILLS AV,Fort Worth,TX,32.696241,-97.367143,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+3600 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.710789,-97.231622,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+400 MAIN ST,Fort Worth,TX,32.762604,-97.336037,0.6,rooftop,Tarrant County,76102,US,Tarrant County
+4300 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+5000 EXPOSITION WAY,Fort Worth,TX,32.913301,-97.279848,1,rooftop,Tarrant County,76244,US,Tarrant County
+6500 NORMANDY RD,Fort Worth,TX,32.7485,-97.218803,1,rooftop,Tarrant County,76112,US,Tarrant County
+7400 ASHBOURNE WAY,Fort Worth,TX,32.636333,-97.356525,1,rooftop,Tarrant County,76133,US,Tarrant County
+8100 CALMONT AV,Fort Worth,TX,32.733457,-97.454557,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+8400 BELLCHAISE DR,Fort Worth,TX,32.755882,-97.166421,1,range_interpolation,Tarrant County,76120,US,TIGER/Line® dataset from the US Census Bureau
+8700 HUNTERS POINT WAY,Fort Worth,TX,32.614114,-97.387411,0.9,rooftop,Tarrant County,76123,US,Tarrant County
+900 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+100 20 INTERSTATE 35W,Fort Worth,TX,32.666707,-97.32049,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+100 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.822856,-97.390858,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+1800 IM. TERRELL WAY,Fort Worth,TX,32.750089,-97.314366,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+2100 E INTERSTATE 820 FW,Fort Worth,TX,0,0,0,,,,,
+2300 DOTTIE LYNN PK,Fort Worth,TX,32.744627,-97.175039,1,rooftop,Tarrant County,76120,US,Tarrant County
+2700 SOUTH MEADOW DR,Fort Worth,TX,32.641152,-97.360306,1,rooftop,Tarrant County,76133,US,Tarrant County
+5700 LIONFISH WAY,Fort Worth,TX,32.848401,-97.322148,1,rooftop,Tarrant County,76131,US,Tarrant County
+6100 RIVER POINT DR,Fort Worth,TX,32.774265,-97.413933,1,range_interpolation,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+6500 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.802768,-97.427032,0.9,range_interpolation,Tarrant County,76135,US,TIGER/Line® dataset from the US Census Bureau
+8400 EAST FREEWAY,Fort Worth,TX,32.758636,-97.171192,1,rooftop,Tarrant County,76120,US,Tarrant County
+1900 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.668994,-97.303786,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+2200 E INTERSTATE 820 FW,Fort Worth,TX,32.828308,-97.379958,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2500 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2500 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.839035,-97.317669,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2800 LAS VEGAS TR,Fort Worth,TX,32.734805,-97.467603,1,rooftop,Tarrant County,76116,US,Tarrant County
+3600 AVE L,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3600 TULSA WAY,Fort Worth,TX,32.747033,-97.369963,1,range_interpolation,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+3900 ANEWBY WAY,Fort Worth,TX,32.63735,-97.37829,1,rooftop,Tarrant County,76133,US,Tarrant County
+5600 DECORY RD,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+600 7 OLD HIGHWAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+7300 E SOUTH MEADOW DR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2100 EAST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.671868,-97.351531,1,range_interpolation,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2100 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.787452,-97.214806,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+2200 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.787719,-97.212431,0.9,range_interpolation,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+2600 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2800 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3200 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.713742,-97.229536,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3500 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3800 TULSA WAY,Fort Worth,TX,32.745611,-97.372765,1,rooftop,Tarrant County,76107,US,Tarrant County
+6000 WIMBLETON WAY,Fort Worth,TX,32.657084,-97.386145,1,rooftop,Tarrant County,76133,US,Tarrant County
+100 NORTH SOUTH FW,Fort Worth,TX,32.742146,-97.321625,0.6,rooftop,Tarrant County,76104,US,Tarrant County
+1100 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.730487,-97.226295,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+1200 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.78217,-97.211601,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+1200 S FORUM WAY,Fort Worth,TX,32.621324,-97.310436,0.6,rooftop,Tarrant County,76140,US,Tarrant County
+1200 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.78217,-97.211601,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+1300 WIND STAR WAY,Fort Worth,TX,32.746668,-97.498514,1,rooftop,Tarrant County,76108,US,Tarrant County
+13900 HAMMER HE,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1400 SHINY OAKS TRL,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+15000 SEVENTEEN LAKES BL,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2200 NORTH SOUTH FW,Fort Worth,TX,32.740069,-97.349713,0.5,rooftop,Tarrant County,76102,US,Tarrant County
+2300 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.791882,-97.20224,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+2700 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2800 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+3000 AVE K,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3000 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+3400 AVE M,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3700 WILKIE WAY,Fort Worth,TX,32.659874,-97.370515,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+3800 STAGHORN CIR N,Fort Worth,TX,32.882159,-97.302294,1,rooftop,Tarrant County,76137,US,Tarrant County
+4200 AVE M,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4400 FOXFIRE WAY,Fort Worth,TX,32.644738,-97.387497,1,rooftop,Tarrant County,76133,US,Tarrant County
+4800 SALMON RUN WAY,Fort Worth,TX,32.882793,-97.284287,1,rooftop,Tarrant County,76137,US,Tarrant County
+5100 NORTH FREEWAY SERVICE ROAD,Fort Worth,TX,32.836678,-97.314016,0.8,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+5500 TINKERBELL LN,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+6100 CARSWELL ACCESS RD,Fort Worth,TX,32.774963,-97.413539,1,range_interpolation,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+7000 E SOUTH MEADOW DR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+800 E INTERSTATE 820 FW,Fort Worth,TX,0,0,0,,,,,
+8100 OAKMONT BL,Fort Worth,TX,32.668888,-97.42705,1,range_interpolation,Tarrant County,76132,US,TIGER/Line® dataset from the US Census Bureau
+9500 WILLOW BRANCH WAY,Fort Worth,TX,32.605237,-97.399889,1,range_interpolation,Tarrant County,76123,US,TIGER/Line® dataset from the US Census Bureau
+10100 BULL RU,Fort Worth,TX,32.63822,-97.280597,0.8,street_center,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+10400 NORTH FREEWAY SERVICE ROAD,Fort Worth,TX,32.933067,-97.316206,0.8,range_interpolation,Tarrant County,76177,US,TIGER/Line® dataset from the US Census Bureau
+1700 GAINSBOROUGH WAY,Fort Worth,TX,32.625009,-97.34433,1,rooftop,Tarrant County,76134,US,Tarrant County
+1900 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.839595,-97.32968,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+200 N JIM WRIGHT FW,Fort Worth,TX,32.761947,-97.475857,1,rooftop,Tarrant County,76108,US,Tarrant County
+200 STOCKYARDS BL,Fort Worth,TX,32.791964,-97.344789,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2200 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.667692,-97.299251,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+2300 EAST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2800 AVE A,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2800 AVE K,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2800 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.715375,-97.229369,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+2900 EAST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+3000 LAS VEGAS TR,Fort Worth,TX,32.732037,-97.468352,1,rooftop,Tarrant County,76116,US,Tarrant County
+3100 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.661016,-97.283084,1,range_interpolation,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+3200 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3500 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3600 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.710789,-97.231622,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4000 VERNON WAY,Fort Worth,TX,32.909575,-97.29985,1,rooftop,Tarrant County,76244,US,Tarrant County
+4100 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4100 HIGHWAY,Fort Worth,TX,32.743094,-97.426847,0.33,place,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+4500 BUTTERFLY WAY,Fort Worth,TX,32.924399,-97.288926,1,rooftop,Tarrant County,76244,US,Tarrant County
+4600 SOUTH RIDGE TE,Fort Worth,TX,32.681015,-97.372638,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+4700 BOOTHBAY WAY,Fort Worth,TX,32.855427,-97.392241,1,rooftop,Tarrant County,76179,US,Tarrant County
+4800 MILLER AV,Fort Worth,TX,32.692044,-97.26307,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+5000 GLEN PARK DR,Fort Worth,TX,32.687511,-97.275509,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+5500 OURAY PA,Fort Worth,TX,32.965006,-97.182261,0.8,street_center,Tarrant County,76262,US,TIGER/Line® dataset from the US Census Bureau
+7000 ASHBOURNE WAY,Fort Worth,TX,32.640939,-97.356521,1,rooftop,Tarrant County,76133,US,Tarrant County
+7100 E SOUTH MEADOW DR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+7200 E SOUTH MEADOW DR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+8200 CALMONT AV,Fort Worth,TX,32.733785,-97.456406,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+8900 FORUM WAY,Fort Worth,TX,32.624188,-97.312191,1,rooftop,Tarrant County,76140,US,Tarrant County
+100 ALTAMESA INTERSTATE 35W N,Fort Worth,TX,32.784066,-97.563738,1,rooftop,Parker County,76108,US,Statewide Partial
+14500 JFK BL,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1600 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+1600 WATERS ST,Fort Worth,TX,32.750872,-97.317135,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+1900 SAN RAFAEL ST,Fort Worth,TX,32.632641,-97.346099,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+200 PENNSYLVANIA AV,Fort Worth,TX,32.737799,-97.327359,1,range_interpolation,Tarrant County,76104,US,TIGER/Line® dataset from the US Census Bureau
+2100 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.787452,-97.214806,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+2100 S INTERSTATE 820 FW,Fort Worth,TX,0,0,0,,,,,
+2400 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.838788,-97.319826,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2500 RODEO PL,Fort Worth,TX,32.690647,-97.292112,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+2600 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2700 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2800 SOUTH HILLS AV,Fort Worth,TX,32.791301,-97.306151,0.5,rooftop,Tarrant County,76111,US,Tarrant County
+300 7 OLD HWY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3000 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3100 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3100 AVE L,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3300 AVE K,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3300 AVE M,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3400 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3400 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.721542,-97.483181,0.2,rooftop,Tarrant County,76126,US,Tarrant County
+3700 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3700 AVE K,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3800 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3900 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4100 CUMBERLAND PA,Fort Worth,TX,32.704466,-97.413778,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+4100 E AUDRAS WAY,Fort Worth,TX,32.703757,-97.414532,0.9,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+4900 MELODYLANE ST,Fort Worth,TX,32.853199,-97.288144,0.33,place,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+5400 RAMEY AV,Fort Worth,TX,32.720918,-97.239458,1,rooftop,Tarrant County,76105,US,Tarrant County
+5500 BONNELL AVE,Fort Worth,TX,32.723831,-97.404574,1,rooftop,Tarrant County,76107,US,Tarrant County
+5500 S OURAY PA,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+5700 REMINGTON CI,Fort Worth,TX,32.674835,-97.41464,0.9,range_interpolation,Tarrant County,76132,US,TIGER/Line® dataset from the US Census Bureau
+600 ADMIRALTY WAY,Fort Worth,TX,32.751752,-97.495134,1,range_interpolation,Tarrant County,76108,US,TIGER/Line® dataset from the US Census Bureau
+600 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.667904,-97.313273,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+6900 SPRING VALLEY WAY,Fort Worth,TX,32.65794,-97.412991,1,rooftop,Tarrant County,76132,US,Tarrant County
+8000 DUSTY WAY,Fort Worth,TX,32.62652,-97.406553,1,rooftop,Tarrant County,76123,US,Tarrant County
+8600 CHELAN WAY,Fort Worth,TX,32.897235,-97.299792,1,range_interpolation,Tarrant County,76244,US,TIGER/Line® dataset from the US Census Bureau
+10200 WESTWARD DR,Fort Worth,TX,32.753632,-97.504781,1,range_interpolation,Tarrant County,76108,US,TIGER/Line® dataset from the US Census Bureau
+10600 COPPERWOOD LN,Fort Worth,TX,32.602627,-97.299386,1,rooftop,Tarrant County,76140,US,Tarrant County
+11000 FUMAR LN,Fort Worth,TX,32.935253,-97.296192,1,rooftop,Tarrant County,76244,US,Tarrant County
+1200 BARREL RU,Fort Worth,TX,32.885955,-97.403891,0.8,street_center,Tarrant County,76179,US,TIGER/Line® dataset from the US Census Bureau
+1300 GAINSBOROUGH WAY,Fort Worth,TX,32.626718,-97.341051,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+1400 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+1800 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.666395,-97.346756,1,range_interpolation,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+1900 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+200 NORTH SOUTH FW,Fort Worth,TX,32.764748,-97.316231,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+2000 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.839284,-97.32857,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2100 E INTERSTATE 820 FREEWAY S,Fort Worth,TX,0,0,0,,,,,
+2200 E INTERSTATE 820 FREEWAY,Fort Worth,TX,32.828308,-97.379958,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2300 NORTH SOUTH FW,Fort Worth,TX,32.739412,-97.352336,0.5,rooftop,Tarrant County,76102,US,Tarrant County
+2400 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2400 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.828317,-97.383383,1,range_interpolation,Tarrant County,76179,US,TIGER/Line® dataset from the US Census Bureau
+2700 MEADERS AVE,Fort Worth,TX,32.74149,-97.230864,1,rooftop,Tarrant County,76112,US,Tarrant County
+2800 TRAVIS AVE,Fort Worth,TX,32.711205,-97.333262,1,rooftop,Tarrant County,76110,US,Tarrant County
+2900 SANTA FE TRL,Fort Worth,TX,32.733063,-97.465778,1,rooftop,Tarrant County,76116,US,Tarrant County
+2900 SOUTH HILLS AV,Fort Worth,TX,32.697464,-97.358377,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+3000 AVE L,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3000 FOREST AVE,Fort Worth,TX,32.736134,-97.219893,1,rooftop,Tarrant County,76112,US,Tarrant County
+3200 BONAVENTURE BL,Fort Worth,TX,32.642699,-97.272614,0.6,rooftop,Tarrant County,76140,US,Tarrant County
+3300 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3300 YUCCA AVE,Fort Worth,TX,32.78076,-97.299253,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+3400 DEEN RD,Fort Worth,TX,32.803865,-97.325758,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+3600 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3700 AVE M,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+400 7 OLD HIGHWAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4100 DUNCAN WAY,Fort Worth,TX,32.919259,-97.297199,1,rooftop,Tarrant County,76244,US,Tarrant County
+4100 STAGHORN CIR N,Fort Worth,TX,32.882825,-97.298058,1,rooftop,Tarrant County,76137,US,Tarrant County
+4200 LONGMEADOW WAY,Fort Worth,TX,32.631907,-97.386138,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+4200 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.677101,-97.383849,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+4300 ROSEBRIAR WAY,Fort Worth,TX,32.920051,-97.29332,1,rooftop,Tarrant County,76244,US,Tarrant County
+4300 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.698582,-97.237808,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4700 WINEBERRY DR,Fort Worth,TX,32.869394,-97.283879,1,rooftop,Tarrant County,76137,US,Tarrant County
+4900 EXPOSITION WAY,Fort Worth,TX,32.915936,-97.279973,1,rooftop,Tarrant County,76244,US,Tarrant County
+4900 OBRIEN WAY,Fort Worth,TX,32.908829,-97.281071,1,rooftop,Tarrant County,76244,US,Tarrant County
+4900 SOUTH RIDGE TE,Fort Worth,TX,32.70203,-97.46963,0.6,rooftop,Tarrant County,76126,US,Tarrant County
+500 NORTH SOUTH FW,Fort Worth,TX,32.739343,-97.321234,0.6,rooftop,Tarrant County,76104,US,Tarrant County
+5200 MCCART AV,Fort Worth,TX,32.670397,-97.353797,0.9,rooftop,Tarrant County,76115,US,Tarrant County
+5200 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.683878,-97.243779,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+5500 CURZON AVE,Fort Worth,TX,32.730463,-97.404471,1,rooftop,Tarrant County,76107,US,Tarrant County
+5500 DECORY RD,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+5900 DIRKS RD,Fort Worth,TX,32.645674,-97.417036,1,range_interpolation,Tarrant County,76132,US,TIGER/Line® dataset from the US Census Bureau
+6600 ROXANNE WAY,Fort Worth,TX,32.826036,-97.429333,1,rooftop,Tarrant County,76135,US,Tarrant County
+700 ADMIRALTY WAY,Fort Worth,TX,32.750544,-97.497067,1,rooftop,Tarrant County,76108,US,Tarrant County
+7000 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.797376,-97.440208,0.9,range_interpolation,Tarrant County,76135,US,TIGER/Line® dataset from the US Census Bureau
+7100 ASHBOURNE WAY,Fort Worth,TX,32.639688,-97.356535,1,rooftop,Tarrant County,76133,US,Tarrant County
+800 E INTERSTATE 820 FREEWAY,Fort Worth,TX,0,0,0,,,,,
+8600 CALMONT AV,Fort Worth,TX,32.735935,-97.467242,1,rooftop,Tarrant County,76116,US,Tarrant County
+8700 SUMTER WAY,Fort Worth,TX,32.899088,-97.304073,1,rooftop,Tarrant County,76244,US,Tarrant County
+8800 FORUM WAY,Fort Worth,TX,32.625178,-97.312181,1,rooftop,Tarrant County,76140,US,Tarrant County
+900 CALHOUN ST,Fort Worth,TX,32.752642,-97.327879,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+900 WEILER BL,Fort Worth,TX,32.734859,-97.233969,1,range_interpolation,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+100 ALTAMESA INTERSTATE 35W S,Fort Worth,TX,32.784066,-97.563738,1,rooftop,Parker County,76108,US,Statewide Partial
+100 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.667295,-97.314749,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+100 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.666659,-97.324064,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+1000 ALCATEL LN,Fort Worth,TX,32.772958,-97.331705,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+1000 WEST FREEWAY SERVICE ROAD,Fort Worth,TX,32.734035,-97.321071,0.9,rooftop,Tarrant County,76104,US,Tarrant County
+11000 VIEJO LN,Fort Worth,TX,32.935253,-97.296192,1,rooftop,Tarrant County,76244,US,Tarrant County
+1200 VERBENA ST,Fort Worth,TX,32.732888,-97.311626,1,rooftop,Tarrant County,76104,US,Tarrant County
+1300 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+1300 PENNSYLVANIA AV,Fort Worth,TX,32.738339,-97.339312,1,range_interpolation,Tarrant County,76104,US,TIGER/Line® dataset from the US Census Bureau
+1400 S FORUM WAY,Fort Worth,TX,32.62156,-97.306927,1,range_interpolation,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+14100 GOLD SEEKER WAY,Fort Worth,TX,32.985926,-97.393641,1,rooftop,Tarrant County,76052,US,Tarrant County
+14300 CENTREPORT LANDING CI,Fort Worth,TX,32.818921,-97.058191,1,range_interpolation,Tarrant County,76155,US,TIGER/Line® dataset from the US Census Bureau
+14600 COTTAGEVIEW LN,Fort Worth,TX,32.820852,-97.052759,1,range_interpolation,Tarrant County,76155,US,TIGER/Line® dataset from the US Census Bureau
+14900 FAA BL,Fort Worth,TX,32.832214,-97.042774,1,range_interpolation,Tarrant County,76155,US,TIGER/Line® dataset from the US Census Bureau
+1600 FOUR SEASONS LN,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1900 FOXFIELD WAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+200 FLORENCE ST,Fort Worth,TX,32.753719,-97.337714,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+2200 JACKSBORO HW,Fort Worth,TX,32.783163,-97.377428,1,range_interpolation,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+2200 WEST LOOP INTERSTATE 820 820 NORTH,Fort Worth,TX,32.726778,-97.480155,0.8,street_center,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+2300 EAST LOOP INTERSTATE 820 820 NORTH,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2500 NW JIM WRIGHT FW,Fort Worth,TX,32.837623,-97.357646,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2600 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.797508,-97.212312,0.9,range_interpolation,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+2700 EAST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2700 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.664455,-97.292001,1,range_interpolation,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+300 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.757279,-97.479675,0.2,rooftop,Tarrant County,76108,US,Tarrant County
+3000 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.714648,-97.229307,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3000 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.714648,-97.229307,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3100 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3200 SOUTH HILLS AV,Fort Worth,TX,32.696159,-97.36354,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+3200 WEST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.713742,-97.229536,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3300 WEST FREEWAY SERVICE ROAD,Fort Worth,TX,32.804218,-97.316146,0.9,rooftop,Tarrant County,76111,US,Tarrant County
+3400 SPYGLASS WAY,Fort Worth,TX,32.859546,-97.309401,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+3400 WALTON AVE,Fort Worth,TX,32.663177,-97.363552,1,rooftop,Tarrant County,76133,US,Tarrant County
+3500 FURLONG WAY,Fort Worth,TX,32.955104,-97.284433,1,rooftop,Tarrant County,76244,US,Tarrant County
+3500 SAINT VINCENT RD,Fort Worth,TX,32.60828,-97.3719,1,range_interpolation,Tarrant County,76123,US,TIGER/Line® dataset from the US Census Bureau
+3500 STONE CREEK WAY,Fort Worth,TX,32.858232,-97.306601,1,rooftop,Tarrant County,76137,US,Tarrant County
+3600 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3600 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3600 AVE K,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3700 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3800 HUNTERS POINT WAY,Fort Worth,TX,32.614063,-97.387175,0.8,street_center,Tarrant County,76123,US,TIGER/Line® dataset from the US Census Bureau
+3800 SOUTH HILLS CIR,Fort Worth,TX,32.791065,-97.292981,0.5,rooftop,Tarrant County,76111,US,Tarrant County
+3900 VERNON WAY,Fort Worth,TX,32.909567,-97.301409,1,rooftop,Tarrant County,76244,US,Tarrant County
+4300 LONGMEADOW WAY,Fort Worth,TX,32.630343,-97.389477,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+4300 TRAIL LAKE DR,Fort Worth,TX,32.686478,-97.373987,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+4500 WEST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.7104,-97.487544,0.2,rooftop,Tarrant County,76126,US,Tarrant County
+4600 WOLF RIDGE WAY,Fort Worth,TX,32.919757,-97.287558,1,rooftop,Tarrant County,76244,US,Tarrant County
+4700 SALMON RUN WAY,Fort Worth,TX,32.882959,-97.286085,1,rooftop,Tarrant County,76137,US,Tarrant County
+5200 ALTAIR BL,Fort Worth,TX,32.68732,-97.382421,0.8,street_center,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+5400 CAMPUS DR,Fort Worth,TX,32.679099,-97.296684,0.8,street_center,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+5400 S INTERSTATE 820 FW,Fort Worth,TX,0,0,0,,,,,
+6000 MELANIE DR,Fort Worth,TX,32.852026,-97.33042,1,rooftop,Tarrant County,76131,US,Tarrant County
+6400 WRIGLEY WAY,Fort Worth,TX,32.652727,-97.39902,1,rooftop,Tarrant County,76133,US,Tarrant County
+7100 SOUTH RIDGE TRL,Fort Worth,TX,32.637823,-97.373195,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+7300 AVINGTON WAY,Fort Worth,TX,32.637149,-97.354834,1,rooftop,Tarrant County,76133,US,Tarrant County
+7300 NORTH FREEWAY SERVICE ROAD,Fort Worth,TX,32.639001,-97.322559,0.9,rooftop,Tarrant County,76134,US,Tarrant County
+7300 OLD MILL RU,Fort Worth,TX,32.639091,-97.382109,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+7500 WHIRLWIND DR,Fort Worth,TX,32.633044,-97.373435,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+7500 WYCLIFF ST,Fort Worth,TX,32.701446,-97.446887,1,rooftop,Tarrant County,76116,US,Tarrant County
+7700 WEST FREEWAY SERVICE ROAD,Fort Worth,TX,32.761073,-97.187868,0.9,rooftop,Tarrant County,76120,US,Tarrant County
+800 N JIM WRIGHT FW,Fort Worth,TX,32.724121,-97.423728,1,rooftop,Tarrant County,76108,US,Tarrant County
+800 TAYLOR ST,Fort Worth,TX,32.751375,-97.33227,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+8500 MARIETTA CT,Fort Worth,TX,32.616515,-97.369264,1,range_interpolation,Tarrant County,76123,US,TIGER/Line® dataset from the US Census Bureau
+900 MOSAIC DR,Fort Worth,TX,32.838926,-97.376807,1,rooftop,Tarrant County,76179,US,Tarrant County
+100 BEACH NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.88955,-97.143409,0.33,place,Tarrant County,76034,US,TIGER/Line® dataset from the US Census Bureau
+100 ENERGY WAY,Fort Worth,TX,32.752995,-97.36409,1,rooftop,Tarrant County,76102,US,Tarrant County
+100 SPUR 280 4TH,Fort Worth,TX,32.974342,-97.099086,0.8,street_center,Tarrant County,76051,US,TIGER/Line® dataset from the US Census Bureau
+1000 HOUSTON ST,Fort Worth,TX,32.750761,-97.329893,1,rooftop,Tarrant County,76102,US,Tarrant County
+10000 WEST FREEWAY SERVICE ROAD,Fort Worth,TX,32.714003,-97.320298,0.8,street_center,Tarrant County,76104,US,TIGER/Line® dataset from the US Census Bureau
+11000 OLD DENTON RD,Fort Worth,TX,32.942078,-97.2979,0.8,street_center,Tarrant County,76248,US,TIGER/Line® dataset from the US Census Bureau
+11800 INDIAN PONY WAY,Fort Worth,TX,32.767232,-97.521571,0.8,street_center,Tarrant County,76108,US,TIGER/Line® dataset from the US Census Bureau
+1300 SAND VERBENA WAY,Fort Worth,TX,32.914825,-97.339507,1,rooftop,Tarrant County,76131,US,Tarrant County
+1400 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.759753,-97.214163,0.9,range_interpolation,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+1500 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1500 CREEKSTONE CT,Fort Worth,TX,32.757211,-97.186135,1,rooftop,Tarrant County,76112,US,Tarrant County
+1500 N JIM WRIGHT FW,Fort Worth,TX,32.784245,-97.464114,1,rooftop,Tarrant County,76108,US,Tarrant County
+1600 CAROLINA RIDGE WAY,Fort Worth,TX,32.617845,-97.358737,0.8,street_center,Tarrant County,76123,US,TIGER/Line® dataset from the US Census Bureau
+1600 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.793287,-97.212447,1,range_interpolation,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+16600 WINDTHORST WAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+16800 PINERY WAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+200 7 OLD HIGHWAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+200 BERKSHIRE LN,Fort Worth,TX,32.646513,-97.325507,1,rooftop,Tarrant County,76134,US,Tarrant County
+200 BLEVINS ST,Fort Worth,TX,32.766152,-97.300562,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+2000 N JIM WRIGHT FW,Fort Worth,TX,32.755257,-97.47935,0.8,street_center,Tarrant County,76108,US,TIGER/Line® dataset from the US Census Bureau
+2000 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.667107,-97.350417,1,range_interpolation,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2100 JACKSBORO HW,Fort Worth,TX,32.782539,-97.373773,0.8,rooftop,Tarrant County,76164,US,Tarrant County
+2100 NW JIM WRIGHT FW,Fort Worth,TX,32.837623,-97.357646,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2400 JACKSBORO HW,Fort Worth,TX,32.786784,-97.383561,0.8,rooftop,Tarrant County,76106,US,Tarrant County
+2400 LEE AVE,Fort Worth,TX,32.788257,-97.355091,1,rooftop,Tarrant County,76164,US,Tarrant County
+2400 MORESBY ST,Fort Worth,TX,32.706679,-97.291403,1,rooftop,Tarrant County,76105,US,Tarrant County
+2500 BOMAR AVE,Fort Worth,TX,32.745441,-97.290808,1,rooftop,Tarrant County,76103,US,Tarrant County
+2600 PRAIRIE AVE,Fort Worth,TX,32.791948,-97.366908,1,rooftop,Tarrant County,76164,US,Tarrant County
+2600 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.664438,-97.293214,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+2700 AVE C,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2800 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.715375,-97.229369,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+2800 WEST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.715375,-97.229369,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+2900 AVE I,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2900 AVE K,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3000 QUAIL RD,Fort Worth,TX,32.715306,-97.219585,0.8,street_center,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+3100 MANSFIELD HW,Fort Worth,TX,32.684504,-97.28393,1,rooftop,Tarrant County,76119,US,Tarrant County
+3100 SONDRA DR,Fort Worth,TX,32.756264,-97.361117,1,range_interpolation,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+3200 AVE L,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3200 STONEWALL LN,Fort Worth,TX,32.616829,-97.366867,1,range_interpolation,Tarrant County,76123,US,TIGER/Line® dataset from the US Census Bureau
+3300 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.811341,-97.209369,0.8,range_interpolation,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+3300 SOUTH MEADOW DR,Fort Worth,TX,32.640386,-97.369569,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+3300 VICKERY BL,Fort Worth,TX,32.735182,-97.277778,0.6,rooftop,Tarrant County,76105,US,Tarrant County
+3400 PARK HOLLOW,Fort Worth,TX,32.70006,-97.38304,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+3500 AVE I,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3500 PIONEER ST,Fort Worth,TX,32.688956,-97.274334,1,rooftop,Tarrant County,76119,US,Tarrant County
+3500 POND DR,Fort Worth,TX,32.720994,-97.468433,0.9,rooftop,Tarrant County,76116,US,Tarrant County
+3500 SUFFOLK DR,Fort Worth,TX,32.689374,-97.368208,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+3600 OAK TREE CI,Fort Worth,TX,32.591857,-97.238576,0.8,street_center,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+3600 TERRA CT,Fort Worth,TX,32.808751,-97.344605,0.5,rooftop,Tarrant County,76106,US,Tarrant County
+3600 WHITE BIRCH WAY,Fort Worth,TX,32.732244,-97.3102,0.8,street_center,Tarrant County,76104,US,TIGER/Line® dataset from the US Census Bureau
+3800 S INTERSTATE 820 FW,Fort Worth,TX,0,0,0,,,,,
+3800 SOUTH HILLS CI,Fort Worth,TX,32.791065,-97.292981,0.5,rooftop,Tarrant County,76111,US,Tarrant County
+3900 HILLDALE RD,Fort Worth,TX,32.706429,-97.246222,1,rooftop,Tarrant County,76119,US,Tarrant County
+400 7 OLD HWY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+400 STREAMS AND VALLEYS CIR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4000 GERMAN POINTER WAY,Fort Worth,TX,32.608126,-97.381276,1,rooftop,Tarrant County,76123,US,Tarrant County
+4100 5TH AVE,Fort Worth,TX,32.6881,-97.339511,1,rooftop,Tarrant County,76110,US,Tarrant County
+4200 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4300 PARK CREEK CIR N,Fort Worth,TX,32.870285,-97.290505,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+4300 SANSOM PARK DR,Fort Worth,TX,32.80824,-97.371787,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+4400 S INTERSTATE 820 FW,Fort Worth,TX,0,0,0,,,,,
+4400 WELLESLEY AVE,Fort Worth,TX,32.725619,-97.384599,1,rooftop,Tarrant County,76107,US,Tarrant County
+4500 FOXFIRE WAY,Fort Worth,TX,32.644596,-97.390039,1,rooftop,Tarrant County,76133,US,Tarrant County
+4500 REGALRIDGE DR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4600 MILLER AV,Fort Worth,TX,32.697026,-97.262943,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+4600 VIRGIL ST,Fort Worth,TX,32.708244,-97.255891,1,rooftop,Tarrant County,76119,US,Tarrant County
+4700 RINCON WAY,Fort Worth,TX,32.884946,-97.285317,1,rooftop,Tarrant County,76137,US,Tarrant County
+4800 OLD MANSFIELD RD,Fort Worth,TX,32.670679,-97.253228,0.8,rooftop,Tarrant County,76119,US,Tarrant County
+4800 SOUTHWEST BLVD SERVICE ROAD,Fort Worth,TX,32.68418,-97.396617,1,rooftop,Tarrant County,76116,US,Tarrant County
+4900 S INTERSTATE 820 FW,Fort Worth,TX,0,0,0,,,,,
+500 STREAMS AND VALLEYS CIR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+5000 CALMONT AVE,Fort Worth,TX,32.734182,-97.395209,1,rooftop,Tarrant County,76107,US,Tarrant County
+5000 WINESANKER WAY,Fort Worth,TX,32.649234,-97.400364,1,rooftop,Tarrant County,76133,US,Tarrant County
+5100 LIBERTY WAY,Fort Worth,TX,32.975461,-97.254511,1,rooftop,Tarrant County,76177,US,Tarrant County
+5400 WEST FREEWAY SERVICE ROAD,Fort Worth,TX,32.733918,-97.402507,1,range_interpolation,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+5500 ALTER DR,Fort Worth,TX,32.716102,-97.237709,1,rooftop,Tarrant County,76119,US,Tarrant County
+5500 LUBBOCK AVE,Fort Worth,TX,32.664368,-97.356883,1,rooftop,Tarrant County,76133,US,Tarrant County
+5600 FERNANDER DR,Fort Worth,TX,32.715362,-97.406487,1,rooftop,Tarrant County,76107,US,Tarrant County
+5800 EAST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+5800 LOCKE AVE,Fort Worth,TX,32.732413,-97.409905,1,rooftop,Tarrant County,76107,US,Tarrant County
+6000 WESTERN PA,Fort Worth,TX,32.735552,-97.416399,1,rooftop,Tarrant County,76107,US,Tarrant County
+6100 BIANCA CI,Fort Worth,TX,32.660469,-97.408585,1,range_interpolation,Tarrant County,76132,US,TIGER/Line® dataset from the US Census Bureau
+6200 MCCART AV,Fort Worth,TX,32.655137,-97.362513,0.9,rooftop,Tarrant County,76133,US,Tarrant County
+6400 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.803009,-97.425567,0.9,range_interpolation,Tarrant County,76135,US,TIGER/Line® dataset from the US Census Bureau
+6700 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.800221,-97.433113,0.9,range_interpolation,Tarrant County,76135,US,TIGER/Line® dataset from the US Census Bureau
+6700 SUNNYBANK DR,Fort Worth,TX,32.862233,-97.286917,1,rooftop,Tarrant County,76137,US,Tarrant County
+6800 BAY LINE DR,Fort Worth,TX,32.649311,-97.410955,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+6900 MCCART AV,Fort Worth,TX,32.641318,-97.370372,0.9,rooftop,Tarrant County,76133,US,Tarrant County
+8100 WATERSIDE TRL,Fort Worth,TX,32.887197,-97.293389,1,rooftop,Tarrant County,76137,US,Tarrant County
+8300 ORLEANS LN,Fort Worth,TX,32.621736,-97.363322,1,rooftop,Tarrant County,76123,US,Tarrant County
+8300 WOODLAND WAY,Fort Worth,TX,32.889437,-97.275368,1,rooftop,Tarrant County,76137,US,Tarrant County
+8500 EAST FW,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+8600 TRACE RIDGE PK,Fort Worth,TX,32.895423,-97.281813,1,rooftop,Tarrant County,76244,US,Tarrant County
+8700 CALMONT AV,Fort Worth,TX,32.735792,-97.468604,1,rooftop,Tarrant County,76116,US,Tarrant County
+900 EAST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+900 WEST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.747446,-97.48568,0.2,rooftop,Tarrant County,76108,US,Tarrant County
+900 WESTERN PA,Fort Worth,TX,32.847648,-97.377411,0.8,rooftop,Tarrant County,76179,US,Tarrant County
+9200 RENEE CI,Fort Worth,TX,32.72765,-97.4621,0.8,street_center,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+100 7 OLD HIGHWAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+100 BEACH ST,Fort Worth,TX,32.764887,-97.287915,1,rooftop,Tarrant County,76111,US,Tarrant County
+100 CHERRY INTERSTATE 30,Fort Worth,TX,32.75579,-97.337859,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+1000 WEST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.765823,-97.214181,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+1000 WOODLANDS CI,Fort Worth,TX,32.651048,-97.211622,0.8,street_center,Tarrant County,76060,US,TIGER/Line® dataset from the US Census Bureau
+10300 LITTLE VALLEY RD,Fort Worth,TX,32.75528,-97.503302,1,rooftop,Tarrant County,76108,US,Tarrant County
+10400 ALTA VISTA RD,Fort Worth,TX,32.8842,-97.244695,0.8,street_center,Tarrant County,76148,US,TIGER/Line® dataset from the US Census Bureau
+10800 N BEACH ST,Fort Worth,TX,32.808771,-97.290559,0.8,street_center,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+1100 COLVIN AVE,Fort Worth,TX,32.713655,-97.313751,1,rooftop,Tarrant County,76104,US,Tarrant County
+1100 FOREST PARK BL,Fort Worth,TX,32.733217,-97.352306,1,range_interpolation,Tarrant County,76110,US,TIGER/Line® dataset from the US Census Bureau
+1100 KIRKWALL DR,Fort Worth,TX,32.661394,-97.312474,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+1100 NORTH SOUTH FW,Fort Worth,TX,32.773663,-97.318043,0.5,rooftop,Tarrant County,76102,US,Tarrant County
+1100 ROPING REINS WAY,Fort Worth,TX,32.990358,-97.384465,1,range_interpolation,Denton County,76052,US,TIGER/Line® dataset from the US Census Bureau
+1200 INTERMODAL PK,Fort Worth,TX,32.979125,-97.327422,0.8,street_center,Tarrant County,76177,US,TIGER/Line® dataset from the US Census Bureau
+1200 ROUND PEN RU,Fort Worth,TX,32.987135,-97.384991,1,rooftop,Tarrant County,76052,US,Tarrant County
+1200 WEST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.78217,-97.211601,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+12500 FALABELLA WAY,Fort Worth,TX,32.955552,-97.291467,1,rooftop,Tarrant County,76244,US,Tarrant County
+12600 PANORAMA DR,Fort Worth,TX,32.574676,-97.328411,1,rooftop,Tarrant County,76028,US,Tarrant County
+1300 BARREL RU,Fort Worth,TX,32.885955,-97.403891,0.8,street_center,Tarrant County,76179,US,TIGER/Line® dataset from the US Census Bureau
+1300 NICOLE WAY,Fort Worth,TX,32.590643,-97.29623,1,rooftop,Tarrant County,76028,US,Tarrant County
+13100 287 EXIT AVOND,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1400 BARRON LN,Fort Worth,TX,32.759013,-97.207592,1,rooftop,Tarrant County,76112,US,Tarrant County
+1400 BURMEISTER RD,Fort Worth,TX,32.643819,-97.340625,1,rooftop,Tarrant County,76134,US,Tarrant County
+1400 WIND STAR WAY,Fort Worth,TX,32.746593,-97.499601,1,rooftop,Tarrant County,76108,US,Tarrant County
+14000 WRANGLER WAY,Fort Worth,TX,32.985249,-97.39475,1,range_interpolation,Tarrant County,76052,US,TIGER/Line® dataset from the US Census Bureau
+14600 TRINITY BL,Fort Worth,TX,32.821482,-97.050074,1,rooftop,Tarrant County,76155,US,Tarrant County
+1500 8TH AVE,Fort Worth,TX,32.727885,-97.344281,1,rooftop,Tarrant County,76104,US,Tarrant County
+1500 GAINSBOROUGH WAY,Fort Worth,TX,32.60762,-97.290024,0.6,rooftop,Tarrant County,76140,US,Tarrant County
+1500 HALL ST,Fort Worth,TX,32.729458,-97.295038,1,rooftop,Tarrant County,76105,US,Tarrant County
+1500 LAGONDA AVE,Fort Worth,TX,32.774188,-97.356391,1,rooftop,Tarrant County,76164,US,Tarrant County
+1500 WIND STAR WAY,Fort Worth,TX,32.745536,-97.49956,1,rooftop,Tarrant County,76108,US,Tarrant County
+15100 SEVENTEEN LAKES BL,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1600 DESPERADO RD,Fort Worth,TX,32.893984,-97.335123,1,rooftop,Tarrant County,76131,US,Tarrant County
+1600 EVANS AV,Fort Worth,TX,32.726765,-97.318574,1,rooftop,Tarrant County,76104,US,Tarrant County
+1600 EVERMAN PK,Fort Worth,TX,32.625284,-97.300618,1,rooftop,Tarrant County,76140,US,Tarrant County
+1600 RIALTO WAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1600 TEXAS ST,Fort Worth,TX,32.749469,-97.343311,1,rooftop,Tarrant County,76102,US,Tarrant County
+1600 WIND STAR WAY,Fort Worth,TX,32.744645,-97.499547,1,rooftop,Tarrant County,76108,US,Tarrant County
+16700 WINDTHORST WAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1700 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1700 EAST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+1700 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.792232,-97.212312,1,range_interpolation,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+1700 RIALTO WAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1800 ANDREW AVE,Fort Worth,TX,32.726529,-97.239706,1,rooftop,Tarrant County,76105,US,Tarrant County
+1800 MANOR RIDGE WAY,Fort Worth,TX,32.753613,-97.168478,1,range_interpolation,Tarrant County,76120,US,TIGER/Line® dataset from the US Census Bureau
+1900 S INTERSTATE 820 FW,Fort Worth,TX,32.726658,-97.22579,1,range_interpolation,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+2100 WEST FREEWAY SERVICE ROAD,Fort Worth,TX,32.748105,-97.296122,0.9,rooftop,Tarrant County,76103,US,Tarrant County
+2200 ALSTON AVE,Fort Worth,TX,32.720407,-97.334466,1,rooftop,Tarrant County,76110,US,Tarrant County
+2200 DOTTIE LYNN PK,Fort Worth,TX,32.769931,-97.184721,0.33,place,Tarrant County,76120,US,TIGER/Line® dataset from the US Census Bureau
+2200 GRACE AVE,Fort Worth,TX,32.791749,-97.307134,1,rooftop,Tarrant County,76111,US,Tarrant County
+2200 WEST FREEWAY SERVICE ROAD,Fort Worth,TX,32.740069,-97.349713,1,rooftop,Tarrant County,76102,US,Tarrant County
+2300 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.791882,-97.20224,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+2300 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.791882,-97.20224,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+2400 AZLE AV,Fort Worth,TX,32.794062,-97.373059,1,rooftop,Tarrant County,76106,US,Tarrant County
+2400 OAK HILL CI,Fort Worth,TX,32.704146,-97.395614,0.8,street_center,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+2400 S OTERO PA,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2400 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.668176,-97.354225,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+2400 VILLAGE CREEK RD,Fort Worth,TX,32.720981,-97.248408,1,range_interpolation,Tarrant County,76105,US,TIGER/Line® dataset from the US Census Bureau
+2500 E INTERSTATE 820 FREEWAY N,Fort Worth,TX,32.839035,-97.317669,0.9,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2500 E LANCASTER AVE,Fort Worth,TX,32.744183,-97.291466,1,rooftop,Tarrant County,76103,US,Tarrant County
+2700 8TH AV,Fort Worth,TX,32.712478,-97.344778,1,rooftop,Tarrant County,76110,US,Tarrant County
+2700 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2700 PRIMROSE AVE,Fort Worth,TX,32.781555,-97.307485,1,rooftop,Tarrant County,76111,US,Tarrant County
+2800 N AUDRAS WAY,Fort Worth,TX,32.703757,-97.414532,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+2800 S AUDRAS WAY,Fort Worth,TX,32.703757,-97.414532,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+2800 STARK ST,Fort Worth,TX,32.739378,-97.232829,1,rooftop,Tarrant County,76112,US,Tarrant County
+2800 WALTON AV,Fort Worth,TX,32.662804,-97.358626,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+2900 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2900 AVE L,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2900 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2900 GUNNISON TR,Fort Worth,TX,32.732927,-97.46033,1,rooftop,Tarrant County,76116,US,Tarrant County
+2900 TRAVIS AV,Fort Worth,TX,32.709395,-97.333262,1,rooftop,Tarrant County,76110,US,Tarrant County
+300 ALTAMESA BL,Fort Worth,TX,32.655339,-97.329115,1,rooftop,Tarrant County,76115,US,Tarrant County
+300 FREEDOM WAY,Fort Worth,TX,32.937538,-97.267061,1,range_interpolation,Tarrant County,76244,US,TIGER/Line® dataset from the US Census Bureau
+300 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.757279,-97.479675,0.2,rooftop,Tarrant County,76108,US,Tarrant County
+300 WEST LOOP INTERSTATE 820 820 NORTH,Fort Worth,TX,32.757279,-97.479675,0.2,rooftop,Tarrant County,76108,US,Tarrant County
+3000 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3000 BILGLADE RD,Fort Worth,TX,32.677044,-97.359843,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+3100 CROUCH AVE,Fort Worth,TX,32.713858,-97.255428,1,rooftop,Tarrant County,76105,US,Tarrant County
+3100 WESLEY ST,Fort Worth,TX,32.800456,-97.293528,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+3200 MERIDA AVE,Fort Worth,TX,32.704035,-97.355828,1,rooftop,Tarrant County,76109,US,Tarrant County
+3200 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.713742,-97.229536,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3300 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3300 BONAVENTURE BL,Fort Worth,TX,32.642699,-97.272614,0.6,rooftop,Tarrant County,76140,US,Tarrant County
+3400 AVE L,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3400 MARQUITA DR,Fort Worth,TX,32.722039,-97.443624,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+3400 RIVERPARK DR,Fort Worth,TX,32.699708,-97.426173,0.9,rooftop,Tarrant County,76116,US,Tarrant County
+3400 RYAN AVE,Fort Worth,TX,32.700352,-97.343129,1,rooftop,Tarrant County,76110,US,Tarrant County
+3400 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.721542,-97.483181,0.2,rooftop,Tarrant County,76126,US,Tarrant County
+3500 WAYSIDE AVE,Fort Worth,TX,32.698469,-97.352123,1,rooftop,Tarrant County,76110,US,Tarrant County
+3600 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3600 HWY,Fort Worth,TX,32.941874,-97.131652,0.8,street_center,Tarrant County,76092,US,TIGER/Line® dataset from the US Census Bureau
+3600 SILVERADO TRL,Fort Worth,TX,32.941144,-97.219875,0.8,street_center,Tarrant County,76248,US,TIGER/Line® dataset from the US Census Bureau
+3700 AVE L,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3700 DECATUR AV,Fort Worth,TX,32.810558,-97.339368,1,rooftop,Tarrant County,76106,US,Tarrant County
+3700 GLASSENBERRY ST,Fort Worth,TX,32.904033,-97.30439,1,rooftop,Tarrant County,76244,US,Tarrant County
+3700 LOIS ST,Fort Worth,TX,32.69671,-97.372458,0.5,rooftop,Tarrant County,76109,US,Tarrant County
+3700 SOUTH HILLS AV,Fort Worth,TX,32.696579,-97.372218,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+3800 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3800 FORBES ST,Fort Worth,TX,32.71567,-97.2685,1,rooftop,Tarrant County,76105,US,Tarrant County
+3800 GROVER AVE,Fort Worth,TX,32.813606,-97.327848,1,rooftop,Tarrant County,76106,US,Tarrant County
+3800 TOWNSEND DR,Fort Worth,TX,32.692689,-97.349795,1,rooftop,Tarrant County,76110,US,Tarrant County
+3800 WEST FREEWAY SERVICE ROAD,Fort Worth,TX,32.753756,-97.266993,0.9,rooftop,Tarrant County,76103,US,Tarrant County
+3900 AVE M,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3900 WEDGWAY DR,Fort Worth,TX,32.668756,-97.37826,1,rooftop,Tarrant County,76133,US,Tarrant County
+400 KENCHESTER WAY,Fort Worth,TX,32.579876,-97.327589,1,range_interpolation,Tarrant County,76036,US,TIGER/Line® dataset from the US Census Bureau
+4000 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4000 HARDEMAN ST,Fort Worth,TX,32.702576,-97.264907,1,rooftop,Tarrant County,76119,US,Tarrant County
+4100 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4100 STONE HOLLOW WAY,Fort Worth,TX,32.82254,-97.496878,0.8,street_center,Tarrant County,76108,US,TIGER/Line® dataset from the US Census Bureau
+4200 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4200 DEERING DR,Fort Worth,TX,32.765658,-97.38151,1,range_interpolation,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+4200 HUNTERS CREEK DR,Fort Worth,TX,32.614461,-97.384579,1,rooftop,Tarrant County,76123,US,Tarrant County
+4300 MONTECITO LN,Fort Worth,TX,32.821346,-97.383001,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+4300 PANOLA AVE,Fort Worth,TX,32.738432,-97.260494,1,rooftop,Tarrant County,76103,US,Tarrant County
+4300 VALENTINE ST,Fort Worth,TX,32.726687,-97.381477,1,rooftop,Tarrant County,76107,US,Tarrant County
+4400 AVE N,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4400 BAYLOR ST,Fort Worth,TX,32.703569,-97.257575,1,rooftop,Tarrant County,76119,US,Tarrant County
+4400 SOUTHBEND DR,Fort Worth,TX,32.612693,-97.390537,1,rooftop,Tarrant County,76123,US,Tarrant County
+4600 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4600 AVE M,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4600 COOL RIDGE CT,Fort Worth,TX,32.635893,-97.393224,1,rooftop,Tarrant County,76133,US,Tarrant County
+4600 LEEWARD LN,Fort Worth,TX,32.823107,-97.405042,0.8,street_center,Tarrant County,76135,US,TIGER/Line® dataset from the US Census Bureau
+4700 BARWICK DR,Fort Worth,TX,32.675832,-97.392811,1,rooftop,Tarrant County,76132,US,Tarrant County
+4700 E LANCASTER AVE,Fort Worth,TX,32.740372,-97.253137,1,rooftop,Tarrant County,76102,US,Tarrant County
+4700 FOXFIRE WAY,Fort Worth,TX,32.644688,-97.396201,1,rooftop,Tarrant County,76133,US,Tarrant County
+4700 WELLESLEY AV,Fort Worth,TX,32.725503,-97.390396,1,rooftop,Tarrant County,76107,US,Tarrant County
+4800 BARNETT ST,Fort Worth,TX,32.751691,-97.251017,1,rooftop,Tarrant County,76103,US,Tarrant County
+4800 S HULEN ST,Fort Worth,TX,32.678433,-97.398118,1,rooftop,Tarrant County,76132,US,Tarrant County
+4800 SOUTH RIDGE TE,Fort Worth,TX,32.703378,-97.469509,0.6,rooftop,Tarrant County,76126,US,Tarrant County
+4900 FITZHUGH AVE,Fort Worth,TX,32.717973,-97.250223,1,rooftop,Tarrant County,76105,US,Tarrant County
+4900 RONDO DR,Fort Worth,TX,32.830368,-97.317791,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+4900 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.689457,-97.241911,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+500 BLUE HAZE DR,Fort Worth,TX,32.753738,-97.504268,1,rooftop,Tarrant County,76108,US,Tarrant County
+500 CONSTELLATION CT,Fort Worth,TX,32.753867,-97.480339,1,range_interpolation,Tarrant County,76108,US,TIGER/Line® dataset from the US Census Bureau
+500 N JIM WRIGHT FREEWAY,Fort Worth,TX,32.755257,-97.47935,0.8,street_center,Tarrant County,76108,US,TIGER/Line® dataset from the US Census Bureau
+5000 LYNDON DR,Fort Worth,TX,32.700866,-97.449506,1,rooftop,Tarrant County,76116,US,Tarrant County
+5000 MONARDA WAY,Fort Worth,TX,32.62619,-97.398674,1,rooftop,Tarrant County,76123,US,Tarrant County
+5000 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.660923,-97.25135,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+5000 TOWNSEND DR,Fort Worth,TX,32.673421,-97.349061,1,rooftop,Tarrant County,76115,US,Tarrant County
+5000 WALDEN AVE,Fort Worth,TX,32.674402,-97.384107,1,range_interpolation,Tarrant County,76132,US,TIGER/Line® dataset from the US Census Bureau
+5100 RONDO DR,Fort Worth,TX,32.834872,-97.31735,1,rooftop,Tarrant County,76106,US,Tarrant County
+5200 KALTENBRUN RD,Fort Worth,TX,32.677544,-97.244109,1,rooftop,Tarrant County,76119,US,Tarrant County
+5200 WONDER DR,Fort Worth,TX,32.671653,-97.384452,1,rooftop,Tarrant County,76133,US,Tarrant County
+5400 FLAMINGO RD,Fort Worth,TX,32.678659,-97.262375,1,rooftop,Tarrant County,76119,US,Tarrant County
+5500 LASTER RD,Fort Worth,TX,32.679517,-97.237304,1,rooftop,Tarrant County,76119,US,Tarrant County
+5500 NAFEX WAY,Fort Worth,TX,32.846132,-97.331689,1,rooftop,Tarrant County,76131,US,Tarrant County
+5700 BRIDGE ST,Fort Worth,TX,32.76099,-97.232365,1,range_interpolation,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+6200 WRIGLEY WAY,Fort Worth,TX,32.655172,-97.39614,1,rooftop,Tarrant County,76133,US,Tarrant County
+6300 TRAIL LAKE DR,Fort Worth,TX,32.655697,-97.399956,1,rooftop,Tarrant County,76133,US,Tarrant County
+6400 CAMP BOWIE ACCESS,Fort Worth,TX,32.726016,-97.423275,1,rooftop,Tarrant County,76116,US,Tarrant County
+6400 CANYON CIR,Fort Worth,TX,32.650502,-97.356045,1,rooftop,Tarrant County,76133,US,Tarrant County
+6700 CALMONT AV,Fort Worth,TX,32.734649,-97.432406,1,rooftop,Tarrant County,76116,US,Tarrant County
+6900 EAGLE ROCK DR,Fort Worth,TX,32.642975,-97.359541,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+700 FOREST PARK BL,Fort Worth,TX,32.750938,-97.345469,0.8,street_center,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+700 SOUTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.668032,-97.312932,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+700 VERNA TRL N,Fort Worth,TX,32.777523,-97.499761,1,range_interpolation,Tarrant County,76108,US,TIGER/Line® dataset from the US Census Bureau
+7000 STRAWBERRY WAY,Fort Worth,TX,32.868143,-97.298184,1,rooftop,Tarrant County,76137,US,Tarrant County
+7200 OLD MILL RU,Fort Worth,TX,32.640121,-97.382664,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+7200 OVERHILL RD,Fort Worth,TX,32.705127,-97.438937,1,rooftop,Tarrant County,76116,US,Tarrant County
+7300 MADEIRA DR,Fort Worth,TX,32.750785,-97.201836,1,rooftop,Tarrant County,76112,US,Tarrant County
+7400 MC CART AVE,Fort Worth,TX,32.637603,-97.370311,1,rooftop,Tarrant County,76133,US,Tarrant County
+7500 SECRETARIAT CT,Fort Worth,TX,32.758707,-97.194541,1,range_interpolation,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+7600 HOLLOW FOREST DR,Fort Worth,TX,32.632176,-97.356635,1,rooftop,Tarrant County,76123,US,Tarrant County
+7600 LAWNSBERRY DR,Fort Worth,TX,32.87879,-97.267875,1,rooftop,Tarrant County,76137,US,Tarrant County
+7800 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.822856,-97.390858,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+800 E INTERSTATE 820 FREEWAY N,Fort Worth,TX,0,0,0,,,,,
+800 ELMWOOD AVE,Fort Worth,TX,32.725105,-97.319133,1,range_interpolation,Tarrant County,76104,US,TIGER/Line® dataset from the US Census Bureau
+800 FAIRVIEW ST,Fort Worth,TX,32.774323,-97.294688,1,rooftop,Tarrant County,76111,US,Tarrant County
+8000 BUTTERCUP CIR S,Fort Worth,TX,32.625084,-97.380544,1,rooftop,Tarrant County,76123,US,Tarrant County
+8000 HOSTA WAY,Fort Worth,TX,32.625088,-97.391621,1,rooftop,Tarrant County,76123,US,Tarrant County
+8100 LEAD CIR,Fort Worth,TX,32.888925,-97.306719,0.8,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+8200 BOAT CLUB RD,Fort Worth,TX,32.874776,-97.424539,1,rooftop,Tarrant County,76179,US,Tarrant County
+8500 MIAMI SPRINGS DR,Fort Worth,TX,32.620607,-97.377351,1,rooftop,Tarrant County,76123,US,Tarrant County
+8600 MARIETTA CT,Fort Worth,TX,32.616582,-97.36953,1,rooftop,Tarrant County,76123,US,Tarrant County
+8900 FLYING RANCH RD,Fort Worth,TX,32.625447,-97.353265,1,rooftop,Tarrant County,76134,US,Tarrant County
+8900 WATERCRESS DR,Fort Worth,TX,32.815651,-97.471756,1,range_interpolation,Tarrant County,76135,US,TIGER/Line® dataset from the US Census Bureau
+900 NORTHTON ST,Fort Worth,TX,32.728688,-97.317801,0.33,place,Tarrant County,76104,US,TIGER/Line® dataset from the US Census Bureau
+100 20 CAMPUS,Fort Worth,TX,32.679099,-97.296684,0.8,street_center,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+1000 BESSIE ST,Fort Worth,TX,32.739969,-97.31562,1,rooftop,Tarrant County,76104,US,Tarrant County
+1000 BROWN DR,Fort Worth,TX,32.675135,-97.315858,1,rooftop,Tarrant County,76115,US,Tarrant County
+1000 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.765823,-97.214181,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+10300 OLD DENTON RD,Fort Worth,TX,32.942078,-97.2979,0.8,street_center,Tarrant County,76248,US,TIGER/Line® dataset from the US Census Bureau
+10300 POINT LOBOS TRL,Fort Worth,TX,32.924095,-97.325671,1,rooftop,Tarrant County,76177,US,Tarrant County
+10500 ELK HOLLOW DR,Fort Worth,TX,32.602881,-97.323802,1,range_interpolation,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+10500 WINDING PASSAGE WAY,Fort Worth,TX,32.920859,-97.370693,1,rooftop,Tarrant County,76131,US,Tarrant County
+10900 RIPPLING BROOK WAY,Fort Worth,TX,32.807516,-97.136271,0.8,street_center,Tarrant County,76040,US,TIGER/Line® dataset from the US Census Bureau
+1100 HAYNES AVE,Fort Worth,TX,32.732927,-97.268195,1,range_interpolation,Tarrant County,76105,US,TIGER/Line® dataset from the US Census Bureau
+1100 NORTH WAY DR,Fort Worth,TX,32.84571,-97.340562,1,rooftop,Tarrant County,76131,US,Tarrant County
+1100 VICKI LN,Fort Worth,TX,32.70678,-97.313844,1,rooftop,Tarrant County,76104,US,Tarrant County
+11000 CALDWELL LN,Fort Worth,TX,32.922863,-97.422079,1,range_interpolation,Tarrant County,76179,US,TIGER/Line® dataset from the US Census Bureau
+11800 RIVER VIEW WAY,Fort Worth,TX,32.777888,-97.418241,0.8,street_center,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+1200 FAIRMOUNT AVE,Fort Worth,TX,32.731808,-97.341383,1,rooftop,Tarrant County,76104,US,Tarrant County
+1200 MARION AVE,Fort Worth,TX,32.716258,-97.31241,1,rooftop,Tarrant County,76104,US,Tarrant County
+12700 CEDAR HOLLOW DR,Fort Worth,TX,32.958284,-97.261573,1,rooftop,Tarrant County,76244,US,Tarrant County
+12800 CAMPOLINA WAY,Fort Worth,TX,32.961279,-97.291001,1,rooftop,Tarrant County,76244,US,Tarrant County
+12800 SINGLETON DR,Fort Worth,TX,32.94889,-97.504108,0.8,street_center,Tarrant County,76179,US,TIGER/Line® dataset from the US Census Bureau
+1300 WILLOW GLEN CI,Fort Worth,TX,32.635357,-97.33792,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+13200 MOONLAKE WAY,Fort Worth,TX,32.968833,-97.388562,1,range_interpolation,Tarrant County,76052,US,TIGER/Line® dataset from the US Census Bureau
+13300 AUSTIN STONE DR,Fort Worth,TX,32.98537,-97.417676,0.8,street_center,Tarrant County,76052,US,TIGER/Line® dataset from the US Census Bureau
+13700 CANYON RANCH RD,Fort Worth,TX,32.855231,-97.277664,0.8,street_center,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+13800 TRINITY BL,Fort Worth,TX,32.876905,-97.346142,0.8,street_center,Tarrant County,76131,US,TIGER/Line® dataset from the US Census Bureau
+1400 ALAMO BELL WAY,Fort Worth,TX,32.979229,-97.39108,1,range_interpolation,Tarrant County,76052,US,TIGER/Line® dataset from the US Census Bureau
+1400 GAINSBOROUGH WAY,Fort Worth,TX,32.607205,-97.291302,0.6,rooftop,Tarrant County,76140,US,Tarrant County
+14300 FAA BL,Fort Worth,TX,32.832142,-97.060715,1,range_interpolation,Tarrant County,76155,US,TIGER/Line® dataset from the US Census Bureau
+14400 JFK BL,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+14800 NORTH FREEWAY SERVICE ROAD,Fort Worth,TX,32.832715,-97.044867,0.9,rooftop,Tarrant County,76155,US,Tarrant County
+1500 COLEMAN AVE,Fort Worth,TX,32.729896,-97.259802,1,rooftop,Tarrant County,76105,US,Tarrant County
+1500 E PRESIDIO ST,Fort Worth,TX,32.744889,-97.313381,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+1500 HOLT ST,Fort Worth,TX,32.7582,-97.251477,1,range_interpolation,Tarrant County,76103,US,TIGER/Line® dataset from the US Census Bureau
+1500 JACKSBORO HW,Fort Worth,TX,32.771092,-97.360516,1,range_interpolation,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+1500 NORTH CREST CT,Fort Worth,TX,32.745544,-97.401806,1,range_interpolation,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+1500 NORTHEAST LOOP INTERSTATE 820,Fort Worth,TX,32.78228,-97.212564,1,range_interpolation,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+1500 PAMELA LN,Fort Worth,TX,32.756992,-97.204817,1,rooftop,Tarrant County,76112,US,Tarrant County
+15500 YARBERRY DR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1600 ALAMO BELL WAY,Fort Worth,TX,32.979859,-97.396869,1,range_interpolation,Tarrant County,76052,US,TIGER/Line® dataset from the US Census Bureau
+1600 AVE E,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1600 BELMONT AVE,Fort Worth,TX,32.773057,-97.360654,1,range_interpolation,Tarrant County,76164,US,TIGER/Line® dataset from the US Census Bureau
+1600 CLOVER LN,Fort Worth,TX,32.743943,-97.378442,1,range_interpolation,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+1600 DANIEL ST,Fort Worth,TX,32.726683,-97.301732,1,rooftop,Tarrant County,76104,US,Tarrant County
+1600 DILLARD ST,Fort Worth,TX,32.729078,-97.242736,1,range_interpolation,Tarrant County,76105,US,TIGER/Line® dataset from the US Census Bureau
+1600 EAST FREEWAY,Fort Worth,TX,32.72683,-97.321098,0.9,rooftop,Tarrant County,76104,US,Tarrant County
+1600 SUMMIT AV,Fort Worth,TX,32.74303,-97.342089,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+1600 WASHINGTON AV,Fort Worth,TX,32.727368,-97.336181,1,rooftop,Tarrant County,76104,US,Tarrant County
+16300 RED RIVER LN,Fort Worth,TX,32.679988,-97.401836,0.8,street_center,Tarrant County,76132,US,TIGER/Line® dataset from the US Census Bureau
+16300 VICTORY CIR E,Fort Worth,TX,32.601084,-97.252286,0.8,street_center,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+16400 VICTORY CIR W,Fort Worth,TX,32.601084,-97.252286,0.8,street_center,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+1700 EVANS AVE,Fort Worth,TX,32.725851,-97.318655,1,rooftop,Tarrant County,76104,US,Tarrant County
+1700 LAGONDA AVE,Fort Worth,TX,32.776453,-97.359099,1,range_interpolation,Tarrant County,76164,US,TIGER/Line® dataset from the US Census Bureau
+1700 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.822856,-97.390858,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+1800 BOMAR AV,Fort Worth,TX,32.747239,-97.30317,1,range_interpolation,Tarrant County,76103,US,TIGER/Line® dataset from the US Census Bureau
+1800 CRESTED BUTTE DR,Fort Worth,TX,32.890369,-97.333114,1,rooftop,Tarrant County,76131,US,Tarrant County
+1800 GAINSBOROUGH WAY,Fort Worth,TX,32.624874,-97.345693,1,rooftop,Tarrant County,76134,US,Tarrant County
+1800 SKYLINE DR,Fort Worth,TX,32.786412,-97.398076,1,rooftop,Tarrant County,76114,US,Tarrant County
+1800 VERA AVE,Fort Worth,TX,32.726984,-97.246844,1,range_interpolation,Tarrant County,76105,US,TIGER/Line® dataset from the US Census Bureau
+1900 AVE D,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1900 EPHRIHAM AV,Fort Worth,TX,32.786477,-97.380082,1,rooftop,Tarrant County,76164,US,Tarrant County
+1900 WATERS ST,Fort Worth,TX,32.750872,-97.317135,0.8,street_center,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+1900 WILLOW PARK DR,Fort Worth,TX,32.631625,-97.346676,1,rooftop,Tarrant County,76134,US,Tarrant County
+1900 WURZBURG DR,Fort Worth,TX,32.643987,-97.346967,1,rooftop,Tarrant County,76134,US,Tarrant County
+1900 YUCCA AV,Fort Worth,TX,32.780816,-97.319886,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+200 7 OLD HWY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+200 BRANDIES ST,Fort Worth,TX,32.764057,-97.291916,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+200 CHASMIER WAY,Fort Worth,TX,32.631654,-97.326185,1,rooftop,Tarrant County,76134,US,Tarrant County
+200 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+200 SHUMER SHUFFLE DR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2000 MARIGOLD AVE,Fort Worth,TX,32.782985,-97.316615,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+2000 MISTLETOE BL,Fort Worth,TX,32.674806,-97.448831,0.8,street_center,Tarrant County,76126,US,TIGER/Line® dataset from the US Census Bureau
+2000 SOUTH FREEWAY SERVICE ROAD,Fort Worth,TX,32.740774,-97.347652,0.9,rooftop,Tarrant County,76102,US,Tarrant County
+2000 WEST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.726778,-97.480155,0.8,street_center,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+2100 BURNSIDE DR,Fort Worth,TX,32.913807,-97.330668,1,rooftop,Tarrant County,76177,US,Tarrant County
+2100 LAUGHLIN RD,Fort Worth,TX,32.917374,-97.329789,1,rooftop,Tarrant County,76177,US,Tarrant County
+2200 S INTERSTATE 820 FW,Fort Worth,TX,32.787719,-97.212431,1,range_interpolation,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+2200 WATSON ST,Fort Worth,TX,32.747792,-97.24764,1,rooftop,Tarrant County,76103,US,Tarrant County
+2300 GOULD AVE,Fort Worth,TX,32.786468,-97.359927,1,rooftop,Tarrant County,76164,US,Tarrant County
+2300 MALL CIR,Fort Worth,TX,32.853442,-97.248761,0.8,street_center,Tarrant County,76148,US,TIGER/Line® dataset from the US Census Bureau
+2300 PROSPECT AVE,Fort Worth,TX,32.786516,-97.356235,1,rooftop,Tarrant County,76164,US,Tarrant County
+2300 SPRUCE SPRINGS WAY,Fort Worth,TX,32.921584,-97.326938,1,rooftop,Tarrant County,76177,US,Tarrant County
+2400 COLTER CT,Fort Worth,TX,32.738461,-97.510234,1,rooftop,Tarrant County,76108,US,Tarrant County
+2400 COLUMBUS AVE,Fort Worth,TX,32.788293,-97.364685,1,rooftop,Tarrant County,76164,US,Tarrant County
+2400 NOTTINGHAM BL,Fort Worth,TX,32.744948,-97.213583,1,rooftop,Tarrant County,76112,US,Tarrant County
+2500 AVE G,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2500 CAROLINA DR,Fort Worth,TX,32.617845,-97.358737,0.8,street_center,Tarrant County,76123,US,TIGER/Line® dataset from the US Census Bureau
+2500 EPHRIHAM AV,Fort Worth,TX,32.792078,-97.374702,1,range_interpolation,Tarrant County,76164,US,TIGER/Line® dataset from the US Census Bureau
+2500 GOLDEN TRIANGLE BL,Fort Worth,TX,32.937237,-97.26706,0.8,street_center,Tarrant County,76244,US,TIGER/Line® dataset from the US Census Bureau
+2500 GRAND GULF RD,Fort Worth,TX,32.611448,-97.358237,1,rooftop,Tarrant County,76123,US,Tarrant County
+2500 JACKSBORO HW,Fort Worth,TX,32.786827,-97.384758,1,range_interpolation,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+2500 STADIUM DR,Fort Worth,TX,32.716198,-97.365844,1,rooftop,Tarrant County,76109,US,Tarrant County
+2600 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2600 CREEKWOOD LN,Fort Worth,TX,32.628795,-97.360306,1,rooftop,Tarrant County,76123,US,Tarrant County
+2600 GREENE AVE,Fort Worth,TX,32.71363,-97.358586,1,rooftop,Tarrant County,76109,US,Tarrant County
+2600 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.826438,-97.38695,1,range_interpolation,Tarrant County,76179,US,TIGER/Line® dataset from the US Census Bureau
+2600 NW JIM WRIGHT FREEWAY,Fort Worth,TX,32.837623,-97.357646,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2600 PROSPECT AVE,Fort Worth,TX,32.615444,-97.360838,0.9,rooftop,Tarrant County,76123,US,Tarrant County
+2600 QUINN ST,Fort Worth,TX,32.723126,-97.288309,1,range_interpolation,Tarrant County,76105,US,TIGER/Line® dataset from the US Census Bureau
+2600 TIMBERLINE DR,Fort Worth,TX,32.694662,-97.290866,1,rooftop,Tarrant County,76119,US,Tarrant County
+2700 AZLE AV,Fort Worth,TX,32.79795,-97.377779,1,rooftop,Tarrant County,76106,US,Tarrant County
+2700 CANBERRA CT,Fort Worth,TX,32.718291,-97.291735,1,rooftop,Tarrant County,76105,US,Tarrant County
+2700 EAST LOOP INTERSTATE 820,Fort Worth,TX,32.6785,-97.330511,0.33,place,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+2700 EMILY DR,Fort Worth,TX,32.741506,-97.23895,1,rooftop,Tarrant County,76112,US,Tarrant County
+2700 GALEMEADOW DR,Fort Worth,TX,32.629784,-97.361221,1,rooftop,Tarrant County,76123,US,Tarrant County
+2700 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.825342,-97.389192,1,range_interpolation,Tarrant County,76179,US,TIGER/Line® dataset from the US Census Bureau
+2700 SAGEHILL DR,Fort Worth,TX,32.634079,-97.359859,1,rooftop,Tarrant County,76123,US,Tarrant County
+2700 SHELTER GROVE RD,Fort Worth,TX,32.857775,-97.321286,1,range_interpolation,Tarrant County,76131,US,TIGER/Line® dataset from the US Census Bureau
+2700 STALCUP RD,Fort Worth,TX,32.718922,-97.23823,1,rooftop,Tarrant County,76105,US,Tarrant County
+2700 ZOOLOGICAL PARK DR,Fort Worth,TX,32.722498,-97.360078,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+2800 AUDRAS WAY S,Fort Worth,TX,32.703757,-97.414532,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+2800 AVE I,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+2800 BURCHILL RD,Fort Worth,TX,32.723091,-97.28539,1,rooftop,Tarrant County,76105,US,Tarrant County
+2800 N INTERSTATE 820 FW,Fort Worth,TX,0,0,0,,,,,
+2800 WESTWIND CI,Fort Worth,TX,32.884698,-97.440934,0.8,street_center,Tarrant County,76179,US,TIGER/Line® dataset from the US Census Bureau
+2900 DEEN RD,Fort Worth,TX,32.797143,-97.325651,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+2900 HALBERT ST,Fort Worth,TX,32.736842,-97.216082,1,rooftop,Tarrant County,76112,US,Tarrant County
+2900 HOLLOW VALLEY DR,Fort Worth,TX,32.951532,-97.298472,1,rooftop,Tarrant County,76244,US,Tarrant County
+2900 MEADOWGLEN CI,Fort Worth,TX,32.733919,-97.477258,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+300 HURST BL,Fort Worth,TX,32.826982,-97.16359,1,range_interpolation,Tarrant County,76022,US,TIGER/Line® dataset from the US Census Bureau
+3000 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3000 AVE I,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3000 AVE M,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3000 SOUTH FW,Fort Worth,TX,32.707537,-97.321366,1,rooftop,Tarrant County,76104,US,Tarrant County
+3000 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.714648,-97.229307,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+3100 ALTA VIEW ST,Fort Worth,TX,32.800274,-97.298222,1,rooftop,Tarrant County,76111,US,Tarrant County
+3100 AVE M,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3100 BRYAN AVE,Fort Worth,TX,32.705294,-97.325333,1,range_interpolation,Tarrant County,76110,US,TIGER/Line® dataset from the US Census Bureau
+3100 DAMON AVE,Fort Worth,TX,32.771386,-97.303018,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+3100 EAST FREEWAY,Fort Worth,TX,32.799806,-97.319726,0.9,rooftop,Tarrant County,76177,US,Tarrant County
+3100 HUNTER ST,Fort Worth,TX,32.733336,-97.214751,1,range_interpolation,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+3100 MCCART AV,Fort Worth,TX,32.705571,-97.353956,0.9,rooftop,Tarrant County,76115,US,Tarrant County
+3100 SYCAMORE SCHOOL RD,Fort Worth,TX,32.636951,-97.365305,1,rooftop,Tarrant County,76133,US,Tarrant County
+3200 CANBERRA CT,Fort Worth,TX,32.713586,-97.291731,1,rooftop,Tarrant County,76105,US,Tarrant County
+3200 E LANCASTER AVE,Fort Worth,TX,32.747522,-97.363024,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+3200 KATHY LN,Fort Worth,TX,32.62414,-97.363992,1,rooftop,Tarrant County,76123,US,Tarrant County
+3200 LAWNWOOD ST,Fort Worth,TX,32.761096,-97.301723,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+3200 LUBBOCK AVE,Fort Worth,TX,32.703866,-97.356771,1,rooftop,Tarrant County,76109,US,Tarrant County
+3200 STRONG AVE,Fort Worth,TX,32.716098,-97.279847,1,rooftop,Tarrant County,76105,US,Tarrant County
+3300 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3300 BONNIE DR,Fort Worth,TX,32.724054,-97.446696,1,rooftop,Tarrant County,76116,US,Tarrant County
+3300 LAUREL VALLEY WAY,Fort Worth,TX,32.860558,-97.309379,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+3300 PORTALES DR,Fort Worth,TX,32.72581,-97.46933,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+3300 SYDNEY ST,Fort Worth,TX,32.712942,-97.27017,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+3400 AVE C,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3400 AVE D,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3400 AVE I,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3400 AVE K,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3400 CONWAY ST,Fort Worth,TX,32.767775,-97.299645,1,rooftop,Tarrant County,76111,US,Tarrant County
+3400 HIGHLAWN TER,Fort Worth,TX,32.638961,-97.368229,1,rooftop,Tarrant County,76133,US,Tarrant County
+3400 S JIM WRIGHT FW,Fort Worth,TX,32.818424,-97.411746,0.6,rooftop,Tarrant County,76135,US,Tarrant County
+3400 WHITTIER ST,Fort Worth,TX,32.680792,-97.365846,1,rooftop,Tarrant County,76133,US,Tarrant County
+3500 5TH AVE,Fort Worth,TX,32.698518,-97.339653,1,rooftop,Tarrant County,76110,US,Tarrant County
+3500 AVE L,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3500 AVE M,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3500 BANDERA RANCH RD,Fort Worth,TX,32.980713,-97.281825,0.8,street_center,Tarrant County,76248,US,TIGER/Line® dataset from the US Census Bureau
+3500 CRENSHAW AVE,Fort Worth,TX,32.718168,-97.274885,1,range_interpolation,Tarrant County,76105,US,TIGER/Line® dataset from the US Census Bureau
+3500 FOSSIL PARK DR,Fort Worth,TX,32.867412,-97.307835,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+3500 KIMBO RD,Fort Worth,TX,32.797639,-97.296974,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+3600 CRENSHAW AV,Fort Worth,TX,32.718016,-97.272842,1,rooftop,Tarrant County,76105,US,Tarrant County
+3600 HAMILTON AVE,Fort Worth,TX,32.755587,-97.370631,1,rooftop,Tarrant County,76107,US,Tarrant County
+3600 S INTERSTATE 820 FW,Fort Worth,TX,0,0,0,,,,,
+3600 SMOKE TREE TRL,Fort Worth,TX,32.815809,-97.083231,1,rooftop,Tarrant County,76040,US,Tarrant County
+3600 SOUTH HILLS AV,Fort Worth,TX,32.696173,-97.370162,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+3700 AVE I,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3700 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3700 BRIGHT ST,Fort Worth,TX,32.708692,-97.271268,1,rooftop,Tarrant County,76119,US,Tarrant County
+3700 CANDACE DR,Fort Worth,TX,32.708785,-97.240406,0.8,street_center,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+3700 CAROLYN RD,Fort Worth,TX,32.696235,-97.368163,1,range_interpolation,Tarrant County,76109,US,TIGER/Line® dataset from the US Census Bureau
+3700 COVE MEADOW LN,Fort Worth,TX,32.620631,-97.373521,1,rooftop,Tarrant County,76123,US,Tarrant County
+3700 FORBES ST,Fort Worth,TX,32.715474,-97.269868,1,rooftop,Tarrant County,76105,US,Tarrant County
+3700 GROVER AVE,Fort Worth,TX,32.811002,-97.327311,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+3700 HULEN PARK CI,Fort Worth,TX,32.624628,-97.372504,1,rooftop,Tarrant County,76123,US,Tarrant County
+3700 LAWNDALE AVE,Fort Worth,TX,32.656862,-97.370826,1,rooftop,Tarrant County,76133,US,Tarrant County
+3800 AVE M,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3800 BEE TREE LN,Fort Worth,TX,32.629449,-97.37619,1,rooftop,Tarrant County,76133,US,Tarrant County
+3800 E INTERSTATE 820 FREEWAY S,Fort Worth,TX,0,0,0,,,,,
+3800 IRISH SETTER DR,Fort Worth,TX,32.608361,-97.376829,1,range_interpolation,Tarrant County,76123,US,TIGER/Line® dataset from the US Census Bureau
+3800 LOST CREEK BL,Fort Worth,TX,32.537178,-97.176037,0.8,street_center,Johnson County,76063,US,TIGER/Line® dataset from the US Census Bureau
+3800 RADFORD RD,Fort Worth,TX,32.708402,-97.234306,1,rooftop,Tarrant County,76119,US,Tarrant County
+3800 WG. DANIELS DR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3900 AVE H,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+3900 COUNTRY LN,Fort Worth,TX,32.61036,-97.378792,1,rooftop,Tarrant County,76123,US,Tarrant County
+3900 MANTIS ST,Fort Worth,TX,32.814272,-97.401414,1,range_interpolation,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+3900 RINGDOVE WAY,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+400 NORTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.754938,-97.480555,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+400 NW JIM WRIGHT FW,Fort Worth,TX,32.837623,-97.357646,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+4000 CALMONT AV,Fort Worth,TX,32.733813,-97.376977,1,rooftop,Tarrant County,76107,US,Tarrant County
+4000 CARLSBAD WAY,Fort Worth,TX,32.897977,-97.302509,1,rooftop,Tarrant County,76244,US,Tarrant County
+4000 FRAZIER AVE,Fort Worth,TX,32.690188,-97.350983,1,rooftop,Tarrant County,76110,US,Tarrant County
+4000 WEST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.704284,-97.234936,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4100 ALAMO AVE,Fort Worth,TX,32.728991,-97.378873,1,range_interpolation,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+4100 BLUE MOUND RD,Fort Worth,TX,32.818794,-97.342068,1,rooftop,Tarrant County,76106,US,Tarrant County
+4100 EAST FREEWAY,Fort Worth,TX,32.744976,-97.279354,0.8,street_center,Tarrant County,76103,US,TIGER/Line® dataset from the US Census Bureau
+4100 LISBON ST,Fort Worth,TX,32.727898,-97.378,1,rooftop,Tarrant County,76107,US,Tarrant County
+4100 TOWNSEND DR,Fort Worth,TX,32.6884,-97.349816,1,rooftop,Tarrant County,76115,US,Tarrant County
+4200 APPLEYARD DR,Fort Worth,TX,32.892211,-97.297639,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+4200 AVE J,Fort Worth,TX,32.771419,-97.291484,1,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4200 BRADY DR,Fort Worth,TX,32.701132,-97.23746,1,rooftop,Tarrant County,76119,US,Tarrant County
+4200 INSURANCE LN,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+4200 SWEETGUM WAY,Fort Worth,TX,32.629538,-97.383672,1,rooftop,Tarrant County,76133,US,Tarrant County
+4200 WINFIELD AVE,Fort Worth,TX,32.6888,-97.368467,1,rooftop,Tarrant County,76109,US,Tarrant County
+4300 COCKRELL AVE,Fort Worth,TX,32.684422,-97.35999,1,rooftop,Tarrant County,76133,US,Tarrant County
+4300 E BERRY ST,Fort Worth,TX,32.712978,-97.259566,1,rooftop,Tarrant County,76119,US,Tarrant County
+4300 QUAILS LN,Fort Worth,TX,32.704965,-97.259056,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+4400 COCKRELL AVE,Fort Worth,TX,32.683305,-97.360004,1,rooftop,Tarrant County,76133,US,Tarrant County
+4400 E INTERSTATE 820 FREEWAY S,Fort Worth,TX,0,0,0,,,,,
+4400 FLETCHER AVE,Fort Worth,TX,32.724034,-97.38375,1,rooftop,Tarrant County,76107,US,Tarrant County
+4400 GATEWAY PARK DR,Fort Worth,TX,32.671681,-97.235962,0.8,street_center,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+4500 CAREY ST,Fort Worth,TX,32.698115,-97.243316,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+4500 NAUTILUS CI,Fort Worth,TX,32.823195,-97.382806,1,range_interpolation,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+4500 SUMMERBROOK CIR,Fort Worth,TX,32.88053,-97.288043,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+4500 TRUELAND DR,Fort Worth,TX,32.698909,-97.283828,1,rooftop,Tarrant County,76119,US,Tarrant County
+4600 ANGELINA WAY,Fort Worth,TX,32.882824,-97.287793,1,rooftop,Tarrant County,76137,US,Tarrant County
+4600 MONASTERY DR,Fort Worth,TX,32.681086,-97.299073,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+4600 PARKMOUNT DR,Fort Worth,TX,32.881615,-97.287997,1,rooftop,Tarrant County,76137,US,Tarrant County
+4600 S INTERSTATE 820 FW,Fort Worth,TX,0,0,0,,,,,
+4600 WEST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.694794,-97.23618,0.2,rooftop,Tarrant County,76119,US,Tarrant County
+4700 AUBURN RIDGE DR,Fort Worth,TX,32.615207,-97.398161,1,rooftop,Tarrant County,76123,US,Tarrant County
+4700 BRYANT IRVIN CT,Fort Worth,TX,32.749383,-97.358659,1,rooftop,Tarrant County,76107,US,Tarrant County
+4700 HORNE ST,Fort Worth,TX,32.715003,-97.408094,1,range_interpolation,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+4700 LOWELL LN,Fort Worth,TX,32.678927,-97.373855,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+4700 MEADOWBROOK DR,Fort Worth,TX,32.745425,-97.252253,1,rooftop,Tarrant County,76103,US,Tarrant County
+4700 NAVAJO WAY,Fort Worth,TX,32.877631,-97.281636,1,rooftop,Tarrant County,76137,US,Tarrant County
+4700 SCOTS BRIAR LN,Fort Worth,TX,32.867972,-97.284709,1,rooftop,Tarrant County,76137,US,Tarrant County
+4800 APPLEWOOD RD,Fort Worth,TX,32.63061,-97.395105,1,rooftop,Tarrant County,76133,US,Tarrant County
+4800 CHAPMAN ST,Fort Worth,TX,32.723931,-97.251189,1,range_interpolation,Tarrant County,76105,US,TIGER/Line® dataset from the US Census Bureau
+4800 E INTERSTATE 820 FREEWAY S,Fort Worth,TX,32.828308,-97.379958,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+4800 LOWELL LN,Fort Worth,TX,32.677168,-97.375411,1,rooftop,Tarrant County,76133,US,Tarrant County
+4800 SUMMER OAKS LN,Fort Worth,TX,32.622287,-97.396459,1,range_interpolation,Tarrant County,76123,US,TIGER/Line® dataset from the US Census Bureau
+4800 WELLESLEY AV,Fort Worth,TX,32.725598,-97.39165,1,rooftop,Tarrant County,76107,US,Tarrant County
+4900 WILD OATS DR,Fort Worth,TX,32.885583,-97.398679,1,rooftop,Tarrant County,76179,US,Tarrant County
+500 CATHERINE ST,Fort Worth,TX,32.739605,-97.24659,1,rooftop,Tarrant County,76103,US,Tarrant County
+500 FLINT ST,Fort Worth,TX,32.686522,-97.329558,1,range_interpolation,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+500 S JIM WRIGHT FW,Fort Worth,TX,32.755257,-97.47935,0.8,street_center,Tarrant County,76108,US,TIGER/Line® dataset from the US Census Bureau
+5000 FAIRFAX ST,Fort Worth,TX,32.700855,-97.446038,1,rooftop,Tarrant County,76116,US,Tarrant County
+5000 MARTIN LUTHER KING FW,Fort Worth,TX,32.738296,-97.299033,0.8,street_center,Tarrant County,76104,US,TIGER/Line® dataset from the US Census Bureau
+5000 MOSSON RD,Fort Worth,TX,32.675038,-97.248231,1,rooftop,Tarrant County,76119,US,Tarrant County
+5000 NORTHFORK RD,Fort Worth,TX,32.686926,-97.237217,1,rooftop,Tarrant County,76119,US,Tarrant County
+5000 OVERTON RIDGE CI,Fort Worth,TX,32.677143,-97.403902,1,rooftop,Tarrant County,76132,US,Tarrant County
+5100 MAYAN RANCH RD,Fort Worth,TX,32.677711,-97.402414,1,range_interpolation,Tarrant County,76132,US,TIGER/Line® dataset from the US Census Bureau
+5100 NORTH BRANCH DR,Fort Worth,TX,32.67178,-97.431449,1,range_interpolation,Tarrant County,76132,US,TIGER/Line® dataset from the US Census Bureau
+5100 PAMELA DR,Fort Worth,TX,32.69826,-97.448144,1,rooftop,Tarrant County,76116,US,Tarrant County
+5100 TURTLE CREEK CT,Fort Worth,TX,32.710127,-97.418178,1,rooftop,Tarrant County,76116,US,Tarrant County
+5200 APPALACHIAN WAY,Fort Worth,TX,32.637888,-97.403545,1,rooftop,Tarrant County,76123,US,Tarrant County
+5200 THISTLE DR,Fort Worth,TX,32.673154,-97.409395,0.8,range_interpolation,Tarrant County,76132,US,TIGER/Line® dataset from the US Census Bureau
+5300 CONROY ST,Fort Worth,TX,32.667882,-97.311399,1,rooftop,Tarrant County,76134,US,Tarrant County
+5300 GOLDEN TRIANGLE BL,Fort Worth,TX,32.937237,-97.26706,0.8,street_center,Tarrant County,76244,US,TIGER/Line® dataset from the US Census Bureau
+5300 MOSSON RD,Fort Worth,TX,32.675012,-97.242092,1,rooftop,Tarrant County,76119,US,Tarrant County
+5300 TURNER ST,Fort Worth,TX,32.71199,-97.241058,1,rooftop,Tarrant County,76105,US,Tarrant County
+5400 BIG FORK RD,Fort Worth,TX,32.686926,-97.237217,1,rooftop,Tarrant County,76119,US,Tarrant County
+5400 NORTH FREEWAY SERVICE ROAD,Fort Worth,TX,32.843205,-97.311531,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+5400 TINKERBELL LN,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+5500 MAC ARTHUR DR,Fort Worth,TX,32.729111,-97.237214,1,rooftop,Tarrant County,76112,US,Tarrant County
+5500 NORTH FREEWAY SERVICE ROAD,Fort Worth,TX,32.668698,-97.324781,0.9,rooftop,Tarrant County,76115,US,Tarrant County
+5500 TRAIL LAKE DR,Fort Worth,TX,32.668137,-97.386496,1,rooftop,Tarrant County,76133,US,Tarrant County
+5500 WEST FREEWAY SERVICE ROAD,Fort Worth,TX,32.668698,-97.324781,0.9,rooftop,Tarrant County,76115,US,Tarrant County
+5700 BIRCHMAN AVE,Fort Worth,TX,32.734839,-97.40785,1,range_interpolation,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+5800 FAIRGLEN AVE,Fort Worth,TX,32.847729,-97.305413,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+5800 HOUGHTON AVE,Fort Worth,TX,32.72673,-97.409979,1,rooftop,Tarrant County,76107,US,Tarrant County
+5800 LINCOLN MEADOWS CI,Fort Worth,TX,32.762437,-97.232295,1,range_interpolation,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+5800 NORTH FREEWAY SERVICE ROAD,Fort Worth,TX,32.84979,-97.312421,0.8,range_interpolation,Tarrant County,76131,US,TIGER/Line® dataset from the US Census Bureau
+5800 RICKENBACKER PL,Fort Worth,TX,32.721888,-97.231045,1,range_interpolation,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+5800 WELLESLEY AVE,Fort Worth,TX,32.725775,-97.409986,1,rooftop,Tarrant County,76107,US,Tarrant County
+5900 FAIRGLEN AV,Fort Worth,TX,32.849862,-97.305394,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+5900 HELMICK AVE,Fort Worth,TX,32.716784,-97.411724,1,range_interpolation,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+600 FLINT ST,Fort Worth,TX,32.686818,-97.330489,1,range_interpolation,Tarrant County,76115,US,TIGER/Line® dataset from the US Census Bureau
+600 N NORTH SOUTH FREEWAY SERVICE ROAD,Fort Worth,TX,32.74001,-97.101551,1,range_interpolation,Tarrant County,76011,US,TIGER/Line® dataset from the US Census Bureau
+600 WEST LOOP INTERSTATE 820 820 SOUTH,Fort Worth,TX,32.726778,-97.480155,0.8,street_center,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+6000 LAKE WORTH BL,Fort Worth,TX,32.804929,-97.412419,1,rooftop,Tarrant County,76135,US,Tarrant County
+6000 LUCAS CT,Fort Worth,TX,32.720141,-97.227306,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+6100 E INTERSTATE 820 FREEWAY S,Fort Worth,TX,0,0,0,,,,,
+6100 NW JIM WRIGHT FW,Fort Worth,TX,32.837623,-97.357646,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+6200 EAST FREEWAY,Fort Worth,TX,32.659458,-97.323031,0.9,rooftop,Tarrant County,76134,US,Tarrant County
+6200 PERSHING AV,Fort Worth,TX,32.735946,-97.393147,0.8,street_center,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+6200 SPRING BUCK RU,Fort Worth,TX,32.878857,-97.417297,1,rooftop,Tarrant County,76179,US,Tarrant County
+6300 EAST FREEWAY,Fort Worth,TX,32.857133,-97.312352,0.9,rooftop,Tarrant County,76137,US,Tarrant County
+6300 PINIONPARK WAY,Fort Worth,TX,32.838652,-97.421959,1,range_interpolation,Tarrant County,76135,US,TIGER/Line® dataset from the US Census Bureau
+6300 WICHITA ST,Fort Worth,TX,32.666522,-97.280391,1,range_interpolation,Tarrant County,76119,US,TIGER/Line® dataset from the US Census Bureau
+6400 TRAIL LAKE DR,Fort Worth,TX,32.654297,-97.401611,1,rooftop,Tarrant County,76133,US,Tarrant County
+6400 WINIFRED DR,Fort Worth,TX,32.654125,-97.400268,1,rooftop,Tarrant County,76133,US,Tarrant County
+6500 NW JIM WRIGHT FW,Fort Worth,TX,32.837623,-97.357646,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+6500 SOUTHWEST LOOP INTERSTATE 820,Fort Worth,TX,32.664455,-97.292001,0.8,street_center,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+6500 WRIGLEY WAY,Fort Worth,TX,32.651374,-97.400696,1,rooftop,Tarrant County,76133,US,Tarrant County
+6800 EGAN WAY,Fort Worth,TX,32.866096,-97.302611,1,rooftop,Tarrant County,76137,US,Tarrant County
+6800 MIDDLE RD,Fort Worth,TX,32.710198,-97.426953,1,rooftop,Tarrant County,76116,US,Tarrant County
+6800 VALLEY CREEK DR,Fort Worth,TX,32.859369,-97.399919,1,rooftop,Tarrant County,76179,US,Tarrant County
+6800 WOODWAY DR,Fort Worth,TX,32.645664,-97.377614,1,rooftop,Tarrant County,76133,US,Tarrant County
+6900 GREEN OAKS RD,Fort Worth,TX,32.744022,-97.438148,1,rooftop,Tarrant County,76116,US,Tarrant County
+6900 N BEACH ST,Fort Worth,TX,32.865317,-97.290924,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+6900 SHERIDAN RD,Fort Worth,TX,32.645116,-97.32578,1,rooftop,Tarrant County,76134,US,Tarrant County
+6900 TREEHAVEN RD,Fort Worth,TX,32.701929,-97.432623,1,rooftop,Tarrant County,76116,US,Tarrant County
+700 ADOLPHUS CIR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+700 BRIDGEWOOD CIR,Fort Worth,TX,32.76923,-97.21668,1,range_interpolation,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+7000 SANDYBROOK DR,Fort Worth,TX,32.771881,-97.207167,1,rooftop,Tarrant County,76120,US,Tarrant County
+7000 TERRA CHASE CV,Fort Worth,TX,32.867151,-97.314036,1,range_interpolation,Tarrant County,76137,US,TIGER/Line® dataset from the US Census Bureau
+7000 TREEHAVEN RD,Fort Worth,TX,32.703305,-97.434904,1,rooftop,Tarrant County,76116,US,Tarrant County
+7000 WOODMOOR RD,Fort Worth,TX,32.642412,-97.372655,0.8,street_center,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+7100 OLD MILL RU,Fort Worth,TX,32.641778,-97.383226,1,range_interpolation,Tarrant County,76133,US,TIGER/Line® dataset from the US Census Bureau
+7200 MIDWAY RD,Fort Worth,TX,32.794384,-97.226863,1,range_interpolation,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+7200 PARK WEST CI,Fort Worth,TX,32.640119,-97.348492,1,range_interpolation,Tarrant County,76134,US,TIGER/Line® dataset from the US Census Bureau
+7300 EAST FREEWAY,Fort Worth,TX,32.639001,-97.322559,0.9,rooftop,Tarrant County,76134,US,Tarrant County
+7300 STRAWBERRY WAY,Fort Worth,TX,32.871439,-97.297637,1,rooftop,Tarrant County,76137,US,Tarrant County
+7400 SNOW RIDGE DR,Fort Worth,TX,32.873144,-97.323847,0.8,rooftop,Tarrant County,76131,US,Tarrant County
+7400 WILL ROGERS BL,Fort Worth,TX,32.641453,-97.312876,1,range_interpolation,Tarrant County,76140,US,TIGER/Line® dataset from the US Census Bureau
+7500 BLUE SAGE CIR,Fort Worth,TX,32.634644,-97.36275,1,rooftop,Tarrant County,76123,US,Tarrant County
+7500 EAST FREEWAY,Fort Worth,TX,32.744976,-97.279354,0.8,street_center,Tarrant County,76103,US,TIGER/Line® dataset from the US Census Bureau
+7500 LOVE CIR,Fort Worth,TX,32.825855,-97.451801,1,rooftop,Tarrant County,76135,US,Tarrant County
+7500 WEST FREEWAY SERVICE ROAD,Fort Worth,TX,32.714003,-97.320298,0.8,street_center,Tarrant County,76104,US,TIGER/Line® dataset from the US Census Bureau
+7600 INDIGO RIDGE DR,Fort Worth,TX,32.877161,-97.322056,1,rooftop,Tarrant County,76131,US,Tarrant County
+7700 FOREST HILL DR,Fort Worth,TX,32.642699,-97.272614,1,rooftop,Tarrant County,76140,US,Tarrant County
+7700 PORTMAN AVE,Fort Worth,TX,32.740909,-97.1896,1,rooftop,Tarrant County,76112,US,Tarrant County
+7800 JARVIS WAY,Fort Worth,TX,32.817646,-97.457989,1,range_interpolation,Tarrant County,76135,US,TIGER/Line® dataset from the US Census Bureau
+7900 EAST FREEWAY,Fort Worth,TX,32.744976,-97.279354,0.8,street_center,Tarrant County,76103,US,TIGER/Line® dataset from the US Census Bureau
+7900 PARKWOOD HILL BL,Fort Worth,TX,32.884714,-97.266952,0.9,rooftop,Tarrant County,76137,US,Tarrant County
+800 CURRIE ST,Fort Worth,TX,32.750996,-97.358333,1,range_interpolation,Tarrant County,76107,US,TIGER/Line® dataset from the US Census Bureau
+800 TENNESSEE AVE,Fort Worth,TX,32.736352,-97.3122,1,range_interpolation,Tarrant County,76104,US,TIGER/Line® dataset from the US Census Bureau
+8100 BERKSHIRE DR,Fort Worth,TX,32.888171,-97.290846,1,rooftop,Tarrant County,76137,US,Tarrant County
+8100 FOX CHASE DR,Fort Worth,TX,32.88922,-97.301361,1,rooftop,Tarrant County,76137,US,Tarrant County
+8300 BIG HORN WAY,Fort Worth,TX,32.889565,-97.273215,1,rooftop,Tarrant County,76137,US,Tarrant County
+8300 HORSE WHISPER LN,Fort Worth,TX,32.889789,-97.338889,1,rooftop,Tarrant County,76131,US,Tarrant County
+8400 BANGOR DR,Fort Worth,TX,32.719757,-97.461908,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+8400 BIG HORN WAY,Fort Worth,TX,32.891203,-97.272967,1,rooftop,Tarrant County,76137,US,Tarrant County
+8400 CALMONT AV,Fort Worth,TX,32.735908,-97.463466,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+8500 CROWLEY RD,Fort Worth,TX,32.627894,-97.351063,1,rooftop,Tarrant County,76134,US,Tarrant County
+8600 HAWKVIEW DR,Fort Worth,TX,32.877942,-97.395079,1,rooftop,Tarrant County,76179,US,Tarrant County
+8600 RAY WHITE RD,Fort Worth,TX,32.801252,-97.195241,0.33,place,Tarrant County,76118,US,TIGER/Line® dataset from the US Census Bureau
+8700 ELBE TRL,Fort Worth,TX,32.798815,-97.191072,1,rooftop,Tarrant County,76118,US,Tarrant County
+8800 BRUSHY CREEK TRL,Fort Worth,TX,32.799258,-97.188809,1,rooftop,Tarrant County,76118,US,Tarrant County
+8900 SHARPVIEW DR,Fort Worth,TX,32.733167,-97.471718,1,range_interpolation,Tarrant County,76116,US,TIGER/Line® dataset from the US Census Bureau
+900 30 EXIT HENDER,Fort Worth,TX,32.759753,-97.213612,0.8,street_center,Tarrant County,76112,US,TIGER/Line® dataset from the US Census Bureau
+900 MEACHAM BL,Fort Worth,TX,32.824394,-97.310205,0.8,street_center,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+900 NEWBERRY TRL,Fort Worth,TX,32.767639,-97.208367,1,range_interpolation,Tarrant County,76120,US,TIGER/Line® dataset from the US Census Bureau
+900 SAMUELS AVE,Fort Worth,TX,32.769779,-97.330727,1,range_interpolation,Tarrant County,76102,US,TIGER/Line® dataset from the US Census Bureau
+9000 MILL VALLEY CI,Fort Worth,TX,32.875106,-97.16588,0.8,street_center,Tarrant County,76034,US,TIGER/Line® dataset from the US Census Bureau
+9000 OLD CLYDESDALE DR,Fort Worth,TX,32.61096,-97.384612,1,rooftop,Tarrant County,76123,US,Tarrant County
+9000 SUNRIDGE CI,Fort Worth,TX,32.759609,-97.158903,1,range_interpolation,Tarrant County,76120,US,TIGER/Line® dataset from the US Census Bureau
+9000 TIERRA VERDE DR,Fort Worth,TX,32.907491,-97.325391,0.8,street_center,Tarrant County,76131,US,TIGER/Line® dataset from the US Census Bureau
+9100 OLD CLYDESDALE DR,Fort Worth,TX,32.609712,-97.384622,1,rooftop,Tarrant County,76123,US,Tarrant County
+9200 ODEUM DR,Fort Worth,TX,32.74967,-97.404074,0.8,street_center,Tarrant County,76114,US,TIGER/Line® dataset from the US Census Bureau
+9500 SOUTH FREEWAY SERVICE ROAD,Fort Worth,TX,32.616217,-97.322948,1,rooftop,Tarrant County,76140,US,Tarrant County
+9600 SANTA MONICA DR,Fort Worth,TX,32.72747,-97.488359,1,rooftop,Tarrant County,76116,US,Tarrant County
+9600 WILLOW BRANCH WAY,Fort Worth,TX,32.603818,-97.40037,1,range_interpolation,Tarrant County,76123,US,TIGER/Line® dataset from the US Census Bureau
+9700 SANTA CLARA DR,Fort Worth,TX,32.72854,-97.491383,1,rooftop,Tarrant County,76108,US,Tarrant County
+9900 CARAVELLE CT,Fort Worth,TX,32.747413,-97.493335,1,rooftop,Tarrant County,76108,US,Tarrant County
+N BEACH ST CHESSER BOYER RD,Fort Worth,TX,32.808771,-97.290559,1,street_center,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+100 28TH INTERSTATE 35W,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+100 E INTERSTATE 820 FREEWAY,Fort Worth,TX,32.828308,-97.379958,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+100 E INTERSTATE 820 FW,Fort Worth,TX,32.828308,-97.379958,0.8,street_center,Tarrant County,76106,US,TIGER/Line® dataset from the US Census Bureau
+100 ISBELL RD,Fort Worth,TX,32.762047,-97.385986,1,rooftop,Tarrant County,76114,US,Tarrant County
+100 RIVERSIDE INTERSTATE 30 E,Fort Worth,TX,32.764976,-97.302008,1,rooftop,Tarrant County,76111,US,Tarrant County
+100 S JIM WRIGHT FW,Fort Worth,TX,32.760721,-97.479062,1,range_interpolation,Tarrant County,76108,US,TIGER/Line® dataset from the US Census Bureau
+100 SHUMER SHUFFLE DR,Fort Worth,TX,32.771419,-97.291484,0.33,place,Tarrant County,76101,US,TIGER/Line® dataset from the US Census Bureau
+1000 ALSTON AV,Fort Worth,TX,32.734234,-97.334425,1,rooftop,Tarrant County,76104,US,Tarrant County
+1000 BARCLAY AVE,Fort Worth,TX,32.776859,-97.30247,1,range_interpolation,Tarrant County,76111,US,TIGER/Line® dataset from the US Census Bureau
+1000 E INTERSTATE 820 FREEWAY N,Fort Worth,TX,0,0,0,,,,,
+1000 EAGLE RIDGE DR,Fort Worth,TX,32.877616,-97.433944,0.8,street_center,Tarrant County,76179,US,TIGER/Line® dataset from the US Census Bureau

@@ -40,6 +40,20 @@ city_data <- list(
 
 nibrs_categories <- read_csv("../crime_categories/NIBRS categories.csv") %>% 
   rename(Offense = NIBRS_Offense_Code_1)
+
+cities <- tribble(
+  ~name, ~fips, ~prefix,
+  "Chicago",        "17", "chi",
+  "Detroit",        "26", "dtt",
+  "Fort Worth",     "48", "ftw",
+  "Los Angeles",    "06", "lax",
+  "Louisville",     "21", "lou",
+  "New York",       "36", "nyc",
+  "San Francisco",  "06", "sfo",
+  "Seattle",        "53", "sea",
+  "Tucson",         "04", "tus",
+  "Virginia Beach", "51", "vib"
+)
 ```
 
 

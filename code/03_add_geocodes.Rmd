@@ -1,0 +1,211 @@
+---
+title: "Add geocodes"
+output: html_notebook
+---
+
+Data from Chicago, Detroit, Los Angeles, NYC, San Francisco, Seattle, Tucson and 
+Virginia Beach are already geocoded. Co-ordinates for the remaining cities are
+added here, usually based on data from [Geocodio](http://geocod.io).
+
+
+# Fort Worth
+
+Many offences in Fort Worth are not geocoded. It appears that some locations are 
+sometimes geocoded but sometimes not. In fact, most locations that are not 
+geocoded are geocoded elsewhere in the dataset. However, looking at a list of 
+locations shows that some (e.g. '100 BLOCK CALHOUN ST') have multiple locations 
+that are too far from one another to be the product of geocoding issues. E.g. in 
+the case of Calhoun St, the co-ordinates suggest some offences actually occurred 
+at South Calhoun St. This means we can't apply geocodes from a location to 
+offences at the 'same' address but which have no geocodes. It will therefore be 
+necessary to geocode all the missing locations.
+
+```{r}
+# read crime data
+data_fw <- readRDS("../temp_data/raw_fort_worth_data.Rds")
+```
+
+## Export un-geocoded offences
+
+```{r}
+# attempt to make sense of the address abbreviations used in FW
+data_fw$`Block Address Expanded` <- data_fw$`Block Address` %>% 
+  str_to_upper() %>% 
+  str_replace_all('\\s+', ' ') %>%
+  str_replace_all('\\bBLOCK [DGHKPRVY]\\b', '') %>%
+  str_replace_all('\\b(BLOCK|RA|RAMP|NB|EB|SB|WB)\\b', '') %>%
+  str_replace_all('\\bFWY\\b', 'FREEWAY') %>%
+  str_replace_all('\\bIH\\b', 'INTERSTATE') %>%
+  str_replace_all('\\bSR\\b', 'SERVICE ROAD') %>%
+  str_replace_all("\\bWA\\b", "WAY") %>% 
+  str_replace_all('\\bBELL SP\\b', 'BELL HELICOPTER BL') %>%
+  str_replace_all('\\bLOOP 830\\b', 'LOOP INTERSTATE 820') %>%
+  str_replace_all(
+    "\\b(NORTH|EAST|SOUTH|WEST|NORTHEAST|NORTHWEST|SOUTHEAST|SOUTHWEST) LOOP\\b", 
+    "\\1 LOOP INTERSTATE 820"
+  ) %>%
+  str_replace_all('\\d+$', '') %>%
+  str_replace_all('\\s+', ' ') %>%
+  str_trim()
+
+# export unique addresses that do not have geocodes to CSV for geocoding
+data_fw %>%
+  filter(is.na(Latitude) | is.na(Longitude)) %>%
+  group_by(`Block Address`, `Block Address Expanded`, `City`, `State`) %>% 
+  summarise(n = n()) %>%
+  write_csv('../geocoding_data/fw_missing_locations.csv')
+```
+
+## Merge co-ordinate data
+
+```{r}
+# import geocoded data from CSV files (there are multiple files because of usage 
+# limits on the geocoding service)
+locations <- dir("../geocoding_data", pattern = 'fw_geocoded_locations*', 
+                 full.names = TRUE) %>% 
+  map(read_csv, col_types = cols(.default = col_character())) %>%
+  bind_rows() %>% 
+  # filter out locations that could only be geocoded to a city rather than to a
+  # street or point
+  filter(!`Accuracy Type` %in% c('place', 'state')) %>% 
+  distinct(street, .keep_all = TRUE) %>% 
+  select(`Block Address Expanded` = street, NewLatitude = Latitude,
+         NewLongitude = Longitude)
+
+# merge datasets and add co-ordinates where necessary
+data_fw <- data_fw %>% 
+  left_join(locations, by = 'Block Address Expanded') %>% 
+  mutate(
+    Longitude = ifelse(is.na(Longitude), NewLongitude, Longitude) %>% 
+      as.double(),
+    Latitude = ifelse(is.na(Latitude), NewLatitude, Latitude) %>% as.double()
+  ) %>% 
+  # Remove fields created during this procedure, to avoid cluttering the final 
+  # dataset
+  select(-NewLatitude, -NewLongitude) 
+
+# identify failed geocoding
+data_fw %>% 
+  filter(is.na(Latitude) | is.na(Longitude)) %>%
+  group_by(`Block Address Expanded`, Date.Year) %>% 
+  summarise(n = n()) %>% 
+  spread(Date.Year, n) %>% 
+  ungroup() %>% 
+  mutate(Total = rowSums(select_if(., is.numeric), na.rm = TRUE)) %>% 
+  arrange(desc(Total)) %>% 
+  write_csv("../geocoding_data/fw_geocoding_failures.csv", na = "")
+
+# report success
+data_fw %>% 
+  mutate(geocoded = ifelse(!is.na(Latitude) & !is.na(Longitude), TRUE, 
+                           FALSE)) %>% 
+  group_by(geocoded) %>% 
+  summarise(n = n()) %>% 
+  { cat(format(.$n[.$geocoded == FALSE], big.mark = ","), "cases –", 
+        format((.$n[.$geocoded == FALSE] / sum(.$n)) * 100, digits = 2), 
+        "% of the total – could not be geocoded\n") }
+
+# save crime data
+saveRDS(data_fw, "../temp_data/raw_fort_worth_data.Rds")
+
+# clean up
+rm(locations, data_fw)
+```
+
+
+# Louisville
+
+No Louisville offences are geocoded, so it will all have to be done manually.
+
+```{r}
+data_lo <- readRDS("../temp_data/raw_louisville_data.Rds")
+```
+
+
+```{r}
+# remove quirks that might make geo-coding more difficult
+data_lo$BLOCK_ADDRESS <- data_lo$BLOCK_ADDRESS %>% 
+  str_to_upper() %>% 
+  # remove 'BLOCK' from each address
+  str_replace_all('\\bBLOCK\\b', '') %>% 
+  # offences at a particular stadium
+  str_replace_all('^@WF -\\b', 'WATERFRONT PARK') %>% 
+  # offences in parks
+  str_replace_all('^@PARK -\\b', '') %>%
+  # offences at interstate on/off ramps
+  str_replace_all('^@(\\d+\\.*\\d*)\\b(.*)$', '\\2 EXIT \\1') %>% 
+  # other offences starting @, mostly in the form of cross-streets
+  str_replace_all('^@', '') %>% 
+  # offences on the zero block of a street
+  str_replace_all('^0\\b', '1') %>% 
+  str_replace_all('\\b(AT|TO)\\b', ' / ') %>% 
+  str_replace_all('\\s+', ' ') %>%
+  str_trim()
+
+# add city and state variables
+data_lo$geocode_city <- 'Louisville'
+data_lo$geocode_state <- 'Kentucky'
+
+# export random sample of data for testing
+data_lo %>%
+  filter(BLOCK_ADDRESS != 'COMMUNITY AT LARGE') %>%
+  group_by(BLOCK_ADDRESS, geocode_city, geocode_state, ZIP_CODE) %>% 
+  slice(sample(1:n(), 100, replace = TRUE)) %>%
+  write_csv('../geocoding_data/louisville_missing_locations_sample.csv')
+
+# export unique addresses that do not have geocodes to CSV for geocoding
+data_lo %>%
+  filter(BLOCK_ADDRESS != 'COMMUNITY AT LARGE') %>%
+  group_by(BLOCK_ADDRESS, geocode_city, geocode_state, ZIP_CODE) %>% 
+  summarise(n = n()) %>%
+  write_csv('../geocoding_data/louisville_missing_locations.csv')
+
+# remove variables added for this purpose
+data_lo$geocode_city <- NULL
+data_lo$geocode_state <- NULL
+```
+
+```{r}
+locations <- read_csv('../geocoding_data/louisville_geocoded_locations.csv', 
+                      col_types = cols(.default = col_character())) %>% 
+  filter(!`Accuracy Type` %in% c('place', 'state') & `State` == 'KY') %>% 
+  distinct(BLOCK_ADDRESS, .keep_all = TRUE) %>% 
+  select(BLOCK_ADDRESS, Latitude, Longitude)
+
+data_lo <- data_lo %>% 
+  left_join(locations, by = 'BLOCK_ADDRESS') %>% 
+  mutate(
+    Latitude = as.double(Latitude),
+    Longitude = as.double(Longitude)
+  )
+
+# identify failed geocoding
+data_lo %>% 
+  filter(is.na(Latitude) | is.na(Longitude)) %>%
+  group_by(BLOCK_ADDRESS, Date.Year) %>% 
+  summarise(n = n()) %>% 
+  spread(Date.Year, n) %>% 
+  ungroup() %>% 
+  mutate(Total = rowSums(select_if(., is.numeric), na.rm = TRUE)) %>% 
+  arrange(desc(Total)) %>% 
+  write_csv("../geocoding_data/louisville_geocoding_failures.csv", na = "")
+
+# report success
+data_lo %>% 
+  mutate(geocoded = ifelse(!is.na(Latitude) & !is.na(Longitude), TRUE, 
+                           FALSE)) %>% 
+  group_by(geocoded) %>% 
+  summarise(n = n()) %>% 
+  {
+    cat(format(.$n[.$geocoded == FALSE], big.mark = ","), "cases –",
+        format((.$n[.$geocoded == FALSE] / sum(.$n)) * 100, digits = 2), 
+        "% of the total – could not be geocoded\n")
+  }
+
+# save crime data
+saveRDS(data_lo, "../temp_data/raw_louisville_data.Rds")
+
+# clean up
+rm(locations, data_lo)
+```
+

@@ -38,6 +38,7 @@ rsconnect/
 
 # Original data
 /original_data/
+/spatial_data/
 
 # Temporary data files
 /temp_data/
