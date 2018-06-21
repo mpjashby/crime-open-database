@@ -178,8 +178,16 @@ $(document).ready(function () {
 <p>This code merges the data from each city into one object, which can then be used to output the final data.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkIGFuZCBtZXJnZSB0aGUgZGF0YXNldCBmb3IgZWFjaCBjaXR5XG5kYXRhIDwtIGRpcihcIi4uL3RlbXBfZGF0YVwiLCBwYXR0ZXJuID0gXCJeZmluYWxfXCIsIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgXG4gIG1hcChyZWFkX3JkcykgJT4lIFxuICBtYXAobXV0YXRlX2F0LCB2YXJzKG9uZV9vZihjKFwibG9jYWxfcm93X2lkXCIsIFwiY2FzZV9udW1iZXJcIikpKSwgYXMuY2hhcmFjdGVyKSAlPiUgXG4gICMgbWFwKG11dGF0ZSwgXG4gICMgICAgIGxvY2FsX3Jvd19pZCA9IGFzLmNoYXJhY3Rlcihsb2NhbF9yb3dfaWQpLFxuICAjICAgICBjYXNlX251bWJlciA9IGFzLmNoYXJhY3RlcihjYXNlX251bWJlcikpICU+JSBcbiAgYmluZF9yb3dzKCkgJT4lIFxuICBhcnJhbmdlKGNpdHlfbmFtZSwgZGF0ZV9zaW5nbGUpICU+JSBcbiAgZmlsdGVyKFxuICAgIG9mZmVuc2VfYWdhaW5zdCAhPSBcImV4Y2x1ZGVkIGNhc2VzXCIgJiBcbiAgICAhaXMubmEobG9uZ2l0dWRlKSAmXG4gICAgIWlzLm5hKGxhdGl0dWRlKSAmXG4gICAgaW5fY2l0eSA9PSBUUlVFXG4gICkgJT4lXG4gIHNlbGVjdChvbmVfb2YoY29tbW9uX3ZhcnMpLCBldmVyeXRoaW5nKCksIC1pbl9jaXR5KVxuXG5gYGAifQ== -->
-<pre class="r"><code># load and merge the dataset for each city
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW5hbWUgdGhlIGNyaW1lIGNhdGVnb3J5IHZhcmlhYmxlcyBiZWNhdXNlIHRoZXkndmUgYmVlbiByZW5hbWVkIGluIHRoZSBcbiMgZGF0YXNldCBieSB0aGUgY29udmVydF9uYW1lcygpIGZ1bmN0aW9uIGluIGZpbGUgMDVfaGFybW9uaXNlX2RhdGEuUm1kXG5jb21tb25fdmFycyA8LSBzZXRkaWZmKGNvbW1vbl92YXJzLCBjKCdnZW9tZXRyeScpKSAlPiUgXG4gIG1hcHZhbHVlcyhjKCduaWJyc19vZmZlbnNlX2NvZGUnLCAnbmlicnNfb2ZmZW5zZV90eXBlJywgXG4gICAgICAgICAgICAgICduaWJyc19vZmZlbnNlX2NhdGVnb3J5JywgJ25pYnJzX2NyaW1lX2FnYWluc3QnKSwgXG4gICAgICAgICAgICBjKCdvZmZlbnNlX2NvZGUnLCAnb2ZmZW5zZV90eXBlJywgJ29mZmVuc2VfZ3JvdXAnLCBcbiAgICAgICAgICAgICAgJ29mZmVuc2VfYWdhaW5zdCcpKVxuXG4jIGxvYWQgYW5kIG1lcmdlIHRoZSBkYXRhc2V0IGZvciBlYWNoIGNpdHlcbmRhdGEgPC0gZGlyKFwiLi4vdGVtcF9kYXRhXCIsIHBhdHRlcm4gPSBcIl5maW5hbF9cIiwgZnVsbC5uYW1lcyA9IFRSVUUpICU+JSBcbiAgbWFwKHJlYWRfcmRzKSAlPiUgXG4gIG1hcChtdXRhdGVfYXQsIHZhcnMob25lX29mKGMoXCJsb2NhbF9yb3dfaWRcIiwgXCJjYXNlX251bWJlclwiKSkpLCBhcy5jaGFyYWN0ZXIpICU+JSBcbiAgIyBtYXAobXV0YXRlLCBcbiAgIyAgICAgbG9jYWxfcm93X2lkID0gYXMuY2hhcmFjdGVyKGxvY2FsX3Jvd19pZCksXG4gICMgICAgIGNhc2VfbnVtYmVyID0gYXMuY2hhcmFjdGVyKGNhc2VfbnVtYmVyKSkgJT4lIFxuICBiaW5kX3Jvd3MoKSAlPiUgXG4gIGFycmFuZ2UoY2l0eV9uYW1lLCBkYXRlX3NpbmdsZSkgJT4lIFxuICBmaWx0ZXIoXG4gICAgb2ZmZW5zZV9hZ2FpbnN0ICE9IFwiZXhjbHVkZWQgY2FzZXNcIiAmIFxuICAgICFpcy5uYShsb25naXR1ZGUpICZcbiAgICAhaXMubmEobGF0aXR1ZGUpICZcbiAgICBpbl9jaXR5ID09IFRSVUVcbiAgKSAlPiVcbiAgc2VsZWN0KG9uZV9vZihjb21tb25fdmFycyksIGV2ZXJ5dGhpbmcoKSwgLWluX2NpdHkpXG5gYGAifQ== -->
+<pre class="r"><code># rename the crime category variables because they've been renamed in the 
+# dataset by the convert_names() function in file 05_harmonise_data.Rmd
+common_vars &lt;- setdiff(common_vars, c('geometry')) %&gt;% 
+  mapvalues(c('nibrs_offense_code', 'nibrs_offense_type', 
+              'nibrs_offense_category', 'nibrs_crime_against'), 
+            c('offense_code', 'offense_type', 'offense_group', 
+              'offense_against'))
+
+# load and merge the dataset for each city
 data &lt;- dir(&quot;../temp_data&quot;, pattern = &quot;^final_&quot;, full.names = TRUE) %&gt;% 
   map(read_rds) %&gt;% 
   map(mutate_at, vars(one_of(c(&quot;local_row_id&quot;, &quot;case_number&quot;))), as.character) %&gt;% 
@@ -194,12 +202,8 @@ data &lt;- dir(&quot;../temp_data&quot;, pattern = &quot;^final_&quot;, full.nam
     !is.na(latitude) &amp;
     in_city == TRUE
   ) %&gt;%
-  select(one_of(common_vars), everything(), -in_city)
-</code></pre>
+  select(one_of(common_vars), everything(), -in_city)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVW5rbm93biB2YXJpYWJsZXM6IGBjYXNlX251bWJlcmBVbmtub3duIHZhcmlhYmxlczogYGNhc2VfbnVtYmVyYFVua25vd24gdmFyaWFibGVzOiBgY2FzZV9udW1iZXJgVW5rbm93biB2YXJpYWJsZXM6IGBjYXNlX251bWJlcmBcbiJ9 -->
-<pre><code>Unknown variables: `case_number`Unknown variables: `case_number`Unknown variables: `case_number`Unknown variables: `case_number`</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -208,13 +212,14 @@ data &lt;- dir(&quot;../temp_data&quot;, pattern = &quot;^final_&quot;, full.nam
 <p>For each year, two files should be exported: one containing all the variables and one containing only the common variables (i.e. those without the city-name prefix).</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJZiB5ZWFyRmlyc3QgaGFzIGJlZW4gc2V0IHRvIGEgdmVyeSBlYXJseSB5ZWFyLCB0aGVyZSBtYXkgYmUgbm8gZGF0YSBmb3IgdGhlIFxuIyBmaXJzdCBmZXcgeWVhcnMsIHByb2R1Y2luZyBlbXB0eSBDU1YgZmlsZXMuIFRvIHN0b3AgdGhpcywgcmVzZXQgeWVhckZpcnN0IGlmIFxuIyBpdCBpcyBiZWZvcmUgdGhlIGZpcnN0IHllYXIgcHJlc2VudCBpbiB0aGUgZGF0YXNldC5cbmlmIChtaW4oZGF0YSRkYXRlX3llYXIpID4geWVhckZpcnN0KSB7XG4gIHllYXJGaXJzdCA8LSBtaW4oZGF0YSRkYXRlX3llYXIpXG59XG5mb3IgKGkgaW4geWVhckZpcnN0OnllYXJMYXN0KSB7XG4gIGZvciAoaiBpbiBjKCdleHRlbmRlZCcsICdjb3JlJykpIHtcbiAgICBpZiAoaiA9PSAnY29yZScpIHtcbiAgICAgIHRoZXNlX3ZhcnMgPSBjb21tb25fdmFyc1xuICAgIH0gZWxzZSB7XG4gICAgICB0aGVzZV92YXJzID0gbmFtZXMoZGF0YSlcbiAgICB9XG4gICAgZGF0YSAlPiVcbiAgICAgIGZpbHRlcihkYXRlX3llYXIgPT0gaSkgJT4lXG4gICAgICBzZWxlY3RfaWYobmFtZXMoZGF0YSkgJWluJSB0aGVzZV92YXJzKSAlPiVcbiAgICAgIHNlbGVjdCgtZGF0ZV95ZWFyKSAlPiUgXG4gICAgICB3cml0ZS5jc3YoZ3pmaWxlKHBhc3RlMChcIi4uL291dHB1dF9kYXRhL2NyaW1lX29wZW5fZGF0YWJhc2VfXCIsIGosIFwiX1wiLCBpLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiLmNzdi5nelwiKSksIG5hID0gXCJcIilcbiAgfVxufVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJZiB5ZWFyRmlyc3QgaGFzIGJlZW4gc2V0IHRvIGEgdmVyeSBlYXJseSB5ZWFyLCB0aGVyZSBtYXkgYmUgbm8gZGF0YSBmb3IgdGhlIFxuIyBmaXJzdCBmZXcgeWVhcnMsIHByb2R1Y2luZyBlbXB0eSBDU1YgZmlsZXMuIFRvIHN0b3AgdGhpcywgcmVzZXQgeWVhckZpcnN0IGlmIFxuIyBpdCBpcyBiZWZvcmUgdGhlIGZpcnN0IHllYXIgcHJlc2VudCBpbiB0aGUgZGF0YXNldC5cbmlmIChtaW4oZGF0YSRkYXRlX3llYXIpID4geWVhckZpcnN0KSB7XG4gIHllYXJGaXJzdCA8LSBtaW4oZGF0YSRkYXRlX3llYXIpXG59XG5cbmZvciAoaSBpbiB5ZWFyRmlyc3Q6eWVhckxhc3QpIHtcbiAgZm9yIChqIGluIGMoJ2V4dGVuZGVkJywgJ2NvcmUnKSkge1xuICAgIGlmIChqID09ICdjb3JlJykge1xuICAgICAgdGhlc2VfdmFycyA9IGNvbW1vbl92YXJzXG4gICAgfSBlbHNlIHtcbiAgICAgIHRoZXNlX3ZhcnMgPSBuYW1lcyhkYXRhKVxuICAgIH1cbiAgICBkYXRhICU+JVxuICAgICAgZmlsdGVyKGRhdGVfeWVhciA9PSBpKSAlPiVcbiAgICAgIHNlbGVjdF9pZihuYW1lcyhkYXRhKSAlaW4lIHRoZXNlX3ZhcnMpICU+JVxuICAgICAgc2VsZWN0KC1kYXRlX3llYXIpICU+JSBcbiAgICAgIHdyaXRlLmNzdihnemZpbGUocGFzdGUwKFwiLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9cIiwgaiwgXCJfXCIsIGksIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXCIuY3N2Lmd6XCIpKSwgbmEgPSBcIlwiKVxuICB9XG59XG5cbiMgY2xlYW4gdXBcbnJtKGNvbW1vbl92YXJzLCB0aGVzZV92YXJzLCBpLCBqKVxuXG5gYGAifQ== -->
 <pre class="r"><code># If yearFirst has been set to a very early year, there may be no data for the 
 # first few years, producing empty CSV files. To stop this, reset yearFirst if 
 # it is before the first year present in the dataset.
 if (min(data$date_year) &gt; yearFirst) {
   yearFirst &lt;- min(data$date_year)
 }
+
 for (i in yearFirst:yearLast) {
   for (j in c('extended', 'core')) {
     if (j == 'core') {
@@ -229,15 +234,11 @@ for (i in yearFirst:yearLast) {
       write.csv(gzfile(paste0(&quot;../output_data/crime_open_database_&quot;, j, &quot;_&quot;, i, 
                               &quot;.csv.gz&quot;)), na = &quot;&quot;)
   }
-}</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiBVc2VNZXRob2QoXCJhcy5saXN0XCIpIDpcbiAgY2xvc2luZyB1bnVzZWQgY29ubmVjdGlvbiAzICguLi9vdXRwdXRfZGF0YS9sYXJnZV9jaXR5X2NyaW1lX2RhdGFfZXh0ZW5kZWRfMjAwNy5jc3YuZ3opXG4ifQ== -->
-<pre><code>Warning in UseMethod(&quot;as.list&quot;) :
-  closing unused connection 3 (../output_data/large_city_crime_data_extended_2007.csv.gz)</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjbGVhbiB1cFxucm0oY29tbW9uX3ZhcnMsIHRoZXNlX3ZhcnMsIGksIGopXG5gYGAifQ== -->
-<pre class="r"><code># clean up
-rm(common_vars, these_vars, i, j)</code></pre>
+}
+
+# clean up
+rm(common_vars, these_vars, i, j)
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
