@@ -54,6 +54,15 @@ cities <- tribble(
   "Tucson",         "04", "tus",
   "Virginia Beach", "51", "vib"
 )
+
+common_vars <- c(
+  'uid', 'city_name', 'local_row_id', 'case_number', 'nibrs_offense_code', 
+  'nibrs_offense_type', 'nibrs_offense_category', 'nibrs_crime_against', 
+  'date_single', 'date_start', 'date_end', 'date_year', 'multiple_dates', 
+  'address', 'longitude', 'latitude', "location_type", "location_category", 
+  'fips_state', 'fips_county', 'tract', 'block_group', 'block', 'in_city', 
+  'geometry'
+)
 ```
 
 
@@ -125,7 +134,9 @@ add_date_var <- function (data, field_name, date_format, tz) {
         "dates could not be parsed. Sample of original field:\n")
     data %>% 
       filter(is.na(data$Date.Single)) %>% 
-      sample_n(10) %>% { print(.[[field_name]]) }
+      sample_n(ifelse(sum(is.na(data$Date.Single)) > 10, 10, 
+                      sum(is.na(data$Date.Single)))) %>% 
+      { print(.[[field_name]]) }
   } else {
     cat("✔︎ All dates parsed\n")
   }
@@ -178,7 +189,7 @@ filter_by_year <- function (data, year_first, year_last) {
 ```{r}
 join_nibrs_cats <- function (data, file, by) {
   
-  cats <- read_csv(file)
+  cats <- read_csv(file, col_types = cols(.default = col_character()))
   
   data <- left_join(data, cats, by = by)
   
@@ -195,10 +206,19 @@ join_nibrs_cats <- function (data, file, by) {
 ```{r}
 check_nibrs_cats <- function (data, file, by) {
   
-  if (sum(is.na(data$NIBRS_Offense_Type)) > 0) {
-    cat("✖︎", format(sum(is.na(data$NIBRS_Offense_Type)), big.mark = ","), 
-        "cases could not be matched to NIBRS categories\n")
-    filter(data, is.na(data$NIBRS_Offense_Type)) %>% 
+  if (
+    sum(is.na(data$NIBRS_Offense_Code)) > 0 |
+    sum(is.na(data$NIBRS_Offense_Type)) > 0 |
+    sum(is.na(data$NIBRS_Offense_Category)) > 0 |
+    sum(is.na(data$NIBRS_Crime_Against)) > 0
+  ) {
+    cat("✖ some cases could not be matched to NIBRS categories\n")
+    data %>% filter(
+      is.na(data$NIBRS_Offense_Code) |
+      is.na(data$NIBRS_Offense_Type) |
+      is.na(data$NIBRS_Offense_Category) |
+      is.na(data$NIBRS_Crime_Against)
+    ) %>% 
       group_by_at(vars(one_of(c(by, "Date.Year")))) %>% 
       summarise(n = n()) %>% 
       spread(Date.Year, n) %>% 
@@ -242,6 +262,61 @@ save_city_data <- function (data, name) {
   
   print(table(data$Date.Year))
   
+  data
+  
+}
+```
+
+## Convert variables names to a common format
+
+```{r}
+convert_names <- function (data, common_vars, prefix) {
+  
+  # get existing column names, converted to lower case without spaces
+  col_names <- names(data) %>% 
+    str_replace_all('[\\ \\.\\-\\/]', '_') %>% 
+    str_to_lower()
+  
+  # add prefix to city-specific column names
+  names(data) <- ifelse(
+    col_names %in% common_vars, 
+    col_names, 
+    paste(prefix, col_names, sep = '_')
+  )
+  
+  data <- data %>% 
+    # harmonise variable order
+    select(one_of(common_vars), everything()) %>%
+    select(-geometry) %>% 
+    # convert local ID to character, since it is alphanumeric for some cities
+    mutate_at(vars(one_of(c("local_row_id", "case_number"))), as.character) %>% 
+    mutate(
+      # remove spurious precision from co-ordinates
+      longitude = round(longitude, digits = 6),
+      latitude = round(latitude, digits = 6),
+      # remove code from the type variable, since it is already present in the
+      # code variable
+      nibrs_offense_type = str_replace(nibrs_offense_type, '^\\w{3}+ ', ''),
+      # shorten the crimes-against variable to remove unnecessary characters
+      nibrs_crime_against = recode(nibrs_crime_against, 
+                                   `Crimes against person` = 'Persons', 
+                                   `Crimes against property` = 'Property', 
+                                   `Crimes against society` = 'Society',
+                                   `All Other Offenses` = 'Other')
+    ) %>% 
+    # shorten the crime category variable names, both to remove unnecessary 
+    # characters and because the categories are not exactly the same as the 
+    # NIBRS classification
+    rename(offense_code = nibrs_offense_code,
+           offense_type = nibrs_offense_type,
+           offense_group = nibrs_offense_category,
+           offense_against = nibrs_crime_against) %>% 
+    # convert crime categories to lower case to ease matching when the data are
+    # used
+    mutate_at(vars(one_of('offense_type', 'offense_group', 'offense_against')), 
+              'tolower')  
+  
+  # return data
   data
   
 }

@@ -1,0 +1,74 @@
+---
+title: "Merge and output data"
+output: html_notebook
+---
+
+
+# Merge data
+
+This code merges the data from each city into one object, which can then be used
+to output the final data.
+
+```{r}
+# rename the crime category variables because they've been renamed in the 
+# dataset by the convert_names() function in file 05_harmonise_data.Rmd
+common_vars <- setdiff(common_vars, c('geometry')) %>% 
+  mapvalues(c('nibrs_offense_code', 'nibrs_offense_type', 
+              'nibrs_offense_category', 'nibrs_crime_against'), 
+            c('offense_code', 'offense_type', 'offense_group', 
+              'offense_against'))
+
+# load and merge the dataset for each city
+data <- dir("../temp_data", pattern = "^final_", full.names = TRUE) %>% 
+  map(read_rds) %>% 
+  map(mutate_at, vars(one_of(c("local_row_id", "case_number"))), as.character) %>% 
+  # map(mutate, 
+  #     local_row_id = as.character(local_row_id),
+  #     case_number = as.character(case_number)) %>% 
+  bind_rows() %>% 
+  arrange(city_name, date_single) %>% 
+  filter(
+    offense_against != "excluded cases" & 
+    !is.na(longitude) &
+    !is.na(latitude) &
+    in_city == TRUE
+  ) %>%
+  select(one_of(common_vars), everything(), -in_city)
+```
+
+
+# Output data
+
+For each year, two files should be exported: one containing all the variables 
+and one containing only the common variables (i.e. those without the city-name 
+prefix).
+
+```{r}
+# If yearFirst has been set to a very early year, there may be no data for the 
+# first few years, producing empty CSV files. To stop this, reset yearFirst if 
+# it is before the first year present in the dataset.
+if (min(data$date_year) > yearFirst) {
+  yearFirst <- min(data$date_year)
+}
+
+for (i in yearFirst:yearLast) {
+  for (j in c('extended', 'core')) {
+    if (j == 'core') {
+      these_vars = common_vars
+    } else {
+      these_vars = names(data)
+    }
+    data %>%
+      filter(date_year == i) %>%
+      select_if(names(data) %in% these_vars) %>%
+      select(-date_year) %>% 
+      write.csv(gzfile(paste0("../output_data/crime_open_database_", j, "_", i, 
+                              ".csv.gz")), na = "")
+  }
+}
+
+# clean up
+rm(common_vars, these_vars, i, j)
+
+```
+

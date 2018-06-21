@@ -1,0 +1,71 @@
+PREM_TYP_DESC,location_type,location_category
+CONSTRUCTION SITE,construction,commercial
+FACTORY/WAREHOUSE,factory/warehouse,commercial
+BANK,finance,commercial
+CHECK CASHING BUSINESS,finance,commercial
+LOAN COMPANY,finance,commercial
+COMMERCIAL BUILDING,office,commercial
+STORAGE FACILITY,storage,commercial
+PRIVATE/PAROCHIAL SCHOOL,school,education
+PUBLIC SCHOOL,school,education
+PUBLIC BUILDING,government,government
+DOCTOR/DENTIST OFFICE,healthcare,healthcare
+DRUG STORE,healthcare,healthcare
+HOSPITAL,healthcare,healthcare
+HOTEL/MOTEL,hotel,hotel
+BAR/NIGHT CLUB,bar/club,leisure
+SOCIAL CLUB/POLICY,bar/club,leisure
+FAST FOOD,restaurant,leisure
+RESTAURANT/DINER,restaurant,leisure
+CEMETERY,other open space,open space
+MARINA/PIER,other open space,open space
+OPEN AREAS (OPEN LOTS),other open space,open space
+PARK/PLAYGROUND,green space,open space
+PARKING LOT/GARAGE (PRIVATE),vehicle parking,open space
+PARKING LOT/GARAGE (PUBLIC),vehicle parking,open space
+OTHER,other,other
+RESIDENCE - APT. HOUSE,residence,residence
+RESIDENCE - PUBLIC HOUSING,residence,residence
+RESIDENCE-HOUSE,residence,residence
+GAS STATION,gas station,retail
+SMALL MERCHANT,other retail,retail
+PHOTO/COPY,other retail,retail
+BEAUTY & NAIL SALON,other retail,retail
+CANDY STORE,other retail,retail
+CHAIN STORE,other retail,retail
+CLOTHING/BOUTIQUE,other retail,retail
+DEPARTMENT STORE,other retail,retail
+DRY CLEANER/LAUNDRY,other retail,retail
+FOOD SUPERMARKET,supermarket,retail
+GROCERY/BODEGA,convenience store,retail
+JEWELRY,other retail,retail
+LIQUOR STORE,convenience store,retail
+STORE UNCLASSIFIED,other retail,retail
+TELECOMM. STORE,other retail,retail
+VARIETY STORE,other retail,retail
+VIDEO STORE,other retail,retail
+SHOE,other retail,retail
+BRIDGE,street,street
+HIGHWAY/PARKWAY,street,street
+STREET,street,street
+TUNNEL,street,street
+AIRPORT TERMINAL,airport,transportation
+BUS (NYC TRANSIT),bus,transportation
+BUS (OTHER),bus,transportation
+BUS STOP,bus,transportation
+BUS TERMINAL,bus,transportation
+FERRY/FERRY TERMINAL,other transportation,transportation
+TRANSIT FACILITY (OTHER),other transportation,transportation
+TRAMWAY,rapid transit,transportation
+TRANSIT - NYC SUBWAY,rapid transit,transportation
+TAXI (LIVERY LICENSED),commercial vehicle,vehicle
+TAXI (YELLOW LICENSED),commercial vehicle,vehicle
+TAXI/LIVERY (UNLICENSED),commercial vehicle,vehicle
+ABANDONED BUILDING,abandoned,other
+ATM,finance,commercial
+BOOK/CARD,other retail,retail
+CHURCH,religious,other
+GYM/FITNESS FACILITY,other,other
+MOSQUE,religious,other
+OTHER HOUSE OF WORSHIP,religious,other
+SYNAGOGUE,religious,other

@@ -17,13 +17,13 @@ NIBRS_Offense_Code,Summarized Offense Description,Offense Type,NIBRS_Offense_Typ
 13A,ASSAULT,ENDANGERMENT,13A Aggravated assault,Assault Offenses,Crimes against person
 99Y,BIAS INCIDENT,BIAS INCIDENT,99Y Non-Reportable Crimes,Excluded cases,Excluded cases
 23H,BIKE THEFT,THEFT-BICYCLE,23H All Other Larceny,Larceny/Theft Offenses,Crimes against property
-22B,BURGLARY,BURGLARY-FORCE-NONRES,22B Non-domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
-22A,BURGLARY,BURGLARY-FORCE-RES,22A Domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
-22B,BURGLARY,BURGLARY-NOFORCE-NONRES,22B Non-domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
-22A,BURGLARY,BURGLARY-NOFORCE-RES,22A Domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22B,BURGLARY,BURGLARY-FORCE-NONRES,22B Non-residential Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22A,BURGLARY,BURGLARY-FORCE-RES,22A Residential Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22B,BURGLARY,BURGLARY-NOFORCE-NONRES,22B Non-residential Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22A,BURGLARY,BURGLARY-NOFORCE-RES,22A Residential Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
 22C,BURGLARY,BURGLARY-OTHER,22U Other Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
-22B,BURGLARY,BURGLARY-SECURE PARKING-NONRES,22B Non-domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
-22A,BURGLARY-SECURE PARKING-RES,BURGLARY-SECURE PARKING-RES,22A Domestic Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22B,BURGLARY,BURGLARY-SECURE PARKING-NONRES,22B Non-residential Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22A,BURGLARY-SECURE PARKING-RES,BURGLARY-SECURE PARKING-RES,22A Residential Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
 240,CAR PROWL,THEFT-CARPROWL,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
 99Z,COLLISION - HIT AND RUN - BIKE,COLLISION - HIT AND RUN - BIKE,99Z Non-Criminal Matters,Excluded cases,Excluded cases
 250,COUNTERFEIT,COUNTERFEIT,250 Counterfeiting/Forgery,Counterfeiting/Forgery,Crimes against property

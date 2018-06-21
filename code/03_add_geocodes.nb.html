@@ -179,12 +179,41 @@ $(document).ready(function () {
 <p>Many offences in Fort Worth are not geocoded. It appears that some locations are sometimes geocoded but sometimes not. In fact, most locations that are not geocoded are geocoded elsewhere in the dataset. However, looking at a list of locations shows that some (e.g. ‘100 BLOCK CALHOUN ST’) have multiple locations that are too far from one another to be the product of geocoding issues. E.g. in the case of Calhoun St, the co-ordinates suggest some offences actually occurred at South Calhoun St. This means we can’t apply geocodes from a location to offences at the ‘same’ address but which have no geocodes. It will therefore be necessary to geocode all the missing locations.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZWFkIGNyaW1lIGRhdGFcbmRhdGFfZncgPC0gcmVhZFJEUyhcIi4uL3RlbXBfZGF0YS9yYXdfZm9ydF93b3J0aF9kYXRhLlJkc1wiKVxuYGBgIn0= -->
+<pre class="r"><code># read crime data
+data_fw &lt;- readRDS(&quot;../temp_data/raw_fort_worth_data.Rds&quot;)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <div id="export-un-geocoded-offences" class="section level2">
 <h2>Export un-geocoded offences</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBhdHRlbXB0IHRvIG1ha2Ugc2Vuc2Ugb2YgdGhlIGFkZHJlc3MgYWJicmV2aWF0aW9ucyB1c2VkIGluIEZXXG5kYXRhX2Z3JGBCbG9jayBBZGRyZXNzIEV4cGFuZGVkYCA8LSBkYXRhX2Z3JGBCbG9jayBBZGRyZXNzYCAlPiUgXG4gIHN0cl90b191cHBlcigpICU+JSBcbiAgc3RyX3JlcGxhY2VfYWxsKCdcXFxccysnLCAnICcpICU+JVxuICBzdHJfcmVwbGFjZV9hbGwoJ1xcXFxiQkxPQ0sgW0RHSEtQUlZZXVxcXFxiJywgJycpICU+JVxuICBzdHJfcmVwbGFjZV9hbGwoJ1xcXFxiKEJMT0NLfFJBfFJBTVB8TkJ8RUJ8U0J8V0IpXFxcXGInLCAnJykgJT4lXG4gIHN0cl9yZXBsYWNlX2FsbCgnXFxcXGJGV1lcXFxcYicsICdGUkVFV0FZJykgJT4lXG4gIHN0cl9yZXBsYWNlX2FsbCgnXFxcXGJJSFxcXFxiJywgJ0lOVEVSU1RBVEUnKSAlPiVcbiAgc3RyX3JlcGxhY2VfYWxsKCdcXFxcYlNSXFxcXGInLCAnU0VSVklDRSBST0FEJykgJT4lXG4gIHN0cl9yZXBsYWNlX2FsbChcIlxcXFxiV0FcXFxcYlwiLCBcIldBWVwiKSAlPiUgXG4gIHN0cl9yZXBsYWNlX2FsbCgnXFxcXGJCRUxMIFNQXFxcXGInLCAnQkVMTCBIRUxJQ09QVEVSIEJMJykgJT4lXG4gIHN0cl9yZXBsYWNlX2FsbCgnXFxcXGJMT09QIDgzMFxcXFxiJywgJ0xPT1AgSU5URVJTVEFURSA4MjAnKSAlPiVcbiAgc3RyX3JlcGxhY2VfYWxsKFxuICAgIFwiXFxcXGIoTk9SVEh8RUFTVHxTT1VUSHxXRVNUfE5PUlRIRUFTVHxOT1JUSFdFU1R8U09VVEhFQVNUfFNPVVRIV0VTVCkgTE9PUFxcXFxiXCIsIFxuICAgIFwiXFxcXDEgTE9PUCBJTlRFUlNUQVRFIDgyMFwiXG4gICkgJT4lXG4gIHN0cl9yZXBsYWNlX2FsbCgnXFxcXGQrJCcsICcnKSAlPiVcbiAgc3RyX3JlcGxhY2VfYWxsKCdcXFxccysnLCAnICcpICU+JVxuICBzdHJfdHJpbSgpXG5cbmBgYCJ9 -->
+<pre class="r"><code># attempt to make sense of the address abbreviations used in FW
+data_fw$`Block Address Expanded` &lt;- data_fw$`Block Address` %&gt;% 
+  str_to_upper() %&gt;% 
+  str_replace_all('\\s+', ' ') %&gt;%
+  str_replace_all('\\bBLOCK [DGHKPRVY]\\b', '') %&gt;%
+  str_replace_all('\\b(BLOCK|RA|RAMP|NB|EB|SB|WB)\\b', '') %&gt;%
+  str_replace_all('\\bFWY\\b', 'FREEWAY') %&gt;%
+  str_replace_all('\\bIH\\b', 'INTERSTATE') %&gt;%
+  str_replace_all('\\bSR\\b', 'SERVICE ROAD') %&gt;%
+  str_replace_all(&quot;\\bWA\\b&quot;, &quot;WAY&quot;) %&gt;% 
+  str_replace_all('\\bBELL SP\\b', 'BELL HELICOPTER BL') %&gt;%
+  str_replace_all('\\bLOOP 830\\b', 'LOOP INTERSTATE 820') %&gt;%
+  str_replace_all(
+    &quot;\\b(NORTH|EAST|SOUTH|WEST|NORTHEAST|NORTHWEST|SOUTHEAST|SOUTHWEST) LOOP\\b&quot;, 
+    &quot;\\1 LOOP INTERSTATE 820&quot;
+  ) %&gt;%
+  str_replace_all('\\d+$', '') %&gt;%
+  str_replace_all('\\s+', ' ') %&gt;%
+  str_trim()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZXZhbChsaHMsIHBhcmVudCwgcGFyZW50KSA6IG9iamVjdCAnZGF0YV9mdycgbm90IGZvdW5kXG4ifQ== -->
+<pre><code>Error in eval(lhs, parent, parent) : object 'data_fw' not found</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -192,8 +221,41 @@ $(document).ready(function () {
 <h2>Merge co-ordinate data</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZXBvcnQgc3VjY2Vzc1xuZGF0YV9mdyAlPiUgXG4gIG11dGF0ZShnZW9jb2RlZCA9IGlmZWxzZSghaXMubmEoTGF0aXR1ZGUpICYgIWlzLm5hKExvbmdpdHVkZSksIFRSVUUsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgRkFMU0UpKSAlPiUgXG4gIGdyb3VwX2J5KGdlb2NvZGVkKSAlPiUgXG4gIHN1bW1hcmlzZShuID0gbigpKSAlPiUgXG4gIHsgY2F0KGZvcm1hdCguJG5bLiRnZW9jb2RlZCA9PSBGQUxTRV0sIGJpZy5tYXJrID0gXCIsXCIpLCBcImNhc2VzIOKAk1wiLCBcbiAgICAgICAgZm9ybWF0KCguJG5bLiRnZW9jb2RlZCA9PSBGQUxTRV0gLyBzdW0oLiRuKSkgKiAxMDAsIGRpZ2l0cyA9IDIpLCBcbiAgICAgICAgXCIlIG9mIHRoZSB0b3RhbCDigJMgY291bGQgbm90IGJlIGdlb2NvZGVkXFxuXCIpIH1cblxuYGBgIn0= -->
-<pre class="r"><code># report success
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBpbXBvcnQgZ2VvY29kZWQgZGF0YSBmcm9tIENTViBmaWxlcyAodGhlcmUgYXJlIG11bHRpcGxlIGZpbGVzIGJlY2F1c2Ugb2YgdXNhZ2UgXG4jIGxpbWl0cyBvbiB0aGUgZ2VvY29kaW5nIHNlcnZpY2UpXG5sb2NhdGlvbnMgPC0gZGlyKFwiLi4vZ2VvY29kaW5nX2RhdGFcIiwgcGF0dGVybiA9ICdmd19nZW9jb2RlZF9sb2NhdGlvbnMqJywgXG4gICAgICAgICAgICAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgXG4gIG1hcChyZWFkX2NzdiwgY29sX3R5cGVzID0gY29scyguZGVmYXVsdCA9IGNvbF9jaGFyYWN0ZXIoKSkpICU+JVxuICBiaW5kX3Jvd3MoKSAlPiUgXG4gICMgZmlsdGVyIG91dCBsb2NhdGlvbnMgdGhhdCBjb3VsZCBvbmx5IGJlIGdlb2NvZGVkIHRvIGEgY2l0eSByYXRoZXIgdGhhbiB0byBhXG4gICMgc3RyZWV0IG9yIHBvaW50XG4gIGZpbHRlcighYEFjY3VyYWN5IFR5cGVgICVpbiUgYygncGxhY2UnLCAnc3RhdGUnKSkgJT4lIFxuICBkaXN0aW5jdChzdHJlZXQsIC5rZWVwX2FsbCA9IFRSVUUpICU+JSBcbiAgc2VsZWN0KGBCbG9jayBBZGRyZXNzIEV4cGFuZGVkYCA9IHN0cmVldCwgTmV3TGF0aXR1ZGUgPSBMYXRpdHVkZSxcbiAgICAgICAgIE5ld0xvbmdpdHVkZSA9IExvbmdpdHVkZSlcbiMgbWVyZ2UgZGF0YXNldHMgYW5kIGFkZCBjby1vcmRpbmF0ZXMgd2hlcmUgbmVjZXNzYXJ5XG5kYXRhX2Z3IDwtIGRhdGFfZncgJT4lIFxuICBsZWZ0X2pvaW4obG9jYXRpb25zLCBieSA9ICdCbG9jayBBZGRyZXNzIEV4cGFuZGVkJykgJT4lIFxuICBtdXRhdGUoXG4gICAgTG9uZ2l0dWRlID0gaWZlbHNlKGlzLm5hKExvbmdpdHVkZSksIE5ld0xvbmdpdHVkZSwgTG9uZ2l0dWRlKSAlPiUgXG4gICAgICBhcy5kb3VibGUoKSxcbiAgICBMYXRpdHVkZSA9IGlmZWxzZShpcy5uYShMYXRpdHVkZSksIE5ld0xhdGl0dWRlLCBMYXRpdHVkZSkgJT4lIGFzLmRvdWJsZSgpXG4gICkgJT4lIFxuICAjIFJlbW92ZSBmaWVsZHMgY3JlYXRlZCBkdXJpbmcgdGhpcyBwcm9jZWR1cmUsIHRvIGF2b2lkIGNsdXR0ZXJpbmcgdGhlIGZpbmFsIFxuICAjIGRhdGFzZXRcbiAgc2VsZWN0KC1OZXdMYXRpdHVkZSwgLU5ld0xvbmdpdHVkZSkgXG4jIGlkZW50aWZ5IGZhaWxlZCBnZW9jb2RpbmdcbmRhdGFfZncgJT4lIFxuICBmaWx0ZXIoaXMubmEoTGF0aXR1ZGUpIHwgaXMubmEoTG9uZ2l0dWRlKSkgJT4lXG4gIGdyb3VwX2J5KGBCbG9jayBBZGRyZXNzIEV4cGFuZGVkYCwgRGF0ZS5ZZWFyKSAlPiUgXG4gIHN1bW1hcmlzZShuID0gbigpKSAlPiUgXG4gIHNwcmVhZChEYXRlLlllYXIsIG4pICU+JSBcbiAgdW5ncm91cCgpICU+JSBcbiAgbXV0YXRlKFRvdGFsID0gcm93U3VtcyhzZWxlY3RfaWYoLiwgaXMubnVtZXJpYyksIG5hLnJtID0gVFJVRSkpICU+JSBcbiAgYXJyYW5nZShkZXNjKFRvdGFsKSkgJT4lIFxuICB3cml0ZV9jc3YoXCIuLi9nZW9jb2RpbmdfZGF0YS9md19nZW9jb2RpbmdfZmFpbHVyZXMuY3N2XCIsIG5hID0gXCJcIilcbiMgcmVwb3J0IHN1Y2Nlc3NcbmRhdGFfZncgJT4lIFxuICBtdXRhdGUoZ2VvY29kZWQgPSBpZmVsc2UoIWlzLm5hKExhdGl0dWRlKSAmICFpcy5uYShMb25naXR1ZGUpLCBUUlVFLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgIEZBTFNFKSkgJT4lIFxuICBncm91cF9ieShnZW9jb2RlZCkgJT4lIFxuICBzdW1tYXJpc2UobiA9IG4oKSkgJT4lIFxuICB7IGNhdChmb3JtYXQoLiRuWy4kZ2VvY29kZWQgPT0gRkFMU0VdLCBiaWcubWFyayA9IFwiLFwiKSwgXCJjYXNlcyDigJNcIiwgXG4gICAgICAgIGZvcm1hdCgoLiRuWy4kZ2VvY29kZWQgPT0gRkFMU0VdIC8gc3VtKC4kbikpICogMTAwLCBkaWdpdHMgPSAyKSwgXG4gICAgICAgIFwiJSBvZiB0aGUgdG90YWwg4oCTIGNvdWxkIG5vdCBiZSBnZW9jb2RlZFxcblwiKSB9XG5gYGAifQ== -->
+<pre class="r"><code># import geocoded data from CSV files (there are multiple files because of usage 
+# limits on the geocoding service)
+locations &lt;- dir(&quot;../geocoding_data&quot;, pattern = 'fw_geocoded_locations*', 
+                 full.names = TRUE) %&gt;% 
+  map(read_csv, col_types = cols(.default = col_character())) %&gt;%
+  bind_rows() %&gt;% 
+  # filter out locations that could only be geocoded to a city rather than to a
+  # street or point
+  filter(!`Accuracy Type` %in% c('place', 'state')) %&gt;% 
+  distinct(street, .keep_all = TRUE) %&gt;% 
+  select(`Block Address Expanded` = street, NewLatitude = Latitude,
+         NewLongitude = Longitude)
+# merge datasets and add co-ordinates where necessary
+data_fw &lt;- data_fw %&gt;% 
+  left_join(locations, by = 'Block Address Expanded') %&gt;% 
+  mutate(
+    Longitude = ifelse(is.na(Longitude), NewLongitude, Longitude) %&gt;% 
+      as.double(),
+    Latitude = ifelse(is.na(Latitude), NewLatitude, Latitude) %&gt;% as.double()
+  ) %&gt;% 
+  # Remove fields created during this procedure, to avoid cluttering the final 
+  # dataset
+  select(-NewLatitude, -NewLongitude) 
+# identify failed geocoding
+data_fw %&gt;% 
+  filter(is.na(Latitude) | is.na(Longitude)) %&gt;%
+  group_by(`Block Address Expanded`, Date.Year) %&gt;% 
+  summarise(n = n()) %&gt;% 
+  spread(Date.Year, n) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(Total = rowSums(select_if(., is.numeric), na.rm = TRUE)) %&gt;% 
+  arrange(desc(Total)) %&gt;% 
+  write_csv(&quot;../geocoding_data/fw_geocoding_failures.csv&quot;, na = &quot;&quot;)
+# report success
 data_fw %&gt;% 
   mutate(geocoded = ifelse(!is.na(Latitude) &amp; !is.na(Longitude), TRUE, 
                            FALSE)) %&gt;% 
@@ -201,12 +263,17 @@ data_fw %&gt;%
   summarise(n = n()) %&gt;% 
   { cat(format(.$n[.$geocoded == FALSE], big.mark = &quot;,&quot;), &quot;cases –&quot;, 
         format((.$n[.$geocoded == FALSE] / sum(.$n)) * 100, digits = 2), 
-        &quot;% of the total – could not be geocoded\n&quot;) }
-</code></pre>
+        &quot;% of the total – could not be geocoded\n&quot;) }</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiMTgsMTc2IGNhc2VzIOKAkyAyLjIgJSBvZiB0aGUgdG90YWwg4oCTIGNvdWxkIG5vdCBiZSBnZW9jb2RlZFxuIn0= -->
-<pre><code>18,176 cases – 2.2 % of the total – could not be geocoded</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiMjUsMTc4IGNhc2VzIOKAkyAyLjMgJSBvZiB0aGUgdG90YWwg4oCTIGNvdWxkIG5vdCBiZSBnZW9jb2RlZFxuIn0= -->
+<pre><code>25,178 cases – 2.3 % of the total – could not be geocoded</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzYXZlIGNyaW1lIGRhdGFcbnNhdmVSRFMoZGF0YV9mdywgXCIuLi90ZW1wX2RhdGEvcmF3X2ZvcnRfd29ydGhfZGF0YS5SZHNcIilcbiMgY2xlYW4gdXBcbnJtKGxvY2F0aW9ucywgZGF0YV9mdylcbmBgYCJ9 -->
+<pre class="r"><code># save crime data
+saveRDS(data_fw, &quot;../temp_data/raw_fort_worth_data.Rds&quot;)
+# clean up
+rm(locations, data_fw)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -216,6 +283,9 @@ data_fw %&gt;%
 <p>No Louisville offences are geocoded, so it will all have to be done manually.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YV9sbyA8LSByZWFkUkRTKFwiLi4vdGVtcF9kYXRhL3Jhd19sb3Vpc3ZpbGxlX2RhdGEuUmRzXCIpXG5gYGAifQ== -->
+<pre class="r"><code>data_lo &lt;- readRDS(&quot;../temp_data/raw_louisville_data.Rds&quot;)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -248,15 +318,49 @@ data_lo$BLOCK_ADDRESS &lt;- data_lo$BLOCK_ADDRESS %&gt;%
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzYXZlIGNyaW1lIGRhdGFcbnNhdmVSRFMoZGF0YV9mdywgXCIuLi90ZW1wX2RhdGEvcmF3X2xvdWlzdmlsbGVfZGF0YS5SZHNcIilcblxuYGBgIn0= -->
-<pre class="r"><code># save crime data
-saveRDS(data_fw, &quot;../temp_data/raw_louisville_data.Rds&quot;)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9jYXRpb25zIDwtIHJlYWRfY3N2KCcuLi9nZW9jb2RpbmdfZGF0YS9sb3Vpc3ZpbGxlX2dlb2NvZGVkX2xvY2F0aW9ucy5jc3YnLCBcbiAgICAgICAgICAgICAgICAgICAgICBjb2xfdHlwZXMgPSBjb2xzKC5kZWZhdWx0ID0gY29sX2NoYXJhY3RlcigpKSkgJT4lIFxuICBmaWx0ZXIoIWBBY2N1cmFjeSBUeXBlYCAlaW4lIGMoJ3BsYWNlJywgJ3N0YXRlJykgJiBgU3RhdGVgID09ICdLWScpICU+JSBcbiAgZGlzdGluY3QoQkxPQ0tfQUREUkVTUywgLmtlZXBfYWxsID0gVFJVRSkgJT4lIFxuICBzZWxlY3QoQkxPQ0tfQUREUkVTUywgTGF0aXR1ZGUsIExvbmdpdHVkZSlcbmRhdGFfbG8gPC0gZGF0YV9sbyAlPiUgXG4gIGxlZnRfam9pbihsb2NhdGlvbnMsIGJ5ID0gJ0JMT0NLX0FERFJFU1MnKSAlPiUgXG4gIG11dGF0ZShcbiAgICBMYXRpdHVkZSA9IGFzLmRvdWJsZShMYXRpdHVkZSksXG4gICAgTG9uZ2l0dWRlID0gYXMuZG91YmxlKExvbmdpdHVkZSlcbiAgKVxuIyBpZGVudGlmeSBmYWlsZWQgZ2VvY29kaW5nXG5kYXRhX2xvICU+JSBcbiAgZmlsdGVyKGlzLm5hKExhdGl0dWRlKSB8IGlzLm5hKExvbmdpdHVkZSkpICU+JVxuICBncm91cF9ieShCTE9DS19BRERSRVNTLCBEYXRlLlllYXIpICU+JSBcbiAgc3VtbWFyaXNlKG4gPSBuKCkpICU+JSBcbiAgc3ByZWFkKERhdGUuWWVhciwgbikgJT4lIFxuICB1bmdyb3VwKCkgJT4lIFxuICBtdXRhdGUoVG90YWwgPSByb3dTdW1zKHNlbGVjdF9pZiguLCBpcy5udW1lcmljKSwgbmEucm0gPSBUUlVFKSkgJT4lIFxuICBhcnJhbmdlKGRlc2MoVG90YWwpKSAlPiUgXG4gIHdyaXRlX2NzdihcIi4uL2dlb2NvZGluZ19kYXRhL2xvdWlzdmlsbGVfZ2VvY29kaW5nX2ZhaWx1cmVzLmNzdlwiLCBuYSA9IFwiXCIpXG4jIHJlcG9ydCBzdWNjZXNzXG5kYXRhX2xvICU+JSBcbiAgbXV0YXRlKGdlb2NvZGVkID0gaWZlbHNlKCFpcy5uYShMYXRpdHVkZSkgJiAhaXMubmEoTG9uZ2l0dWRlKSwgVFJVRSwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBGQUxTRSkpICU+JSBcbiAgZ3JvdXBfYnkoZ2VvY29kZWQpICU+JSBcbiAgc3VtbWFyaXNlKG4gPSBuKCkpICU+JSBcbiAge1xuICAgIGNhdChmb3JtYXQoLiRuWy4kZ2VvY29kZWQgPT0gRkFMU0VdLCBiaWcubWFyayA9IFwiLFwiKSwgXCJjYXNlcyDigJNcIixcbiAgICAgICAgZm9ybWF0KCguJG5bLiRnZW9jb2RlZCA9PSBGQUxTRV0gLyBzdW0oLiRuKSkgKiAxMDAsIGRpZ2l0cyA9IDIpLCBcbiAgICAgICAgXCIlIG9mIHRoZSB0b3RhbCDigJMgY291bGQgbm90IGJlIGdlb2NvZGVkXFxuXCIpXG4gIH1cbmBgYCJ9 -->
+<pre class="r"><code>locations &lt;- read_csv('../geocoding_data/louisville_geocoded_locations.csv', 
+                      col_types = cols(.default = col_character())) %&gt;% 
+  filter(!`Accuracy Type` %in% c('place', 'state') &amp; `State` == 'KY') %&gt;% 
+  distinct(BLOCK_ADDRESS, .keep_all = TRUE) %&gt;% 
+  select(BLOCK_ADDRESS, Latitude, Longitude)
+data_lo &lt;- data_lo %&gt;% 
+  left_join(locations, by = 'BLOCK_ADDRESS') %&gt;% 
+  mutate(
+    Latitude = as.double(Latitude),
+    Longitude = as.double(Longitude)
+  )
+# identify failed geocoding
+data_lo %&gt;% 
+  filter(is.na(Latitude) | is.na(Longitude)) %&gt;%
+  group_by(BLOCK_ADDRESS, Date.Year) %&gt;% 
+  summarise(n = n()) %&gt;% 
+  spread(Date.Year, n) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(Total = rowSums(select_if(., is.numeric), na.rm = TRUE)) %&gt;% 
+  arrange(desc(Total)) %&gt;% 
+  write_csv(&quot;../geocoding_data/louisville_geocoding_failures.csv&quot;, na = &quot;&quot;)
+# report success
+data_lo %&gt;% 
+  mutate(geocoded = ifelse(!is.na(Latitude) &amp; !is.na(Longitude), TRUE, 
+                           FALSE)) %&gt;% 
+  group_by(geocoded) %&gt;% 
+  summarise(n = n()) %&gt;% 
+  {
+    cat(format(.$n[.$geocoded == FALSE], big.mark = &quot;,&quot;), &quot;cases –&quot;,
+        format((.$n[.$geocoded == FALSE] / sum(.$n)) * 100, digits = 2), 
+        &quot;% of the total – could not be geocoded\n&quot;)
+  }</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gc2F2ZVJEUyhkYXRhX2Z3LCBcIi4uL3RlbXBfZGF0YS9yYXdfbG91aXN2aWxsZV9kYXRhLlJkc1wiKSA6IFxuICBvYmplY3QgJ2RhdGFfZncnIG5vdCBmb3VuZFxuIn0= -->
-<pre><code>Error in saveRDS(data_fw, &quot;../temp_data/raw_louisville_data.Rds&quot;) : 
-  object 'data_fw' not found</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiNTUsMDUzIGNhc2VzIOKAkyA1LjIgJSBvZiB0aGUgdG90YWwg4oCTIGNvdWxkIG5vdCBiZSBnZW9jb2RlZFxuIn0= -->
+<pre><code>55,053 cases – 5.2 % of the total – could not be geocoded</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzYXZlIGNyaW1lIGRhdGFcbnNhdmVSRFMoZGF0YV9sbywgXCIuLi90ZW1wX2RhdGEvcmF3X2xvdWlzdmlsbGVfZGF0YS5SZHNcIilcbiMgY2xlYW4gdXBcbnJtKGxvY2F0aW9ucywgZGF0YV9sbylcbmBgYCJ9 -->
+<pre class="r"><code># save crime data
+saveRDS(data_lo, &quot;../temp_data/raw_louisville_data.Rds&quot;)
+# clean up
+rm(locations, data_lo)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->

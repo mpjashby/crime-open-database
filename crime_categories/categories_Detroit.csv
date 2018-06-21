@@ -72,39 +72,39 @@ NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type
 11A,Crimes against person,Sex Offenses,11A Rape (except Statutory Rape),LARCENY,CSC 1ST DEGREE - PENIS / VAGINA
 11A,Crimes against person,Sex Offenses,11A Rape (except Statutory Rape),ROBBERY,CSC 1ST DEGREE - PENIS / VAGINA
 11A,Crimes against person,Sex Offenses,11A Rape (except Statutory Rape),SEXUAL ASSAULT,CSC 1ST DEGREE - PENIS / VAGINA
-120,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - FORCIBLE PURSESNATCHING
-120,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - MOTOR VEHICLE (CAR JACKING)
-120,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - MOTOR VEHICLE (CARJACKING)
-120,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - RESIDENCE - GUN
-120,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - RESIDENCE - OTHER WEAPON
-120,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - RESIDENCE - STRONG ARM
-120,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - STREET - GUN
-120,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - STREET - OTHER WEAPON
-120,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - STREET - STRONG ARM
-120,Crimes against property,Robbery,12B Commercial Robbery,ROBBERY,ROBBERY - BANKING TYPE INSTITUTION
-120,Crimes against property,Robbery,12B Commercial Robbery,ROBBERY,ROBBERY - BUSINESS - GUN
-120,Crimes against property,Robbery,12B Commercial Robbery,ROBBERY,ROBBERY - BUSINESS - OTHER WEAPON
-120,Crimes against property,Robbery,12B Commercial Robbery,ROBBERY,ROBBERY - BUSINESS - STRONG ARM
-120,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ATTEMPTED ROBBERY -ARMED
-120,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ATTEMPTED ROBBERY -UNARMED
-120,Crimes against property,Robbery,12U Other Robbery,AGGRAVATED ASSAULT,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,ARSON,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,ASSAULT,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,BURGLARY,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,DAMAGE TO PROPERTY,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,DANGEROUS DRUGS,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,FRAUD,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,LARCENY,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,OBSTRUCTING THE POLICE,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,OUIL,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,STOLEN PROPERTY,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,STOLEN VEHICLE,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,WEAPONS OFFENSES,ROBBERY
-120,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ROBBERY - ARMED
-120,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ROBBERY - STRONG ARM
-120,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ROBBERY - UNARMED
-120,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ROBBERY (OTHER)
+12A,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - FORCIBLE PURSESNATCHING
+12A,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - MOTOR VEHICLE (CAR JACKING)
+12A,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - MOTOR VEHICLE (CARJACKING)
+12A,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - RESIDENCE - GUN
+12A,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - RESIDENCE - OTHER WEAPON
+12A,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - RESIDENCE - STRONG ARM
+12A,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - STREET - GUN
+12A,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - STREET - OTHER WEAPON
+12A,Crimes against property,Robbery,12A Personal Robbery,ROBBERY,ROBBERY - STREET - STRONG ARM
+12B,Crimes against property,Robbery,12B Commercial Robbery,ROBBERY,ROBBERY - BANKING TYPE INSTITUTION
+12B,Crimes against property,Robbery,12B Commercial Robbery,ROBBERY,ROBBERY - BUSINESS - GUN
+12B,Crimes against property,Robbery,12B Commercial Robbery,ROBBERY,ROBBERY - BUSINESS - OTHER WEAPON
+12B,Crimes against property,Robbery,12B Commercial Robbery,ROBBERY,ROBBERY - BUSINESS - STRONG ARM
+12U,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ATTEMPTED ROBBERY -ARMED
+12U,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ATTEMPTED ROBBERY -UNARMED
+12U,Crimes against property,Robbery,12U Other Robbery,AGGRAVATED ASSAULT,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,ARSON,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,ASSAULT,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,BURGLARY,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,DAMAGE TO PROPERTY,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,DANGEROUS DRUGS,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,FRAUD,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,LARCENY,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,OBSTRUCTING THE POLICE,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,OUIL,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,STOLEN PROPERTY,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,STOLEN VEHICLE,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,WEAPONS OFFENSES,ROBBERY
+12U,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ROBBERY - ARMED
+12U,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ROBBERY - STRONG ARM
+12U,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ROBBERY - UNARMED
+12U,Crimes against property,Robbery,12U Other Robbery,ROBBERY,ROBBERY (OTHER)
 13A,Crimes against person,Assault Offenses,13A Aggravated Assault,AGGRAVATED ASSAULT,AGG/FEL ASSAULT - FAMILY - GUN
 13A,Crimes against person,Assault Offenses,13A Aggravated Assault,AGGRAVATED ASSAULT,AGG/FEL ASSAULT - FAMILY - OTHER WEAPON
 13A,Crimes against person,Assault Offenses,13A Aggravated Assault,AGGRAVATED ASSAULT,AGG/FEL ASSAULT - FAMILY - SRONG ARM
@@ -213,51 +213,51 @@ NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type
 210,Crimes against property,Extortion/Blackmail,210 Extortion/Blackmail,EXTORTION,EXTORTION (OTHER)
 210,Crimes against property,Extortion/Blackmail,210 Extortion/Blackmail,EXTORTION,THREAT OF INFORMING OF VIOLATION
 210,Crimes against property,Extortion/Blackmail,210 Extortion/Blackmail,EXTORTION,THREAT TO ACCUSE PERSON OF CRIME
-220,Crimes against property,Burglary/Breaking & Entering,22A Domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - BURGLARY - FORCED ENTRY - RESIDENCE
-220,Crimes against property,Burglary/Breaking & Entering,22A Domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - ENTRY WITHOUT FORCE - RESIDENCE
-220,Crimes against property,Burglary/Breaking & Entering,22A Domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - FORCED ENTRY -  RESIDENCE
-220,Crimes against property,Burglary/Breaking & Entering,22A Domestic Burglary/Breaking & Entering,DANGEROUS DRUGS,BURGLARY - FORCED ENTRY -  RESIDENCE
-220,Crimes against property,Burglary/Breaking & Entering,22A Domestic Burglary/Breaking & Entering,STOLEN PROPERTY,BURGLARY - FORCED ENTRY -  RESIDENCE
-220,Crimes against property,Burglary/Breaking & Entering,22A Domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - NO FORCED ENTRY - RESIDENCE
-220,Crimes against property,Burglary/Breaking & Entering,22B Non-domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - BANKING TYPE INSTITUTION
-220,Crimes against property,Burglary/Breaking & Entering,22B Non-domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - BURGLARY - FORCED ENTRY - NON-RESIDENCE
-220,Crimes against property,Burglary/Breaking & Entering,22B Non-domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - ENTRY WITHOUT FORCE - NON-RESIDENCE
-220,Crimes against property,Burglary/Breaking & Entering,22B Non-domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - FORCED ENTRY -  NON-RESIDENCE
-220,Crimes against property,Burglary/Breaking & Entering,22B Non-domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - FORCED ENTRY - UNOCCUPIED BUILDING
-220,Crimes against property,Burglary/Breaking & Entering,22B Non-domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - NO FORCED ENTRY - NON-RESIDENCE
-220,Crimes against property,Burglary/Breaking & Entering,22B Non-domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY - UNOCCUPIED BUILDING OR OTHER STRUCTURE
-220,Crimes against property,Burglary/Breaking & Entering,22B Non-domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY -OTHER FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22B Non-domestic Burglary/Breaking & Entering,BURGLARY,BURGLARY -SAFE/VAULT
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,OTHER BURGLARY,BURGLARY - ENTERING WITHOUT PERMISSION
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,BURGLARY,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DAMAGE TO PROPERTY,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DANGEROUS DRUGS,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,FRAUD,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,MISCELLANEOUS,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,OBSTRUCTING THE POLICE,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,STOLEN VEHICLE,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,WEAPONS OFFENSES,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,BURGLARY,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DAMAGE TO PROPERTY,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DANGEROUS DRUGS,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,FAMILY OFFENSE,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,LARCENY,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,MISCELLANEOUS,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,OBSTRUCTING THE POLICE,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,OTHER,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,STOLEN PROPERTY,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,STOLEN VEHICLE,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,WEAPONS OFFENSES,BURGLARY - FORCED ENTRY
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,BURGLARY,ENTRY WITHOUT PERMISSION (NO INTENT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DAMAGE TO PROPERTY,ENTRY WITHOUT PERMISSION (NO INTENT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DANGEROUS DRUGS,ENTRY WITHOUT PERMISSION (NO INTENT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,FRAUD,ENTRY WITHOUT PERMISSION (NO INTENT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,LARCENY,ENTRY WITHOUT PERMISSION (NO INTENT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,MISCELLANEOUS,ENTRY WITHOUT PERMISSION (NO INTENT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,STOLEN PROPERTY,ENTRY WITHOUT PERMISSION (NO INTENT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,WEAPONS OFFENSES,ENTRY WITHOUT PERMISSION (NO INTENT)
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,BURGLARY,POSSESSION OF BURGLARY TOOLS
-220,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,OTHER BURGLARY,POSSESSION OF BURGLARY TOOLS
+22A,Crimes against property,Burglary/Breaking & Entering,22A Residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - BURGLARY - FORCED ENTRY - RESIDENCE
+22A,Crimes against property,Burglary/Breaking & Entering,22A Residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - ENTRY WITHOUT FORCE - RESIDENCE
+22A,Crimes against property,Burglary/Breaking & Entering,22A Residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - FORCED ENTRY -  RESIDENCE
+22A,Crimes against property,Burglary/Breaking & Entering,22A Residential Burglary/Breaking & Entering,DANGEROUS DRUGS,BURGLARY - FORCED ENTRY -  RESIDENCE
+22A,Crimes against property,Burglary/Breaking & Entering,22A Residential Burglary/Breaking & Entering,STOLEN PROPERTY,BURGLARY - FORCED ENTRY -  RESIDENCE
+22A,Crimes against property,Burglary/Breaking & Entering,22A Residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - NO FORCED ENTRY - RESIDENCE
+22B,Crimes against property,Burglary/Breaking & Entering,22B Non-residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - BANKING TYPE INSTITUTION
+22B,Crimes against property,Burglary/Breaking & Entering,22B Non-residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - BURGLARY - FORCED ENTRY - NON-RESIDENCE
+22B,Crimes against property,Burglary/Breaking & Entering,22B Non-residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - ENTRY WITHOUT FORCE - NON-RESIDENCE
+22B,Crimes against property,Burglary/Breaking & Entering,22B Non-residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - FORCED ENTRY -  NON-RESIDENCE
+22B,Crimes against property,Burglary/Breaking & Entering,22B Non-residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - FORCED ENTRY - UNOCCUPIED BUILDING
+22B,Crimes against property,Burglary/Breaking & Entering,22B Non-residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - NO FORCED ENTRY - NON-RESIDENCE
+22B,Crimes against property,Burglary/Breaking & Entering,22B Non-residential Burglary/Breaking & Entering,BURGLARY,BURGLARY - UNOCCUPIED BUILDING OR OTHER STRUCTURE
+22B,Crimes against property,Burglary/Breaking & Entering,22B Non-residential Burglary/Breaking & Entering,BURGLARY,BURGLARY -OTHER FORCED ENTRY
+22B,Crimes against property,Burglary/Breaking & Entering,22B Non-residential Burglary/Breaking & Entering,BURGLARY,BURGLARY -SAFE/VAULT
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,OTHER BURGLARY,BURGLARY - ENTERING WITHOUT PERMISSION
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,BURGLARY,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DAMAGE TO PROPERTY,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DANGEROUS DRUGS,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,FRAUD,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,MISCELLANEOUS,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,OBSTRUCTING THE POLICE,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,STOLEN VEHICLE,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,WEAPONS OFFENSES,BURGLARY - ENTRY WITHOUT FORCE (INTENT TO COMMIT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,BURGLARY,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DAMAGE TO PROPERTY,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DANGEROUS DRUGS,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,FAMILY OFFENSE,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,LARCENY,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,MISCELLANEOUS,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,OBSTRUCTING THE POLICE,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,OTHER,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,STOLEN PROPERTY,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,STOLEN VEHICLE,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,WEAPONS OFFENSES,BURGLARY - FORCED ENTRY
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,BURGLARY,ENTRY WITHOUT PERMISSION (NO INTENT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DAMAGE TO PROPERTY,ENTRY WITHOUT PERMISSION (NO INTENT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,DANGEROUS DRUGS,ENTRY WITHOUT PERMISSION (NO INTENT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,FRAUD,ENTRY WITHOUT PERMISSION (NO INTENT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,LARCENY,ENTRY WITHOUT PERMISSION (NO INTENT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,MISCELLANEOUS,ENTRY WITHOUT PERMISSION (NO INTENT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,STOLEN PROPERTY,ENTRY WITHOUT PERMISSION (NO INTENT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,WEAPONS OFFENSES,ENTRY WITHOUT PERMISSION (NO INTENT)
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,BURGLARY,POSSESSION OF BURGLARY TOOLS
+22U,Crimes against property,Burglary/Breaking & Entering,22U Other Burglary/Breaking & Entering,OTHER BURGLARY,POSSESSION OF BURGLARY TOOLS
 23A,Crimes against property,Larceny/Theft Offenses,23A Pocket-picking,LARCENY,LARCENY - POCKET PICKING
 23A,Crimes against property,Larceny/Theft Offenses,23A Pocket-picking,LARCENY,LARCENY - POCKETPICKING
 23A,Crimes against property,Larceny/Theft Offenses,23A Pocket-picking,STOLEN VEHICLE,LARCENY - POCKETPICKING

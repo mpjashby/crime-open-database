@@ -1,0 +1,160 @@
+Location Description,location_type,location_category
+CONSTRUCTION SITE,construction,commercial
+FACTORY,factory/warehouse,commercial
+FACTORY/MANUFACTURING BUILDING,factory/warehouse,commercial
+WAREHOUSE,factory/warehouse,commercial
+BANK,finance,commercial
+CREDIT UNION,finance,commercial
+CURRENCY EXCHANGE,finance,commercial
+SAVINGS AND LOAN,finance,commercial
+COMMERCIAL / BUSINESS OFFICE,office,commercial
+OFFICE,office,commercial
+ANIMAL HOSPITAL,other commercial,commercial
+ATHLETIC CLUB,other commercial,commercial
+GARAGE,other commercial,commercial
+GARAGE/AUTO REPAIR,other commercial,commercial
+DAY CARE CENTER,child care,education
+COLLEGE/UNIVERSITY GROUNDS,college,education
+PUBLIC HIGH SCHOOL,school,education
+SCHOOL YARD,school,education
+"SCHOOL, PRIVATE, BUILDING",school,education
+"SCHOOL, PRIVATE, GROUNDS",school,education
+"SCHOOL, PUBLIC, BUILDING",school,education
+"SCHOOL, PUBLIC, GROUNDS",school,education
+FEDERAL BUILDING,government,government
+FIRE STATION,government,government
+GOVERNMENT BUILDING,government,government
+GOVERNMENT BUILDING/PROPERTY,government,government
+JAIL / LOCK-UP FACILITY,government,government
+LIBRARY,government,government
+POLICE FACILITY/VEH PARKING LOT,government,government
+DRUG STORE,healthcare,healthcare
+HOSPITAL,healthcare,healthcare
+HOSPITAL BUILDING/GROUNDS,healthcare,healthcare
+MEDICAL/DENTAL OFFICE,healthcare,healthcare
+NURSING HOME,healthcare,healthcare
+NURSING HOME/RETIREMENT HOME,healthcare,healthcare
+HOTEL,hotel,hotel
+HOTEL/MOTEL,hotel,hotel
+MOTEL,hotel,hotel
+ROOMING HOUSE,hotel,hotel
+BAR OR TAVERN,bar/club,leisure
+CLUB,bar/club,leisure
+TAVERN,bar/club,leisure
+TAVERN/LIQUOR STORE,bar/club,leisure
+BANQUET HALL,entertainment,leisure
+BOWLING ALLEY,entertainment,leisure
+MOVIE HOUSE/THEATER,entertainment,leisure
+POOL ROOM,entertainment,leisure
+POOLROOM,entertainment,leisure
+SPORTS ARENA/STADIUM,entertainment,leisure
+RESTAURANT,restaurant,leisure
+CEMETARY,other open space,open space
+CHA GROUNDS,green space,open space
+CHA PARKING LOT,vehicle parking,open space
+CHA PARKING LOT/GROUNDS,vehicle parking,open space
+CHA PLAY LOT,green space,open space
+FOREST PRESERVE,green space,open space
+LAGOON,green space,open space
+LAKE,green space,open space
+LAKEFRONT/WATERFRONT/RIVERBANK,green space,open space
+PARK PROPERTY,green space,open space
+PARKING LOT,vehicle parking,open space
+PARKING LOT/GARAGE(NON.RESID.),vehicle parking,open space
+RIVER,green space,open space
+RIVER BANK,green space,open space
+VACANT LOT,other open space,open space
+VACANT LOT/LAND,other open space,open space
+YARD,other open space,open space
+OTHER,other,other
+SEWER,other,other
+APARTMENT,residence,residence
+BASEMENT,residence,residence
+CHA APARTMENT,residence,residence
+CHA HALLWAY,residence,residence
+CHA HALLWAY/STAIRWELL/ELEVATOR,residence,residence
+CHA STAIRWELL,residence,residence
+COLLEGE/UNIVERSITY RESIDENCE HALL,residence,residence
+DRIVEWAY,residence,residence
+DRIVEWAY - RESIDENTIAL,residence,residence
+GANGWAY,residence,residence
+HALLWAY,residence,residence
+HOUSE,residence,residence
+LAUNDRY ROOM,residence,residence
+PORCH,residence,residence
+RESIDENCE,residence,residence
+RESIDENCE PORCH/HALLWAY,residence,residence
+RESIDENCE-GARAGE,residence,residence
+RESIDENTIAL YARD (FRONT/BACK),residence,residence
+STAIRWELL,residence,residence
+VESTIBULE,residence,residence
+GAS STATION,gas station,retail
+GAS STATION DRIVE/PROP.,gas station,retail
+CAR WASH,other retail,retail
+CLEANERS/LAUNDROMAT,other retail,retail
+APPLIANCE STORE,other retail,retail
+AUTO / BOAT / RV DEALERSHIP,auto dealer,retail
+BARBER SHOP/BEAUTY SALON,other retail,retail
+BARBERSHOP,other retail,retail
+CLEANING STORE,other retail,retail
+CONVENIENCE STORE,convenience store,retail
+DEPARTMENT STORE,other retail,retail
+GROCERY FOOD STORE,supermarket,retail
+LIQUOR STORE,convenience store,retail
+NEWSSTAND,convenience store,retail
+PAWN SHOP,other retail,retail
+RETAIL STORE,other retail,retail
+SMALL RETAIL STORE,other retail,retail
+ALLEY,street,street
+BRIDGE,street,street
+EXPRESSWAY EMBANKMENT,street,street
+HIGHWAY/EXPRESSWAY,street,street
+SIDEWALK,street,street
+STREET,street,street
+AIRCRAFT,airport,transportation
+AIRPORT BUILDING NON-TERMINAL - NON-SECURE AREA,airport,transportation
+AIRPORT BUILDING NON-TERMINAL - SECURE AREA,airport,transportation
+AIRPORT EXTERIOR - NON-SECURE AREA,airport,transportation
+AIRPORT EXTERIOR - SECURE AREA,airport,transportation
+AIRPORT PARKING LOT,airport,transportation
+AIRPORT TERMINAL LOWER LEVEL - NON-SECURE AREA,airport,transportation
+AIRPORT TERMINAL LOWER LEVEL - SECURE AREA,airport,transportation
+AIRPORT TERMINAL MEZZANINE - NON-SECURE AREA,airport,transportation
+AIRPORT TERMINAL UPPER LEVEL - NON-SECURE AREA,airport,transportation
+AIRPORT TERMINAL UPPER LEVEL - SECURE AREA,airport,transportation
+AIRPORT TRANSPORTATION SYSTEM (ATS),airport,transportation
+AIRPORT VENDING ESTABLISHMENT,airport,transportation
+AIRPORT/AIRCRAFT,airport,transportation
+CTA BUS,bus,transportation
+CTA BUS STOP,bus,transportation
+CTA GARAGE / OTHER PROPERTY,other transportation,transportation
+CTA PROPERTY,other transportation,transportation
+OTHER COMMERCIAL TRANSPORTATION,other transportation,transportation
+"CTA ""L"" PLATFORM",rapid transit,transportation
+"CTA ""L"" TRAIN",rapid transit,transportation
+CTA PLATFORM,rapid transit,transportation
+CTA STATION,rapid transit,transportation
+CTA TRACKS - RIGHT OF WAY,rapid transit,transportation
+CTA TRAIN,rapid transit,transportation
+OTHER RAILROAD PROP / TRAIN DEPOT,rapid transit,transportation
+RAILROAD PROPERTY,rapid transit,transportation
+AUTO,private vehicle,vehicle
+BOAT/WATERCRAFT,private vehicle,vehicle
+DELIVERY TRUCK,commercial vehicle,vehicle
+TAXI CAB,commercial vehicle,vehicle
+TAXICAB,commercial vehicle,vehicle
+TRAILER,commercial vehicle,vehicle
+TRUCK,commercial vehicle,vehicle
+VEHICLE - DELIVERY TRUCK,commercial vehicle,vehicle
+VEHICLE - OTHER RIDE SERVICE,commercial vehicle,vehicle
+"VEHICLE - OTHER RIDE SHARE SERVICE (E.G., UBER, LYFT)",commercial vehicle,vehicle
+VEHICLE NON-COMMERCIAL,private vehicle,vehicle
+VEHICLE-COMMERCIAL,commercial vehicle,vehicle
+ABANDONED BUILDING,abandoned,other
+ATM (AUTOMATIC TELLER MACHINE),finance,commercial
+CHURCH,religious,other
+CHURCH PROPERTY,religious,other
+CHURCH/SYNAGOGUE/PLACE OF WORSHIP,religious,other
+COIN OPERATED MACHINE,other,other
+DUMPSTER,other,other
+ELEVATOR,other,other
