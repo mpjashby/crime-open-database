@@ -1,0 +1,376 @@
+---
+title: "City crime data summary"
+output:
+  html_document:
+    code_folding: hide
+    df_print: paged
+  html_notebook:
+    code_folding: hide
+  pdf_document: default
+---
+
+```{r include=FALSE}
+# load libraries (these need to be loaded again because knitr doesn't recognise
+# libraries from the global environment)
+library('tidyverse')
+library("lubridate")
+library('sf') # handle spatial data
+
+# for the same reason, load necessary reference objects
+cities <- tribble(
+  ~name, ~fips, ~prefix,
+  "Chicago",        "17", "chi",
+  "Detroit",        "26", "dtt",
+  "Fort Worth",     "48", "ftw",
+  "Los Angeles",    "06", "lax",
+  "Louisville",     "21", "lou",
+  "New York",       "36", "nyc",
+  "San Francisco",  "06", "sfo",
+  "Seattle",        "53", "sea",
+  "Tucson",         "04", "tus",
+  "Virginia Beach", "51", "vib"
+)
+```
+
+
+```{r include=FALSE}
+this_city <- "Virginia Beach"
+data <- read_rds(paste0("../temp_data/final_", 
+                        str_replace_all(str_to_lower(this_city), "\\s", "_"), 
+                        "_data.Rds"))
+```
+
+The data for `r this_city` included in the Crime Open Database (CODE)
+includes records for `r format(nrow(data), big.mark = ",")` offences between 
+`r min(data$date_year)` and `r max(data$date_year)`.
+
+
+# Excluded cases
+
+```{r include=FALSE}
+excluded_cases <- data %>% 
+  filter(is.na(latitude) | is.na(longitude) | in_city == FALSE | 
+           offense_group == "excluded cases") %>% 
+  nrow()
+```
+
+Cases are excluded from the final dataset for various reasons. Overall 
+`r format(excluded_cases, big.mark = ",")` 
+(`r format((excluded_cases/nrow(data)) * 100, digits = 1, big.mark = ",")`% of 
+the total) cases have been excluded.
+
+```{r echo=FALSE}
+data %>% mutate(
+  Total = TRUE,
+  `Incomplete co-ordinates` = 
+    ifelse(is.na(latitude) | is.na(longitude), TRUE, FALSE),
+  `Location outside city` = 
+    ifelse(`Incomplete co-ordinates` == FALSE & in_city == FALSE, TRUE, FALSE),
+  `Non-criminal matters` = 
+    ifelse(`Incomplete co-ordinates` == FALSE & `Location outside city` == FALSE 
+           & offense_code == "99Z", TRUE, FALSE),
+  `Non-Reportable Crimes` = 
+    ifelse(`Incomplete co-ordinates` == FALSE & `Location outside city` == FALSE 
+           & offense_code == "99Y", TRUE, FALSE),
+  `Non-Categorisable Offenses` = 
+    ifelse(`Incomplete co-ordinates` == FALSE & `Location outside city` == FALSE 
+           & offense_code == "99X", TRUE, FALSE)
+) %>% 
+  select(Total, `Incomplete co-ordinates`, `Location outside city`, 
+         `Non-criminal matters`, `Non-Reportable Crimes`, 
+         `Non-Categorisable Offenses`) %>% 
+  summarise_all(sum) %>%
+  gather(key = "Reason", value = "Cases") %>%
+  mutate(Cases = format(Cases, big.mark = ","))
+```
+
+```{r include=FALSE}
+## 
+## THIS LINE FILTERS THE DATA TO REMOVE EXCLUDED CASES
+## If any changes are made above, this line must be re-run before running any
+## code below
+## 
+data <- data %>% 
+  filter(
+    !is.na(latitude) & 
+      !is.na(longitude) & 
+      in_city == TRUE & 
+      offense_group != "excluded cases"
+  )
+```
+
+**This leaves a total of `r format(nrow(data), big.mark = ",")`
+geniune cases included in the data.**
+
+
+
+# Temporal distribution
+
+```{r include=FALSE}
+annual_counts <- data %>% 
+  select(date_year) %>% 
+  group_by(date_year) %>% 
+  summarise(`Cases` = n()) %>% 
+  rename(Year = date_year)
+```
+
+
+
+```{r include=FALSE}
+# The mean number of crimes per year between `r min(data$date_year)` and `r max(data$date_year)` was `r format(mean(annual_counts$Cases), digits = 0, big.mark = ",")`, with annual counts:
+# `r mutate(annual_counts, Cases = format(Cases, big.mark = ","))`
+daily_counts <- data %>% 
+  mutate(date = as_date(ymd_hm(date_single))) %>% 
+  group_by(date) %>% 
+  summarise(n = n())
+```
+
+The daily count of crimes varies between `r min(daily_counts$n)` and
+`r max(daily_counts$n)` offenses per day, with a median of 
+`r median(daily_counts$n)`:
+
+```{r echo=FALSE}
+ggplot(daily_counts, aes(x = date, y = n)) +
+  geom_line(size = 0.25) +
+  xlim(min(data$date_single), NA) +
+  ylim(0, NA) +
+  labs(title = "Crimes per day", subtitle = "all offences", x = "Date", 
+       y = "Offences per day") +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+```
+
+There is seasonal variation in overall crime:
+
+```{r echo=FALSE}
+data %>% 
+  mutate(
+    week = week(date_single),
+    week = ifelse(week > 52, 1, week)
+  ) %>% 
+  group_by(date_year, week) %>% 
+  summarise(n = n()) %>% 
+  ungroup() %>% 
+  ggplot(aes(x = week, y = n, group = week)) +
+  ggthemes::geom_tufteboxplot(median.type = "line", hoffset = 0, size = 0.67) +
+  ylim(0, NA) +
+  labs(title = "Crimes per week", subtitle = "all offences", 
+       x = "Week of the year", y = "Offenses per week") +
+  # geom_boxplot(outlier.size = 1, outlier.alpha = 0.5) + 
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+  
+```
+
+
+There is variation in the frequency of crime across weekdays:
+
+```{r echo=FALSE}
+daily_counts %>% 
+  mutate(weekday = weekdays(date, abbreviate = TRUE)) %>% 
+  ggplot(aes(x = weekday, y = n)) +
+  geom_violin(draw_quantiles = c(0.50)) +
+  ylim(0, NA) +
+  labs(title = "Crimes per weekday", subtitle = "all offences", x = "Weekday", 
+       y = "Offenses per day") +
+  scale_x_discrete(limits = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank()
+  )
+```
+
+and hours of the day:
+
+```{r echo=FALSE}
+data %>% 
+  mutate(
+    date_time = ymd_hm(date_single),
+    date = date(date_time),
+    hour = hour(date_time)
+  ) %>% 
+  group_by(date, hour) %>% 
+  summarise(n = n()) %>% 
+  ungroup() %>% 
+  select(-date) %>% 
+  # slice(1:200) %>% 
+  ggplot(aes(x = hour, y = n, group = hour)) +
+  ggthemes::geom_tufteboxplot(median.type = "line", hoffset = 0, size = 0.67) +
+  # geom_boxplot(outlier.size = 1, outlier.alpha = 0.5) +
+  # ylim(0, 40) +
+  ylim(0, NA) +
+  labs(title = "Crimes per hour of the day", subtitle = "all offences", 
+       x = "Hour", y = "Offenses per hour") +
+  # geom_violin(draw_quantiles = c(0.50))
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+```
+
+
+
+# Spatial distribution
+
+```{r fig.height=9, message=FALSE, warning=FALSE, paged.print=FALSE, results="hide"}
+city_outline <- st_read(paste0("../spatial_data/cities/tl_2016_", 
+                               cities$fips[cities$name == this_city], 
+                               "_place.shp"), quiet = TRUE) %>% 
+  filter(NAME == this_city)
+city_bbox <- st_bbox(city_outline)
+
+ggplot() +
+  geom_sf(data = tigris::states(year = 2016, class = "sf"), 
+          fill = NA, colour = "#999999") +
+  geom_hex(
+    mapping = aes(x = longitude, y = latitude),
+    data = filter(data, !is.na(latitude) & !is.na(longitude)),
+    bins = 50
+  ) +
+  geom_sf(
+    data = city_outline, fill = NA
+  ) +
+  lims(x = c(city_bbox$xmin, city_bbox$xmax), 
+       y = c(city_bbox$ymin, city_bbox$ymax)) +
+  scale_fill_continuous(low = "#FFFFFF", high = "#000000", 
+                        label = scales::comma) +
+  labs(title = "Spatial distribution of crimes", subtitle = "all offences", 
+       x = "", y = "") +
+  theme_minimal() +
+  theme(
+    panel.grid.major = element_line(colour = "#CCCCCC")
+  )
+```
+
+
+# Crime types
+
+Offenses in the CODE data are split into three categories: crimes against people,
+property and society. These categories are then split into smaller categories
+for different offense types.
+
+## Crimes against people
+
+```{r echo=FALSE}
+data %>% 
+  filter(!is.na(latitude) & !is.na(!longitude) & in_city == TRUE & 
+           offense_against == "persons") %>% 
+  group_by(offense_group, offense_code, offense_type) %>% 
+  summarise(Cases = n()) %>% 
+  arrange(offense_code) %>% 
+  ungroup() %>% 
+  select(-offense_code) %>% 
+  mutate(
+    offense_group = ifelse(nchar(offense_group) > 40, 
+                           paste(str_sub(offense_group, 0, 39), "…"), 
+                           offense_group),
+    offense_type = ifelse(nchar(offense_type) > 40, 
+                          paste(str_sub(offense_type, 0, 39), "…"), 
+                          offense_type)
+  ) %>% 
+  mutate(Cases = format(Cases, big.mark = ",")) %>% 
+  rename(Group = offense_group, Type = offense_type)
+```
+
+## Crimes against property
+
+```{r echo=FALSE}
+data %>% 
+  filter(!is.na(latitude) & !is.na(!longitude) & in_city == TRUE & 
+           offense_against == "property") %>% 
+  group_by(offense_group, offense_code, offense_type) %>% 
+  summarise(Cases = n()) %>% 
+  arrange(offense_code) %>% 
+  ungroup() %>% 
+  select(-offense_code) %>% 
+  mutate(
+    offense_group = ifelse(nchar(offense_group) > 40, 
+                           paste(str_sub(offense_group, 0, 39), "…"), 
+                           offense_group),
+    offense_type = ifelse(nchar(offense_type) > 40, 
+                          paste(str_sub(offense_type, 0, 39), "…"), 
+                          offense_type)
+  ) %>% 
+  mutate(Cases = format(Cases, big.mark = ",")) %>% 
+  rename(Group = offense_group, Type = offense_type)
+```
+
+## Crimes against society
+
+```{r echo=FALSE}
+data %>% 
+  filter(!is.na(latitude) & !is.na(!longitude) & in_city == TRUE & 
+           offense_against == "society") %>% 
+  group_by(offense_group, offense_code, offense_type) %>% 
+  summarise(Cases = n()) %>% 
+  arrange(offense_code) %>% 
+  ungroup() %>% 
+  select(-offense_code) %>% 
+  mutate(
+    offense_group = ifelse(nchar(offense_group) > 40, 
+                           paste(str_sub(offense_group, 0, 39), "…"), 
+                           offense_group),
+    offense_type = ifelse(nchar(offense_type) > 40, 
+                          paste(str_sub(offense_type, 0, 39), "…"), 
+                          offense_type)
+  ) %>% 
+  mutate(Cases = format(Cases, big.mark = ",")) %>% 
+  rename(Group = offense_group, Type = offense_type)
+```
+
+## Crime types missing from the data
+
+```{r include=FALSE}
+nibrs_categories <- read_csv("../crime_categories/NIBRS categories.csv", 
+         col_types = cols(.default = col_character())) %>% 
+  filter(
+    NIBRS_Crime_Against != "Excluded cases" &
+    !NIBRS_Offense_Code %in% c("120", "220")
+  ) %>% 
+  select(-NIBRS_Offense_Code_1)
+
+missing_types <- setdiff(
+  nibrs_categories %>% 
+    filter(str_sub(NIBRS_Offense_Type, 3, 3) != "U") %>% 
+    { unique(str_to_title(.$NIBRS_Offense_Type)) },
+  unique(str_to_title(paste(data$offense_code, data$offense_type)))
+)
+```
+
+```{r results="asis"}
+if (length(missing_types) > 0) {
+  cat("Some types of crime are missing from the", this_city, "data:\n\n")
+  cat(paste("  *", missing_types), sep = "\n")
+}
+```
+
+```{r results="asis"}
+other_cats <- data %>% 
+  filter(str_sub(offense_code, 3, 3) == "U") %>% 
+  mutate(Type = paste(offense_code, offense_type)) %>% 
+  group_by(Type) %>% 
+  summarise(Cases = n()) %>% 
+  mutate(Cases = format(Cases, big.mark = ","))
+
+if (nrow(other_cats) > 0) {
+  cat("Due to limitations in the matching process between crime types in the",
+      "original data and the CODE crime categories, some crimes have been", 
+      "coded to an 'other' category within the relevent higher-level category.", 
+      "Specifically, crimes have been coded to the following 'other'", 
+      "categories:", "\n\n")
+}
+```
+
+```{r echo=FALSE}
+if (nrow(other_cats) > 0) {
+  other_cats
+}
+```
+

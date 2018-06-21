@@ -1,0 +1,47 @@
+Location Description,location_type,location_category
+Construction site,construction,commercial
+Industrial Site,factory/warehouse,commercial
+"Bank, Savings & Loan",finance,commercial
+"Commercial, office building",office,commercial
+Dock/Wharf/Freight/Modal Terminal,other commercial,commercial
+Farm Facility,other commercial,commercial
+Rental storage facility,storage,commercial
+Daycare Facility,child care,education
+School-College/University,college,education
+School-Elementary/Secondary,school,education
+"School, college",school,education
+"Government, public building",government,government
+"Jail, prison",government,government
+Military Installation,government,government
+"Drug store, doctors office, hospital",healthcare,healthcare
+"Hotel, motel, etc",hotel,hotel
+"Bar, nightclub",bar/club,leisure
+Amusement Park,entertainment,leisure
+Arena/Stadium/Fairgrounds/Coliseum,entertainment,leisure
+Gambling Facility/Casino/Race Track,entertainment,leisure
+Restaurant,restaurant,leisure
+Rest Area,other open space,open space
+Camp/Campground,green space,open space
+"Field, woods",green space,open space
+"Lake, waterway",green space,open space
+Park/Playground,green space,open space
+"Parking lot, garage",vehicle parking,open space
+Tribal Lands,other open space,open space
+Cyberspace,other,other
+"Other, unknown",other,other
+"Residence, home",residence,residence
+Shelter-Mission/Homeless,residence,residence
+"Service, gas station",gas station,retail
+Shopping Mall,mall,retail
+Auto Dealership New/Used,auto dealer,retail
+Convenience store,convenience store,retail
+"Department, discount store",other retail,retail
+"Grocery, supermarket",supermarket,retail
+Liquor store,convenience store,retail
+Speciality store,other retail,retail
+"Highway, street, roadway, alley",street,street
+"Airplane, bus, train terminal",other transportation,transportation
+Abandoned/Condemned Structure,abandoned,other
+ATM separate from Bank,finance,commercial
+"Church, synagogue, temple",religious,other
+Community Center,other,other

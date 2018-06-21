@@ -24,7 +24,6 @@ geocoded data with reasonable crime categories since at least January 2013
  * Louisville
  * New York City
  * San Francisco
- * Seattle
  * Tucson
  * Virginia Beach
 
@@ -65,9 +64,9 @@ read_csv('../original_data/Chicago 2001 to date.csv') %>%
       "APARTMENT", "RESIDENCE-GARAGE", "CHA APARTMENT", 
       "RESIDENCE PORCH/HALLWAY", "NURSING HOME/RETIREMENT HOME", 
       "COLLEGE/UNIVERSITY RESIDENCE HALL") ~ 
-      "22A Domestic Burglary/Breaking & Entering",
+      "22A Residential Burglary/Breaking & Entering",
     NIBRS_Offense_Code == "220" ~ 
-      "22B Non-domestic Burglary/Breaking & Entering",
+      "22B Non-residential Burglary/Breaking & Entering",
     NIBRS_Offense_Code == "120" & `Location Description` %in% 
       c("SMALL RETAIL STORE", "GAS STATION", "RESTAURANT", 
         "GROCERY FOOD STORE", "BANK", "CONVENIENCE STORE", "DEPARTMENT STORE", 
@@ -84,18 +83,24 @@ read_csv('../original_data/Chicago 2001 to date.csv') %>%
     NIBRS_Offense_Code == "120" & `Location Description` == "OTHER" ~ 
       "12U Other Robbery",
     NIBRS_Offense_Code == "120" ~ "12A Personal Robbery",
-    TRUE ~ NIBRS_Offense_Code
+    TRUE ~ NIBRS_Offense_Type
   ),
   # where necessary, update the NIBRS code to match the new type
   NIBRS_Offense_Code = case_when(
-    NIBRS_Offense_Type == "22A Domestic Burglary/Breaking & Entering" ~ "22A",
-    NIBRS_Offense_Type == "22B Non-domestic Burglary/Breaking & Entering" ~ 
+    NIBRS_Offense_Type == "22A Residential Burglary/Breaking & Entering" ~ "22A",
+    NIBRS_Offense_Type == "22B Non-residential Burglary/Breaking & Entering" ~ 
       "22B",
     NIBRS_Offense_Type == "12A Personal Robbery" ~ "12A",
     NIBRS_Offense_Type == "12B Commercial Robbery" ~ "12B",
     NIBRS_Offense_Type == "12U Other Robbery" ~ "12U",
     TRUE ~ NIBRS_Offense_Code
   )) %>% 
+  # identify location types
+  left_join(
+    read_csv("../crime_categories/location_types_chicago.csv", 
+             col_types = cols(.default = col_character())),
+    by = "Location Description"
+  ) %>% 
   # save data
   save_city_data("Chicago") %>% 
   glimpse()
@@ -125,6 +130,8 @@ later file. There are, however, some differences in the categorisations:
     and 26E Wire Fraud together with an even larger decreases in 26A 
     False Pretenses/Swindle/Confidence Game and 270 Embezzlement.
   * There is a large increase in 90F Family Offenses, Nonviolent offences.
+
+Detroit data also do not include a location-type field.
 
 ```{r}
 list(
@@ -217,9 +224,9 @@ read_csv('../original_data/Fort Worth time period to be checked.csv',
   left_join(nibrs_categories, by = "Offense") %>%
   mutate(NIBRS_Offense_Type = case_when(
     NIBRS_Offense_Code == "220" & `Location Description` == "Residence, home" ~ 
-      "22A Domestic Burglary/Breaking & Entering",
+      "22A Residential Burglary/Breaking & Entering",
     NIBRS_Offense_Code == "220" ~ 
-      "22B Non-domestic Burglary/Breaking & Entering",
+      "22B Non-residential Burglary/Breaking & Entering",
     NIBRS_Offense_Code == "120" & `Location Description` %in% c(
       "Highway, street, roadway, alley", "Parking lot, garage", 
       "Residence, home", "Field, woods", "Park/Playground", 
@@ -233,14 +240,20 @@ read_csv('../original_data/Fort Worth time period to be checked.csv',
   ),
   # where necessary, update the NIBRS code to match the new type
   NIBRS_Offense_Code = case_when(
-    NIBRS_Offense_Type == "22A Domestic Burglary/Breaking & Entering" ~ "22A",
-    NIBRS_Offense_Type == "22B Non-domestic Burglary/Breaking & Entering" ~ 
+    NIBRS_Offense_Type == "22A Residential Burglary/Breaking & Entering" ~ "22A",
+    NIBRS_Offense_Type == "22B Non-residential Burglary/Breaking & Entering" ~ 
       "22B",
     NIBRS_Offense_Type == "12A Personal Robbery" ~ "12A",
     NIBRS_Offense_Type == "12B Commercial Robbery" ~ "12B",
     NIBRS_Offense_Type == "12U Other Robbery" ~ "12U",
     TRUE ~ NIBRS_Offense_Code
   )) %>% 
+  # identify location types
+  left_join(
+    read_csv("../crime_categories/location_types_fort_worth.csv", 
+             col_types = cols(.default = col_character())),
+    by = "Location Description"
+  ) %>% 
   save_city_data("Fort Worth") %>% 
   glimpse()
 ```
@@ -339,9 +352,9 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
           "NURSING/CONVALESCENT/RETIREMENT HOME", 
           "FRAT HOUSE/SORORITY/DORMITORY", "PROJECT/TENEMENT/PUBLIC HOUSING", 
           "GROUP HOME", "PORCH, RESIDENTIAL", "FOSTER HOME BOYS OR GIRLS*") ~ 
-        "22A Domestic Burglary/Breaking & Entering",
+        "22A Residential Burglary/Breaking & Entering",
       `Crime Code Description` %in% c('BURGLARY', 'BURGLARY, ATTEMPTED') ~ 
-        "22B Non-domestic Burglary/Breaking & Entering",
+        "22B Non-residential Burglary/Breaking & Entering",
 
       # Counterfeiting/Forgery
       `Crime Code Description` %in% c('COUNTERFEIT', 
@@ -616,14 +629,20 @@ read_csv('../original_data/Los Angeles 2010 to date.csv',
   # View()
   # where necessary, update the NIBRS code to match the new type
   mutate(NIBRS_Offense_Code = case_when(
-    NIBRS_Offense_Type == "22A Domestic Burglary/Breaking & Entering" ~ "22A",
-    NIBRS_Offense_Type == "22B Non-domestic Burglary/Breaking & Entering" ~
+    NIBRS_Offense_Type == "22A Residential Burglary/Breaking & Entering" ~ "22A",
+    NIBRS_Offense_Type == "22B Non-residential Burglary/Breaking & Entering" ~
       "22B",
     NIBRS_Offense_Type == "12A Personal Robbery" ~ "12A",
     NIBRS_Offense_Type == "12B Commercial Robbery" ~ "12B",
     NIBRS_Offense_Type == "12U Other Robbery" ~ "12U",
     TRUE ~ NIBRS_Offense_Code
   )) %>%
+  # identify location types
+  left_join(
+    read_csv("../crime_categories/location_types_los_angeles.csv", 
+             col_types = cols(.default = col_character())),
+    by = "Premise Description"
+  ) %>% 
   save_city_data("Los Angeles") %>%
   glimpse()
 ```
@@ -714,9 +733,9 @@ dir(path = "../original_data", pattern = 'Louisville*',
       PREMISE_TYPE %in% c("RESIDENCE / HOME", 
       "PARKING LOT / GARAGE", "OTHER RESIDENCE (APARTMENT/CONDO)", 
       "ATTACHED RESIDENTIAL GARAGE", "PARKING LOT / GARAGE") ~ 
-      "22A Domestic Burglary/Breaking & Entering",
+      "22A Residential Burglary/Breaking & Entering",
     (NIBRS_CODE == "220" | str_detect(UOR_DESC, "\\bBURGLARY\\b") == TRUE) ~ 
-      "22B Non-domestic Burglary/Breaking & Entering",
+      "22B Non-residential Burglary/Breaking & Entering",
     
     # theft
     NIBRS_CODE == "999" & UOR_DESC %in% c(
@@ -1055,8 +1074,8 @@ dir(path = "../original_data", pattern = 'Louisville*',
   #                               '99Z Non-Criminal Matters'), 
   #     'Excluded cases', NIBRS_Crime_Against),
   #   NIBRS_Offense_Code = case_when(
-  #   NIBRS_Offense_Type == "22A Domestic Burglary/Breaking & Entering" ~ "22A",
-  #   NIBRS_Offense_Type == "22B Non-domestic Burglary/Breaking & Entering" ~ 
+  #   NIBRS_Offense_Type == "22A Residential Burglary/Breaking & Entering" ~ "22A",
+  #   NIBRS_Offense_Type == "22B Non-residential Burglary/Breaking & Entering" ~ 
   #     "22B",
   #   NIBRS_Offense_Type == "12A Personal Robbery" ~ "12A",
   #   NIBRS_Offense_Type == "12B Commercial Robbery" ~ "12B",
@@ -1065,6 +1084,12 @@ dir(path = "../original_data", pattern = 'Louisville*',
   # )) %>% 
   check_nibrs_cats("../crime_categories/categories_Louisville", 
                    by = c("NIBRS_CODE", "CRIME_TYPE", "UOR_DESC")) %>% 
+  # identify location types
+  left_join(
+    read_csv("../crime_categories/location_types_louisville.csv", 
+             col_types = cols(.default = col_character())),
+    by = "PREMISE_TYPE"
+  ) %>% 
   save_city_data("Louisville") %>% 
   glimpse()
 ```
@@ -1119,7 +1144,7 @@ read_csv('../original_data/New York 2006 to 2017.csv',
                        strftime(Date.Start.Temp, format = "%Y-%m-%d %H:%M", 
                                 tz = 'America/New_York'), 
                        Date.Temp),
-    Date.Year = year(Date.End.Temp),
+    Date.Year = year(Date.Temp),
     Date.Start = strftime(Date.Start.Temp, format = '%Y-%m-%d %H:%M', 
                           tz = 'America/New_York'),
     Date.End = strftime(Date.End.Temp, format = '%Y-%m-%d %H:%M', 
@@ -1146,9 +1171,9 @@ read_csv('../original_data/New York 2006 to 2017.csv',
     # burglary
     NIBRS_Offense_Code == "220" & PD_DESC %in% c("BURGLARY,RESIDENCE,DAY", 
       "BURGLARY,RESIDENCE,NIGHT", "BURGLARY,RESIDENCE,UNKNOWN TIM") ~ 
-      "22A Domestic Burglary/Breaking & Entering",
+      "22A Residential Burglary/Breaking & Entering",
     NIBRS_Offense_Code == "220" ~ 
-      "22B Non-domestic Burglary/Breaking & Entering",
+      "22B Non-residential Burglary/Breaking & Entering",
     
     # robbery
     NIBRS_Offense_Code == "120" & PD_DESC %in% c(
@@ -1166,20 +1191,28 @@ read_csv('../original_data/New York 2006 to 2017.csv',
   ),
   # where necessary, update the NIBRS code to match the new type
   NIBRS_Offense_Code = case_when(
-    NIBRS_Offense_Type == "22A Domestic Burglary/Breaking & Entering" ~ "22A",
-    NIBRS_Offense_Type == "22B Non-domestic Burglary/Breaking & Entering" ~ 
+    NIBRS_Offense_Type == "22A Residential Burglary/Breaking & Entering" ~ "22A",
+    NIBRS_Offense_Type == "22B Non-residential Burglary/Breaking & Entering" ~ 
       "22B",
     NIBRS_Offense_Type == "12A Personal Robbery" ~ "12A",
     NIBRS_Offense_Type == "12B Commercial Robbery" ~ "12B",
     NIBRS_Offense_Type == "12U Other Robbery" ~ "12U",
     TRUE ~ NIBRS_Offense_Code
   )) %>% 
+  # identify location types
+  left_join(
+    read_csv("../crime_categories/location_types_new_york.csv", 
+             col_types = cols(.default = col_character())),
+    by = "PREM_TYP_DESC"
+  ) %>% 
   save_city_data("New York") %>% 
   glimpse()
 ```
 
 
 # San Francisco
+
+San Francisco data don't include a location-type field.
 
 ```{r}
 read_csv('../original_data/San Francisco 2003 to date.csv', col_types = cols(
@@ -1233,8 +1266,8 @@ read_csv('../original_data/San Francisco 2003 to date.csv', col_types = cols(
       "SAFE BURGLARY OF A WAREHOUSE WITH EXPLOSIVES",
       "SAFE BURGLARY WITH EXPLOSIVES", 
       "BURGLARY,HOTEL UNDER CONSTRUCTION, ATT. FORCIBLE") ~ 
-      "22B Non-domestic Burglary/Breaking & Entering",
-    NIBRS_Offense_Code == "220" ~ "22A Domestic Burglary/Breaking & Entering",
+      "22B Non-residential Burglary/Breaking & Entering",
+    NIBRS_Offense_Code == "220" ~ "22A Residential Burglary/Breaking & Entering",
     
     # robbery
     NIBRS_Offense_Code == "120" & Descript %in% c(
@@ -1282,8 +1315,8 @@ read_csv('../original_data/San Francisco 2003 to date.csv', col_types = cols(
   ),
   # where necessary, update the NIBRS code to match the new type
   NIBRS_Offense_Code = case_when(
-    NIBRS_Offense_Type == "22A Domestic Burglary/Breaking & Entering" ~ "22A",
-    NIBRS_Offense_Type == "22B Non-domestic Burglary/Breaking & Entering" ~ 
+    NIBRS_Offense_Type == "22A Residential Burglary/Breaking & Entering" ~ "22A",
+    NIBRS_Offense_Type == "22B Non-residential Burglary/Breaking & Entering" ~ 
       "22B",
     NIBRS_Offense_Type == "12A Personal Robbery" ~ "12A",
     NIBRS_Offense_Type == "12B Commercial Robbery" ~ "12B",
@@ -1352,6 +1385,8 @@ is used to bind by column names.
 The 2016 CSV file does not include co-ordinates, so first we must convert the
 alternative shapefile format available on the website to the same CSV format as
 the other files.
+
+Tucson data don't include a location-type field.
 
 ```{r}
 # Specifying GEOMETRY=AS_XY here creates two columns in the output CSV file
@@ -1456,6 +1491,8 @@ dir(path = "../original_data", pattern = '^Tucson*',
 # Virginia Beach
 
 Data are from https://data.vbgov.com/Public-Safety/Police-Incident-Reports/iqkq-gr5p
+
+Virginia Beach data don't include a location-type field.
 
 ```{r}
 list(

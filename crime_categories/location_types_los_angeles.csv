@@ -1,0 +1,300 @@
+Premise Description,location_type,location_category
+CONSTRUCTION SITE,construction,commercial
+CHEMICAL STORAGE/MANUFACTURING PLANT,factory/warehouse,commercial
+FACTORY,factory/warehouse,commercial
+GARMENT MANUFACTURER,factory/warehouse,commercial
+MANUFACTURING COMPANY,factory/warehouse,commercial
+OIL REFINERY,factory/warehouse,commercial
+WAREHOUSE,factory/warehouse,commercial
+BANK,finance,commercial
+BANK DROP BOX/MONEY DROP-OUTSIDE OF BANK*,finance,commercial
+BANKING INSIDE MARKET-STORE *,finance,commercial
+CHECK CASHING*,finance,commercial
+CREDIT UNION,finance,commercial
+DRIVE THRU BANKING (WINDOW)*,finance,commercial
+FINANCE COMPANY,finance,commercial
+SAVINGS & LOAN,finance,commercial
+GAS STATION,gas station,commercial
+OFFICE BUILDING/OFFICE,office,commercial
+CONVENTION CENTER,other commercial,commercial
+"DELIVERY SERVICE (FED EX, UPS, COURIERS,COURIER SERVICE)*",other commercial,commercial
+HEALTH SPA/GYM,other commercial,commercial
+OTHER BUSINESS,other commercial,commercial
+RECYCLING CENTER,other commercial,commercial
+TELECOMMUNICATION FACILITY/LOCATION,other commercial,commercial
+TOW YARD*,other commercial,commercial
+VALET,other commercial,commercial
+VETERINARIAN/ANIMAL HOSPITAL,other commercial,commercial
+PUBLIC STORAGE,storage,commercial
+STORAGE SHED,storage,commercial
+DAY CARE/ADULTS*,child care,education
+DAY CARE/CHILDREN*,child care,education
+COLLEGE/JUNIOR COLLEGE/UNIVERSITY,college,education
+ELEMENTARY SCHOOL,school,education
+HIGH SCHOOL,school,education
+JUNIOR HIGH SCHOOL,school,education
+PRIVATE SCHOOL/PRESCHOOL,school,education
+SPECIALTY SCHOOL/OTHER,school,education
+TRADE SCHOOL (MEDICAL-TECHNICAL-BUSINESS)*,school,education
+DEPT OF DEFENSE FACILITY,government,government
+DETENTION/JAIL FACILITY,government,government
+FIRE STATION,government,government
+"GOVERNMENT FACILITY (FEDERAL,STATE, COUNTY & CITY)",government,government
+LIBRARY,government,government
+MORTUARY,government,government
+POLICE FACILITY,government,government
+POST OFFICE,government,government
+PHARMACY INSIDE STORE OR SUPERMARKET*,healthcare,healthcare
+ABORTION CLINIC/ABORTION FACILITY*,healthcare,healthcare
+DRUG STORE,healthcare,healthcare
+HOSPICE,healthcare,healthcare
+HOSPITAL,healthcare,healthcare
+MEDICAL/DENTAL OFFICES,healthcare,healthcare
+METHADONE CLINIC,healthcare,healthcare
+HOTEL,hotel,hotel
+MOTEL,hotel,hotel
+SHORT-TERM VACATION RENTAL,hotel,hotel
+BAR/COCKTAIL/NIGHTCLUB,bar/club,leisure
+BAR/SPORTS BAR (OPEN DAY & NIGHT),bar/club,leisure
+NIGHT CLUB (OPEN EVENINGS ONLY),bar/club,leisure
+AMUSEMENT PARK*,entertainment,leisure
+"ARCADE,GAME ROOM/VIDEO GAMES (EXAMPLE CHUCKIE CHEESE)*",entertainment,leisure
+BOWLING ALLEY*,entertainment,leisure
+COLISEUM,entertainment,leisure
+DODGER STADIUM,entertainment,leisure
+ENTERTAINMENT/COMEDY CLUB (OTHER),entertainment,leisure
+HOCKEY RINK/ICE HOCKEY,entertainment,leisure
+HORSE RACING/SANTA ANITA PARK*,entertainment,leisure
+MUSEUM,entertainment,leisure
+POOL-PUBLIC/OUTDOOR OR INDOOR*,entertainment,leisure
+SKATING RINK*,entertainment,leisure
+SPORTS ARENA,entertainment,leisure
+"SPORTS VENUE, OTHER",entertainment,leisure
+STAPLES CENTER *,entertainment,leisure
+THEATRE/MOVIE,entertainment,leisure
+RESTAURANT/FAST FOOD,restaurant,leisure
+CATERING/ICE CREAM TRUCK,restaurant,leisure
+"COFFEE SHOP (STARBUCKS, COFFEE BEAN, PEET'S, ETC.)",restaurant,leisure
+SKATEBOARD FACILITY/SKATEBOARD PARK*,other open space,open space
+BASKETBALL COURTS,green space,open space
+BEACH,green space,open space
+CEMETARY*,other open space,open space
+CULTURAL SIGNIFICANCE/MONUMENT,other open space,open space
+DAM/RESERVOIR,green space,open space
+GOLF COURSE*,green space,open space
+MASS GATHERING LOCATION,other open space,open space
+OTHER/OUTSIDE,other open space,open space
+PARK/PLAYGROUND,green space,open space
+PARKING LOT,vehicle parking,open space
+RIVER BED*,green space,open space
+SLIPS/DOCK/MARINA/BOAT,other open space,open space
+TRANSIENT ENCAMPMENT,other open space,open space
+VACANT LOT,other open space,open space
+"VEHICLE STORAGE LOT (CARS, TRUCKS, RV'S, BOATS, TRAILERS, ETC.)",vehicle parking,open space
+WATER FACILITY,other open space,open space
+YARD (RESIDENTIAL/BUSINESS),other open space,open space
+CYBERSPACE,other,other
+OTHER PREMISE,other,other
+APARTMENT/CONDO COMMON LAUNDRY ROOM,residence,residence
+BALCONY*,residence,residence
+CONDOMINIUM/TOWNHOUSE,residence,residence
+DRIVEWAY,residence,residence
+FOSTER HOME BOYS OR GIRLS*,residence,residence
+FRAT HOUSE/SORORITY/DORMITORY,residence,residence
+GARAGE/CARPORT,residence,residence
+GROUP HOME,residence,residence
+HIGH-RISE BUILDING,residence,residence
+MISSIONS/SHELTERS,residence,residence
+"MULTI-UNIT DWELLING (APARTMENT, DUPLEX, ETC)",residence,residence
+NURSING/CONVALESCENT/RETIREMENT HOME,residence,residence
+OTHER RESIDENCE,residence,residence
+PATIO*,residence,residence
+"PORCH, RESIDENTIAL",residence,residence
+PROJECT/TENEMENT/PUBLIC HOUSING,residence,residence
+SINGLE FAMILY DWELLING,residence,residence
+SINGLE RESIDENCE OCCUPANCY (SRO'S) LOCATIONS,residence,residence
+STAIRWELL*,residence,residence
+TOOL SHED*,residence,residence
+TRANSITIONAL HOUSING/HALFWAY HOUSE,residence,residence
+SHOPPING MALL (COMMON AREA),mall,retail
+THE BEVERLY CENTER,mall,retail
+THE BEVERLY CONNECTION,mall,retail
+THE GROVE,mall,retail
+SWAP MEET,other retail,retail
+AUTO REPAIR SHOP,auto dealer,retail
+CAR WASH,auto dealer,retail
+CLEANER/LAUNDROMAT,other retail,retail
+LAUNDROMAT,other retail,retail
+MASSAGE PARLOR,other retail,retail
+"AUTO DEALERSHIP (CHEVY, FORD, BMW, MERCEDES, ETC.)",auto dealer,retail
+AUTO SALES LOT,auto dealer,retail
+AUTO SUPPLY STORE*,auto dealer,retail
+BEAUTY SUPPLY STORE,other retail,retail
+BEAUTY/BARBER SHOP,other retail,retail
+BOOK STORE,other retail,retail
+CELL PHONE STORE,other retail,retail
+CLOTHING STORE,other retail,retail
+COMPUTER SERVICES/REPAIRS/SALES,other retail,retail
+DEPARTMENT STORE,other retail,retail
+"DISCOUNT STORE (99 CENT,DOLLAR,ETC.",other retail,retail
+"DIY CENTER (LOWE'S,HOME DEPOT,OSH,CONTRACTORS WAREHOUSE)",other retail,retail
+DRIVE THRU*,other retail,retail
+"ELECTRONICS STORE (IE:RADIO SHACK, ETC.)",other retail,retail
+EQUIPMENT RENTAL,other retail,retail
+FURNITURE STORE,other retail,retail
+GUN/SPORTING GOODS,other retail,retail
+HARDWARE/BUILDING SUPPLY,other retail,retail
+JEWELRY STORE,other retail,retail
+LIQUOR STORE,convenience store,retail
+MARKET,other retail,retail
+MEDICAL MARIJUANA FACILITIES/BUSINESSES,other retail,retail
+"MEMBERSHIP STORE (COSTCO,SAMS CLUB)*",other retail,retail
+MINI-MART,convenience store,retail
+NAIL SALON,other retail,retail
+NURSERY/FLOWER SHOP,other retail,retail
+OPTICAL OFFICE INSIDE STORE OR SUPERMARKET*,other retail,retail
+OTHER STORE,other retail,retail
+PAWN SHOP,other retail,retail
+PET STORE,other retail,retail
+RECORD-CD MUSIC/COMPUTER GAME STORE,other retail,retail
+SEX ORIENTED/BOOK STORE,other retail,retail
+SEX ORIENTED/BOOK STORE/STRIP CLUB/GENTLEMAN'S CLUB,other retail,retail
+STUDIO (FILM/PHOTOGRAPHIC/MUSIC),other retail,retail
+SURPLUS SURVIVAL STORE,other retail,retail
+TATTOO PARLOR*,other retail,retail
+TOBACCO SHOP,other retail,retail
+TV/RADIO/APPLIANCE,other retail,retail
+VIDEO RENTAL STORE,other retail,retail
+VISION CARE FACILITY*,other retail,retail
+ALLEY,street,street
+FREEWAY,street,street
+PEDESTRIAN OVERCROSSING,street,street
+SIDEWALK,street,street
+STREET,street,street
+TUNNEL,street,street
+UNDERPASS/BRIDGE*,street,street
+AIRCRAFT,airport,transportation
+TRANSPORTATION FACILITY (AIRPORT),airport,transportation
+BUS DEPOT,bus,transportation
+"BUS DEPOT/TERMINAL, OTHER THAN MTA",bus,transportation
+BUS STOP,bus,transportation
+BUS STOP OR LAYOVER,bus,transportation
+BUS STOP/LAYOVER (ALSO QUERY 124),bus,transportation
+BUS-CHARTER/PRIVATE,bus,transportation
+"BUS, SCHOOL, CHURCH",bus,transportation
+CHARTER BUS AND PRIVATELY OWNED BUS,bus,transportation
+GREYHOUND OR INTERSTATE BUS,bus,transportation
+MTA BUS,bus,transportation
+MUNICIPAL BUS LINE INCLUDES LADOT/DASH,bus,transportation
+"OTHER INTERSTATE, CHARTER BUS",bus,transportation
+MTA PROPERTY OR PARKING LOT,other transportation,transportation
+TERMINAL,other transportation,transportation
+"TERMINAL, OTHER THAN MTA",other transportation,transportation
+AMTRAK TRAIN,rapid transit,transportation
+BLUE LINE (ABOVE GROUND SURFACE TRAIN),rapid transit,transportation
+GREEN LINE (I-105 FWY LEVEL TRAIN),rapid transit,transportation
+LA UNION STATION (NOT LINE SPECIFIC),rapid transit,transportation
+METROLINK TRAIN,rapid transit,transportation
+MTA - BLUE LINE - 103RD/WATTS TOWERS,rapid transit,transportation
+MTA - BLUE LINE - 7TH AND METRO CENTER,rapid transit,transportation
+MTA - BLUE LINE - PICO,rapid transit,transportation
+MTA - BLUE LINE - SAN PEDRO,rapid transit,transportation
+MTA - BLUE LINE - VERNON,rapid transit,transportation
+MTA - BLUE LINE - WASHINGTON,rapid transit,transportation
+MTA - EXPO LINE - 7TH AND METRO CENTER,rapid transit,transportation
+MTA - EXPO LINE - EXPO PARK/USC,rapid transit,transportation
+MTA - EXPO LINE - EXPO/BUNDY,rapid transit,transportation
+MTA - EXPO LINE - EXPO/CRENSHAW,rapid transit,transportation
+MTA - EXPO LINE - EXPO/LA BREA,rapid transit,transportation
+MTA - EXPO LINE - EXPO/SEPULVEDA,rapid transit,transportation
+MTA - EXPO LINE - EXPO/VERMONT,rapid transit,transportation
+MTA - EXPO LINE - EXPO/WESTERN,rapid transit,transportation
+MTA - EXPO LINE - FARMDALE,rapid transit,transportation
+MTA - EXPO LINE - JEFFERSON/USC,rapid transit,transportation
+MTA - EXPO LINE - LA CIENEGA/JEFFERSON,rapid transit,transportation
+MTA - EXPO LINE - LATTC/ORTHO INSTITUTE,rapid transit,transportation
+MTA - EXPO LINE - PALMS,rapid transit,transportation
+MTA - EXPO LINE - PICO,rapid transit,transportation
+MTA - EXPO LINE - WESTWOOD/RANCHO PARK,rapid transit,transportation
+MTA - GOLD LINE - CHINATOWN,rapid transit,transportation
+MTA - GOLD LINE - HERITAGE SQ,rapid transit,transportation
+MTA - GOLD LINE - HIGHLAND PARK,rapid transit,transportation
+MTA - GOLD LINE - INDIANA,rapid transit,transportation
+MTA - GOLD LINE - LITTLE TOKYO/ARTS DISTRICT,rapid transit,transportation
+MTA - GOLD LINE - MARIACHI PLAZA,rapid transit,transportation
+MTA - GOLD LINE - PICO/ALISO,rapid transit,transportation
+MTA - GOLD LINE - SOTO,rapid transit,transportation
+MTA - GOLD LINE - UNION STATION,rapid transit,transportation
+MTA - GREEN LINE - AVALON,rapid transit,transportation
+MTA - GREEN LINE - AVIATION/LAX,rapid transit,transportation
+MTA - GREEN LINE - HARBOR FWY,rapid transit,transportation
+MTA - ORANGE LINE - BALBOA,rapid transit,transportation
+MTA - ORANGE LINE - CANOGA,rapid transit,transportation
+MTA - ORANGE LINE - CHATSWORTH,rapid transit,transportation
+MTA - ORANGE LINE - LAUREL CANYON,rapid transit,transportation
+MTA - ORANGE LINE - NORTH HOLLYWOOD,rapid transit,transportation
+MTA - ORANGE LINE - RESEDA,rapid transit,transportation
+MTA - ORANGE LINE - SEPULVEDA,rapid transit,transportation
+MTA - ORANGE LINE - TAMPA,rapid transit,transportation
+MTA - PURPLE LINE - CIVIC CENTER/GRAND PARK,rapid transit,transportation
+MTA - PURPLE LINE - PERSHING SQUARE,rapid transit,transportation
+MTA - PURPLE LINE - UNION STATION,rapid transit,transportation
+MTA - PURPLE LINE - WESTLAKE/MACARTHUR PARK,rapid transit,transportation
+MTA - PURPLE LINE - WILSHIRE/VERMONT,rapid transit,transportation
+MTA - PURPLE LINE - WILSHIRE/WESTERN,rapid transit,transportation
+MTA - RED LINE - 7TH AND METRO CENTER,rapid transit,transportation
+MTA - RED LINE - CIVIC CENTER/GRAND PARK,rapid transit,transportation
+MTA - RED LINE - HOLLYWOOD/HIGHLAND,rapid transit,transportation
+MTA - RED LINE - HOLLYWOOD/VINE,rapid transit,transportation
+MTA - RED LINE - HOLLYWOOD/WESTERN,rapid transit,transportation
+MTA - RED LINE - NORTH HOLLYWOOD,rapid transit,transportation
+MTA - RED LINE - PERSHING SQUARE,rapid transit,transportation
+MTA - RED LINE - UNION STATION,rapid transit,transportation
+MTA - RED LINE - UNIVERSAL CITY/STUDIO CITY,rapid transit,transportation
+MTA - RED LINE - VERMONT/BEVERLY,rapid transit,transportation
+MTA - RED LINE - VERMONT/SANTA MONICA,rapid transit,transportation
+MTA - RED LINE - VERMONT/SUNSET,rapid transit,transportation
+MTA - RED LINE - WESTLAKE/MACARTHUR PARK,rapid transit,transportation
+MTA - RED LINE - WILSHIRE/VERMONT,rapid transit,transportation
+MTA - SILVER LINE - HARBOR FWY,rapid transit,transportation
+MTA - SILVER LINE - UNION STATION,rapid transit,transportation
+ORANGE LINE PARKING LOT,rapid transit,transportation
+"OTHER RR TRAIN (UNION PAC, SANTE FE ETC",rapid transit,transportation
+REDLINE (SUBWAY TRAIN),rapid transit,transportation
+REDLINE ENTRANCE/EXIT,rapid transit,transportation
+REDLINE SUBWAY MEZZANINE,rapid transit,transportation
+REDLINE SUBWAY PLATFORM,rapid transit,transportation
+REDLINE SUBWAY RAIL CAR (INSIDE TRAIN),rapid transit,transportation
+REDLINE SUBWAY TUNNEL,rapid transit,transportation
+TRAIN,rapid transit,transportation
+TRAIN DEPOT,rapid transit,transportation
+"TRAIN DEPOT/TERMINAL, OTHER THAN MTA",rapid transit,transportation
+TRAIN TRACKS,rapid transit,transportation
+"TRAIN, OTHER THAN MTA (ALSO QUERY 809/810/811)",rapid transit,transportation
+TRAM/STREETCAR(BOXLIKE WAG ON RAILS)*,rapid transit,transportation
+ENERGY PLANT/FACILITY,utility,utility
+NUCLEAR FACILITY,utility,utility
+MOBILE HOME/TRAILERS/CONSTRUCTION TRAILERS/RV'S/MOTORHOME,commercial vehicle,vehicle
+TAXI,commercial vehicle,vehicle
+"TRUCK, COMMERICAL",commercial vehicle,vehicle
+"VEHICLE, PASSENGER/TRUCK",commercial vehicle,vehicle
+7TH AND METRO CENTER (NOT LINE SPECIFIC),rapid transit,transportation
+ABANDONED BUILDING ABANDONED HOUSE,abandoned,other
+ABATEMENT LOCATION,other,other
+AUTOMATED TELLER MACHINE (ATM),finance,commercial
+CHURCH/CHAPEL (CHANGED 03-03 FROM CHURCH/TEMPLE),religious,other
+ELEVATOR,other,other
+ESCALATOR*,other,other
+MAIL BOX,other,other
+MOSQUE*,religious,other
+OTHER PLACE OF WORSHIP,religious,other
+PARKING UNDERGROUND/BUILDING,vehicle parking,open space
+PAY PHONE,other,other
+PUBLIC RESTROOM(INDOORS-INSIDE),other,other
+PUBLIC RESTROOM/OUTSIDE*,other,other
+RETIRED (DUPLICATE) DO NOT USE THIS CODE,other,other
+SEWAGE FACILITY/PIPE,other,other
+SYNAGOGUE/TEMPLE,religious,other
+TACTICAL SIGNIFICANCE,other,other
+TRASH CAN/TRASH DUMPSTER,other,other
+WEBSITE,other,other

@@ -71,7 +71,8 @@ No open crime data are available.
 
 # Austin, TX
 
-Data are only available for UCR Part 1 crimes.
+Data are [available](https://data.austintexas.gov/browse?Additional-Information_Department=Austin+Police+&category=Public+Safety&limitTo=datasets&q=APD%20Incident%20Extract&sortBy=relevance&utf8=✓), 
+but only for years up to 2010 and then the current year.
 
 
 # Jacksonville, FL
@@ -110,7 +111,9 @@ Data [appear to be available](https://data.seattle.gov/Public-Safety/Seattle-Pol
 with some cases excluded, for several years. However, the website suggests these
 data will be removed in September 2018. Since they are CC0 licensed, they can
 continue to be used even after they are withdrawn from the Seattle Open Data
-website.
+website. Unfortunately there are substantial jumps in the number of crimes of
+many types between years, suggesting some unknown and changing factor 
+influencing the number of crimes.
 
 
 # Denver, CO (POSSIBLE)

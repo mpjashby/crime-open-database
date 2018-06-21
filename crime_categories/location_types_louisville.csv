@@ -1,0 +1,49 @@
+PREMISE_TYPE,location_type,location_category
+CONSTRUCTION SITE,construction,commercial
+INDUSTRIAL SITE,factory/warehouse,commercial
+BANK / SAVINGS & LOAN,finance,commercial
+COMMERCIAL / OFFICE BUILDING,office,commercial
+FARM FACILITY,other commercial,commercial
+RENTAL / STORAGE FACILITY,storage,commercial
+CHILD DAYCARE FACILITY,child care,education
+SCHOOL - COLLEGE / UNIVERSITY,college,education
+SCHOOL - ELEMENTARY / SECONDARY,school,education
+GOVERNMENT / PUBLIC BUILDING,government,government
+JAIL / PENITENTARY,government,government
+MILITARY INSTALLATION,government,government
+DRUG STORE/DR`S OFFICE/HOSPITAL,healthcare,healthcare
+HOTEL / MOTEL / ETC.,hotel,hotel
+BAR / NIGHT CLUB,bar/club,leisure
+AMUSEMENT PARK,entertainment,leisure
+FAIRGROUNDS / STADIUM / ARENA,entertainment,leisure
+RACE TRACK/GAMBLING FACILITY,entertainment,leisure
+RESTAURANT,restaurant,leisure
+CAMP / CAMPGROUND,green space,open space
+DOCK/WHARF/FREIGHT/MODAL TERMINAL,other open space,open space
+FIELD / WOODS,green space,open space
+LAKE / WATERWAY,green space,open space
+PARK / PLAYGROUND,green space,open space
+PARKING LOT / GARAGE,vehicle parking,open space
+REST AREA,other open space,open space
+TRIBAL LANDS,other open space,open space
+CYBERSPACE,other,other
+OTHER / UNKNOWN,other,other
+ATTACHED RESIDENTIAL GARAGE,residence,residence
+HOMELESS SHELTER / MISSION,residence,residence
+NON-ATTACHED RESD GARAGE/SHED/BULD,residence,residence
+OTHER RESIDENCE (APARTMENT/CONDO),residence,residence
+RESIDENCE / HOME,residence,residence
+SERVICE / GAS STATION,gas station,retail
+MALL / SHOPPING CENTER,mall,retail
+AUTO DEALERSHIP (NEW OR USED),auto dealer,retail
+CONVENIENCE STORE,convenience store,retail
+DEPARTMENT / DISCOUNT STORE,other retail,retail
+GROCERY / SUPERMARKET,supermarket,retail
+LIQUOR STORE,convenience store,retail
+"SPECIALTY STORE (TV, FUR, ETC)",other retail,retail
+HIGHWAY / ROAD / ALLEY,street,street
+AIR / BUS / TRAIN TERMINAL,other transportation,transportation
+ABANDONED/CONDEMNED STRUCTURE,abandoned,other
+ATM SEPARATE FROM BANK,finance,commercial
+CHURCH / SYNAGOGUE / TEMPLE,religious,other
+COMMUNITY CENTER,other,other

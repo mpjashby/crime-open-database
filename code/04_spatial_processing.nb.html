@@ -182,9 +182,8 @@ $(document).ready(function () {
 <p>Detroit data have lat/lon pairs, but they seem to encode NA as 999999.0 degrees. These cases can easily be rectified by replacing any value of latitude that is not between -90 and +90, and any value of longitude that is not between -180 and +180, with NA.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YV9kdCA8LSByZWFkUkRTKFwiLi4vdGVtcF9kYXRhL3Jhd19kZXRyb2l0X2RhdGEuUmRzXCIpXG5cbmRhdGFfZHQgPC0gZGF0YV9kdCAlPiUgXG4gIG11dGF0ZShcbiAgICBMYXRpdHVkZSA9IGlmZWxzZShMYXRpdHVkZSA8IC05MCB8IExhdGl0dWRlID4gOTAsIE5BLCBMYXRpdHVkZSksXG4gICAgTG9uZ2l0dWRlID0gaWZlbHNlKExvbmdpdHVkZSA8IC0xODAgfCBMb25naXR1ZGUgPiAxODAsIE5BLCBMb25naXR1ZGUpXG4gIClcbiAgXG5zYXZlUkRTKGRhdGFfZHQsIFwiLi4vdGVtcF9kYXRhL3Jhd19kZXRyb2l0X2RhdGEuUmRzXCIpXG5cbnJtKGRhdGFfZHQpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YV9kdCA8LSByZWFkUkRTKFwiLi4vdGVtcF9kYXRhL3Jhd19kZXRyb2l0X2RhdGEuUmRzXCIpXG5kYXRhX2R0IDwtIGRhdGFfZHQgJT4lIFxuICBtdXRhdGUoXG4gICAgTGF0aXR1ZGUgPSBpZmVsc2UoTGF0aXR1ZGUgPCAtOTAgfCBMYXRpdHVkZSA+IDkwLCBOQSwgTGF0aXR1ZGUpLFxuICAgIExvbmdpdHVkZSA9IGlmZWxzZShMb25naXR1ZGUgPCAtMTgwIHwgTG9uZ2l0dWRlID4gMTgwLCBOQSwgTG9uZ2l0dWRlKVxuICApXG4gIFxuc2F2ZVJEUyhkYXRhX2R0LCBcIi4uL3RlbXBfZGF0YS9yYXdfZGV0cm9pdF9kYXRhLlJkc1wiKVxucm0oZGF0YV9kdClcbmBgYCJ9 -->
 <pre class="r"><code>data_dt &lt;- readRDS(&quot;../temp_data/raw_detroit_data.Rds&quot;)
-
 data_dt &lt;- data_dt %&gt;% 
   mutate(
     Latitude = ifelse(Latitude &lt; -90 | Latitude &gt; 90, NA, Latitude),
@@ -192,7 +191,6 @@ data_dt &lt;- data_dt %&gt;%
   )
   
 saveRDS(data_dt, &quot;../temp_data/raw_detroit_data.Rds&quot;)
-
 rm(data_dt)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -203,9 +201,8 @@ rm(data_dt)</code></pre>
 <h1>Stip offences outside cities and add census identifiers</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBkaXIoXCIuLi90ZW1wX2RhdGFcIiwgZnVsbC5uYW1lcyA9IFRSVUUpXG5zZXRkaWZmKFxuICBkaXIoXCIuLi90ZW1wX2RhdGFcIiwgcGF0dGVybiA9IFwiXnJhd19cIikgJT4lIFxuICAgIHN0cl9leHRyYWN0KFwiXFxcXF8oW2Etel9dKz8pXFxcXF9kYXRhLlJkc1wiKSAlPiUgXG4gICAgYXMuY2hhcmFjdGVyKCksXG4gIGRpcihcIi4uL3RlbXBfZGF0YVwiLCBwYXR0ZXJuID0gXCJec3BhdGlhbF9cIikgJT4lIFxuICAgIHN0cl9leHRyYWN0KFwiXFxcXF8oW2Etel9dKz8pXFxcXF9kYXRhLlJkc1wiKSAlPiUgXG4gICAgYXMuY2hhcmFjdGVyKClcbikgJT4lIFxuICB7IHBhc3RlMChcIi4uL3RlbXBfZGF0YS9yYXdcIiwgLikgfSAlPiUgXG4gIHNhcHBseShmdW5jdGlvbiAoeCkge1xuICBcbiAgIyBnZXQgY2l0eSBuYW1lXG4gIGNpdHlfbmFtZSA8LSBzdHJfbWF0Y2goeCwgXCJyYXdcXFxcXyhbYS16X10rPylcXFxcX2RhdGEuUmRzXCIpICU+JSBcbiAgICBhcy5jaGFyYWN0ZXIoKSAlPiUgXG4gICAgbGFzdCgpICU+JSBcbiAgICBzdHJfcmVwbGFjZV9hbGwoXCJcXFxcX1wiLCBcIiBcIikgJT4lIFxuICAgIHN0cl90b190aXRsZSgpXG4gIFxuICBzdGFydF90aW1lIDwtIG5vdygpXG4gIGNhdChcIlxcblByb2Nlc3NpbmdcIiwgY2l0eV9uYW1lLCBcImRhdGFcXG5TdGFydGluZyBhdFwiLCBcbiAgICAgIGZvcm1hdChzdGFydF90aW1lLCBcIiVGICVUXCIpLCBcIlxcblwiKVxuICBcbiAgIyBnZXQgY2l0eSBtZXRhZGF0YVxuICBjaXR5X2ZpcHMgPC0gY2l0aWVzJGZpcHNbY2l0aWVzJG5hbWUgPT0gY2l0eV9uYW1lXVxuICBcbiAgIyBsb2FkIGRhdGFcbiAgZGF0YSA8LSByZWFkUkRTKHgpJT4lIFxuICAgIG11dGF0ZShcbiAgICAgIExhdGl0dWRlID0gYXMubnVtZXJpYyhMYXRpdHVkZSksXG4gICAgICBMb25naXR1ZGUgPSBhcy5udW1lcmljKExvbmdpdHVkZSlcbiAgICApXG4gIFxuICAjIG5vdGUgbnVtYmVyIG9mIHJvd3MgaW4gZGF0YVxuICBpbml0aWFsX3Jvd3MgPC0gbnJvdyhkYXRhKVxuICBjYXQoXCLinJTvuI4gTG9hZGVkIGRhdGEgd2l0aFwiLCBmb3JtYXQoaW5pdGlhbF9yb3dzLCBiaWcubWFyayA9IFwiLFwiKSxcbiAgICAgIFwicm93c1xcblwiKVxuICBcbiAgIyBjb252ZXJ0IHRvIFNGIG9iamVjdCAocmVtb3ZpbmcgYW55IHJvd3Mgd2l0aG91dCBjby1vcmRpbmF0ZXMpXG4gIG9mZmVuY2VzIDwtIGRhdGEgJT4lIFxuICAgIHNlbGVjdChVSUQsIExvbmdpdHVkZSwgTGF0aXR1ZGUpICAlPiUgXG4gICAgZmlsdGVyKCFpcy5uYShMb25naXR1ZGUpICYgIWlzLm5hKExhdGl0dWRlKSkgJT4lIFxuICAgIHN0X2FzX3NmKGNvb3JkcyA9IGMoJ0xvbmdpdHVkZScsICdMYXRpdHVkZScpKSAlPiUgXG4gICAgc3Rfc2V0X2Nycyg0MzI2KVxuICBpZiAobnJvdyhvZmZlbmNlcykgPiBpbml0aWFsX3Jvd3MpIHtcbiAgICBzdG9wKCfinJYgUm93cyBoYXZlIGJlZW4gYWRkZWQgdG8gZGF0YScsIGNhbGwuID0gRkFMU0UpXG4gIH0gZWxzZSB7XG4gICAgY2F0KFwi4pyU77iOIENvbnZlcnRlZCBkYXRhIHRvIGFuIFNGIG9iamVjdCwgcmVtb3ZpbmdcIiwgXG4gICAgICAgIGZvcm1hdChpbml0aWFsX3Jvd3MgLSBucm93KG9mZmVuY2VzKSwgYmlnLm1hcmsgPSBcIixcIiksIFxuICAgICAgICBcInJvd3Mgd2l0aG91dCBjby1vcmRpbmF0ZXNcXG5cIilcbiAgfVxuICBcbiAgIyBjcmVhdGUgYSBzcGF0aWFsIG9iamVjdCBmb3IgdGhlIGNpdHkgb3V0bGluZVxuICBvdXRsaW5lIDwtIHN0X3JlYWQoXG4gICAgcGFzdGUwKFwiLi4vc3BhdGlhbF9kYXRhL2NpdGllcy90bF8yMDE2X1wiLCBjaXR5X2ZpcHMsIFwiX3BsYWNlLnNocFwiKSwgXG4gICAgcXVpZXQgPSBUUlVFLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICU+JSBcbiAgICBmaWx0ZXIoTkFNRSA9PSBjaXR5X25hbWUpICU+JVxuICAgIHN0X3RyYW5zZm9ybSg0MzI2KVxuICBjYXQoXCLinJTvuI4gQ3JlYXRlZCBTRiBvYmplY3QgZm9yIGNpdHkgb3V0bGluZVxcblwiKVxuICBcbiAgIyBpZGVudGlmeSB3aGV0aGVyIGVhY2ggb2ZmZW5jZSBpcyB3aXRoaW4gdGhlIGNpdHkgYm91bmRhcnlcbiAgb2ZmZW5jZXMkaW5fY2l0eSA8LSBzdF9jb3ZlcmVkX2J5KG9mZmVuY2VzLCBvdXRsaW5lLCBzcGFyc2UgPSBGQUxTRSkgJT4lIFxuICAgIGFzLmxvZ2ljYWwoKVxuICBcbiAgIyBmaWx0ZXIgb3V0IG9mZmVuY2VzIG91dHNpZGUgdGhlIGNpdHkgYm91bmRhcnlcbiAgY2F0KFwi8J+VoyBJZGVudGlmeWluZyByb3dzIG91dHNpZGUgdGhlIGNpdHlcXG5cIilcbiAgb3V0c2lkZV9jaXR5IDwtIG5yb3cob2ZmZW5jZXMpIC0gc3VtKG9mZmVuY2VzJGluX2NpdHkpXG4gICMgb2ZmZW5jZXMgPC0gb2ZmZW5jZXMgJT4lIGZpbHRlcihpbl9jaXR5ID09IFRSVUUpXG4gIFxuICBpZiAobnJvdyhvZmZlbmNlcykgPiBpbml0aWFsX3Jvd3MpIHtcbiAgICBzdG9wKCfinJYgUm93cyBoYXZlIGJlZW4gYWRkZWQgdG8gZGF0YScsIGNhbGwuID0gRkFMU0UpXG4gIH0gZWxzZSB7XG4gICAgY2F0KFwi4pyUIElkZW50aWZpZWRcIiwgZm9ybWF0KGluaXRpYWxfcm93cyAtIG5yb3cob2ZmZW5jZXMpLCBiaWcubWFyayA9IFwiLFwiKSwgXG4gICAgICAgIFwicm93cyB0aGF0IHdlcmUgb3V0c2lkZSB0aGUgY2l0eVxcblwiKVxuICB9XG4gICMgY3JlYXRlIGEgc3BhdGlhbCBvYmplY3QgZm9yIGNlbnN1cyBibG9ja3NcbiAgYmxvY2tzIDwtIHN0X3JlYWQoXG4gICAgcGFzdGUwKFwiLi4vc3BhdGlhbF9kYXRhL2NpdGllcy90bF8yMDE2X1wiLCBjaXR5X2ZpcHMsIFwiX3RhYmJsb2NrMTAuc2hwXCIpLCBcbiAgICBxdWlldCA9IFRSVUUsIHN0cmluZ3NBc0ZhY3RvcnMgPSBGQUxTRSkgJT4lXG4gICAgc2VsZWN0KFxuICAgICAgZmlwc19zdGF0ZSA9IFNUQVRFRlAxMCwgIyBGSVBTIHN0YXRlIGNvZGVcbiAgICAgIGZpcHNfY291bnR5ID0gQ09VTlRZRlAxMCwgIyBGSVBTIGNvdW50eSBjb2RlXG4gICAgICBUcmFjdCA9IFRSQUNUQ0UxMCwgIyBDZW5zdXMgMjAxMCB0cmFjdCBJRFxuICAgICAgQmxvY2sgPSBCTE9DS0NFMTAgIyBDZW5zdXMgMjAxMCBibG9jayBJRFxuICAgICkgJT4lIHN0X3RyYW5zZm9ybSg0MzI2KVxuICBjYXQoXCLinJTvuI4gQ3JlYXRlZCBTRiBvYmplY3QgZm9yIGNlbnN1cyBibG9ja3NcXG5cIilcbiAgXG4gICMgam9pbiBjZW5zdXMgYmxvY2tzIHRvIG9mZmVuY2VzXG4gICMgU29tZSBjcmltZXMgd2lsbCBmYWxsIG9uIHRoZSBib3VuZGFyeSBvZiBtdWx0aXBsZSBjZW5zdXMgYmxvY2tzLCBzbyB0aGVcbiAgIyBmb2xsb3dpbmcgY29kZSBzaW1wbHkgdGFrZXMgdGhlIGZpcnN0IGJsb2NrIGluIGVhY2ggY2FzZVxuICBjYXQoXCLwn5WjIElkZW50aWZ5aW5nIGNlbnN1cyBibG9ja3NcXG5cIilcbiAgb2ZmZW5jZXMgPC0gb2ZmZW5jZXMgJT4lIFxuICAgIHN0X2pvaW4oYmxvY2tzKSAlPiUgXG4gICAgbXV0YXRlKGJsb2NrX2NvZGUgPSBwYXN0ZTAoZmlwc19zdGF0ZSwgZmlwc19jb3VudHksIFRyYWN0LCBCbG9jaykpICU+JVxuICAgIGdyb3VwX2J5KFVJRCkgJT4lIFxuICAgIHRvcF9uKDEsIGJsb2NrX2NvZGUpICU+JSBcbiAgICB1bmdyb3VwKCkgJT4lIFxuICAgIHNlbGVjdCgtYmxvY2tfY29kZSlcbiAgaWYgKG5yb3cob2ZmZW5jZXMpID4gaW5pdGlhbF9yb3dzKSB7XG4gICAgc3RvcCgn4pyWIFJvd3MgaGF2ZSBiZWVuIGFkZGVkIHRvIGRhdGEnLCBjYWxsLiA9IEZBTFNFKVxuICB9IGVsc2Uge1xuICAgIGNhdChcIuKclCDvuI5JZGVudGlmaWVkIGNlbnN1cyBibG9ja3MgZm9yXCIsIFxuICAgICAgICBmb3JtYXQobnJvdyhvZmZlbmNlcyksIGJpZy5tYXJrID0gXCIsXCIpLCBcInJvd3NcXG5cIilcbiAgfVxuICAjIGlkZW50aWZ5IGJsb2NrIGdyb3Vwc1xuICBvZmZlbmNlcyA8LSBvZmZlbmNlcyAlPiUgXG4gICAgbXV0YXRlKGJsb2NrX2dyb3VwID0gc3RyX3N1YihCbG9jaywgMSwgMSkpXG4gIGNhdChcIuKclCDvuI5JZGVudGlmaWVkIGNlbnN1cyBibG9jayBncm91cHMgZm9yXCIsIFxuICAgICAgZm9ybWF0KG5yb3cob2ZmZW5jZXMpLCBiaWcubWFyayA9IFwiLFwiKSwgXCJyb3dzXFxuXCIpXG4gICMgYWRkIHRoZSBmaWVsZHMgZnJvbSB0aGUgc3BhdGlhbCBqb2lucyB0byB0aGUgZXhpc3RpbmcgY3JpbWUgZGF0YVxuICBjYXQoXCLwn5WjIEpvaW5pbmcgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIGNyaW1lIGRhdGFcXG5cIilcbiAgZGF0YSA8LSBkYXRhICU+JSBsZWZ0X2pvaW4ob2ZmZW5jZXMsIGJ5ID0gJ1VJRCcpXG4gIFxuICBpZiAobnJvdyhkYXRhKSA+IGluaXRpYWxfcm93cykge1xuICAgIHN0b3AoJ+KcliBSb3dzIGhhdmUgYmVlbiBhZGRlZCB0byBkYXRhJywgY2FsbC4gPSBGQUxTRSlcbiAgfSBlbHNlIHtcbiAgICBjYXQoXCLinJQgSm9pbmVkIGNlbnN1cyBpZGVudGlmaWVycyB0b1wiLCBcbiAgICAgICAgZm9ybWF0KG5yb3coZGF0YSksIGJpZy5tYXJrID0gXCIsXCIpLCBcInJvd3Mgb2YgY3JpbWUgZGF0YVxcblwiKVxuICB9XG4gIFxuICAjIHN0b3JlIGRhdGFcbiAgc2F2ZVJEUyhkYXRhLCBwYXN0ZTAoXCIuLi90ZW1wX2RhdGEvc3BhdGlhbF9cIiwgXG4gICAgICAgICAgc3RyX3JlcGxhY2VfYWxsKHN0cl90b19sb3dlcihjaXR5X25hbWUpLCBcIlxcXFxzXCIsIFwiX1wiKSwgXCJfZGF0YS5SZHNcIikpXG4gIGNhdChcIuKclCBTYXZlZCBkYXRhIHRvIGZpbGVcXG5cIilcbiAgXG4gIGR1cmF0aW9uIDwtIGRpZmZ0aW1lKG5vdygpLCBzdGFydF90aW1lLCB1bml0cyA9IFwiYXV0b1wiKVxuICBjYXQoXCJGaW5pc2hlZCBhdFwiLCBmb3JtYXQobm93KCksIFwiJUYgJVRcIiksIFwiYWZ0ZXJcIiwgXG4gICAgICByb3VuZChkdXJhdGlvbiwgZGlnaXRzID0gMSksIHVuaXRzKGR1cmF0aW9uKSlcbn0pICU+JSBpbnZpc2libGUoKVxuXG5gYGAifQ== -->
-<pre class="r"><code># dir(&quot;../temp_data&quot;, full.names = TRUE)
-setdiff(
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0ZGlmZihcbiAgZGlyKFwiLi4vdGVtcF9kYXRhXCIsIHBhdHRlcm4gPSBcIl5yYXdfXCIpICU+JSBcbiAgICBzdHJfZXh0cmFjdChcIlxcXFxfKFthLXpfXSs/KVxcXFxfZGF0YS5SZHNcIikgJT4lIFxuICAgIGFzLmNoYXJhY3RlcigpLFxuICBkaXIoXCIuLi90ZW1wX2RhdGFcIiwgcGF0dGVybiA9IFwiXnNwYXRpYWxfXCIpICU+JSBcbiAgICBzdHJfZXh0cmFjdChcIlxcXFxfKFthLXpfXSs/KVxcXFxfZGF0YS5SZHNcIikgJT4lIFxuICAgIGFzLmNoYXJhY3RlcigpXG4pICU+JSBcbiAgeyBwYXN0ZTAoXCIuLi90ZW1wX2RhdGEvcmF3XCIsIC4pIH0gJT4lIFxuICBzYXBwbHkoZnVuY3Rpb24gKHgpIHtcbiAgXG4gICMgZ2V0IGNpdHkgbmFtZVxuICBjaXR5X25hbWUgPC0gc3RyX21hdGNoKHgsIFwicmF3XFxcXF8oW2Etel9dKz8pXFxcXF9kYXRhLlJkc1wiKSAlPiUgXG4gICAgYXMuY2hhcmFjdGVyKCkgJT4lIFxuICAgIGxhc3QoKSAlPiUgXG4gICAgc3RyX3JlcGxhY2VfYWxsKFwiXFxcXF9cIiwgXCIgXCIpICU+JSBcbiAgICBzdHJfdG9fdGl0bGUoKVxuICBcbiAgc3RhcnRfdGltZSA8LSBub3coKVxuICBjYXQoXCJcXG5Qcm9jZXNzaW5nXCIsIGNpdHlfbmFtZSwgXCJkYXRhXFxuU3RhcnRpbmcgYXRcIiwgXG4gICAgICBmb3JtYXQoc3RhcnRfdGltZSwgXCIlRiAlVFwiKSwgXCJcXG5cIilcbiAgXG4gICMgZ2V0IGNpdHkgbWV0YWRhdGFcbiAgY2l0eV9maXBzIDwtIGNpdGllcyRmaXBzW2NpdGllcyRuYW1lID09IGNpdHlfbmFtZV1cbiAgXG4gICMgbG9hZCBkYXRhXG4gIGRhdGEgPC0gcmVhZFJEUyh4KSU+JSBcbiAgICBtdXRhdGUoXG4gICAgICBMYXRpdHVkZSA9IGFzLm51bWVyaWMoTGF0aXR1ZGUpLFxuICAgICAgTG9uZ2l0dWRlID0gYXMubnVtZXJpYyhMb25naXR1ZGUpXG4gICAgKVxuICBcbiAgIyBub3RlIG51bWJlciBvZiByb3dzIGluIGRhdGFcbiAgaW5pdGlhbF9yb3dzIDwtIG5yb3coZGF0YSlcbiAgY2F0KFwi4pyU77iOIExvYWRlZCBkYXRhIHdpdGhcIiwgZm9ybWF0KGluaXRpYWxfcm93cywgYmlnLm1hcmsgPSBcIixcIiksXG4gICAgICBcInJvd3NcXG5cIilcbiAgXG4gICMgY29udmVydCB0byBTRiBvYmplY3QgKHJlbW92aW5nIGFueSByb3dzIHdpdGhvdXQgY28tb3JkaW5hdGVzKVxuICBvZmZlbmNlcyA8LSBkYXRhICU+JSBcbiAgICBzZWxlY3QoVUlELCBMb25naXR1ZGUsIExhdGl0dWRlKSAgJT4lIFxuICAgIGZpbHRlcighaXMubmEoTG9uZ2l0dWRlKSAmICFpcy5uYShMYXRpdHVkZSkpICU+JSBcbiAgICBzdF9hc19zZihjb29yZHMgPSBjKCdMb25naXR1ZGUnLCAnTGF0aXR1ZGUnKSkgJT4lIFxuICAgIHN0X3NldF9jcnMoNDMyNilcbiAgbm9fY29vcmRzIDwtIGluaXRpYWxfcm93cyAtIG5yb3cob2ZmZW5jZXMpXG4gIGlmIChucm93KG9mZmVuY2VzKSA+IGluaXRpYWxfcm93cykge1xuICAgIHN0b3AoJ+KcliBSb3dzIGhhdmUgYmVlbiBhZGRlZCB0byBkYXRhJywgY2FsbC4gPSBGQUxTRSlcbiAgfSBlbHNlIHtcbiAgICBjYXQoXCLinJTvuI4gQ29udmVydGVkIGRhdGEgdG8gYW4gU0Ygb2JqZWN0LCByZW1vdmluZ1wiLCBcbiAgICAgICAgZm9ybWF0KG5vX2Nvb3JkcywgYmlnLm1hcmsgPSBcIixcIiksIFxuICAgICAgICBcInJvd3Mgd2l0aG91dCBjby1vcmRpbmF0ZXNcXG5cIilcbiAgfVxuICBcbiAgIyBjcmVhdGUgYSBzcGF0aWFsIG9iamVjdCBmb3IgdGhlIGNpdHkgb3V0bGluZVxuICBvdXRsaW5lIDwtIHN0X3JlYWQoXG4gICAgcGFzdGUwKFwiLi4vc3BhdGlhbF9kYXRhL2NpdGllcy90bF8yMDE2X1wiLCBjaXR5X2ZpcHMsIFwiX3BsYWNlLnNocFwiKSwgXG4gICAgcXVpZXQgPSBUUlVFLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICU+JSBcbiAgICBmaWx0ZXIoTkFNRSA9PSBjaXR5X25hbWUpICU+JVxuICAgIHN0X3RyYW5zZm9ybSg0MzI2KVxuICBjYXQoXCLinJTvuI4gQ3JlYXRlZCBTRiBvYmplY3QgZm9yIGNpdHkgb3V0bGluZVxcblwiKVxuICBcbiAgIyBpZGVudGlmeSB3aGV0aGVyIGVhY2ggb2ZmZW5jZSBpcyB3aXRoaW4gdGhlIGNpdHkgYm91bmRhcnlcbiAgY2F0KFwi8J+VoyBJZGVudGlmeWluZyByb3dzIG91dHNpZGUgdGhlIGNpdHlcXG5cIilcbiAgb2ZmZW5jZXMkaW5fY2l0eSA8LSBzdF9jb3ZlcmVkX2J5KG9mZmVuY2VzLCBvdXRsaW5lLCBzcGFyc2UgPSBGQUxTRSkgJT4lIFxuICAgIGFzLmxvZ2ljYWwoKVxuICBcbiAgIyBmaWx0ZXIgb3V0IG9mZmVuY2VzIG91dHNpZGUgdGhlIGNpdHkgYm91bmRhcnlcbiAgb3V0c2lkZV9jaXR5IDwtIG5yb3cob2ZmZW5jZXMpIC0gc3VtKG9mZmVuY2VzJGluX2NpdHkpIC0gbm9fY29vcmRzXG4gICMgb2ZmZW5jZXMgPC0gb2ZmZW5jZXMgJT4lIGZpbHRlcihpbl9jaXR5ID09IFRSVUUpXG4gIFxuICBpZiAobnJvdyhvZmZlbmNlcykgPiBpbml0aWFsX3Jvd3MpIHtcbiAgICBzdG9wKCfinJYgUm93cyBoYXZlIGJlZW4gYWRkZWQgdG8gZGF0YScsIGNhbGwuID0gRkFMU0UpXG4gIH0gZWxzZSB7XG4gICAgY2F0KFwi4pyUIElkZW50aWZpZWRcIiwgZm9ybWF0KG91dHNpZGVfY2l0eSwgYmlnLm1hcmsgPSBcIixcIiksIFxuICAgICAgICBcInJvd3MgdGhhdCB3ZXJlIG91dHNpZGUgdGhlIGNpdHlcXG5cIilcbiAgfVxuICAjIGNyZWF0ZSBhIHNwYXRpYWwgb2JqZWN0IGZvciBjZW5zdXMgYmxvY2tzXG4gIGJsb2NrcyA8LSBzdF9yZWFkKFxuICAgIHBhc3RlMChcIi4uL3NwYXRpYWxfZGF0YS9jaXRpZXMvdGxfMjAxNl9cIiwgY2l0eV9maXBzLCBcIl90YWJibG9jazEwLnNocFwiKSwgXG4gICAgcXVpZXQgPSBUUlVFLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICU+JVxuICAgIHNlbGVjdChcbiAgICAgIGZpcHNfc3RhdGUgPSBTVEFURUZQMTAsICMgRklQUyBzdGF0ZSBjb2RlXG4gICAgICBmaXBzX2NvdW50eSA9IENPVU5UWUZQMTAsICMgRklQUyBjb3VudHkgY29kZVxuICAgICAgVHJhY3QgPSBUUkFDVENFMTAsICMgQ2Vuc3VzIDIwMTAgdHJhY3QgSURcbiAgICAgIEJsb2NrID0gQkxPQ0tDRTEwICMgQ2Vuc3VzIDIwMTAgYmxvY2sgSURcbiAgICApICU+JSBzdF90cmFuc2Zvcm0oNDMyNilcbiAgY2F0KFwi4pyU77iOIENyZWF0ZWQgU0Ygb2JqZWN0IGZvciBjZW5zdXMgYmxvY2tzXFxuXCIpXG4gIFxuICAjIGpvaW4gY2Vuc3VzIGJsb2NrcyB0byBvZmZlbmNlc1xuICAjIFNvbWUgY3JpbWVzIHdpbGwgZmFsbCBvbiB0aGUgYm91bmRhcnkgb2YgbXVsdGlwbGUgY2Vuc3VzIGJsb2Nrcywgc28gdGhlXG4gICMgZm9sbG93aW5nIGNvZGUgc2ltcGx5IHRha2VzIHRoZSBmaXJzdCBibG9jayBpbiBlYWNoIGNhc2VcbiAgY2F0KFwi8J+VoyBJZGVudGlmeWluZyBjZW5zdXMgYmxvY2tzXFxuXCIpXG4gIG9mZmVuY2VzIDwtIG9mZmVuY2VzICU+JSBcbiAgICBzdF9qb2luKGJsb2NrcykgJT4lIFxuICAgIG11dGF0ZShibG9ja19jb2RlID0gcGFzdGUwKGZpcHNfc3RhdGUsIGZpcHNfY291bnR5LCBUcmFjdCwgQmxvY2spKSAlPiVcbiAgICBncm91cF9ieShVSUQpICU+JSBcbiAgICB0b3BfbigxLCBibG9ja19jb2RlKSAlPiUgXG4gICAgdW5ncm91cCgpICU+JSBcbiAgICBzZWxlY3QoLWJsb2NrX2NvZGUpXG4gIGlmIChucm93KG9mZmVuY2VzKSA+IGluaXRpYWxfcm93cykge1xuICAgIHN0b3AoJ+KcliBSb3dzIGhhdmUgYmVlbiBhZGRlZCB0byBkYXRhJywgY2FsbC4gPSBGQUxTRSlcbiAgfSBlbHNlIHtcbiAgICBjYXQoXCLinJQg77iOSWRlbnRpZmllZCBjZW5zdXMgYmxvY2tzIGZvclwiLCBcbiAgICAgICAgZm9ybWF0KG5yb3cob2ZmZW5jZXMpLCBiaWcubWFyayA9IFwiLFwiKSwgXCJyb3dzXFxuXCIpXG4gIH1cbiAgIyBpZGVudGlmeSBibG9jayBncm91cHNcbiAgb2ZmZW5jZXMgPC0gb2ZmZW5jZXMgJT4lIFxuICAgIG11dGF0ZShibG9ja19ncm91cCA9IHN0cl9zdWIoQmxvY2ssIDEsIDEpKVxuICBjYXQoXCLinJQg77iOSWRlbnRpZmllZCBjZW5zdXMgYmxvY2sgZ3JvdXBzIGZvclwiLCBcbiAgICAgIGZvcm1hdChucm93KG9mZmVuY2VzKSwgYmlnLm1hcmsgPSBcIixcIiksIFwicm93c1xcblwiKVxuICAjIGFkZCB0aGUgZmllbGRzIGZyb20gdGhlIHNwYXRpYWwgam9pbnMgdG8gdGhlIGV4aXN0aW5nIGNyaW1lIGRhdGFcbiAgY2F0KFwi8J+VoyBKb2luaW5nIGNlbnN1cyBpZGVudGlmaWVycyB0byBjcmltZSBkYXRhXFxuXCIpXG4gIGRhdGEgPC0gZGF0YSAlPiUgbGVmdF9qb2luKG9mZmVuY2VzLCBieSA9ICdVSUQnKVxuICBcbiAgaWYgKG5yb3coZGF0YSkgPiBpbml0aWFsX3Jvd3MpIHtcbiAgICBzdG9wKCfinJYgUm93cyBoYXZlIGJlZW4gYWRkZWQgdG8gZGF0YScsIGNhbGwuID0gRkFMU0UpXG4gIH0gZWxzZSB7XG4gICAgY2F0KFwi4pyUIEpvaW5lZCBjZW5zdXMgaWRlbnRpZmllcnMgdG9cIiwgXG4gICAgICAgIGZvcm1hdChucm93KGRhdGEpLCBiaWcubWFyayA9IFwiLFwiKSwgXCJyb3dzIG9mIGNyaW1lIGRhdGFcXG5cIilcbiAgfVxuICBcbiAgIyBzdG9yZSBkYXRhXG4gIHNhdmVSRFMoZGF0YSwgcGFzdGUwKFwiLi4vdGVtcF9kYXRhL3NwYXRpYWxfXCIsIFxuICAgICAgICAgIHN0cl9yZXBsYWNlX2FsbChzdHJfdG9fbG93ZXIoY2l0eV9uYW1lKSwgXCJcXFxcc1wiLCBcIl9cIiksIFwiX2RhdGEuUmRzXCIpKVxuICBjYXQoXCLinJQgU2F2ZWQgZGF0YSB0byBmaWxlXFxuXCIpXG4gIFxuICBkdXJhdGlvbiA8LSBkaWZmdGltZShub3coKSwgc3RhcnRfdGltZSwgdW5pdHMgPSBcImF1dG9cIilcbiAgY2F0KFwiRmluaXNoZWQgYXRcIiwgZm9ybWF0KG5vdygpLCBcIiVGICVUXCIpLCBcImFmdGVyXCIsIFxuICAgICAgcm91bmQoZHVyYXRpb24sIGRpZ2l0cyA9IDEpLCB1bml0cyhkdXJhdGlvbiksIFwiXFxuXCIpXG59KSAlPiUgaW52aXNpYmxlKClcbmBgYCJ9 -->
+<pre class="r"><code>setdiff(
   dir(&quot;../temp_data&quot;, pattern = &quot;^raw_&quot;) %&gt;% 
     str_extract(&quot;\\_([a-z_]+?)\\_data.Rds&quot;) %&gt;% 
     as.character(),
@@ -248,11 +245,12 @@ setdiff(
     filter(!is.na(Longitude) &amp; !is.na(Latitude)) %&gt;% 
     st_as_sf(coords = c('Longitude', 'Latitude')) %&gt;% 
     st_set_crs(4326)
+  no_coords &lt;- initial_rows - nrow(offences)
   if (nrow(offences) &gt; initial_rows) {
     stop('✖ Rows have been added to data', call. = FALSE)
   } else {
     cat(&quot;✔︎ Converted data to an SF object, removing&quot;, 
-        format(initial_rows - nrow(offences), big.mark = &quot;,&quot;), 
+        format(no_coords, big.mark = &quot;,&quot;), 
         &quot;rows without co-ordinates\n&quot;)
   }
   
@@ -265,18 +263,18 @@ setdiff(
   cat(&quot;✔︎ Created SF object for city outline\n&quot;)
   
   # identify whether each offence is within the city boundary
+  cat(&quot;🕣 Identifying rows outside the city\n&quot;)
   offences$in_city &lt;- st_covered_by(offences, outline, sparse = FALSE) %&gt;% 
     as.logical()
   
   # filter out offences outside the city boundary
-  cat(&quot;🕣 Identifying rows outside the city\n&quot;)
-  outside_city &lt;- nrow(offences) - sum(offences$in_city)
+  outside_city &lt;- nrow(offences) - sum(offences$in_city) - no_coords
   # offences &lt;- offences %&gt;% filter(in_city == TRUE)
   
   if (nrow(offences) &gt; initial_rows) {
     stop('✖ Rows have been added to data', call. = FALSE)
   } else {
-    cat(&quot;✔ Identified&quot;, format(initial_rows - nrow(offences), big.mark = &quot;,&quot;), 
+    cat(&quot;✔ Identified&quot;, format(outside_city, big.mark = &quot;,&quot;), 
         &quot;rows that were outside the city\n&quot;)
   }
   # create a spatial object for census blocks
@@ -331,81 +329,266 @@ setdiff(
   
   duration &lt;- difftime(now(), start_time, units = &quot;auto&quot;)
   cat(&quot;Finished at&quot;, format(now(), &quot;%F %T&quot;), &quot;after&quot;, 
-      round(duration, digits = 1), units(duration))
-}) %&gt;% invisible()
-</code></pre>
+      round(duration, digits = 1), units(duration), &quot;\n&quot;)
+}) %&gt;% invisible()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5Qcm9jZXNzaW5nIERldHJvaXQgZGF0YVxuU3RhcnRpbmcgYXQgMjAxOC0wNi0xNiAxMTozMzozMiBcbuKclO+4jiBMb2FkZWQgZGF0YSB3aXRoIDEsMzAwLDI3MiByb3dzXG7inJTvuI4gQ29udmVydGVkIGRhdGEgdG8gYW4gU0Ygb2JqZWN0LCByZW1vdmluZyA2MSByb3dzIHdpdGhvdXQgY28tb3JkaW5hdGVzXG7inJTvuI4gQ3JlYXRlZCBTRiBvYmplY3QgZm9yIGNpdHkgb3V0bGluZVxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5Qcm9jZXNzaW5nIEZvcnQgV29ydGggZGF0YVxuU3RhcnRpbmcgYXQgMjAxOC0wNi0yMCAyMToyNjoxOSBcbuKclO+4jiBMb2FkZWQgZGF0YSB3aXRoIDEsMDkzLDc4OSByb3dzXG7inJTvuI4gQ29udmVydGVkIGRhdGEgdG8gYW4gU0Ygb2JqZWN0LCByZW1vdmluZyAyNSwxNzggcm93cyB3aXRob3V0IGNvLW9yZGluYXRlc1xu4pyU77iOIENyZWF0ZWQgU0Ygb2JqZWN0IGZvciBjaXR5IG91dGxpbmVcbvCflaMgSWRlbnRpZnlpbmcgcm93cyBvdXRzaWRlIHRoZSBjaXR5XG4ifQ== -->
 <pre><code>
-Processing Detroit data
-Starting at 2018-06-16 11:33:32 
-✔︎ Loaded data with 1,300,272 rows
-✔︎ Converted data to an SF object, removing 61 rows without co-ordinates
-✔︎ Created SF object for city outline</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfY292ZXJlZF9ieSBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
-<pre><code>although coordinates are longitude/latitude, st_covered_by assumes that they are planar</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoi8J+VoyBJZGVudGlmeWluZyByb3dzIG91dHNpZGUgdGhlIGNpdHlcbuKclCBJZGVudGlmaWVkIDYxIHJvd3MgdGhhdCB3ZXJlIG91dHNpZGUgdGhlIGNpdHlcbuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2Vuc3VzIGJsb2Nrc1xu8J+VoyBJZGVudGlmeWluZyBjZW5zdXMgYmxvY2tzXG4ifQ== -->
-<pre><code>🕣 Identifying rows outside the city
-✔ Identified 61 rows that were outside the city
-✔︎ Created SF object for census blocks
-🕣 Identifying census blocks</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfaW50ZXJzZWN0cyBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
-<pre><code>although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IgMSwzMDAsMjExIHJvd3NcbuKclCDvuI5JZGVudGlmaWVkIGNlbnN1cyBibG9jayBncm91cHMgZm9yIDEsMzAwLDIxMSByb3dzXG7wn5WjIEpvaW5pbmcgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIGNyaW1lIGRhdGFcbuKclCBKb2luZWQgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIDEsMzAwLDI3MiByb3dzIG9mIGNyaW1lIGRhdGFcbuKclCBTYXZlZCBkYXRhIHRvIGZpbGVcbkZpbmlzaGVkIGF0IDIwMTgtMDYtMTYgMTE6NDU6MzkgYWZ0ZXIgMTIuMSBtaW5zXG5Qcm9jZXNzaW5nIEZvcnQgV29ydGggZGF0YVxuU3RhcnRpbmcgYXQgMjAxOC0wNi0xNiAxMTo0NTo0MCBcbuKclO+4jiBMb2FkZWQgZGF0YSB3aXRoIDgxNCw4MjIgcm93c1xu4pyU77iOIENvbnZlcnRlZCBkYXRhIHRvIGFuIFNGIG9iamVjdCwgcmVtb3ZpbmcgMTgsMTc2IHJvd3Mgd2l0aG91dCBjby1vcmRpbmF0ZXNcbuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2l0eSBvdXRsaW5lXG4ifQ== -->
-<pre><code>✔ ︎Identified census blocks for 1,300,211 rows
-✔ ︎Identified census block groups for 1,300,211 rows
-🕣 Joining census identifiers to crime data
-✔ Joined census identifiers to 1,300,272 rows of crime data
-✔ Saved data to file
-Finished at 2018-06-16 11:45:39 after 12.1 mins
 Processing Fort Worth data
-Starting at 2018-06-16 11:45:40 
-✔︎ Loaded data with 814,822 rows
-✔︎ Converted data to an SF object, removing 18,176 rows without co-ordinates
-✔︎ Created SF object for city outline</code></pre>
+Starting at 2018-06-20 21:26:19 
+✔︎ Loaded data with 1,093,789 rows
+✔︎ Converted data to an SF object, removing 25,178 rows without co-ordinates
+✔︎ Created SF object for city outline
+🕣 Identifying rows outside the city</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfY292ZXJlZF9ieSBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
 <pre><code>although coordinates are longitude/latitude, st_covered_by assumes that they are planar</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoi8J+VoyBJZGVudGlmeWluZyByb3dzIG91dHNpZGUgdGhlIGNpdHlcbuKclCBJZGVudGlmaWVkIDE4LDE3NiByb3dzIHRoYXQgd2VyZSBvdXRzaWRlIHRoZSBjaXR5XG7inJTvuI4gQ3JlYXRlZCBTRiBvYmplY3QgZm9yIGNlbnN1cyBibG9ja3NcbvCflaMgSWRlbnRpZnlpbmcgY2Vuc3VzIGJsb2Nrc1xuIn0= -->
-<pre><code>🕣 Identifying rows outside the city
-✔ Identified 18,176 rows that were outside the city
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIElkZW50aWZpZWQgLTEwLDcyNSByb3dzIHRoYXQgd2VyZSBvdXRzaWRlIHRoZSBjaXR5XG7inJTvuI4gQ3JlYXRlZCBTRiBvYmplY3QgZm9yIGNlbnN1cyBibG9ja3NcbvCflaMgSWRlbnRpZnlpbmcgY2Vuc3VzIGJsb2Nrc1xuIn0= -->
+<pre><code>✔ Identified -10,725 rows that were outside the city
 ✔︎ Created SF object for census blocks
 🕣 Identifying census blocks</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfaW50ZXJzZWN0cyBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
 <pre><code>although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IgNzk2LDY0NiByb3dzXG7inJQg77iOSWRlbnRpZmllZCBjZW5zdXMgYmxvY2sgZ3JvdXBzIGZvciA3OTYsNjQ2IHJvd3NcbvCflaMgSm9pbmluZyBjZW5zdXMgaWRlbnRpZmllcnMgdG8gY3JpbWUgZGF0YVxu4pyUIEpvaW5lZCBjZW5zdXMgaWRlbnRpZmllcnMgdG8gODE0LDgyMiByb3dzIG9mIGNyaW1lIGRhdGFcbuKclCBTYXZlZCBkYXRhIHRvIGZpbGVcbkZpbmlzaGVkIGF0IDIwMTgtMDYtMTYgMTM6MTE6MjkgYWZ0ZXIgMS40IGhvdXJzXG5Qcm9jZXNzaW5nIExvcyBBbmdlbGVzIGRhdGFcblN0YXJ0aW5nIGF0IDIwMTgtMDYtMTYgMTM6MTE6MjkgXG7inJTvuI4gTG9hZGVkIGRhdGEgd2l0aCAxLDc3Miw4ODQgcm93c1xu4pyU77iOIENvbnZlcnRlZCBkYXRhIHRvIGFuIFNGIG9iamVjdCwgcmVtb3ZpbmcgOSByb3dzIHdpdGhvdXQgY28tb3JkaW5hdGVzXG7inJTvuI4gQ3JlYXRlZCBTRiBvYmplY3QgZm9yIGNpdHkgb3V0bGluZVxuIn0= -->
-<pre><code>✔ ︎Identified census blocks for 796,646 rows
-✔ ︎Identified census block groups for 796,646 rows
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IgMSwwNjgsNjExIHJvd3NcbuKclCDvuI5JZGVudGlmaWVkIGNlbnN1cyBibG9jayBncm91cHMgZm9yIDEsMDY4LDYxMSByb3dzXG7wn5WjIEpvaW5pbmcgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIGNyaW1lIGRhdGFcbuKclCBKb2luZWQgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIDEsMDkzLDc4OSByb3dzIG9mIGNyaW1lIGRhdGFcbuKclCBTYXZlZCBkYXRhIHRvIGZpbGVcbkZpbmlzaGVkIGF0IDIwMTgtMDYtMjAgMjM6MjA6MjggYWZ0ZXIgMS45IGhvdXJzIFxuXG5Qcm9jZXNzaW5nIExvcyBBbmdlbGVzIGRhdGFcblN0YXJ0aW5nIGF0IDIwMTgtMDYtMjAgMjM6MjA6MjggXG7inJTvuI4gTG9hZGVkIGRhdGEgd2l0aCAxLDc3Miw4ODQgcm93c1xu4pyU77iOIENvbnZlcnRlZCBkYXRhIHRvIGFuIFNGIG9iamVjdCwgcmVtb3ZpbmcgOSByb3dzIHdpdGhvdXQgY28tb3JkaW5hdGVzXG7inJTvuI4gQ3JlYXRlZCBTRiBvYmplY3QgZm9yIGNpdHkgb3V0bGluZVxu8J+VoyBJZGVudGlmeWluZyByb3dzIG91dHNpZGUgdGhlIGNpdHlcbiJ9 -->
+<pre><code>✔ ︎Identified census blocks for 1,068,611 rows
+✔ ︎Identified census block groups for 1,068,611 rows
 🕣 Joining census identifiers to crime data
-✔ Joined census identifiers to 814,822 rows of crime data
+✔ Joined census identifiers to 1,093,789 rows of crime data
 ✔ Saved data to file
-Finished at 2018-06-16 13:11:29 after 1.4 hours
+Finished at 2018-06-20 23:20:28 after 1.9 hours 
+
 Processing Los Angeles data
-Starting at 2018-06-16 13:11:29 
+Starting at 2018-06-20 23:20:28 
 ✔︎ Loaded data with 1,772,884 rows
 ✔︎ Converted data to an SF object, removing 9 rows without co-ordinates
-✔︎ Created SF object for city outline</code></pre>
+✔︎ Created SF object for city outline
+🕣 Identifying rows outside the city</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfY292ZXJlZF9ieSBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
 <pre><code>although coordinates are longitude/latitude, st_covered_by assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIElkZW50aWZpZWQgMTksNjAxIHJvd3MgdGhhdCB3ZXJlIG91dHNpZGUgdGhlIGNpdHlcbuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2Vuc3VzIGJsb2Nrc1xu8J+VoyBJZGVudGlmeWluZyBjZW5zdXMgYmxvY2tzXG4ifQ== -->
+<pre><code>✔ Identified 19,601 rows that were outside the city
+✔︎ Created SF object for census blocks
+🕣 Identifying census blocks</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfaW50ZXJzZWN0cyBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IgMSw3NzIsODc1IHJvd3NcbuKclCDvuI5JZGVudGlmaWVkIGNlbnN1cyBibG9jayBncm91cHMgZm9yIDEsNzcyLDg3NSByb3dzXG7wn5WjIEpvaW5pbmcgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIGNyaW1lIGRhdGFcbuKclCBKb2luZWQgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIDEsNzcyLDg4NCByb3dzIG9mIGNyaW1lIGRhdGFcbuKclCBTYXZlZCBkYXRhIHRvIGZpbGVcbkZpbmlzaGVkIGF0IDIwMTgtMDYtMjEgMDE6MDY6MTkgYWZ0ZXIgMS44IGhvdXJzIFxuXG5Qcm9jZXNzaW5nIExvdWlzdmlsbGUgZGF0YVxuU3RhcnRpbmcgYXQgMjAxOC0wNi0yMSAwMTowNjoxOSBcbuKclO+4jiBMb2FkZWQgZGF0YSB3aXRoIDEsMDU0LDc3OSByb3dzXG7inJTvuI4gQ29udmVydGVkIGRhdGEgdG8gYW4gU0Ygb2JqZWN0LCByZW1vdmluZyA1NSwwNTMgcm93cyB3aXRob3V0IGNvLW9yZGluYXRlc1xu4pyU77iOIENyZWF0ZWQgU0Ygb2JqZWN0IGZvciBjaXR5IG91dGxpbmVcbvCflaMgSWRlbnRpZnlpbmcgcm93cyBvdXRzaWRlIHRoZSBjaXR5XG4ifQ== -->
+<pre><code>✔ ︎Identified census blocks for 1,772,875 rows
+✔ ︎Identified census block groups for 1,772,875 rows
+🕣 Joining census identifiers to crime data
+✔ Joined census identifiers to 1,772,884 rows of crime data
+✔ Saved data to file
+Finished at 2018-06-21 01:06:19 after 1.8 hours 
+
+Processing Louisville data
+Starting at 2018-06-21 01:06:19 
+✔︎ Loaded data with 1,054,779 rows
+✔︎ Converted data to an SF object, removing 55,053 rows without co-ordinates
+✔︎ Created SF object for city outline
+🕣 Identifying rows outside the city</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfY292ZXJlZF9ieSBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_covered_by assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIElkZW50aWZpZWQgMzgxLDc5NiByb3dzIHRoYXQgd2VyZSBvdXRzaWRlIHRoZSBjaXR5XG7inJTvuI4gQ3JlYXRlZCBTRiBvYmplY3QgZm9yIGNlbnN1cyBibG9ja3NcbvCflaMgSWRlbnRpZnlpbmcgY2Vuc3VzIGJsb2Nrc1xuIn0= -->
+<pre><code>✔ Identified 381,796 rows that were outside the city
+✔︎ Created SF object for census blocks
+🕣 Identifying census blocks</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfaW50ZXJzZWN0cyBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IgOTk5LDcyNiByb3dzXG7inJQg77iOSWRlbnRpZmllZCBjZW5zdXMgYmxvY2sgZ3JvdXBzIGZvciA5OTksNzI2IHJvd3NcbvCflaMgSm9pbmluZyBjZW5zdXMgaWRlbnRpZmllcnMgdG8gY3JpbWUgZGF0YVxu4pyUIEpvaW5lZCBjZW5zdXMgaWRlbnRpZmllcnMgdG8gMSwwNTQsNzc5IHJvd3Mgb2YgY3JpbWUgZGF0YVxu4pyUIFNhdmVkIGRhdGEgdG8gZmlsZVxuRmluaXNoZWQgYXQgMjAxOC0wNi0yMSAwMToyMTo1NyBhZnRlciAxNS42IG1pbnMgXG5cblByb2Nlc3NpbmcgTmV3IFlvcmsgZGF0YVxuU3RhcnRpbmcgYXQgMjAxOC0wNi0yMSAwMToyMTo1NyBcbuKclO+4jiBMb2FkZWQgZGF0YSB3aXRoIDUsNDkzLDY3OCByb3dzXG7inJTvuI4gQ29udmVydGVkIGRhdGEgdG8gYW4gU0Ygb2JqZWN0LCByZW1vdmluZyAxNzgsNjA5IHJvd3Mgd2l0aG91dCBjby1vcmRpbmF0ZXNcbuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2l0eSBvdXRsaW5lXG7wn5WjIElkZW50aWZ5aW5nIHJvd3Mgb3V0c2lkZSB0aGUgY2l0eVxuIn0= -->
+<pre><code>✔ ︎Identified census blocks for 999,726 rows
+✔ ︎Identified census block groups for 999,726 rows
+🕣 Joining census identifiers to crime data
+✔ Joined census identifiers to 1,054,779 rows of crime data
+✔ Saved data to file
+Finished at 2018-06-21 01:21:57 after 15.6 mins 
+
+Processing New York data
+Starting at 2018-06-21 01:21:57 
+✔︎ Loaded data with 5,493,678 rows
+✔︎ Converted data to an SF object, removing 178,609 rows without co-ordinates
+✔︎ Created SF object for city outline
+🕣 Identifying rows outside the city</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfY292ZXJlZF9ieSBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_covered_by assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIElkZW50aWZpZWQgLTE3OCwxNjkgcm93cyB0aGF0IHdlcmUgb3V0c2lkZSB0aGUgY2l0eVxu4pyU77iOIENyZWF0ZWQgU0Ygb2JqZWN0IGZvciBjZW5zdXMgYmxvY2tzXG7wn5WjIElkZW50aWZ5aW5nIGNlbnN1cyBibG9ja3NcbiJ9 -->
+<pre><code>✔ Identified -178,169 rows that were outside the city
+✔︎ Created SF object for census blocks
+🕣 Identifying census blocks</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfaW50ZXJzZWN0cyBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IgNSwzMTUsMDY5IHJvd3NcbuKclCDvuI5JZGVudGlmaWVkIGNlbnN1cyBibG9jayBncm91cHMgZm9yIDUsMzE1LDA2OSByb3dzXG7wn5WjIEpvaW5pbmcgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIGNyaW1lIGRhdGFcbuKclCBKb2luZWQgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIDUsNDkzLDY3OCByb3dzIG9mIGNyaW1lIGRhdGFcbuKclCBTYXZlZCBkYXRhIHRvIGZpbGVcbkZpbmlzaGVkIGF0IDIwMTgtMDYtMjEgMDI6MTM6NDkgYWZ0ZXIgNTEuOSBtaW5zIFxuXG5Qcm9jZXNzaW5nIFNhbiBGcmFuY2lzY28gZGF0YVxuU3RhcnRpbmcgYXQgMjAxOC0wNi0yMSAwMjoxMzo0OSBcbuKclO+4jiBMb2FkZWQgZGF0YSB3aXRoIDEsNTkwLDk1MCByb3dzXG7inJTvuI4gQ29udmVydGVkIGRhdGEgdG8gYW4gU0Ygb2JqZWN0LCByZW1vdmluZyAwIHJvd3Mgd2l0aG91dCBjby1vcmRpbmF0ZXNcbuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2l0eSBvdXRsaW5lXG7wn5WjIElkZW50aWZ5aW5nIHJvd3Mgb3V0c2lkZSB0aGUgY2l0eVxuIn0= -->
+<pre><code>✔ ︎Identified census blocks for 5,315,069 rows
+✔ ︎Identified census block groups for 5,315,069 rows
+🕣 Joining census identifiers to crime data
+✔ Joined census identifiers to 5,493,678 rows of crime data
+✔ Saved data to file
+Finished at 2018-06-21 02:13:49 after 51.9 mins 
+
+Processing San Francisco data
+Starting at 2018-06-21 02:13:49 
+✔︎ Loaded data with 1,590,950 rows
+✔︎ Converted data to an SF object, removing 0 rows without co-ordinates
+✔︎ Created SF object for city outline
+🕣 Identifying rows outside the city</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfY292ZXJlZF9ieSBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_covered_by assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIElkZW50aWZpZWQgMzAzIHJvd3MgdGhhdCB3ZXJlIG91dHNpZGUgdGhlIGNpdHlcbuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2Vuc3VzIGJsb2Nrc1xu8J+VoyBJZGVudGlmeWluZyBjZW5zdXMgYmxvY2tzXG4ifQ== -->
+<pre><code>✔ Identified 303 rows that were outside the city
+✔︎ Created SF object for census blocks
+🕣 Identifying census blocks</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfaW50ZXJzZWN0cyBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IgMSw1OTAsOTUwIHJvd3NcbuKclCDvuI5JZGVudGlmaWVkIGNlbnN1cyBibG9jayBncm91cHMgZm9yIDEsNTkwLDk1MCByb3dzXG7wn5WjIEpvaW5pbmcgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIGNyaW1lIGRhdGFcbuKclCBKb2luZWQgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIDEsNTkwLDk1MCByb3dzIG9mIGNyaW1lIGRhdGFcbuKclCBTYXZlZCBkYXRhIHRvIGZpbGVcbkZpbmlzaGVkIGF0IDIwMTgtMDYtMjEgMDI6MjU6MzcgYWZ0ZXIgMTEuOCBtaW5zIFxuXG5Qcm9jZXNzaW5nIFR1Y3NvbiBkYXRhXG5TdGFydGluZyBhdCAyMDE4LTA2LTIxIDAyOjI1OjM3IFxu4pyU77iOIExvYWRlZCBkYXRhIHdpdGggMSw0MDUsMjI2IHJvd3NcbuKclO+4jiBDb252ZXJ0ZWQgZGF0YSB0byBhbiBTRiBvYmplY3QsIHJlbW92aW5nIDAgcm93cyB3aXRob3V0IGNvLW9yZGluYXRlc1xu4pyU77iOIENyZWF0ZWQgU0Ygb2JqZWN0IGZvciBjaXR5IG91dGxpbmVcbvCflaMgSWRlbnRpZnlpbmcgcm93cyBvdXRzaWRlIHRoZSBjaXR5XG4ifQ== -->
+<pre><code>✔ ︎Identified census blocks for 1,590,950 rows
+✔ ︎Identified census block groups for 1,590,950 rows
+🕣 Joining census identifiers to crime data
+✔ Joined census identifiers to 1,590,950 rows of crime data
+✔ Saved data to file
+Finished at 2018-06-21 02:25:37 after 11.8 mins 
+
+Processing Tucson data
+Starting at 2018-06-21 02:25:37 
+✔︎ Loaded data with 1,405,226 rows
+✔︎ Converted data to an SF object, removing 0 rows without co-ordinates
+✔︎ Created SF object for city outline
+🕣 Identifying rows outside the city</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfY292ZXJlZF9ieSBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_covered_by assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIElkZW50aWZpZWQgMTMsNzE2IHJvd3MgdGhhdCB3ZXJlIG91dHNpZGUgdGhlIGNpdHlcbuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2Vuc3VzIGJsb2Nrc1xu8J+VoyBJZGVudGlmeWluZyBjZW5zdXMgYmxvY2tzXG4ifQ== -->
+<pre><code>✔ Identified 13,716 rows that were outside the city
+✔︎ Created SF object for census blocks
+🕣 Identifying census blocks</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfaW50ZXJzZWN0cyBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IgMSw0MDUsMjI2IHJvd3NcbuKclCDvuI5JZGVudGlmaWVkIGNlbnN1cyBibG9jayBncm91cHMgZm9yIDEsNDA1LDIyNiByb3dzXG7wn5WjIEpvaW5pbmcgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIGNyaW1lIGRhdGFcbuKclCBKb2luZWQgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIDEsNDA1LDIyNiByb3dzIG9mIGNyaW1lIGRhdGFcbuKclCBTYXZlZCBkYXRhIHRvIGZpbGVcbkZpbmlzaGVkIGF0IDIwMTgtMDYtMjEgMDM6MTM6MjcgYWZ0ZXIgNDcuOCBtaW5zIFxuXG5Qcm9jZXNzaW5nIFZpcmdpbmlhIEJlYWNoIGRhdGFcblN0YXJ0aW5nIGF0IDIwMTgtMDYtMjEgMDM6MTM6MjcgXG7inJTvuI4gTG9hZGVkIGRhdGEgd2l0aCAxNTgsMTc2IHJvd3NcbuKclO+4jiBDb252ZXJ0ZWQgZGF0YSB0byBhbiBTRiBvYmplY3QsIHJlbW92aW5nIDMsODM2IHJvd3Mgd2l0aG91dCBjby1vcmRpbmF0ZXNcbuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2l0eSBvdXRsaW5lXG7wn5WjIElkZW50aWZ5aW5nIHJvd3Mgb3V0c2lkZSB0aGUgY2l0eVxuIn0= -->
+<pre><code>✔ ︎Identified census blocks for 1,405,226 rows
+✔ ︎Identified census block groups for 1,405,226 rows
+🕣 Joining census identifiers to crime data
+✔ Joined census identifiers to 1,405,226 rows of crime data
+✔ Saved data to file
+Finished at 2018-06-21 03:13:27 after 47.8 mins 
+
+Processing Virginia Beach data
+Starting at 2018-06-21 03:13:27 
+✔︎ Loaded data with 158,176 rows
+✔︎ Converted data to an SF object, removing 3,836 rows without co-ordinates
+✔︎ Created SF object for city outline
+🕣 Identifying rows outside the city</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfY292ZXJlZF9ieSBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_covered_by assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIElkZW50aWZpZWQgLTMsMjQ2IHJvd3MgdGhhdCB3ZXJlIG91dHNpZGUgdGhlIGNpdHlcbuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2Vuc3VzIGJsb2Nrc1xu8J+VoyBJZGVudGlmeWluZyBjZW5zdXMgYmxvY2tzXG4ifQ== -->
+<pre><code>✔ Identified -3,246 rows that were outside the city
+✔︎ Created SF object for census blocks
+🕣 Identifying census blocks</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiYWx0aG91Z2ggY29vcmRpbmF0ZXMgYXJlIGxvbmdpdHVkZS9sYXRpdHVkZSwgc3RfaW50ZXJzZWN0cyBhc3N1bWVzIHRoYXQgdGhleSBhcmUgcGxhbmFyXG4ifQ== -->
+<pre><code>although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IgMTU0LDM0MCByb3dzXG7inJQg77iOSWRlbnRpZmllZCBjZW5zdXMgYmxvY2sgZ3JvdXBzIGZvciAxNTQsMzQwIHJvd3NcbvCflaMgSm9pbmluZyBjZW5zdXMgaWRlbnRpZmllcnMgdG8gY3JpbWUgZGF0YVxu4pyUIEpvaW5lZCBjZW5zdXMgaWRlbnRpZmllcnMgdG8gMTU4LDE3NiByb3dzIG9mIGNyaW1lIGRhdGFcbuKclCBTYXZlZCBkYXRhIHRvIGZpbGVcbkZpbmlzaGVkIGF0IDIwMTgtMDYtMjEgMDM6MTQ6NTggYWZ0ZXIgMS41IG1pbnMgXG4ifQ== -->
+<pre><code>✔ ︎Identified census blocks for 154,340 rows
+✔ ︎Identified census block groups for 154,340 rows
+🕣 Joining census identifiers to crime data
+✔ Joined census identifiers to 158,176 rows of crime data
+✔ Saved data to file
+Finished at 2018-06-21 03:14:58 after 1.5 mins </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBcbmBgYCJ9 -->
+<pre class="r"><code>``</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IGF0dGVtcHQgdG8gdXNlIHplcm8tbGVuZ3RoIHZhcmlhYmxlIG5hbWVcbiJ9 -->
+<pre><code>Error: attempt to use zero-length variable name</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
+<div id="check-data" class="section level1">
+<h1>Check data</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yIChjaXR5IGluIGNpdGllcyRuYW1lWzJdKSB7XG4gIFxuICBjYXQoXCJcXG5Qcm9kdWNpbmcgbWFwIGZvclwiLCBjaXR5LCBcImF0XCIsIGZvcm1hdChub3coKSwgXCIlRiAlVFwiKSwgXCJcXG5cIilcbiAgXG4gIGNyaW1lcyA8LSByZWFkUkRTKFxuICAgIHBhc3RlMChcIi4uL3RlbXBfZGF0YS9zcGF0aWFsX1wiLCBcbiAgICAgICAgICAgc3RyX3JlcGxhY2VfYWxsKHN0cl90b19sb3dlcihjaXR5KSwgXCJcXFxcc1wiLCBcIl9cIiksIFwiX2RhdGEuUmRzXCIpXG4gICkgJT4lIFxuICAgIHNhbXBsZV9mcmFjKDAuMSkgJT4lIFxuICAgICMgc2FtcGxlX24oMTAwMCkgJT4lXG4gICAgZmlsdGVyKCFpcy5uYShMYXRpdHVkZSkgJiAhaXMubmEoTG9uZ2l0dWRlKSkgJT4lIFxuICAgIHN0X2FzX3NmKGNvb3JkcyA9IGMoXCJMb25naXR1ZGVcIiwgXCJMYXRpdHVkZVwiKSwgY3JzID0gNDMyNilcbiAgb3V0bGluZSA8LSBzdF9yZWFkKFxuICAgIHBhc3RlMChcIi4uL3NwYXRpYWxfZGF0YS9jaXRpZXMvdGxfMjAxNl9cIiwgY2l0aWVzJGZpcHNbY2l0aWVzJG5hbWUgPT0gY2l0eV0sIFxuICAgICAgICAgICBcIl9wbGFjZS5zaHBcIiksIFxuICAgIHF1aWV0ID0gVFJVRSwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiUgXG4gICAgZmlsdGVyKE5BTUUgPT0gY2l0eSlcbiAgY2F0KFwiXFx0U2FtcGxlZFwiLCBmb3JtYXQobnJvdyhjcmltZXMpLCBiaWcubWFyayA9IFwiLFwiKSwgXG4gICAgICBcInJvd3MgKDEwJSBvZiB0b3RhbClcXG5cIilcbiAgb3V0bGluZV9iYm94IDwtIHN0X2Jib3gob3V0bGluZSlcbiAgXG4gIGdncGxvdCgpICtcbiAgICBnZW9tX3NmKGRhdGEgPSBvdXRsaW5lLCBmaWxsID0gTkEpICtcbiAgICBnZW9tX3NmKGFlcyhzaGFwZSA9IGluX2NpdHkpLCBkYXRhID0gY3JpbWVzLCBhbHBoYSA9IDAuNSkgK1xuICAgIHRoZW1lX21pbmltYWwoKSArXG4gICAgdGhlbWUoXG4gICAgICBsZWdlbmQucG9zaXRpb24gPSBcIm5vbmVcIixcbiAgICAgIHBhbmVsLmdyaWQubWFqb3IgPSBlbGVtZW50X2xpbmUoY29sb3VyID0gXCIjQ0NDQ0NDXCIpXG4gICAgKSArXG4gICAgbGFicyh0aXRsZSA9IHBhc3RlKFwiT2ZmZW5jZSBsb2NhdGlvbnMgaW5cIiwgY2l0eSwgXCJkYXRhXCIpKSArXG4gICAgeGxpbShvdXRsaW5lX2Jib3gkeG1pbiAtICgob3V0bGluZV9iYm94JHhtYXggLSBvdXRsaW5lX2Jib3gkeG1pbikgLyA1KSwgXG4gICAgICAgICBvdXRsaW5lX2Jib3gkeG1heCArICgob3V0bGluZV9iYm94JHhtYXggLSBvdXRsaW5lX2Jib3gkeG1pbikgLyA1KSkgK1xuICAgIHlsaW0ob3V0bGluZV9iYm94JHltaW4gLSAoKG91dGxpbmVfYmJveCR5bWF4IC0gb3V0bGluZV9iYm94JHltaW4pIC8gNSksIFxuICAgICAgICAgb3V0bGluZV9iYm94JHltYXggKyAoKG91dGxpbmVfYmJveCR5bWF4IC0gb3V0bGluZV9iYm94JHltaW4pIC8gNSkpXG4gIGNhdChcIlxcdEdlbmVyYXRlZCBwbG90XFxuXCIpXG4gIFxuICBnZ3NhdmUoXG4gICAgcGFzdGUwKFwiLi4vdGVtcF9kYXRhL3Bsb3RfXCIsIFxuICAgICAgICAgICBzdHJfcmVwbGFjZV9hbGwoc3RyX3RvX2xvd2VyKGNpdHkpLCBcIlxcXFxzXCIsIFwiX1wiKSwgXCIucGRmXCIpLFxuICAgIHdpZHRoID0gMTEuNjksIGhlaWdodCA9IDE2LjUzLCB1bml0cyA9IFwiaW5cIilcbiAgY2F0KFwiXFx0U2F2ZWQgcGxvdFxcblwiKVxuICBcbiAgcm0oY2l0eSwgY3JpbWVzLCBvdXRsaW5lKVxuICBcbn1cbmBgYCJ9 -->
+<pre class="r"><code>for (city in cities$name[2]) {
+  
+  cat(&quot;\nProducing map for&quot;, city, &quot;at&quot;, format(now(), &quot;%F %T&quot;), &quot;\n&quot;)
+  
+  crimes &lt;- readRDS(
+    paste0(&quot;../temp_data/spatial_&quot;, 
+           str_replace_all(str_to_lower(city), &quot;\\s&quot;, &quot;_&quot;), &quot;_data.Rds&quot;)
+  ) %&gt;% 
+    sample_frac(0.1) %&gt;% 
+    # sample_n(1000) %&gt;%
+    filter(!is.na(Latitude) &amp; !is.na(Longitude)) %&gt;% 
+    st_as_sf(coords = c(&quot;Longitude&quot;, &quot;Latitude&quot;), crs = 4326)
+  outline &lt;- st_read(
+    paste0(&quot;../spatial_data/cities/tl_2016_&quot;, cities$fips[cities$name == city], 
+           &quot;_place.shp&quot;), 
+    quiet = TRUE, stringsAsFactors = FALSE) %&gt;% 
+    filter(NAME == city)
+  cat(&quot;\tSampled&quot;, format(nrow(crimes), big.mark = &quot;,&quot;), 
+      &quot;rows (10% of total)\n&quot;)
+  outline_bbox &lt;- st_bbox(outline)
+  
+  ggplot() +
+    geom_sf(data = outline, fill = NA) +
+    geom_sf(aes(shape = in_city), data = crimes, alpha = 0.5) +
+    theme_minimal() +
+    theme(
+      legend.position = &quot;none&quot;,
+      panel.grid.major = element_line(colour = &quot;#CCCCCC&quot;)
+    ) +
+    labs(title = paste(&quot;Offence locations in&quot;, city, &quot;data&quot;)) +
+    xlim(outline_bbox$xmin - ((outline_bbox$xmax - outline_bbox$xmin) / 5), 
+         outline_bbox$xmax + ((outline_bbox$xmax - outline_bbox$xmin) / 5)) +
+    ylim(outline_bbox$ymin - ((outline_bbox$ymax - outline_bbox$ymin) / 5), 
+         outline_bbox$ymax + ((outline_bbox$ymax - outline_bbox$ymin) / 5))
+  cat(&quot;\tGenerated plot\n&quot;)
+  
+  ggsave(
+    paste0(&quot;../temp_data/plot_&quot;, 
+           str_replace_all(str_to_lower(city), &quot;\\s&quot;, &quot;_&quot;), &quot;.pdf&quot;),
+    width = 11.69, height = 16.53, units = &quot;in&quot;)
+  cat(&quot;\tSaved plot\n&quot;)
+  
+  rm(city, crimes, outline)
+  
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5Qcm9kdWNpbmcgbWFwIGZvciBEZXRyb2l0IGF0IDIwMTgtMDYtMjAgMjE6MDg6NTUgXG5cdFNhbXBsZWQgMTI5LDY3NSByb3dzICgxMCUgb2YgdG90YWwpXG5cdEdlbmVyYXRlZCBwbG90XG5cdFNhdmVkIHBsb3RcbiJ9 -->
+<pre><code>
+Producing map for Detroit at 2018-06-20 21:08:55 
+    Sampled 129,675 rows (10% of total)
+    Generated plot
+    Saved plot</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU3BhdGlhbCBwcm9jZXNzaW5nIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpUaGlzIGZpbGUgdGFrZXMgdGhlIGdlb2NvZGVkIHByb2Nlc3NlZCBkYXRhIGZvciBlYWNoIGNpdHkgYW5kIGNhcnJpZXMgb3V0IApzcGF0aWFsIHByb2Nlc3NpbmcuCgoKIyBDb252ZXJ0IGFsbCBjby1vcmRpbmF0ZXMgdG8gbGF0L2xvbiBwYWlycwoKRGF0YSBmb3IgbW9zdCBjaXRpZXMgYWxyZWFkeSBpbmNsdWRlIGxhdC9sb24gcGFpcnMsIGJ1dCBzb21lIHJlcXVpcmUgY29udmVyc2lvbgpmcm9tIG90aGVyIGNvLW9yZGluYXRlIHN5c3RlbXMuCgojIyBEZXRyb2l0CgpEZXRyb2l0IGRhdGEgaGF2ZSBsYXQvbG9uIHBhaXJzLCBidXQgdGhleSBzZWVtIHRvIGVuY29kZSBOQSBhcyA5OTk5OTkuMCBkZWdyZWVzLiAKVGhlc2UgY2FzZXMgY2FuIGVhc2lseSBiZSByZWN0aWZpZWQgYnkgcmVwbGFjaW5nIGFueSB2YWx1ZSBvZiBsYXRpdHVkZSB0aGF0IGlzIApub3QgYmV0d2VlbiAtOTAgYW5kICs5MCwgYW5kIGFueSB2YWx1ZSBvZiBsb25naXR1ZGUgdGhhdCBpcyBub3QgYmV0d2VlbiAtMTgwIGFuZCAKKzE4MCwgd2l0aCBOQS4KCmBgYHtyfQpkYXRhX2R0IDwtIHJlYWRSRFMoIi4uL3RlbXBfZGF0YS9yYXdfZGV0cm9pdF9kYXRhLlJkcyIpCgpkYXRhX2R0IDwtIGRhdGFfZHQgJT4lIAogIG11dGF0ZSgKICAgIExhdGl0dWRlID0gaWZlbHNlKExhdGl0dWRlIDwgLTkwIHwgTGF0aXR1ZGUgPiA5MCwgTkEsIExhdGl0dWRlKSwKICAgIExvbmdpdHVkZSA9IGlmZWxzZShMb25naXR1ZGUgPCAtMTgwIHwgTG9uZ2l0dWRlID4gMTgwLCBOQSwgTG9uZ2l0dWRlKQogICkKICAKc2F2ZVJEUyhkYXRhX2R0LCAiLi4vdGVtcF9kYXRhL3Jhd19kZXRyb2l0X2RhdGEuUmRzIikKCnJtKGRhdGFfZHQpCmBgYAoKCiMgU3RpcCBvZmZlbmNlcyBvdXRzaWRlIGNpdGllcyBhbmQgYWRkIGNlbnN1cyBpZGVudGlmaWVycwoKYGBge3J9CiMgZGlyKCIuLi90ZW1wX2RhdGEiLCBmdWxsLm5hbWVzID0gVFJVRSkKc2V0ZGlmZigKICBkaXIoIi4uL3RlbXBfZGF0YSIsIHBhdHRlcm4gPSAiXnJhd18iKSAlPiUgCiAgICBzdHJfZXh0cmFjdCgiXFxfKFthLXpfXSs/KVxcX2RhdGEuUmRzIikgJT4lIAogICAgYXMuY2hhcmFjdGVyKCksCiAgZGlyKCIuLi90ZW1wX2RhdGEiLCBwYXR0ZXJuID0gIl5zcGF0aWFsXyIpICU+JSAKICAgIHN0cl9leHRyYWN0KCJcXF8oW2Etel9dKz8pXFxfZGF0YS5SZHMiKSAlPiUgCiAgICBhcy5jaGFyYWN0ZXIoKQopICU+JSAKICB7IHBhc3RlMCgiLi4vdGVtcF9kYXRhL3JhdyIsIC4pIH0gJT4lIAogIHNhcHBseShmdW5jdGlvbiAoeCkgewogIAogICMgZ2V0IGNpdHkgbmFtZQogIGNpdHlfbmFtZSA8LSBzdHJfbWF0Y2goeCwgInJhd1xcXyhbYS16X10rPylcXF9kYXRhLlJkcyIpICU+JSAKICAgIGFzLmNoYXJhY3RlcigpICU+JSAKICAgIGxhc3QoKSAlPiUgCiAgICBzdHJfcmVwbGFjZV9hbGwoIlxcXyIsICIgIikgJT4lIAogICAgc3RyX3RvX3RpdGxlKCkKICAKICBzdGFydF90aW1lIDwtIG5vdygpCiAgY2F0KCJcblByb2Nlc3NpbmciLCBjaXR5X25hbWUsICJkYXRhXG5TdGFydGluZyBhdCIsIAogICAgICBmb3JtYXQoc3RhcnRfdGltZSwgIiVGICVUIiksICJcbiIpCiAgCiAgIyBnZXQgY2l0eSBtZXRhZGF0YQogIGNpdHlfZmlwcyA8LSBjaXRpZXMkZmlwc1tjaXRpZXMkbmFtZSA9PSBjaXR5X25hbWVdCiAgCiAgIyBsb2FkIGRhdGEKICBkYXRhIDwtIHJlYWRSRFMoeCklPiUgCiAgICBtdXRhdGUoCiAgICAgIExhdGl0dWRlID0gYXMubnVtZXJpYyhMYXRpdHVkZSksCiAgICAgIExvbmdpdHVkZSA9IGFzLm51bWVyaWMoTG9uZ2l0dWRlKQogICAgKQogIAogICMgbm90ZSBudW1iZXIgb2Ygcm93cyBpbiBkYXRhCiAgaW5pdGlhbF9yb3dzIDwtIG5yb3coZGF0YSkKICBjYXQoIuKclO+4jiBMb2FkZWQgZGF0YSB3aXRoIiwgZm9ybWF0KGluaXRpYWxfcm93cywgYmlnLm1hcmsgPSAiLCIpLAogICAgICAicm93c1xuIikKICAKICAjIGNvbnZlcnQgdG8gU0Ygb2JqZWN0IChyZW1vdmluZyBhbnkgcm93cyB3aXRob3V0IGNvLW9yZGluYXRlcykKICBvZmZlbmNlcyA8LSBkYXRhICU+JSAKICAgIHNlbGVjdChVSUQsIExvbmdpdHVkZSwgTGF0aXR1ZGUpICAlPiUgCiAgICBmaWx0ZXIoIWlzLm5hKExvbmdpdHVkZSkgJiAhaXMubmEoTGF0aXR1ZGUpKSAlPiUgCiAgICBzdF9hc19zZihjb29yZHMgPSBjKCdMb25naXR1ZGUnLCAnTGF0aXR1ZGUnKSkgJT4lIAogICAgc3Rfc2V0X2Nycyg0MzI2KQogIGlmIChucm93KG9mZmVuY2VzKSA+IGluaXRpYWxfcm93cykgewogICAgc3RvcCgn4pyWIFJvd3MgaGF2ZSBiZWVuIGFkZGVkIHRvIGRhdGEnLCBjYWxsLiA9IEZBTFNFKQogIH0gZWxzZSB7CiAgICBjYXQoIuKclO+4jiBDb252ZXJ0ZWQgZGF0YSB0byBhbiBTRiBvYmplY3QsIHJlbW92aW5nIiwgCiAgICAgICAgZm9ybWF0KGluaXRpYWxfcm93cyAtIG5yb3cob2ZmZW5jZXMpLCBiaWcubWFyayA9ICIsIiksIAogICAgICAgICJyb3dzIHdpdGhvdXQgY28tb3JkaW5hdGVzXG4iKQogIH0KICAKICAjIGNyZWF0ZSBhIHNwYXRpYWwgb2JqZWN0IGZvciB0aGUgY2l0eSBvdXRsaW5lCiAgb3V0bGluZSA8LSBzdF9yZWFkKAogICAgcGFzdGUwKCIuLi9zcGF0aWFsX2RhdGEvY2l0aWVzL3RsXzIwMTZfIiwgY2l0eV9maXBzLCAiX3BsYWNlLnNocCIpLCAKICAgIHF1aWV0ID0gVFJVRSwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiUgCiAgICBmaWx0ZXIoTkFNRSA9PSBjaXR5X25hbWUpICU+JQogICAgc3RfdHJhbnNmb3JtKDQzMjYpCiAgY2F0KCLinJTvuI4gQ3JlYXRlZCBTRiBvYmplY3QgZm9yIGNpdHkgb3V0bGluZVxuIikKICAKICAjIGlkZW50aWZ5IHdoZXRoZXIgZWFjaCBvZmZlbmNlIGlzIHdpdGhpbiB0aGUgY2l0eSBib3VuZGFyeQogIGNhdCgi8J+VoyBJZGVudGlmeWluZyByb3dzIG91dHNpZGUgdGhlIGNpdHlcbiIpCiAgb2ZmZW5jZXMkaW5fY2l0eSA8LSBzdF9jb3ZlcmVkX2J5KG9mZmVuY2VzLCBvdXRsaW5lLCBzcGFyc2UgPSBGQUxTRSkgJT4lIAogICAgYXMubG9naWNhbCgpCiAgCiAgIyBmaWx0ZXIgb3V0IG9mZmVuY2VzIG91dHNpZGUgdGhlIGNpdHkgYm91bmRhcnkKICBvdXRzaWRlX2NpdHkgPC0gbnJvdyhvZmZlbmNlcykgLSBzdW0ob2ZmZW5jZXMkaW5fY2l0eSkKICAjIG9mZmVuY2VzIDwtIG9mZmVuY2VzICU+JSBmaWx0ZXIoaW5fY2l0eSA9PSBUUlVFKQogIAogIGlmIChucm93KG9mZmVuY2VzKSA+IGluaXRpYWxfcm93cykgewogICAgc3RvcCgn4pyWIFJvd3MgaGF2ZSBiZWVuIGFkZGVkIHRvIGRhdGEnLCBjYWxsLiA9IEZBTFNFKQogIH0gZWxzZSB7CiAgICBjYXQoIuKclCBJZGVudGlmaWVkIiwgZm9ybWF0KGluaXRpYWxfcm93cyAtIG5yb3cob2ZmZW5jZXMpLCBiaWcubWFyayA9ICIsIiksIAogICAgICAgICJyb3dzIHRoYXQgd2VyZSBvdXRzaWRlIHRoZSBjaXR5XG4iKQogIH0KCiAgIyBjcmVhdGUgYSBzcGF0aWFsIG9iamVjdCBmb3IgY2Vuc3VzIGJsb2NrcwogIGJsb2NrcyA8LSBzdF9yZWFkKAogICAgcGFzdGUwKCIuLi9zcGF0aWFsX2RhdGEvY2l0aWVzL3RsXzIwMTZfIiwgY2l0eV9maXBzLCAiX3RhYmJsb2NrMTAuc2hwIiksIAogICAgcXVpZXQgPSBUUlVFLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICU+JQogICAgc2VsZWN0KAogICAgICBmaXBzX3N0YXRlID0gU1RBVEVGUDEwLCAjIEZJUFMgc3RhdGUgY29kZQogICAgICBmaXBzX2NvdW50eSA9IENPVU5UWUZQMTAsICMgRklQUyBjb3VudHkgY29kZQogICAgICBUcmFjdCA9IFRSQUNUQ0UxMCwgIyBDZW5zdXMgMjAxMCB0cmFjdCBJRAogICAgICBCbG9jayA9IEJMT0NLQ0UxMCAjIENlbnN1cyAyMDEwIGJsb2NrIElECiAgICApICU+JSBzdF90cmFuc2Zvcm0oNDMyNikKICBjYXQoIuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2Vuc3VzIGJsb2Nrc1xuIikKICAKICAjIGpvaW4gY2Vuc3VzIGJsb2NrcyB0byBvZmZlbmNlcwogICMgU29tZSBjcmltZXMgd2lsbCBmYWxsIG9uIHRoZSBib3VuZGFyeSBvZiBtdWx0aXBsZSBjZW5zdXMgYmxvY2tzLCBzbyB0aGUKICAjIGZvbGxvd2luZyBjb2RlIHNpbXBseSB0YWtlcyB0aGUgZmlyc3QgYmxvY2sgaW4gZWFjaCBjYXNlCiAgY2F0KCLwn5WjIElkZW50aWZ5aW5nIGNlbnN1cyBibG9ja3NcbiIpCiAgb2ZmZW5jZXMgPC0gb2ZmZW5jZXMgJT4lIAogICAgc3Rfam9pbihibG9ja3MpICU+JSAKICAgIG11dGF0ZShibG9ja19jb2RlID0gcGFzdGUwKGZpcHNfc3RhdGUsIGZpcHNfY291bnR5LCBUcmFjdCwgQmxvY2spKSAlPiUKICAgIGdyb3VwX2J5KFVJRCkgJT4lIAogICAgdG9wX24oMSwgYmxvY2tfY29kZSkgJT4lIAogICAgdW5ncm91cCgpICU+JSAKICAgIHNlbGVjdCgtYmxvY2tfY29kZSkKCiAgaWYgKG5yb3cob2ZmZW5jZXMpID4gaW5pdGlhbF9yb3dzKSB7CiAgICBzdG9wKCfinJYgUm93cyBoYXZlIGJlZW4gYWRkZWQgdG8gZGF0YScsIGNhbGwuID0gRkFMU0UpCiAgfSBlbHNlIHsKICAgIGNhdCgi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IiLCAKICAgICAgICBmb3JtYXQobnJvdyhvZmZlbmNlcyksIGJpZy5tYXJrID0gIiwiKSwgInJvd3NcbiIpCiAgfQoKICAjIGlkZW50aWZ5IGJsb2NrIGdyb3VwcwogIG9mZmVuY2VzIDwtIG9mZmVuY2VzICU+JSAKICAgIG11dGF0ZShibG9ja19ncm91cCA9IHN0cl9zdWIoQmxvY2ssIDEsIDEpKQogIGNhdCgi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrIGdyb3VwcyBmb3IiLCAKICAgICAgZm9ybWF0KG5yb3cob2ZmZW5jZXMpLCBiaWcubWFyayA9ICIsIiksICJyb3dzXG4iKQoKICAjIGFkZCB0aGUgZmllbGRzIGZyb20gdGhlIHNwYXRpYWwgam9pbnMgdG8gdGhlIGV4aXN0aW5nIGNyaW1lIGRhdGEKICBjYXQoIvCflaMgSm9pbmluZyBjZW5zdXMgaWRlbnRpZmllcnMgdG8gY3JpbWUgZGF0YVxuIikKICBkYXRhIDwtIGRhdGEgJT4lIGxlZnRfam9pbihvZmZlbmNlcywgYnkgPSAnVUlEJykKICAKICBpZiAobnJvdyhkYXRhKSA+IGluaXRpYWxfcm93cykgewogICAgc3RvcCgn4pyWIFJvd3MgaGF2ZSBiZWVuIGFkZGVkIHRvIGRhdGEnLCBjYWxsLiA9IEZBTFNFKQogIH0gZWxzZSB7CiAgICBjYXQoIuKclCBKb2luZWQgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIiwgCiAgICAgICAgZm9ybWF0KG5yb3coZGF0YSksIGJpZy5tYXJrID0gIiwiKSwgInJvd3Mgb2YgY3JpbWUgZGF0YVxuIikKICB9CiAgCiAgIyBzdG9yZSBkYXRhCiAgc2F2ZVJEUyhkYXRhLCBwYXN0ZTAoIi4uL3RlbXBfZGF0YS9zcGF0aWFsXyIsIAogICAgICAgICAgc3RyX3JlcGxhY2VfYWxsKHN0cl90b19sb3dlcihjaXR5X25hbWUpLCAiXFxzIiwgIl8iKSwgIl9kYXRhLlJkcyIpKQogIGNhdCgi4pyUIFNhdmVkIGRhdGEgdG8gZmlsZVxuIikKICAKICBkdXJhdGlvbiA8LSBkaWZmdGltZShub3coKSwgc3RhcnRfdGltZSwgdW5pdHMgPSAiYXV0byIpCiAgY2F0KCJGaW5pc2hlZCBhdCIsIGZvcm1hdChub3coKSwgIiVGICVUIiksICJhZnRlciIsIAogICAgICByb3VuZChkdXJhdGlvbiwgZGlnaXRzID0gMSksIHVuaXRzKGR1cmF0aW9uKSwgIlxuIikKCn0pICU+JSBpbnZpc2libGUoKQpgYGAKCmBgYHtyfQoKYGBgCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU3BhdGlhbCBwcm9jZXNzaW5nIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpUaGlzIGZpbGUgdGFrZXMgdGhlIGdlb2NvZGVkIHByb2Nlc3NlZCBkYXRhIGZvciBlYWNoIGNpdHkgYW5kIGNhcnJpZXMgb3V0IApzcGF0aWFsIHByb2Nlc3NpbmcuCgoKIyBDb252ZXJ0IGFsbCBjby1vcmRpbmF0ZXMgdG8gbGF0L2xvbiBwYWlycwoKRGF0YSBmb3IgbW9zdCBjaXRpZXMgYWxyZWFkeSBpbmNsdWRlIGxhdC9sb24gcGFpcnMsIGJ1dCBzb21lIHJlcXVpcmUgY29udmVyc2lvbgpmcm9tIG90aGVyIGNvLW9yZGluYXRlIHN5c3RlbXMuCgojIyBEZXRyb2l0CgpEZXRyb2l0IGRhdGEgaGF2ZSBsYXQvbG9uIHBhaXJzLCBidXQgdGhleSBzZWVtIHRvIGVuY29kZSBOQSBhcyA5OTk5OTkuMCBkZWdyZWVzLiAKVGhlc2UgY2FzZXMgY2FuIGVhc2lseSBiZSByZWN0aWZpZWQgYnkgcmVwbGFjaW5nIGFueSB2YWx1ZSBvZiBsYXRpdHVkZSB0aGF0IGlzIApub3QgYmV0d2VlbiAtOTAgYW5kICs5MCwgYW5kIGFueSB2YWx1ZSBvZiBsb25naXR1ZGUgdGhhdCBpcyBub3QgYmV0d2VlbiAtMTgwIGFuZCAKKzE4MCwgd2l0aCBOQS4KCmBgYHtyfQpkYXRhX2R0IDwtIHJlYWRSRFMoIi4uL3RlbXBfZGF0YS9yYXdfZGV0cm9pdF9kYXRhLlJkcyIpCgpkYXRhX2R0IDwtIGRhdGFfZHQgJT4lIAogIG11dGF0ZSgKICAgIExhdGl0dWRlID0gaWZlbHNlKExhdGl0dWRlIDwgLTkwIHwgTGF0aXR1ZGUgPiA5MCwgTkEsIExhdGl0dWRlKSwKICAgIExvbmdpdHVkZSA9IGlmZWxzZShMb25naXR1ZGUgPCAtMTgwIHwgTG9uZ2l0dWRlID4gMTgwLCBOQSwgTG9uZ2l0dWRlKQogICkKICAKc2F2ZVJEUyhkYXRhX2R0LCAiLi4vdGVtcF9kYXRhL3Jhd19kZXRyb2l0X2RhdGEuUmRzIikKCnJtKGRhdGFfZHQpCmBgYAoKCiMgU3RpcCBvZmZlbmNlcyBvdXRzaWRlIGNpdGllcyBhbmQgYWRkIGNlbnN1cyBpZGVudGlmaWVycwoKYGBge3J9CnNldGRpZmYoCiAgZGlyKCIuLi90ZW1wX2RhdGEiLCBwYXR0ZXJuID0gIl5yYXdfIikgJT4lIAogICAgc3RyX2V4dHJhY3QoIlxcXyhbYS16X10rPylcXF9kYXRhLlJkcyIpICU+JSAKICAgIGFzLmNoYXJhY3RlcigpLAogIGRpcigiLi4vdGVtcF9kYXRhIiwgcGF0dGVybiA9ICJec3BhdGlhbF8iKSAlPiUgCiAgICBzdHJfZXh0cmFjdCgiXFxfKFthLXpfXSs/KVxcX2RhdGEuUmRzIikgJT4lIAogICAgYXMuY2hhcmFjdGVyKCkKKSAlPiUgCiAgeyBwYXN0ZTAoIi4uL3RlbXBfZGF0YS9yYXciLCAuKSB9ICU+JSAKICBzYXBwbHkoZnVuY3Rpb24gKHgpIHsKICAKICAjIGdldCBjaXR5IG5hbWUKICBjaXR5X25hbWUgPC0gc3RyX21hdGNoKHgsICJyYXdcXF8oW2Etel9dKz8pXFxfZGF0YS5SZHMiKSAlPiUgCiAgICBhcy5jaGFyYWN0ZXIoKSAlPiUgCiAgICBsYXN0KCkgJT4lIAogICAgc3RyX3JlcGxhY2VfYWxsKCJcXF8iLCAiICIpICU+JSAKICAgIHN0cl90b190aXRsZSgpCiAgCiAgc3RhcnRfdGltZSA8LSBub3coKQogIGNhdCgiXG5Qcm9jZXNzaW5nIiwgY2l0eV9uYW1lLCAiZGF0YVxuU3RhcnRpbmcgYXQiLCAKICAgICAgZm9ybWF0KHN0YXJ0X3RpbWUsICIlRiAlVCIpLCAiXG4iKQogIAogICMgZ2V0IGNpdHkgbWV0YWRhdGEKICBjaXR5X2ZpcHMgPC0gY2l0aWVzJGZpcHNbY2l0aWVzJG5hbWUgPT0gY2l0eV9uYW1lXQogIAogICMgbG9hZCBkYXRhCiAgZGF0YSA8LSByZWFkUkRTKHgpJT4lIAogICAgbXV0YXRlKAogICAgICBMYXRpdHVkZSA9IGFzLm51bWVyaWMoTGF0aXR1ZGUpLAogICAgICBMb25naXR1ZGUgPSBhcy5udW1lcmljKExvbmdpdHVkZSkKICAgICkKICAKICAjIG5vdGUgbnVtYmVyIG9mIHJvd3MgaW4gZGF0YQogIGluaXRpYWxfcm93cyA8LSBucm93KGRhdGEpCiAgY2F0KCLinJTvuI4gTG9hZGVkIGRhdGEgd2l0aCIsIGZvcm1hdChpbml0aWFsX3Jvd3MsIGJpZy5tYXJrID0gIiwiKSwKICAgICAgInJvd3NcbiIpCiAgCiAgIyBjb252ZXJ0IHRvIFNGIG9iamVjdCAocmVtb3ZpbmcgYW55IHJvd3Mgd2l0aG91dCBjby1vcmRpbmF0ZXMpCiAgb2ZmZW5jZXMgPC0gZGF0YSAlPiUgCiAgICBzZWxlY3QoVUlELCBMb25naXR1ZGUsIExhdGl0dWRlKSAgJT4lIAogICAgZmlsdGVyKCFpcy5uYShMb25naXR1ZGUpICYgIWlzLm5hKExhdGl0dWRlKSkgJT4lIAogICAgc3RfYXNfc2YoY29vcmRzID0gYygnTG9uZ2l0dWRlJywgJ0xhdGl0dWRlJykpICU+JSAKICAgIHN0X3NldF9jcnMoNDMyNikKICBub19jb29yZHMgPC0gaW5pdGlhbF9yb3dzIC0gbnJvdyhvZmZlbmNlcykKICBpZiAobnJvdyhvZmZlbmNlcykgPiBpbml0aWFsX3Jvd3MpIHsKICAgIHN0b3AoJ+KcliBSb3dzIGhhdmUgYmVlbiBhZGRlZCB0byBkYXRhJywgY2FsbC4gPSBGQUxTRSkKICB9IGVsc2UgewogICAgY2F0KCLinJTvuI4gQ29udmVydGVkIGRhdGEgdG8gYW4gU0Ygb2JqZWN0LCByZW1vdmluZyIsIAogICAgICAgIGZvcm1hdChub19jb29yZHMsIGJpZy5tYXJrID0gIiwiKSwgCiAgICAgICAgInJvd3Mgd2l0aG91dCBjby1vcmRpbmF0ZXNcbiIpCiAgfQogIAogICMgY3JlYXRlIGEgc3BhdGlhbCBvYmplY3QgZm9yIHRoZSBjaXR5IG91dGxpbmUKICBvdXRsaW5lIDwtIHN0X3JlYWQoCiAgICBwYXN0ZTAoIi4uL3NwYXRpYWxfZGF0YS9jaXRpZXMvdGxfMjAxNl8iLCBjaXR5X2ZpcHMsICJfcGxhY2Uuc2hwIiksIAogICAgcXVpZXQgPSBUUlVFLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICU+JSAKICAgIGZpbHRlcihOQU1FID09IGNpdHlfbmFtZSkgJT4lCiAgICBzdF90cmFuc2Zvcm0oNDMyNikKICBjYXQoIuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2l0eSBvdXRsaW5lXG4iKQogIAogICMgaWRlbnRpZnkgd2hldGhlciBlYWNoIG9mZmVuY2UgaXMgd2l0aGluIHRoZSBjaXR5IGJvdW5kYXJ5CiAgY2F0KCLwn5WjIElkZW50aWZ5aW5nIHJvd3Mgb3V0c2lkZSB0aGUgY2l0eVxuIikKICBvZmZlbmNlcyRpbl9jaXR5IDwtIHN0X2NvdmVyZWRfYnkob2ZmZW5jZXMsIG91dGxpbmUsIHNwYXJzZSA9IEZBTFNFKSAlPiUgCiAgICBhcy5sb2dpY2FsKCkKICAKICAjIGZpbHRlciBvdXQgb2ZmZW5jZXMgb3V0c2lkZSB0aGUgY2l0eSBib3VuZGFyeQogIG91dHNpZGVfY2l0eSA8LSBucm93KG9mZmVuY2VzKSAtIHN1bShvZmZlbmNlcyRpbl9jaXR5KSAtIG5vX2Nvb3JkcwogICMgb2ZmZW5jZXMgPC0gb2ZmZW5jZXMgJT4lIGZpbHRlcihpbl9jaXR5ID09IFRSVUUpCiAgCiAgaWYgKG5yb3cob2ZmZW5jZXMpID4gaW5pdGlhbF9yb3dzKSB7CiAgICBzdG9wKCfinJYgUm93cyBoYXZlIGJlZW4gYWRkZWQgdG8gZGF0YScsIGNhbGwuID0gRkFMU0UpCiAgfSBlbHNlIHsKICAgIGNhdCgi4pyUIElkZW50aWZpZWQiLCBmb3JtYXQob3V0c2lkZV9jaXR5LCBiaWcubWFyayA9ICIsIiksIAogICAgICAgICJyb3dzIHRoYXQgd2VyZSBvdXRzaWRlIHRoZSBjaXR5XG4iKQogIH0KCiAgIyBjcmVhdGUgYSBzcGF0aWFsIG9iamVjdCBmb3IgY2Vuc3VzIGJsb2NrcwogIGJsb2NrcyA8LSBzdF9yZWFkKAogICAgcGFzdGUwKCIuLi9zcGF0aWFsX2RhdGEvY2l0aWVzL3RsXzIwMTZfIiwgY2l0eV9maXBzLCAiX3RhYmJsb2NrMTAuc2hwIiksIAogICAgcXVpZXQgPSBUUlVFLCBzdHJpbmdzQXNGYWN0b3JzID0gRkFMU0UpICU+JQogICAgc2VsZWN0KAogICAgICBmaXBzX3N0YXRlID0gU1RBVEVGUDEwLCAjIEZJUFMgc3RhdGUgY29kZQogICAgICBmaXBzX2NvdW50eSA9IENPVU5UWUZQMTAsICMgRklQUyBjb3VudHkgY29kZQogICAgICBUcmFjdCA9IFRSQUNUQ0UxMCwgIyBDZW5zdXMgMjAxMCB0cmFjdCBJRAogICAgICBCbG9jayA9IEJMT0NLQ0UxMCAjIENlbnN1cyAyMDEwIGJsb2NrIElECiAgICApICU+JSBzdF90cmFuc2Zvcm0oNDMyNikKICBjYXQoIuKclO+4jiBDcmVhdGVkIFNGIG9iamVjdCBmb3IgY2Vuc3VzIGJsb2Nrc1xuIikKICAKICAjIGpvaW4gY2Vuc3VzIGJsb2NrcyB0byBvZmZlbmNlcwogICMgU29tZSBjcmltZXMgd2lsbCBmYWxsIG9uIHRoZSBib3VuZGFyeSBvZiBtdWx0aXBsZSBjZW5zdXMgYmxvY2tzLCBzbyB0aGUKICAjIGZvbGxvd2luZyBjb2RlIHNpbXBseSB0YWtlcyB0aGUgZmlyc3QgYmxvY2sgaW4gZWFjaCBjYXNlCiAgY2F0KCLwn5WjIElkZW50aWZ5aW5nIGNlbnN1cyBibG9ja3NcbiIpCiAgb2ZmZW5jZXMgPC0gb2ZmZW5jZXMgJT4lIAogICAgc3Rfam9pbihibG9ja3MpICU+JSAKICAgIG11dGF0ZShibG9ja19jb2RlID0gcGFzdGUwKGZpcHNfc3RhdGUsIGZpcHNfY291bnR5LCBUcmFjdCwgQmxvY2spKSAlPiUKICAgIGdyb3VwX2J5KFVJRCkgJT4lIAogICAgdG9wX24oMSwgYmxvY2tfY29kZSkgJT4lIAogICAgdW5ncm91cCgpICU+JSAKICAgIHNlbGVjdCgtYmxvY2tfY29kZSkKCiAgaWYgKG5yb3cob2ZmZW5jZXMpID4gaW5pdGlhbF9yb3dzKSB7CiAgICBzdG9wKCfinJYgUm93cyBoYXZlIGJlZW4gYWRkZWQgdG8gZGF0YScsIGNhbGwuID0gRkFMU0UpCiAgfSBlbHNlIHsKICAgIGNhdCgi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrcyBmb3IiLCAKICAgICAgICBmb3JtYXQobnJvdyhvZmZlbmNlcyksIGJpZy5tYXJrID0gIiwiKSwgInJvd3NcbiIpCiAgfQoKICAjIGlkZW50aWZ5IGJsb2NrIGdyb3VwcwogIG9mZmVuY2VzIDwtIG9mZmVuY2VzICU+JSAKICAgIG11dGF0ZShibG9ja19ncm91cCA9IHN0cl9zdWIoQmxvY2ssIDEsIDEpKQogIGNhdCgi4pyUIO+4jklkZW50aWZpZWQgY2Vuc3VzIGJsb2NrIGdyb3VwcyBmb3IiLCAKICAgICAgZm9ybWF0KG5yb3cob2ZmZW5jZXMpLCBiaWcubWFyayA9ICIsIiksICJyb3dzXG4iKQoKICAjIGFkZCB0aGUgZmllbGRzIGZyb20gdGhlIHNwYXRpYWwgam9pbnMgdG8gdGhlIGV4aXN0aW5nIGNyaW1lIGRhdGEKICBjYXQoIvCflaMgSm9pbmluZyBjZW5zdXMgaWRlbnRpZmllcnMgdG8gY3JpbWUgZGF0YVxuIikKICBkYXRhIDwtIGRhdGEgJT4lIGxlZnRfam9pbihvZmZlbmNlcywgYnkgPSAnVUlEJykKICAKICBpZiAobnJvdyhkYXRhKSA+IGluaXRpYWxfcm93cykgewogICAgc3RvcCgn4pyWIFJvd3MgaGF2ZSBiZWVuIGFkZGVkIHRvIGRhdGEnLCBjYWxsLiA9IEZBTFNFKQogIH0gZWxzZSB7CiAgICBjYXQoIuKclCBKb2luZWQgY2Vuc3VzIGlkZW50aWZpZXJzIHRvIiwgCiAgICAgICAgZm9ybWF0KG5yb3coZGF0YSksIGJpZy5tYXJrID0gIiwiKSwgInJvd3Mgb2YgY3JpbWUgZGF0YVxuIikKICB9CiAgCiAgIyBzdG9yZSBkYXRhCiAgc2F2ZVJEUyhkYXRhLCBwYXN0ZTAoIi4uL3RlbXBfZGF0YS9zcGF0aWFsXyIsIAogICAgICAgICAgc3RyX3JlcGxhY2VfYWxsKHN0cl90b19sb3dlcihjaXR5X25hbWUpLCAiXFxzIiwgIl8iKSwgIl9kYXRhLlJkcyIpKQogIGNhdCgi4pyUIFNhdmVkIGRhdGEgdG8gZmlsZVxuIikKICAKICBkdXJhdGlvbiA8LSBkaWZmdGltZShub3coKSwgc3RhcnRfdGltZSwgdW5pdHMgPSAiYXV0byIpCiAgY2F0KCJGaW5pc2hlZCBhdCIsIGZvcm1hdChub3coKSwgIiVGICVUIiksICJhZnRlciIsIAogICAgICByb3VuZChkdXJhdGlvbiwgZGlnaXRzID0gMSksIHVuaXRzKGR1cmF0aW9uKSwgIlxuIikKCn0pICU+JSBpbnZpc2libGUoKQpgYGAKCiMgQ2hlY2sgZGF0YQoKYGBge3J9CmZvciAoY2l0eSBpbiBjaXRpZXMkbmFtZVsyXSkgewogIAogIGNhdCgiXG5Qcm9kdWNpbmcgbWFwIGZvciIsIGNpdHksICJhdCIsIGZvcm1hdChub3coKSwgIiVGICVUIiksICJcbiIpCiAgCiAgY3JpbWVzIDwtIHJlYWRSRFMoCiAgICBwYXN0ZTAoIi4uL3RlbXBfZGF0YS9zcGF0aWFsXyIsIAogICAgICAgICAgIHN0cl9yZXBsYWNlX2FsbChzdHJfdG9fbG93ZXIoY2l0eSksICJcXHMiLCAiXyIpLCAiX2RhdGEuUmRzIikKICApICU+JSAKICAgIHNhbXBsZV9mcmFjKDAuMSkgJT4lIAogICAgIyBzYW1wbGVfbigxMDAwKSAlPiUKICAgIGZpbHRlcighaXMubmEoTGF0aXR1ZGUpICYgIWlzLm5hKExvbmdpdHVkZSkpICU+JSAKICAgIHN0X2FzX3NmKGNvb3JkcyA9IGMoIkxvbmdpdHVkZSIsICJMYXRpdHVkZSIpLCBjcnMgPSA0MzI2KQogIG91dGxpbmUgPC0gc3RfcmVhZCgKICAgIHBhc3RlMCgiLi4vc3BhdGlhbF9kYXRhL2NpdGllcy90bF8yMDE2XyIsIGNpdGllcyRmaXBzW2NpdGllcyRuYW1lID09IGNpdHldLCAKICAgICAgICAgICAiX3BsYWNlLnNocCIpLCAKICAgIHF1aWV0ID0gVFJVRSwgc3RyaW5nc0FzRmFjdG9ycyA9IEZBTFNFKSAlPiUgCiAgICBmaWx0ZXIoTkFNRSA9PSBjaXR5KQogIGNhdCgiXHRTYW1wbGVkIiwgZm9ybWF0KG5yb3coY3JpbWVzKSwgYmlnLm1hcmsgPSAiLCIpLCAKICAgICAgInJvd3MgKDEwJSBvZiB0b3RhbClcbiIpCiAgb3V0bGluZV9iYm94IDwtIHN0X2Jib3gob3V0bGluZSkKICAKICBnZ3Bsb3QoKSArCiAgICBnZW9tX3NmKGRhdGEgPSBvdXRsaW5lLCBmaWxsID0gTkEpICsKICAgIGdlb21fc2YoYWVzKHNoYXBlID0gaW5fY2l0eSksIGRhdGEgPSBjcmltZXMsIGFscGhhID0gMC41KSArCiAgICB0aGVtZV9taW5pbWFsKCkgKwogICAgdGhlbWUoCiAgICAgIGxlZ2VuZC5wb3NpdGlvbiA9ICJub25lIiwKICAgICAgcGFuZWwuZ3JpZC5tYWpvciA9IGVsZW1lbnRfbGluZShjb2xvdXIgPSAiI0NDQ0NDQyIpCiAgICApICsKICAgIGxhYnModGl0bGUgPSBwYXN0ZSgiT2ZmZW5jZSBsb2NhdGlvbnMgaW4iLCBjaXR5LCAiZGF0YSIpKSArCiAgICB4bGltKG91dGxpbmVfYmJveCR4bWluIC0gKChvdXRsaW5lX2Jib3gkeG1heCAtIG91dGxpbmVfYmJveCR4bWluKSAvIDUpLCAKICAgICAgICAgb3V0bGluZV9iYm94JHhtYXggKyAoKG91dGxpbmVfYmJveCR4bWF4IC0gb3V0bGluZV9iYm94JHhtaW4pIC8gNSkpICsKICAgIHlsaW0ob3V0bGluZV9iYm94JHltaW4gLSAoKG91dGxpbmVfYmJveCR5bWF4IC0gb3V0bGluZV9iYm94JHltaW4pIC8gNSksIAogICAgICAgICBvdXRsaW5lX2Jib3gkeW1heCArICgob3V0bGluZV9iYm94JHltYXggLSBvdXRsaW5lX2Jib3gkeW1pbikgLyA1KSkKICBjYXQoIlx0R2VuZXJhdGVkIHBsb3RcbiIpCiAgCiAgZ2dzYXZlKAogICAgcGFzdGUwKCIuLi90ZW1wX2RhdGEvcGxvdF8iLCAKICAgICAgICAgICBzdHJfcmVwbGFjZV9hbGwoc3RyX3RvX2xvd2VyKGNpdHkpLCAiXFxzIiwgIl8iKSwgIi5wZGYiKSwKICAgIHdpZHRoID0gMTEuNjksIGhlaWdodCA9IDE2LjUzLCB1bml0cyA9ICJpbiIpCiAgY2F0KCJcdFNhdmVkIHBsb3RcbiIpCiAgCiAgcm0oY2l0eSwgY3JpbWVzLCBvdXRsaW5lKQogIAp9CmBgYAoK</div>
 
 
 
