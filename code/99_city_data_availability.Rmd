@@ -58,7 +58,7 @@ No open crime data are available. [CFS data are available](https://data.sandiego
 but aren't translatable to crimes.
 
 
-# Dallas, TX (POSSIBLE)
+# Dallas, TX (possible)
 
 Crime data are [available from June 2014 onwards](https://www.dallasopendata.com/Public-Safety/Police-Incidents/tbnj-w5hb)
 and appear to include categories that could be matched to the CODE categories.
@@ -72,7 +72,8 @@ No open crime data are available.
 # Austin, TX
 
 Data are [available](https://data.austintexas.gov/browse?Additional-Information_Department=Austin+Police+&category=Public+Safety&limitTo=datasets&q=APD%20Incident%20Extract&sortBy=relevance&utf8=✓), 
-but only for years up to 2010 and then the current year.
+but only for years up to 2010 and then the current year. Most offenses have no
+co-ordinates and none have addresses.
 
 
 # Jacksonville, FL
@@ -105,7 +106,7 @@ Data are only available for UCR Part 1 crimes.
 No open crime data are available.
 
 
-# Seattle, WA (POSSIBLE)
+# Seattle, WA
 
 Data [appear to be available](https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f), 
 with some cases excluded, for several years. However, the website suggests these
@@ -116,10 +117,12 @@ many types between years, suggesting some unknown and changing factor
 influencing the number of crimes.
 
 
-# Denver, CO (POSSIBLE)
+# Denver, CO
 
-Data are [available for the previous five years](https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-crime)
-with some exclusions (e.g. juvenile victims).
+Data are [available for the previous five years](https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-crime).
+However, "crimes which by their nature involve juveniles, or which the reports 
+indicate involve juveniles as victims, suspects, or witnesses, are not reported 
+at all."
 
 
 # Washington, DC
@@ -130,7 +133,10 @@ No open crime data are available.
 # Boston, MA
 
 Data are [available from August 2015 onwards](https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system/resource/12cb3883-56f5-47de-afa5-3b1cf61b257b) with fields that could be used to
-create CODE categories.
+create CODE categories. A previous dataset is available back to 2012, but there
+is a problem in that a higher proportion of offenses have missing locations in
+the first six months of 2015, so the data can't be used to produce a continuous
+time series.
 
 
 # El Paso, TX
@@ -192,11 +198,9 @@ Data are [available](https://www.cabq.gov/abq-data) but only for rolling 180
 days.
 
 
-# Tucson, AZ (POSSIBLE)
+# Tucson, AZ
 
-Data are [available from 2009](http://gisdata.tucsonaz.gov/datasets?group_ids=b6a49faa168647d8b56e1a06bd53600f&page=2&sort=name&t=police)
-in the annual 'incident' datasets including categories that could be used to
-create CODE categories, but are mixed in with other calls for service.
+Data are available and included in CODE.
 
 
 # Fresno, CA
@@ -224,7 +228,7 @@ checking, but Google suggests it includes crime data.
 
 # Atlanta, GA
 
-No open crime data are available.
+Only UCR Part 1 data are available.
 
 
 # Long Beach, CA
@@ -237,12 +241,13 @@ No open crime data are available.
 No open crime data are available.
 
 
-# Raleigh, NC (POSSIBLE)
+# Raleigh, NC
 
 Data are available [from 2005 to May 2014](http://data-ral.opendata.arcgis.com/datasets/raleigh-police-incidents-srs?geometry=-78.67%2C35.78%2C-78.616%2C35.792)
 and [from June 2014 onwards](http://data-ral.opendata.arcgis.com/datasets/24c0b37fa9bb4e16ba8bcaa7e806c615_0).
 The former dataset has categories that can be converted to CODE categories and
-the later has NIBRS codes.
+the later has NIBRS codes. However, the data are released under [a non-open
+license](http://data-ral.opendata.arcgis.com/datasets/24c0b37fa9bb4e16ba8bcaa7e806c615_0).
 
 
 # Colorado Springs, CO

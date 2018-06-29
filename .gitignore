@@ -46,3 +46,4 @@ rsconnect/
 # Output files
 # These are stored on OSF so needn't be stored on Git Hub as well
 /output_data/
+/data_article/

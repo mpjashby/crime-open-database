@@ -19,14 +19,16 @@ library('sf') # handle spatial data
 # for the same reason, load necessary reference objects
 cities <- tribble(
   ~name, ~fips, ~prefix,
+  # "Boston",         "25", "bos",
   "Chicago",        "17", "chi",
   "Detroit",        "26", "dtt",
   "Fort Worth",     "48", "ftw",
+  "Kansas City",    "29", "kcm",
   "Los Angeles",    "06", "lax",
   "Louisville",     "21", "lou",
   "New York",       "36", "nyc",
   "San Francisco",  "06", "sfo",
-  "Seattle",        "53", "sea",
+  # "Seattle",        "53", "sea",
   "Tucson",         "04", "tus",
   "Virginia Beach", "51", "vib"
 )
@@ -34,7 +36,7 @@ cities <- tribble(
 
 
 ```{r include=FALSE}
-this_city <- "Virginia Beach"
+this_city <- "Kansas City"
 data <- read_rds(paste0("../temp_data/final_", 
                         str_replace_all(str_to_lower(this_city), "\\s", "_"), 
                         "_data.Rds"))

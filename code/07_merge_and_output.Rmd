@@ -20,20 +20,59 @@ common_vars <- setdiff(common_vars, c('geometry')) %>%
 
 # load and merge the dataset for each city
 data <- dir("../temp_data", pattern = "^final_", full.names = TRUE) %>% 
+  report_status(paste("Identified files in directory at", 
+                      as.character(now))) %>% 
   map(read_rds) %>% 
-  map(mutate_at, vars(one_of(c("local_row_id", "case_number"))), as.character) %>% 
+  report_status(paste("Read data from files at", as.character(now()))) %>% 
+  map(mutate_at, vars(one_of(c("local_row_id", "case_number"))), 
+      as.character) %>% 
   # map(mutate, 
   #     local_row_id = as.character(local_row_id),
   #     case_number = as.character(case_number)) %>% 
+  report_status(paste("Changed identifiers to character vectors at", 
+                      as.character(now()))) %>% 
   bind_rows() %>% 
+  report_status(paste("Merged data from individual files at", 
+                      as.character(now()))) %>% 
   arrange(city_name, date_single) %>% 
+  report_status(paste("Arranged data by city and date at", 
+                      as.character(now()))) %>% 
   filter(
     offense_against != "excluded cases" & 
     !is.na(longitude) &
     !is.na(latitude) &
     in_city == TRUE
   ) %>%
-  select(one_of(common_vars), everything(), -in_city)
+  report_status(paste("Removed excluded cases at", as.character(now()))) %>% 
+  mutate(
+    uid = 1:nrow(.)
+  ) %>% 
+  report_status(paste("Added unique row ID at", as.character(now()))) %>% 
+  select(one_of(common_vars), everything(), -in_city, -multiple_dates)
+
+data %>% 
+  sample_n(50) %>% 
+  arrange(city_name, date_single) %>% 
+  View()
+
+```
+
+Overall, there are `r nrow(data)` offences in the dataset. This can be broken
+down by city:
+
+```{r}
+data %>% 
+  group_by(city_name) %>% 
+  summarise(n = n())
+```
+
+and by city for each year:
+
+```{r}
+data %>% 
+  group_by(city_name, date_year) %>% 
+  summarise(n = n()) %>% 
+  spread(date_year, n)
 ```
 
 
@@ -58,14 +97,31 @@ for (i in yearFirst:yearLast) {
     } else {
       these_vars = names(data)
     }
+    file_name <- paste0("../output_data/crime_open_database_", j, "_", i, 
+                        ".csv.gz")
     data %>%
       filter(date_year == i) %>%
       select_if(names(data) %in% these_vars) %>%
       select(-date_year) %>% 
-      write.csv(gzfile(paste0("../output_data/crime_open_database_", j, "_", i, 
-                              ".csv.gz")), na = "")
+      write.csv(gzfile(file_name), na = "")
+    cat("Saved file", paste0("'", file_name, "',"), file.size(file_name), "MB\n")
   }
 }
+
+# report typical file sizes
+cat(
+  "\nMean size for core-data files:", 
+  dir("../output_data", pattern = "^crime_open_database_core_", 
+      full.names = TRUE) %>% 
+    file.size() %>% 
+    { round(mean(.) / 10^6) },
+  "MB\nMean size for extended-data files:",
+  dir("../output_data", pattern = "^crime_open_database_extended_", 
+      full.names = TRUE) %>% 
+    file.size() %>% 
+    { round(mean(.) / 10^6) },
+  "MB\n"
+)
 
 # clean up
 rm(common_vars, these_vars, i, j)

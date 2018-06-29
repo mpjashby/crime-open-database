@@ -40,6 +40,73 @@ Note:
  * Raleigh is not on the list because lots of offences (including all those 
    committed by juveniles) are ommitted
    
+   
+# Boston
+
+Boston data are in two files, one up until August 2015 and one from then 
+onwards. The formats are substantially different, with slightly more information
+in the older file. This code first harmonises the field formats and names 
+between the two files, then merges them and processes as for other cities. There
+is some overlap between the data, so both datasets are filtered by date.
+
+```{r}
+list(
+  read_csv("../original_data/Boston July 2012 to August 2015.csv") %>% 
+    rename(
+      INCIDENT_NUMBER = COMPNOS,
+      OFFENSE_DESCRIPTION = INCIDENT_TYPE_DESCRIPTION,
+      DISTRICT = REPTDISTRICT,
+      REPORTING_AREA = REPORTINGAREA,
+      OCCURRED_ON_DATE = FROMDATE,
+      SHOOTING = Shooting,
+      UCR_PART = UCRPART,
+      STREET = STREETNAME,
+      CROSS_STREET = XSTREETNAME
+    ) %>% 
+    mutate(
+      INCIDENT_NUMBER = as.character(INCIDENT_NUMBER),
+      OFFENSE_DESCRIPTION = str_to_upper(OFFENSE_DESCRIPTION),
+      OCCURRED_ON_DATE = parse_date_time2(OCCURRED_ON_DATE, "mdY IMS p", 
+                                          tz = "America/New_York"),
+      SHOOTING = recode(SHOOTING, "Yes" = TRUE, "No" = FALSE, .default = FALSE, 
+                        .missing = FALSE)
+    ) %>% 
+    select(INCIDENT_NUMBER, OFFENSE_DESCRIPTION, DISTRICT, REPORTING_AREA, 
+           OCCURRED_ON_DATE, SHOOTING, UCR_PART, STREET, CROSS_STREET, 
+           Location) %>% 
+    filter(OCCURRED_ON_DATE < ymd_hm("2015-07-01 00:00", 
+                                     tz = "America/New_York")),
+  read_csv("../original_data/Boston August 2015 to date.csv") %>% 
+    mutate(
+      INCIDENT_NUMBER = str_sub(INCIDENT_NUMBER, 2, -1),
+      SHOOTING = recode(SHOOTING, "Y" = TRUE, "N" = FALSE, .default = FALSE, 
+                        .missing = FALSE)
+    ) %>% 
+    select(INCIDENT_NUMBER, OFFENSE_DESCRIPTION, DISTRICT, REPORTING_AREA,
+           OCCURRED_ON_DATE, SHOOTING, UCR_PART, STREET, Location) %>% 
+    filter(OCCURRED_ON_DATE >= ymd_hm("2015-07-01 00:00", 
+                                      tz = "America/New_York"))
+) %>% 
+  bind_rows() %>% 
+  mutate(
+    Location = str_sub(Location, 2, -2),
+  ) %>% 
+  separate(Location, into = c("Latitude", "Longitude"), sep = ", ") %>% 
+  mutate_at(vars(c("Latitude", "Longitude")), as.double) %>% 
+  arrange(OCCURRED_ON_DATE) %>% 
+  # add date variable
+  add_date_var("OCCURRED_ON_DATE", "Ymd T", "America/New_York") %>% 
+  # filter by year
+  filter_by_year(2013, yearLast) %>% 
+  # add crime categories
+  join_nibrs_cats("../crime_categories/categories_Boston.csv",
+                  by = c("OFFENSE_DESCRIPTION")) %>% 
+  # save data
+  save_city_data("Boston") %>% 
+  glimpse()
+```
+
+   
 
 # Chicago
 
@@ -257,6 +324,94 @@ read_csv('../original_data/Fort Worth time period to be checked.csv',
   save_city_data("Fort Worth") %>% 
   glimpse()
 ```
+
+
+# Kansas City
+
+[KCMO data](https://data.kcmo.org/browse?category=Crime&limitTo=datasets&sortBy=alpha&utf8=✓&page=2) 
+are in annual files from 2009 onwards, with slight differences in the variable 
+names and formats across years. All variables will be loaded as characters and 
+then changed later.
+
+```{r}
+dir(path = "../original_data", pattern = "^KCPD_", full.names = TRUE) %>% 
+  map(function (x) {
+    
+    # load data
+    kc_data <- read_csv(x, col_types = cols(.default = col_character()))
+    
+    # harmonise names
+    if ("From Time" %in% names(kc_data)) 
+      kc_data <- rename(kc_data, From_Time = `From Time`)
+    if ("To Time" %in% names(kc_data))
+      kc_data <- rename(kc_data, To_Time = `To Time`)
+    if ("Reported Time" %in% names(kc_data))
+      kc_data <- rename(kc_data, Reported_Time = `Reported Time`)
+    if ("Location 1" %in% names(kc_data))
+      kc_data <- rename(kc_data, Location = `Location 1`)
+    
+    # return data
+    kc_data
+    
+  }) %>% 
+  bind_rows() %>% 
+  mutate(
+    # create date/time objects
+    Reported_Date_Time = parse_date_time(paste(Reported_Date, Reported_Time), 
+                                         orders = "mdY HM", 
+                                         tz = "America/Chicago"),
+    Date.Start = parse_date_time(paste(From_Date, From_Time), 
+                                 orders = "mdY HM", tz = "America/Chicago"),
+    Date.End = parse_date_time(
+      paste(str_extract(To_Date, "^[0-9\\/]+"), To_Time), 
+      orders = "mdY HM", 
+      tz = "America/Chicago"
+    ),
+    # when start and end times are missing, use reported time
+    Date.Start = as.POSIXct(
+      ifelse(is.na(Date.Start), Reported_Date_Time, Date.Start),
+      origin = "1970-01-01",
+      tz = "America/Chicago"
+    ),
+    # when end time is missing, use start time
+    Date.End = as.POSIXct(
+      ifelse(is.na(Date.End), Date.Start, Date.End),
+      origin = "1970-01-01",
+      tz = "America/Chicago"
+    ),
+    # calculate mid-point
+    Date.Single = Date.Start + ((Date.End - Date.Start) / 2),
+    Date.Year = year(Date.Single),
+    Multiple.Dates = TRUE,
+    # extract address from location
+    location_string = str_extract(Location, "\\n\\(.+?\\)$") %>% 
+      trimws() %>% 
+      str_sub(2, -2),
+    # replace some NIBRS codes
+    IBRS = case_when(
+      IBRS %in% c("09C", "09D", "90I") ~ "99Z", # justifiable homicide
+      IBRS == "26F" ~ "26C", # identity theft
+      IBRS == "26G" ~ "26E", # computer hacking
+      IBRS == "720" ~ "90Z", # animal cruelty
+      IBRS == "220" & Description %in% c("Burglary - Resid", 
+                                         "Burglary - Residence", "burglary res", 
+                                         "burglary-res") ~ "22A",
+      IBRS == "220" & Description %in% c("Burglary - Non Resid", 
+                                         "BURGLARY NON RES") ~ "22B",
+      IBRS == "220" ~ "22U",
+      is.na(IBRS) ~ "99Z", # non-criminal matters
+      TRUE ~ IBRS
+    )
+  ) %>% 
+  mutate_if(is.POSIXct, strftime, format = '%Y-%m-%d %H:%M', 
+            tz = "America/Chicago") %>% 
+  separate(location_string, into = c("Latitude", "Longitude"), sep = ", ") %>% 
+  filter_by_year(2009, yearLast) %>% 
+  left_join(nibrs_categories, by = c("IBRS" = "NIBRS_Offense_Code")) %>%
+  save_city_data("Kansas City") %>% 
+  glimpse()
+```
+
 
 
 # Los Angeles

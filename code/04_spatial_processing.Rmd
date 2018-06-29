@@ -176,7 +176,7 @@ setdiff(
 # Check data
 
 ```{r}
-for (city in cities$name[2]) {
+for (city in c("Kansas City")) {
   
   cat("\nProducing map for", city, "at", format(now(), "%F %T"), "\n")
   

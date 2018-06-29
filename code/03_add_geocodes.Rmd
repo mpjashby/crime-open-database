@@ -113,6 +113,330 @@ rm(locations, data_fw)
 ```
 
 
+# Kansas City
+
+All KC offences are geocoded before 2016, but for some reason almost half of the
+offences in the 2017 file have an address but no co-ordinates. These will be
+geocoded using (in turn) the US Census geocoder, Geocodio and the Google
+Geocoding API.
+
+```{r}
+# read data
+kc_data <- read_rds("../temp_data/raw_kansas_city_data.Rds")
+
+# format data, removing dummy addresses with 'UNKNOWN' in them
+kc_data <- kc_data %>% 
+  mutate(
+    address_string = paste(
+      Address, 
+      City, 
+      "MO", 
+      ifelse(`Zip Code` %in% c("0", "99999"), "", `Zip Code`), 
+      sep = ", "
+    ) %>% 
+      str_replace_all("\\bNA, ", ", ") %>%
+      str_replace_all("\\s+", " ") %>% # collapse whitespace
+      str_replace("^.*\\bUNKNOWN.*$", "") %>% 
+      str_replace_all("\\bAV\\b", "AVENUE") %>% 
+      str_replace_all("\\bBL\\b", "BOULEVARD") %>% 
+      str_replace_all("\\bCT\\b", "COURT") %>% 
+      str_replace_all("\\bHW\\b", "HIGHWAY") %>% 
+      str_replace_all("\\bHWY\\b", "HIGHWAY") %>% 
+      str_replace_all("\\bRD\\b", "ROAD") %>% 
+      str_replace_all("\\bST\\b", "STREET") %>% 
+      str_replace_all("\\bTE\\b", "TERRACE") %>% 
+      str_replace_all("\\bTR\\b", "TRAFFICWAY") %>% 
+      str_replace_all("\\bWA\\b", "WAY") %>% 
+      str_replace_all("\\bWEST FRONT ROAD\\b", "") %>% 
+      str_replace_all("\\bE 40 HIGHWAY\\b", "E US 40 HIGHWAY") %>% 
+      str_replace_all("\\bUS (\\d+) HIGHWAY\\b", "US HIGHWAY \\1") %>% 
+      str_replace_all("\\bINDEPENDENCE BOULEVARD\\b", "INDEPENDENCE AVENUE") %>% 
+      str_replace_all("\\bM 152\\b", "MO 152") %>% 
+      str_replace_all("\\bNICHOLS PK\\b", "NICHOLS PARKWAY") %>% 
+      str_replace_all("\\b\\d+ WORLDS OF FUN\\b", "100 WORLDS OF FUN") %>% 
+      str_replace("^0+\\b", "100") %>%  # replace street number 0 with 100
+      str_replace_all("\\s+", " ") %>% # collapse whitespace again
+      trimws()
+  )
+
+```
+
+## US Census geocoder
+
+```{r}
+
+if (file.exists("../geocoding_data/kc_geocoded_locations.csv")) {
+  
+  # get geocoded addresses from file
+  kc_geocoded_addresses <- read_csv("../geocoding_data/kc_geocoded_locations.csv")
+  
+} else {
+  
+  # produce vector of addresses preceeded by a unique ID
+  kc_unknown_addresses <- kc_data %>% 
+    filter(is.na(Latitude) & Address != "" & !is.na(Address) & 
+             address_string != "") %>% 
+    group_by(address_string) %>% 
+    summarise(n = n()) %>% 
+    arrange(desc(n)) %>% 
+    { paste(1:nrow(.), .$address_string, sep = ", ") }
+  
+  # create an empty directory
+  if (!dir.exists("../geocoding_data/kc_missing")) {
+    if(dir.create("../geocoding_data/kc_missing", showWarnings = TRUE)) {
+      message("Created directory '../geocoding_data/kc_missing'")
+    } else {
+      stop("Could not create directory '../geocoding_data/kc_missing'\n")
+    }
+  } else if (length(dir("../geocoding_data/kc_missing")) > 0) {
+    stop("Directory '../geocoding_data/kc_missing' is not empty and must be ",
+         "empty before calling save_addresses()\n")
+  } else {
+    message("Directory '../geocoding_data/kc_missing' exists and is empty, ",
+            "ready for calling save_addresses()")
+  }
+  
+  # save addresses to directory in batches of 1,000 addresses
+  save_addresses(kc_unknown_addresses, "../geocoding_data/kc_missing", 
+                 "kc_missing")
+  
+  # geocode addresses (THIS IS SLOW AND ONLY GIVES OCCASIONAL UPDATES)
+  # this function submits all the files in the directory to the US Census 
+  # geocoder and returns a single data frame - for more details, see
+  # https://github.com/dmwelgus/MapChi/blob/master/vignettes/geocoding.Rmd
+  kc_geocoded_addresses <- batch_geo("../geocoding_data/kc_missing")
+  write_csv(kc_geocoded_addresses, "../geocoding_data/kc_geocoded_locations.csv", 
+            na = "")
+  
+}
+
+# join geocodes to missing addresses
+kc_geocode <- tibble(
+  id = as.integer(str_extract(kc_unknown_addresses, "^\\d+")),
+  address_string = str_extract(kc_unknown_addresses, ", .+$") %>% 
+    str_sub(3, -1)
+) %>% 
+  left_join(kc_geocoded_addresses %>% 
+              filter(status == "Match") %>% 
+              select(id, census_lat = lat, census_lon = long), 
+            by = "id") %>% 
+  select(-id)
+
+# join new geocodes to data
+kc_data <- left_join(kc_data, kc_geocode, by = "address_string") %>% 
+  mutate(
+    Latitude = ifelse(is.na(Latitude) & !is.na(census_lat), census_lat, 
+                      Latitude),
+    Longitude = ifelse(is.na(Longitude) & !is.na(census_lon), census_lon, 
+                       Longitude)
+  )
+
+```
+
+## Geocodio
+
+```{r}
+
+if (!file.exists("../geocoding_data/kc_missing_for_geocodio.csv")) {
+  
+  # identify offences that are still not geocoded
+  kc_unknown_addresses2 <- kc_data %>% 
+    filter(is.na(Latitude) & Address != "" & !is.na(Address) & 
+             address_string != "") %>% 
+    group_by(address_string) %>% 
+    summarise(n = n()) %>% 
+    arrange(desc(n)) %>% 
+    mutate(coords = as.numeric(NA))
+  
+  # export these for geocoding by Geocodio
+  kc_unknown_addresses2 %>% 
+    filter(is.na(coords)) %>% 
+    slice(1:2500) %>% 
+    write_csv("../geocoding_data/kc_missing_for_geocodio.csv", na = "")
+  
+}
+
+# import results from file
+kc_geocoded_addresses2 <- read_csv(
+  "../geocoding_data/kc_geocoded_from_geocodio.csv") %>%
+  filter(`Accuracy Type` %in% c("rooftop", "range_interpolation", 
+                                "intersection", "street_center")) %>% 
+  select(address_string, geocodio_lat = Latitude, geocodio_lon = Longitude)
+
+# join the co-ordinates from Geocodio
+kc_data <- left_join(kc_data, kc_geocoded_addresses2, by = "address_string") %>% 
+  mutate(
+    Latitude = ifelse(is.na(Latitude) & !is.na(geocodio_lat), geocodio_lat, 
+                      Latitude),
+    Longitude = ifelse(is.na(Longitude) & !is.na(geocodio_lon), geocodio_lon, 
+                       Longitude)
+  )
+
+```
+
+## Google
+
+```{r}
+
+if (file.exists("../geocoding_data/kc_geocoded_from_google.csv")) {
+  
+  kc_unknown_addresses3 <- read_csv("../geocoding_data/kc_geocoded_from_google.csv")
+  
+} else {
+
+  # identify offences that are still not geocoded
+  kc_unknown_addresses3 <- kc_data %>% 
+    filter(is.na(Latitude) & Address != "" & !is.na(Address) & 
+             address_string != "") %>% 
+    group_by(address_string) %>% 
+    summarise(n = n()) %>% 
+    arrange(desc(n)) %>% 
+    mutate(coords = as.numeric(NA))
+  
+  # attempt to geocode these addresses using the Google API
+  # this code is based partly on a blog post at
+  # https://www.shanelynn.ie/massive-geocoding-with-r-and-google-maps/
+  # and the Google Geocoding API docs at 
+  # https://developers.google.com/maps/documentation/geocoding/intro
+  wait <- 60*2 # waiting time in seconds after first attempt
+  for (i in 1:nrow(kc_unknown_addresses3)) {
+    
+    if (!is.na(kc_unknown_addresses3$coords[i])) {
+      cat(i, "Skipping address", kc_unknown_addresses3$address_string[i], 
+          "because co-ordinates already exist\n")
+      next
+    } else {
+      cat("\n")
+      cat(i, "Processing address", kc_unknown_addresses3$address_string[i], 
+          "\n")
+    }
+    
+    # set initial values
+    j <- -1
+    if (exists("result")) rm(result)
+    if (exists("result_geo")) rm(result_geo)
+    
+    repeat {
+      
+      # if a result exists, delay repeated execution
+      if (j > -1) {
+        message("  over rate limit: waiting for ", (wait * 2^j) / 60, 
+                " minutes from ", as.character(now()))
+        Sys.sleep(wait * 2^j)
+      }
+      
+      cat("  attempt", j + 2, "\n")
+      
+      # query API
+      result <- suppressMessages(
+        ggmap::geocode(kc_unknown_addresses3$address_string[i], output = "all", 
+                       messaging = FALSE))
+      j <- j + 1
+      
+      # print result for debugging
+      # print(jsonlite::toJSON(result))
+      
+      # unless the query was over the rate limit, break out of repeat loop
+      if (result$status != "OVER_QUERY_LIMIT") break
+      
+    }
+    
+    # if there was an error, report it and terminate
+    if (result$status %in% c("OVER_DAILY_LIMIT", "REQUEST_DENIED",
+                             "INVALID_REQUEST", "UNKNOWN_ERROR")) {
+      stop(result$status, " when processing address '",
+           kc_unknown_addresses3$address_string[i], "'\n")
+    }
+    
+    # if no results were found jump to next address
+    if ("ZERO_RESULTS" == result$status) {
+      cat("  no results\n")
+      next
+    }
+    
+    result_geo <- result$results[[1]]$geometry$location
+    if (!is.na(result_geo$lat) & !is.na(result_geo$lng)) {
+      kc_unknown_addresses3$coords[i] = paste(result_geo$lat, result_geo$lng,
+                                              sep = ",")
+      cat("  geocoded to", result_geo$lat, "/", result_geo$lng, "\n")
+    }
+    
+    # after ever 10 iterations, report status
+    if (i %% 10 == 0) {
+      cat("\n")
+      cat(filter(kc_unknown_addresses3, is.na(coords)) %>% nrow(), "ungeocoded", 
+          "rows remaining and", suppressMessages(ggmap::geocodeQueryCheck()), 
+          "API queries available\n")
+    }
+    
+    # after every 100 iterations, save a copy of the data 
+    if (i %% 100 == 0) {
+      write_rds(kc_unknown_addresses3, 
+                "../temp_data/geocode_kansas_city_data.Rds", compress = "gz")
+      cat("  Saved data to '../temp_data/geocode_kansas_city_data.Rds'\n")
+    }
+    
+    # pause briefly so as not to get ahead of the API rate limit
+    Sys.sleep(30)
+    
+  }
+  
+  # extract co-ordinates from coords column
+  kc_unknown_addresses3 <- kc_unknown_addresses3 %>% 
+    separate(coords, into = c("google_lat", "google_lon"), sep = ",", 
+             remove = FALSE)
+  
+  # remove geocoding where it is equal to the city centroid
+  # The Google API will almost always return geocodes, even if they are only for 
+  # the city rather than a street location. To deal with this we can remove 
+  # co-ordinates that are equal to those for the city centroid
+  kc_centroid <- ggmap::geocode("Kansas City, MO", output = "all")
+  kc_unknown_addresses3 <- kc_unknown_addresses3 %>% 
+    mutate(centroid = ifelse(
+      google_lat == kc_centroid$results[[1]]$geometry$location$lat &
+        google_lon == kc_centroid$results[[1]]$geometry$location$lng,
+      TRUE, FALSE
+    ))
+  
+  # save Google API data to a file
+  write_csv(kc_unknown_addresses3, 
+            "../geocoding_data/kc_geocoded_from_google.csv", na = "")
+  
+}
+
+# join the co-ordinates from the Google API
+kc_data <- left_join(
+  kc_data, 
+  kc_unknown_addresses3 %>% 
+    filter(centroid == FALSE) %>% 
+    select(-n, -coords, -centroid), 
+  by = "address_string") %>% 
+  mutate(
+    Latitude = ifelse(is.na(Latitude) & !is.na(google_lat), google_lat, 
+                      Latitude),
+    Longitude = ifelse(is.na(Longitude) & !is.na(google_lon), google_lon, 
+                       Longitude)
+  )
+
+```
+
+Finally, we save the data with co-ordinates for the next stage of processing.
+
+```{r}
+
+# save data
+kc_data %>% 
+  select(-census_lat, -census_lon, -geocodio_lat, -geocodio_lon, -google_lat, 
+         -google_lon) %>% 
+  write_rds("../temp_data/raw_kansas_city_data.Rds", compress = "gz")
+
+# clean up
+rm(kc_centroid, kc_data, kc_geocode, kc_geocoded_addresses,
+   kc_geocoded_addresses2, kc_unknown_addresses, kc_unknown_addresses2,
+   kc_unknown_addresses3, result, result_geo, i, j, wait)
+```
+
+
 # Louisville
 
 No Louisville offences are geocoded, so it will all have to be done manually.

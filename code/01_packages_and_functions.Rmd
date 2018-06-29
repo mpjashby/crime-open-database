@@ -7,15 +7,19 @@ output: html_notebook
 # Load packages
 
 ```{r}
-library('plyr') # merge data in a tidyverse way 
+# MapChi is used for US Census geocoding
+# this package is from GitHub, installed using
+# devtools::install_github("dmwelgus/MapChi")
+library("MapChi")
 # NOTE: since plyr is not formally part of the tidyverse, it must be loaded
 # before tidyverse or dplyr
-library('stringi') # advanced string manipulation 
+library('plyr') # merge data in a tidyverse way 
 # NOTE: it's usually better to use the wrappers in stringr, which is why that is 
 # loaded (as part of tidyverse) after this
+library('stringi') # advanced string manipulation 
 library('reshape2') # for creating tables of offence categories
 library('tidyverse')
-library("lubridate") # date handlind
+library("lubridate") # date handling
 library('sf') # handle spatial data
 ```
 
@@ -26,31 +30,36 @@ library('sf') # handle spatial data
 # Set parameters
 yearFirst <- 2007
 yearLast <- 2017
-city_data <- list(
-  'Chicago' = list('FIPS_code' = '17', 'name' = 'Chicago', 'prefix' = 'chi', 'abbr' = 'IL'),
-  'Detroit' = list('FIPS_code' = '26', 'name' = 'Detroit', 'prefix' = 'dtt', 'abbr' = 'MI'),
-  'FW' = list('FIPS_code' = '48', 'name' = 'Fort Worth', 'prefix' = 'ftw', 'abbr' = 'TX'),
-  'LA' = list('FIPS_code' = '06', 'name' = 'Los Angeles', 'prefix' = 'lax', 'abbr' = 'CA'),
-  'Louisville' = list('FIPS_code' = '21', 'name' = 'Louisville', 'prefix' = 'lou', 'abbr' = 'KY', 'start' = 2004),
-  'NO' = list('FIPS_code' = '22', 'name' = 'New Orleans', 'prefix' = 'nor', 'abbr' = 'LA'),
-  'NYC' = list('FIPS_code' = '36', 'name' = 'New York', 'prefix' = 'nyc', 'abbr' = 'NY', 'start' = 2007),
-  'SF' = list('FIPS_code' = '06', 'name' = 'San Francisco', 'prefix' = 'sfo', 'abbr' = 'CA'),
-  'VB' = list('FIPS_code' = '51', 'name' = 'Virginia Beach', 'prefix' = 'vib', 'abbr' = 'VA', 'start' = 2013)
-)
+
+# The following code appears to be redundant and so has been commented out. It
+# will be removed in a future version.
+# city_data <- list(
+#   'Chicago' = list('FIPS_code' = '17', 'name' = 'Chicago', 'prefix' = 'chi', 'abbr' = 'IL'),
+#   'Detroit' = list('FIPS_code' = '26', 'name' = 'Detroit', 'prefix' = 'dtt', 'abbr' = 'MI'),
+#   'FW' = list('FIPS_code' = '48', 'name' = 'Fort Worth', 'prefix' = 'ftw', 'abbr' = 'TX'),
+#   'LA' = list('FIPS_code' = '06', 'name' = 'Los Angeles', 'prefix' = 'lax', 'abbr' = 'CA'),
+#   'Louisville' = list('FIPS_code' = '21', 'name' = 'Louisville', 'prefix' = 'lou', 'abbr' = 'KY', 'start' = 2004),
+#   'NO' = list('FIPS_code' = '22', 'name' = 'New Orleans', 'prefix' = 'nor', 'abbr' = 'LA'),
+#   'NYC' = list('FIPS_code' = '36', 'name' = 'New York', 'prefix' = 'nyc', 'abbr' = 'NY', 'start' = 2007),
+#   'SF' = list('FIPS_code' = '06', 'name' = 'San Francisco', 'prefix' = 'sfo', 'abbr' = 'CA'),
+#   'VB' = list('FIPS_code' = '51', 'name' = 'Virginia Beach', 'prefix' = 'vib', 'abbr' = 'VA', 'start' = 2013)
+# )
 
 nibrs_categories <- read_csv("../crime_categories/NIBRS categories.csv") %>% 
   rename(Offense = NIBRS_Offense_Code_1)
 
 cities <- tribble(
   ~name, ~fips, ~prefix,
+  # "Boston",         "25", "bos",
   "Chicago",        "17", "chi",
   "Detroit",        "26", "dtt",
   "Fort Worth",     "48", "ftw",
+  "Kansas City",    "29", "kcm",
   "Los Angeles",    "06", "lax",
   "Louisville",     "21", "lou",
   "New York",       "36", "nyc",
   "San Francisco",  "06", "sfo",
-  "Seattle",        "53", "sea",
+  # "Seattle",        "53", "sea",
   "Tucson",         "04", "tus",
   "Virginia Beach", "51", "vib"
 )

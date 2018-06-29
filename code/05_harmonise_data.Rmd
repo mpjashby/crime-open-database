@@ -19,6 +19,18 @@ The final step needs a list of variables that are not specific to each city and
 so do not need a prefix.
 
 
+# Boston
+
+```{r}
+read_rds("../temp_data/spatial_boston_data.Rds") %>% 
+  rename(local_row_id = INCIDENT_NUMBER) %>% 
+  convert_names(common_vars, cities$prefix[cities$name == "Boston"]) %>% 
+  write_rds("../temp_data/final_boston_data.Rds", compress = "gz") %>% 
+  glimpse()
+```
+
+
+
 # Chicago
 
 ```{r}
@@ -65,6 +77,24 @@ read_rds("../temp_data/spatial_fort_worth_data.Rds") %>%
   ) %>% 
   convert_names(common_vars, cities$prefix[cities$name == "Fort Worth"]) %>% 
   write_rds("../temp_data/final_fort_worth_data.Rds", compress = "gz") %>% 
+  glimpse()
+```
+
+
+# Kansas City
+
+```{r}
+read_rds("../temp_data/spatial_kansas_city_data.Rds") %>% 
+  select(-Reported_Date, -Reported_Time, -From_Date, -From_Time, -To_Date, 
+         -To_Time, -City, -Location, -address_string) %>% 
+  rename(
+    local_row_id = Report_No, 
+    NIBRS_Offense_Code = IBRS
+  ) %>% 
+  mutate_at(vars(one_of("Date.Single", "Date.Start", "Date.End")), format, 
+            format = "%Y-%m-%d %H:%M") %>% 
+  convert_names(common_vars, cities$prefix[cities$name == "Kansas City"]) %>% 
+  write_rds("../temp_data/final_kansas_city_data.Rds", compress = "gz") %>% 
   glimpse()
 ```
 
