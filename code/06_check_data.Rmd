@@ -1,11 +1,11 @@
 ---
 title: "City crime data summary"
 output:
+  html_notebook:
+    code_folding: hide
   html_document:
     code_folding: hide
     df_print: paged
-  html_notebook:
-    code_folding: hide
   pdf_document: default
 ---
 
@@ -36,7 +36,7 @@ cities <- tribble(
 
 
 ```{r include=FALSE}
-this_city <- "Kansas City"
+this_city <- "Tucson"
 data <- read_rds(paste0("../temp_data/final_", 
                         str_replace_all(str_to_lower(this_city), "\\s", "_"), 
                         "_data.Rds"))

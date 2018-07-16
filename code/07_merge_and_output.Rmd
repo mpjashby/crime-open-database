@@ -20,41 +20,50 @@ common_vars <- setdiff(common_vars, c('geometry')) %>%
 
 # load and merge the dataset for each city
 data <- dir("../temp_data", pattern = "^final_", full.names = TRUE) %>% 
-  report_status(paste("Identified files in directory at", 
-                      as.character(now))) %>% 
+  # report_status(paste("Identified files in directory at", 
+  #                     as.character(now))) %>% 
   map(read_rds) %>% 
-  report_status(paste("Read data from files at", as.character(now()))) %>% 
+  # report_status(paste("Read data from files at", as.character(now()))) %>% 
   map(mutate_at, vars(one_of(c("local_row_id", "case_number"))), 
       as.character) %>% 
   # map(mutate, 
   #     local_row_id = as.character(local_row_id),
   #     case_number = as.character(case_number)) %>% 
-  report_status(paste("Changed identifiers to character vectors at", 
-                      as.character(now()))) %>% 
+  # report_status(paste("Changed identifiers to character vectors at", 
+  #                     as.character(now()))) %>% 
   bind_rows() %>% 
-  report_status(paste("Merged data from individual files at", 
-                      as.character(now()))) %>% 
+  # report_status(paste("Merged data from individual files at", 
+  #                     as.character(now()))) %>% 
   arrange(city_name, date_single) %>% 
-  report_status(paste("Arranged data by city and date at", 
-                      as.character(now()))) %>% 
+  # report_status(paste("Arranged data by city and date at", 
+  #                     as.character(now()))) %>% 
   filter(
     offense_against != "excluded cases" & 
     !is.na(longitude) &
     !is.na(latitude) &
     in_city == TRUE
   ) %>%
-  report_status(paste("Removed excluded cases at", as.character(now()))) %>% 
+  # report_status(paste("Removed excluded cases at", as.character(now()))) %>% 
   mutate(
     uid = 1:nrow(.)
   ) %>% 
-  report_status(paste("Added unique row ID at", as.character(now()))) %>% 
+  mutate(
+    offense_code = case_when(
+      offense_code == "120" ~ "12U",
+      offense_code == "220" ~ "22U",
+      offense_code == "23U" ~ "23H",
+      TRUE ~ offense_code
+    )
+  ) %>% 
+  # report_status(paste("Added unique row ID at", as.character(now()))) %>% 
   select(one_of(common_vars), everything(), -in_city, -multiple_dates)
 
-data %>% 
-  sample_n(50) %>% 
-  arrange(city_name, date_single) %>% 
-  View()
+# data %>%
+#   sample_n(50) %>%
+#   arrange(city_name, date_single) %>%
+#   View()
 
+cat("CODE contains data on", format(nrow(data), big.mark = ","), "offenses\n")
 ```
 
 Overall, there are `r nrow(data)` offences in the dataset. This can be broken
@@ -62,8 +71,10 @@ down by city:
 
 ```{r}
 data %>% 
-  group_by(city_name) %>% 
-  summarise(n = n())
+  group_by(city_name, date_year) %>% 
+  summarise(n = n()) %>% 
+  summarise(crimes_per_year = format(mean(n), scientific = FALSE, digits = 0, 
+                                     big.mark = ","))
 ```
 
 and by city for each year:
@@ -103,8 +114,9 @@ for (i in yearFirst:yearLast) {
       filter(date_year == i) %>%
       select_if(names(data) %in% these_vars) %>%
       select(-date_year) %>% 
-      write.csv(gzfile(file_name), na = "")
-    cat("Saved file", paste0("'", file_name, "',"), file.size(file_name), "MB\n")
+      write.csv(gzfile(file_name), na = "", row.names = FALSE)
+    cat("Saved file", paste0("'", file_name, "',"), 
+        round(file.size(file_name) / 10^6), "MB\n")
   }
 }
 

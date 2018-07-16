@@ -31,8 +31,6 @@ Note:
 
  * Boston is ommitted because the offence categories used are in many cases 
    (e.g. fraud, larceny) too broad to be mapped to NIBRS
- * Kansas City, MO, is not on the list because some crimes are geocoded to 
-   places outside the city boundary and it's not obvious what the reason is
  * Minneapolis is not on the list because there is no field from which NIBRS 
    categories can be generated
  * New Orleans is ommitted because some offences are spread across (many) 

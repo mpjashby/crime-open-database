@@ -1,0 +1,69 @@
+offense_against,offense_code,offense_type,Chicago,Detroit,Fort Worth,Kansas City,Los Angeles,Louisville,New York,San Francisco,Tucson,Virginia Beach
+other,90Z,all other offenses,276660,63932,81528,81171,79824,38558,1169705,122810,61498,18927
+persons,09A,murder and nonnegligent manslaughter,5591,3016,397,1846,3256,461,4484,,382,90
+persons,09B,negligent manslaughter,2,64,9,9,6,8,47,,9,4
+persons,100,kidnapping/abduction,2823,1972,1149,1083,4501,964,5009,5733,171,214
+persons,11A,rape (except statutory rape),,510,,4853,13076,1099,1,1903,2556,290
+persons,11B,sodomy,,,,3139,4295,586,28,520,,156
+persons,11C,sexual assault with an object,,7,,32,3555,,11,324,,41
+persons,11D,fondling,9868,407,,2613,15164,902,59,3909,3246,410
+persons,11U,sexual assault by penetration (including rape),16721,,,,,,,,,
+persons,13A,aggravated assault,176497,85929,17699,69391,100150,5161,204610,34739,14738,1338
+persons,13B,simple assault,710376,117422,60363,129531,262862,29935,593267,76183,79616,23543
+persons,13C,intimidation,3606,17947,10081,12609,55289,13475,2938,26759,290,3717
+persons,36A,incest,31,,,10,8,13,,17,,2
+persons,36B,statutory rape,,176,,689,4495,69,,219,,39
+persons,36U,other sex offenses,,,,,,,,,2250,
+persons,64A,"human trafficking, commercial sex acts",16,,12,6,52,,,333,46,
+persons,64B,"human trafficking, involuntary servitude",20,,8,,18,,,,1,
+property,120,other robbery,,,,,,,,,,1434
+property,12A,personal robbery,127068,34280,17968,,66698,27987,172988,36229,6158,
+property,12B,commercial robbery,14414,2610,15894,,16934,8631,26591,4275,3255,
+property,12U,other robbery,2778,6181,11990,,494,812,,,731,
+property,200,arson,5715,8254,1423,4941,3039,30,20566,2800,1533,380
+property,210,extortion/blackmail,234,1212,2,62,1843,14,4476,546,,109
+property,220,other burglary/breaking & entering,,12345,,,,,,,,
+property,22A,residential burglary/breaking & entering,187671,77713,137169,101045,99595,109543,136050,42435,,4417
+property,22B,non-residential burglary/breaking & entering,37801,35103,97254,19428,41198,25329,55158,17665,,828
+property,22U,other burglary/breaking & entering,,,78141,18,,,,,52337,
+property,23A,pocket-picking,21660,1534,3045,1168,682,430,23343,9948,459,119
+property,23B,purse-snatching,9721,2247,657,1228,1060,426,19537,57,572,84
+property,23C,shoplifting,103335,4099,44733,46388,43080,13704,265731,21522,114820,8477
+property,23D,theft from building,135258,30871,1481,46931,93,7414,373979,35234,18645,6141
+property,23E,theft from coin-operated machine or device,489,61,1314,517,253,78,345,230,440,26
+property,23F,theft from motor vehicle (except theft of motor vehicle parts or accessories),,40440,63632,76380,226577,22235,232891,198463,27440,16352
+property,23G,theft of motor vehicle parts or accessories,,27973,33038,54779,,3822,84017,2245,18764,26
+property,23H,all other larceny,,47576,76402,45911,205661,34780,246848,98513,39628,11988
+property,23U,other theft,483859,,,,,,,,,
+property,240,motor vehicle theft,162186,97262,26630,70212,129921,15094,118042,66384,21486,2642
+property,250,counterfeiting/forgery,21459,1912,6895,9875,22197,2801,89385,14575,3986,1688
+property,26A,false pretenses/swindle/confidence game,39108,36874,5800,10942,12176,1247,21931,6963,6546,8629
+property,26B,credit card/automated teller machine fraud,56170,2088,8651,8641,1050,4179,41712,20633,,1405
+property,26C,impersonation,64763,6484,17197,11227,107037,2088,28201,15638,5446,43
+property,26D,welfare fraud,,53,1,20,,7,,1,,129
+property,26E,wire fraud,1416,534,6,3086,1083,1,662,946,,32
+property,26U,other fraud,,,,,,,74715,,12918,
+property,270,embezzlement,615,2211,2311,3349,6800,596,13806,2496,3315,1445
+property,280,stolen property offenses,1082,3489,31,3507,,3321,29381,9071,370,177
+property,290,destruction/damage/vandalism of property (except arson),413018,107274,87778,98307,165364,31502,532553,85590,69559,17666
+property,510,bribery,62,21,29,,31,22,12930,216,,10
+property,90A,bad checks (except counterfeit checks or forged checks),6380,288,74,313,363,14,5996,515,2378,117
+society,35A,drug/narcotic violations,362346,31350,35767,38353,,58802,355317,78846,35327,9422
+society,35B,drug equipment violations,5677,685,13475,14096,,22416,574,147,14133,3848
+society,370,pornography/obscene material,374,49,323,260,31,62,88,92,,241
+society,39A,betting/wagering,,35,253,,,,197,171,,1
+society,39B,operating/promoting/assisting gambling,7614,4,90,3,,25,1967,3,,4
+society,39C,gambling equipment violations,,,4,,,53,367,56,,
+society,39D,sports tampering,,,,2,,,,,,
+society,40A,prostitution,19252,761,4495,2050,,1024,180,3300,1167,61
+society,40B,assisting or promoting prostitution,1897,11,126,269,553,169,210,366,,12
+society,40C,purchasing prostitution,7067,,3,461,277,,487,6781,,
+society,520,weapon law violations,46732,15505,5206,8928,20654,6134,129529,17869,2953,3113
+society,90B,curfew/loitering/vagrancy violations,,8634,75,797,22,33,29,3085,2070,37
+society,90C,disorderly conduct,4569,,7959,15224,8301,333,11552,8156,34280,443
+society,90D,driving under the influence,,9564,16296,8325,,46,72242,4584,20467,66
+society,90E,drunkenness (except driving under the influence),,20,33467,944,,123,,7140,1005,44
+society,90F,"family offenses, nonviolent",487,3424,9932,5680,4985,935,351,791,8158,768
+society,90G,liquor law violations (except driving under the influence and drunkenness),6290,1029,5608,2352,,5,,2912,7548,41
+society,90H,peeping tom,,,118,44,1029,32,,13,221,59
+society,90J,trespass of real property,97923,2193,9590,26421,17048,880,70029,14203,43053,2064
