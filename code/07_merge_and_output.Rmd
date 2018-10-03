@@ -120,23 +120,112 @@ for (i in yearFirst:yearLast) {
   }
 }
 
-# report typical file sizes
-cat(
-  "\nMean size for core-data files:", 
-  dir("../output_data", pattern = "^crime_open_database_core_", 
-      full.names = TRUE) %>% 
-    file.size() %>% 
-    { round(mean(.) / 10^6) },
-  "MB\nMean size for extended-data files:",
-  dir("../output_data", pattern = "^crime_open_database_extended_", 
-      full.names = TRUE) %>% 
-    file.size() %>% 
-    { round(mean(.) / 10^6) },
-  "MB\n"
-)
+for (i in yearFirst:yearLast) {
+  file_name <- paste0("../output_data/crime_open_database_sample_", i, 
+                      ".csv.gz")
+  data %>% 
+    filter(date_year == i) %>% 
+    select_if(names(data) %in% common_vars) %>% 
+    select(-date_year) %>% 
+    sample_frac(0.01) %>% 
+    write.csv(gzfile(file_name), na = "", row.names = FALSE, 
+              fileEncoding = "UTF-8")
+  cat("Saved file", paste0("'", file_name, "',"), 
+      round(file.size(file_name) / 10^6), "MB\n")
+}
 
 # clean up
 rm(common_vars, these_vars, i, j)
 
 ```
+
+
+## Create sample data
+
+Since the data files are so large, 1% samples may be useful for exploratory
+analysis.
+
+```{r}
+dir("../output_data", 
+    pattern = "^crime_open_database_core", full.names = TRUE) %>%
+  purrr::map(function (x) {
+    
+    new_file_name <- stringr::str_replace(x, "core", "sample")
+    
+    readr::read_csv(x, col_types = readr::cols(
+      .default = readr::col_character(),
+      uid = readr::col_integer(),
+      date_single = readr::col_datetime(format = ""),
+      longitude = readr::col_double(),
+      latitude = readr::col_double(),
+      fips_state = readr::col_integer(),
+      block_group = readr::col_integer(),
+      block = readr::col_integer()
+    )) %>%
+      dplyr::sample_frac(0.01) %>%
+    readr::write_csv(new_file_name, na = "")
+    
+    cat("Saved file", paste0("'", new_file_name, "',"), 
+        round(file.size(new_file_name) / 10^6), "MB\n")
+    
+  })
+```
+
+
+## Report typical file sizes
+
+```{r}
+# report typical file sizes
+cat(
+  "\nMean size for core-data files:", 
+  dir("../output_data", pattern = "^crime_open_database_core_(.+?).csv.gz$", 
+      full.names = TRUE) %>% 
+    file.size() %>% 
+    { round(mean(.) / 10^6) },
+  "MB\nMean size for extended-data files:",
+  dir("../output_data", pattern = "^crime_open_database_extended_(.+?).csv.gz$", 
+      full.names = TRUE) %>% 
+    file.size() %>% 
+    { round(mean(.) / 10^6) },
+  "MB\nMean size for sample-data files:",
+  dir("../output_data", pattern = "^crime_open_database_sample_(.+?).csv.gz$", 
+      full.names = TRUE) %>% 
+    file.size() %>% 
+    { round(mean(.) / 10^6) },
+  "MB\n"
+)
+```
+
+
+## Produce Rds files
+
+Rds files are used for downloading within the crimedata R package because they
+are smaller, albeit not interoperable with other software.
+
+```{r}
+dir("../output_data", 
+    pattern = ".csv.gz$", full.names = TRUE) %>%
+  purrr::map(function (x) {
+    
+    new_file_name <- stringr::str_replace(x, ".csv.gz", ".Rds")
+
+    readr::read_csv(x, col_types = readr::cols(
+      .default = readr::col_character(),
+      uid = readr::col_integer(),
+      date_single = readr::col_datetime(format = ""),
+      longitude = readr::col_double(),
+      latitude = readr::col_double(),
+      fips_state = readr::col_integer(),
+      block_group = readr::col_integer(),
+      block = readr::col_integer()
+    )) %>%
+      dplyr::select(-local_row_id, -case_number) %>% 
+      saveRDS(new_file_name, compress = "bzip2")
+    
+    cat("Saved file", paste0("'", new_file_name, "',"), 
+        round(file.size(new_file_name) / 10^6), "MB\n")
+    
+  })
+```
+
 

@@ -64,14 +64,32 @@ cities <- tribble(
   "Virginia Beach", "51", "vib"
 )
 
-common_vars <- c(
-  'uid', 'city_name', 'local_row_id', 'case_number', 'nibrs_offense_code', 
-  'nibrs_offense_type', 'nibrs_offense_category', 'nibrs_crime_against', 
-  'date_single', 'date_start', 'date_end', 'date_year', 'multiple_dates', 
-  'address', 'longitude', 'latitude', "location_type", "location_category", 
-  'fips_state', 'fips_county', 'tract', 'block_group', 'block', 'in_city', 
+common_vars <-
+  c(
+  'uid',
+  'city_name',
+  'nibrs_offense_code',
+  'nibrs_offense_type',
+  'nibrs_offense_category',
+  'nibrs_crime_against',
+  'date_single',
+  'date_start',
+  'date_end',
+  'date_year',
+  'multiple_dates',
+  'address',
+  'longitude',
+  'latitude',
+  "location_type",
+  "location_category",
+  'fips_state',
+  'fips_county',
+  'tract',
+  'block_group',
+  'block',
+  'in_city',
   'geometry'
-)
+  )
 ```
 
 

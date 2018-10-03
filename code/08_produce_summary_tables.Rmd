@@ -1,0 +1,51 @@
+---
+title: "Produce summary tables"
+output: html_notebook
+---
+
+This file produces summary tables for the CODE data.
+
+# Read data
+
+```{r}
+data <- dir(path = "../output_data/", pattern = "^crime_open_database_core_",
+            full.names = TRUE) %>% 
+  map_df(read_csv, col_types = cols(
+    .default = col_character(),
+    uid = col_integer(),
+    date_single = col_datetime(format = ""),
+    date_start = col_datetime(format = ""),
+    date_end = col_datetime(format = ""),
+    longitude = col_double(),
+    latitude = col_double()
+  ))
+```
+
+
+# Offences by type
+
+```{r}
+# calculate crime counts and save as a CSV file
+crime_counts <- data %>% 
+  mutate(year = year(date_single)) %>% 
+  group_by(offense_against, offense_group, offense_type, offense_code, 
+           city_name, year) %>% 
+  summarise(n = n()) %>% 
+  ungroup() %>% 
+  arrange(offense_code, city_name, year) %>% 
+  select(-offense_code) %>% 
+  write_csv("../output_data/offense_counts.csv", na = "")
+
+# produce table of offenses per city
+crime_counts %>% 
+  filter(offense_group == "homicide offenses") %>% 
+  group_by(city_name) %>% 
+  summarise(n = sum(n), first_year = min(year), last_year = max(year)) %>% 
+  mutate(
+    n = scales::comma(n),
+    years = paste0(first_year, "–", last_year, " (", 
+                   (last_year - first_year) + 1, " years)")
+  ) %>% 
+  select(City = city_name, `Years available` = years, Offenses = n)
+```
+
