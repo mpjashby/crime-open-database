@@ -4,228 +4,192 @@ output: html_notebook
 ---
 
 
-# Merge data
+# Output RDS files
 
-This code merges the data from each city into one object, which can then be used
-to output the final data.
+This code outputs RDS files for each city for each year. These can be used to
+produce CSV files for multiple cities etc.
+
+Three files are produced for each city for each year. The 'extended' file 
+contains all the variables, the 'core' file contains only the common variables 
+(i.e. those without the city-name prefix) and the 'sample' file contains a 1% 
+sample of data in the core file.
 
 ```{r}
-# rename the crime category variables because they've been renamed in the 
-# dataset by the convert_names() function in file 05_harmonise_data.Rmd
-common_vars <- setdiff(common_vars, c('geometry')) %>% 
+# remove unnecessary variables from common_vars
+common_vars <- setdiff(
+  common_vars, 
+  c('geometry', "multiple_dates", "in_city", "address", "fips_state", 
+    "fips_county", "tract", "block_group", "block", "date_year")
+) %>% 
+  # rename the crime category variables because they've been renamed in the 
+  # dataset by the convert_names() function in file 05_harmonise_data.Rmd
   mapvalues(c('nibrs_offense_code', 'nibrs_offense_type', 
               'nibrs_offense_category', 'nibrs_crime_against'), 
             c('offense_code', 'offense_type', 'offense_group', 
-              'offense_against'))
-
-# load and merge the dataset for each city
-data <- dir("../temp_data", pattern = "^final_", full.names = TRUE) %>% 
-  # report_status(paste("Identified files in directory at", 
-  #                     as.character(now))) %>% 
-  map(read_rds) %>% 
-  # report_status(paste("Read data from files at", as.character(now()))) %>% 
-  map(mutate_at, vars(one_of(c("local_row_id", "case_number"))), 
-      as.character) %>% 
-  # map(mutate, 
-  #     local_row_id = as.character(local_row_id),
-  #     case_number = as.character(case_number)) %>% 
-  # report_status(paste("Changed identifiers to character vectors at", 
-  #                     as.character(now()))) %>% 
-  bind_rows() %>% 
-  # report_status(paste("Merged data from individual files at", 
-  #                     as.character(now()))) %>% 
-  arrange(city_name, date_single) %>% 
-  # report_status(paste("Arranged data by city and date at", 
-  #                     as.character(now()))) %>% 
-  filter(
-    offense_against != "excluded cases" & 
-    !is.na(longitude) &
-    !is.na(latitude) &
-    in_city == TRUE
-  ) %>%
-  # report_status(paste("Removed excluded cases at", as.character(now()))) %>% 
-  mutate(
-    uid = 1:nrow(.)
-  ) %>% 
-  mutate(
-    offense_code = case_when(
-      offense_code == "120" ~ "12U",
-      offense_code == "220" ~ "22U",
-      offense_code == "23U" ~ "23H",
-      TRUE ~ offense_code
-    )
-  ) %>% 
-  # report_status(paste("Added unique row ID at", as.character(now()))) %>% 
-  select(one_of(common_vars), everything(), -in_city, -multiple_dates)
-
-# data %>%
-#   sample_n(50) %>%
-#   arrange(city_name, date_single) %>%
-#   View()
-
-cat("CODE contains data on", format(nrow(data), big.mark = ","), "offenses\n")
+              'offense_against')) %>% 
+  # add census_block to common vars so it appears in the core data
+  append("census_block")
 ```
 
-Overall, there are `r nrow(data)` offences in the dataset. This can be broken
-down by city:
-
 ```{r}
-data %>% 
-  group_by(city_name, date_year) %>% 
-  summarise(n = n()) %>% 
-  summarise(crimes_per_year = format(mean(n), scientific = FALSE, digits = 0, 
-                                     big.mark = ","))
-```
+# set row number, which should be continuous across cities and years so must be
+# remembered between files
+row_num <- 1
 
-and by city for each year:
+# for each city, load the data and output an Rds file for each year
+# this must be done separately for each city to avoid the 'vector memory
+# exhausted' problem on macOS described at
+# http://r.789695.n4.nabble.com/R-3-5-0-vector-memory-exhausted-error-on-readBin-td4750237.html
+for (city in cities$name) {
+  
+  # load and process data
+  city_data <- readRDS(paste0("../temp_data/final_", 
+                              str_replace_all(str_to_lower(city), "\\s", "_"), 
+                              "_data.Rds")) %>% 
+    mutate_at(vars(one_of(c("local_row_id", "case_number"))), as.character) %>% 
+    arrange(date_single) %>%
+    filter(
+      offense_against != "excluded cases" 
+      & !is.na(longitude) 
+      & !is.na(latitude) 
+      & in_city == TRUE
+    ) %>% 
+    mutate(
+      # add a row ID
+      uid = row_num:(row_num + nrow(.) - 1),
+      # merge the census identifiers
+      census_block = paste0(fips_state, fips_county, tract, block),
+      # catch and robbery/burglary offenses have have not been recategorised
+      offense_code = case_when(
+        offense_code == "120" ~ "12U",
+        offense_code == "220" ~ "22U",
+        offense_code == "23U" ~ "23H",
+        TRUE ~ offense_code
+      )
+    ) %>% 
+    select(one_of(common_vars), everything(), -in_city, -multiple_dates,
+           -fips_state, -fips_county, -tract, -block_group, -block) %>% 
+    mutate(year = year(date_single))
+  
+  # output data by year
+  city_data %>% 
+    split(.$year) %>% 
+    walk(function (x) {
 
-```{r}
-data %>% 
-  group_by(city_name, date_year) %>% 
-  summarise(n = n()) %>% 
-  spread(date_year, n)
-```
+      this_year <- x$year[1]
+      this_city <- str_replace_all(str_to_lower(city), "\\s", "_")
 
+      x %>%
+        select(-year) %>% 
+        # export extended data - use write_rds() rather than saveRDS() because
+        # it returns the input invisibly for use inside a pipe
+        write_rds(path = paste0("../output_data/crime_open_database_extended_",
+                                this_city, "_", this_year, ".Rds"),
+                  compress = "bz2") %>%
+        # select core variables and export
+        select(one_of(common_vars)) %>%
+        write_rds(path = paste0("../output_data/crime_open_database_core_",
+                                this_city, "_", this_year, ".Rds"),
+                  compress = "bz2") %>% 
+        # take a 1% sample and export
+        sample_frac(0.01) %>% 
+        arrange(uid) %>% 
+        write_rds(path = paste0("../output_data/crime_open_database_sample_",
+                                this_city, "_", this_year, ".Rds"),
+                  compress = "bz2")
 
-# Output data
-
-For each year, two files should be exported: one containing all the variables 
-and one containing only the common variables (i.e. those without the city-name 
-prefix).
-
-```{r}
-# If yearFirst has been set to a very early year, there may be no data for the 
-# first few years, producing empty CSV files. To stop this, reset yearFirst if 
-# it is before the first year present in the dataset.
-if (min(data$date_year) > yearFirst) {
-  yearFirst <- min(data$date_year)
-}
-
-for (i in yearFirst:yearLast) {
-  for (j in c('extended', 'core')) {
-    if (j == 'core') {
-      these_vars = common_vars
-    } else {
-      these_vars = names(data)
-    }
-    file_name <- paste0("../output_data/crime_open_database_", j, "_", i, 
-                        ".csv.gz")
-    data %>%
-      filter(date_year == i) %>%
-      select_if(names(data) %in% these_vars) %>%
-      select(-date_year) %>% 
-      write.csv(gzfile(file_name), na = "", row.names = FALSE)
-    cat("Saved file", paste0("'", file_name, "',"), 
-        round(file.size(file_name) / 10^6), "MB\n")
-  }
-}
-
-for (i in yearFirst:yearLast) {
-  file_name <- paste0("../output_data/crime_open_database_sample_", i, 
-                      ".csv.gz")
-  data %>% 
-    filter(date_year == i) %>% 
-    select_if(names(data) %in% common_vars) %>% 
-    select(-date_year) %>% 
-    sample_frac(0.01) %>% 
-    write.csv(gzfile(file_name), na = "", row.names = FALSE, 
-              fileEncoding = "UTF-8")
-  cat("Saved file", paste0("'", file_name, "',"), 
-      round(file.size(file_name) / 10^6), "MB\n")
+      message("\nWritten data for ", city, " in ", this_year)
+      
+    })
+  
+  row_num <- row_num + nrow(city_data)
+  
 }
 
 # clean up
-rm(common_vars, these_vars, i, j)
-
+rm(city, city_data, row_num)
 ```
 
 
-## Create sample data
-
-Since the data files are so large, 1% samples may be useful for exploratory
-analysis.
+## Check that UIDs are consecutive across files
 
 ```{r}
+dir("../output_data/", 
+                 pattern = "^crime_open_database_core_(.+?).Rds$", 
+                 full.names = TRUE) %>% 
+  map_df(function (x) {
+    read_rds(x) %>% 
+      summarise(city = first(city_name), year = year(first(date_single)), 
+                uid_min = min(uid), uid_max = max(uid))
+  }) %>% 
+  mutate(uid_ok = ifelse(uid_min - 1 == lag(uid_max), "OK", "not OK")) %>% 
+  filter(complete.cases(.)) %>% 
+  group_by(city, uid_ok) %>% 
+  summarise(n = n()) %>% 
+  spread(uid_ok, n)
+```
+
+
+# Merge data by year
+
+RDS files can only be used by R, so gzipped CSV files are also needed for those
+using other software. Since most people will be downloading these manually, the
+data from all cities are aggregated into one file per year.
+
+```{r}
+for (file_type in c("core", "extended", "sample")) {
+  
 dir("../output_data", 
-    pattern = "^crime_open_database_core", full.names = TRUE) %>%
-  purrr::map(function (x) {
+    pattern = paste0("^crime_open_database_", file_type, "_(.+?).Rds$"), 
+    full.names = TRUE) %>% 
+  str_extract("\\d+") %>% 
+  unique() %>% 
+  walk(function (x) {
     
-    new_file_name <- stringr::str_replace(x, "core", "sample")
+    dir("../output_data", 
+        pattern = paste0("^crime_open_database_", file_type, "_(.+?)", x, 
+                         ".Rds$"), 
+        full.names = TRUE) %>% 
+      map_df(read_rds) %>% 
+      write_rds(path = paste0("../output_data/crime_open_database_", file_type, 
+                              "_all_", x, ".Rds"),
+                compress = "bz2") %>% 
+      write.csv(
+        gzfile(paste0("../output_data/crime_open_database_", file_type, "_", x,
+                      ".csv.gz")),
+        na = "", row.names = FALSE, fileEncoding = "UTF-8")
     
-    readr::read_csv(x, col_types = readr::cols(
-      .default = readr::col_character(),
-      uid = readr::col_integer(),
-      date_single = readr::col_datetime(format = ""),
-      longitude = readr::col_double(),
-      latitude = readr::col_double(),
-      fips_state = readr::col_integer(),
-      block_group = readr::col_integer(),
-      block = readr::col_integer()
-    )) %>%
-      dplyr::sample_frac(0.01) %>%
-    readr::write_csv(new_file_name, na = "")
-    
-    cat("Saved file", paste0("'", new_file_name, "',"), 
-        round(file.size(new_file_name) / 10^6), "MB\n")
-    
+    message("Merged ", file_type, " data for ", x, " into one RDS and one CSV ",
+            "file")
+
   })
+  
+}
+
+rm(file_type)  
 ```
 
 
-## Report typical file sizes
+# Report typical file sizes
 
 ```{r}
-# report typical file sizes
 cat(
   "\nMean size for core-data files:", 
   dir("../output_data", pattern = "^crime_open_database_core_(.+?).csv.gz$", 
       full.names = TRUE) %>% 
     file.size() %>% 
-    { round(mean(.) / 10^6) },
+    { round(mean(.) / 10^6, 1) },
   "MB\nMean size for extended-data files:",
   dir("../output_data", pattern = "^crime_open_database_extended_(.+?).csv.gz$", 
       full.names = TRUE) %>% 
     file.size() %>% 
-    { round(mean(.) / 10^6) },
+    { round(mean(.) / 10^6, 1) },
   "MB\nMean size for sample-data files:",
   dir("../output_data", pattern = "^crime_open_database_sample_(.+?).csv.gz$", 
       full.names = TRUE) %>% 
     file.size() %>% 
-    { round(mean(.) / 10^6) },
+    { round(mean(.) / 10^6, 1) },
   "MB\n"
 )
 ```
-
-
-## Produce Rds files
-
-Rds files are used for downloading within the crimedata R package because they
-are smaller, albeit not interoperable with other software.
-
-```{r}
-dir("../output_data", 
-    pattern = ".csv.gz$", full.names = TRUE) %>%
-  purrr::map(function (x) {
-    
-    new_file_name <- stringr::str_replace(x, ".csv.gz", ".Rds")
-
-    readr::read_csv(x, col_types = readr::cols(
-      .default = readr::col_character(),
-      uid = readr::col_integer(),
-      date_single = readr::col_datetime(format = ""),
-      longitude = readr::col_double(),
-      latitude = readr::col_double(),
-      fips_state = readr::col_integer(),
-      block_group = readr::col_integer(),
-      block = readr::col_integer()
-    )) %>%
-      dplyr::select(-local_row_id, -case_number) %>% 
-      saveRDS(new_file_name, compress = "bzip2")
-    
-    cat("Saved file", paste0("'", new_file_name, "',"), 
-        round(file.size(new_file_name) / 10^6), "MB\n")
-    
-  })
-```
-
 

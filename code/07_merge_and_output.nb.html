@@ -176,287 +176,249 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<div id="merge-data" class="section level1">
-<h1>Merge data</h1>
-<p>This code merges the data from each city into one object, which can then be used to output the final data.</p>
+<div id="output-rds-files" class="section level1">
+<h1>Output RDS files</h1>
+<p>This code outputs RDS files for each city for each year. These can be used to produce CSV files for multiple cities etc.</p>
+<p>Three files are produced for each city for each year. The ‘extended’ file contains all the variables, the ‘core’ file contains only the common variables (i.e. those without the city-name prefix) and the ‘sample’ file contains a 1% sample of data in the core file.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW5hbWUgdGhlIGNyaW1lIGNhdGVnb3J5IHZhcmlhYmxlcyBiZWNhdXNlIHRoZXkndmUgYmVlbiByZW5hbWVkIGluIHRoZSBcbiMgZGF0YXNldCBieSB0aGUgY29udmVydF9uYW1lcygpIGZ1bmN0aW9uIGluIGZpbGUgMDVfaGFybW9uaXNlX2RhdGEuUm1kXG5jb21tb25fdmFycyA8LSBzZXRkaWZmKGNvbW1vbl92YXJzLCBjKCdnZW9tZXRyeScpKSAlPiUgXG4gIG1hcHZhbHVlcyhjKCduaWJyc19vZmZlbnNlX2NvZGUnLCAnbmlicnNfb2ZmZW5zZV90eXBlJywgXG4gICAgICAgICAgICAgICduaWJyc19vZmZlbnNlX2NhdGVnb3J5JywgJ25pYnJzX2NyaW1lX2FnYWluc3QnKSwgXG4gICAgICAgICAgICBjKCdvZmZlbnNlX2NvZGUnLCAnb2ZmZW5zZV90eXBlJywgJ29mZmVuc2VfZ3JvdXAnLCBcbiAgICAgICAgICAgICAgJ29mZmVuc2VfYWdhaW5zdCcpKVxuYGBgIn0= -->
-<pre class="r"><code># rename the crime category variables because they've been renamed in the 
-# dataset by the convert_names() function in file 05_harmonise_data.Rmd
-common_vars &lt;- setdiff(common_vars, c('geometry')) %&gt;% 
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZW1vdmUgdW5uZWNlc3NhcnkgdmFyaWFibGVzIGZyb20gY29tbW9uX3ZhcnNcbmNvbW1vbl92YXJzIDwtIHNldGRpZmYoXG4gIGNvbW1vbl92YXJzLCBcbiAgYygnZ2VvbWV0cnknLCBcIm11bHRpcGxlX2RhdGVzXCIsIFwiaW5fY2l0eVwiLCBcImFkZHJlc3NcIiwgXCJmaXBzX3N0YXRlXCIsIFxuICAgIFwiZmlwc19jb3VudHlcIiwgXCJ0cmFjdFwiLCBcImJsb2NrX2dyb3VwXCIsIFwiYmxvY2tcIiwgXCJkYXRlX3llYXJcIilcbikgJT4lIFxuICAjIHJlbmFtZSB0aGUgY3JpbWUgY2F0ZWdvcnkgdmFyaWFibGVzIGJlY2F1c2UgdGhleSd2ZSBiZWVuIHJlbmFtZWQgaW4gdGhlIFxuICAjIGRhdGFzZXQgYnkgdGhlIGNvbnZlcnRfbmFtZXMoKSBmdW5jdGlvbiBpbiBmaWxlIDA1X2hhcm1vbmlzZV9kYXRhLlJtZFxuICBtYXB2YWx1ZXMoYygnbmlicnNfb2ZmZW5zZV9jb2RlJywgJ25pYnJzX29mZmVuc2VfdHlwZScsIFxuICAgICAgICAgICAgICAnbmlicnNfb2ZmZW5zZV9jYXRlZ29yeScsICduaWJyc19jcmltZV9hZ2FpbnN0JyksIFxuICAgICAgICAgICAgYygnb2ZmZW5zZV9jb2RlJywgJ29mZmVuc2VfdHlwZScsICdvZmZlbnNlX2dyb3VwJywgXG4gICAgICAgICAgICAgICdvZmZlbnNlX2FnYWluc3QnKSkgJT4lIFxuICAjIGFkZCBjZW5zdXNfYmxvY2sgdG8gY29tbW9uIHZhcnMgc28gaXQgYXBwZWFycyBpbiB0aGUgY29yZSBkYXRhXG4gIGFwcGVuZChcImNlbnN1c19ibG9ja1wiKVxuYGBgIn0= -->
+<pre class="r"><code># remove unnecessary variables from common_vars
+common_vars &lt;- setdiff(
+  common_vars, 
+  c('geometry', &quot;multiple_dates&quot;, &quot;in_city&quot;, &quot;address&quot;, &quot;fips_state&quot;, 
+    &quot;fips_county&quot;, &quot;tract&quot;, &quot;block_group&quot;, &quot;block&quot;, &quot;date_year&quot;)
+) %&gt;% 
+  # rename the crime category variables because they've been renamed in the 
+  # dataset by the convert_names() function in file 05_harmonise_data.Rmd
   mapvalues(c('nibrs_offense_code', 'nibrs_offense_type', 
               'nibrs_offense_category', 'nibrs_crime_against'), 
             c('offense_code', 'offense_type', 'offense_group', 
-              'offense_against'))</code></pre>
+              'offense_against')) %&gt;% 
+  # add census_block to common vars so it appears in the core data
+  append(&quot;census_block&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVGhlIGZvbGxvd2luZyBgZnJvbWAgdmFsdWVzIHdlcmUgbm90IHByZXNlbnQgaW4gYHhgOiBuaWJyc19vZmZlbnNlX2NvZGUsIG5pYnJzX29mZmVuc2VfdHlwZSwgbmlicnNfb2ZmZW5zZV9jYXRlZ29yeSwgbmlicnNfY3JpbWVfYWdhaW5zdFxuIn0= -->
-<pre><code>The following `from` values were not present in `x`: nibrs_offense_code, nibrs_offense_type, nibrs_offense_category, nibrs_crime_against</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBsb2FkIGFuZCBtZXJnZSB0aGUgZGF0YXNldCBmb3IgZWFjaCBjaXR5XG5kYXRhIDwtIGRpcihcIi4uL3RlbXBfZGF0YVwiLCBwYXR0ZXJuID0gXCJeZmluYWxfXCIsIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgXG4gICMgcmVwb3J0X3N0YXR1cyhwYXN0ZShcIklkZW50aWZpZWQgZmlsZXMgaW4gZGlyZWN0b3J5IGF0XCIsIFxuICAjICAgICAgICAgICAgICAgICAgICAgYXMuY2hhcmFjdGVyKG5vdykpKSAlPiUgXG4gIG1hcChyZWFkX3JkcykgJT4lIFxuICAjIHJlcG9ydF9zdGF0dXMocGFzdGUoXCJSZWFkIGRhdGEgZnJvbSBmaWxlcyBhdFwiLCBhcy5jaGFyYWN0ZXIobm93KCkpKSkgJT4lIFxuICBtYXAobXV0YXRlX2F0LCB2YXJzKG9uZV9vZihjKFwibG9jYWxfcm93X2lkXCIsIFwiY2FzZV9udW1iZXJcIikpKSwgXG4gICAgICBhcy5jaGFyYWN0ZXIpICU+JSBcbiAgIyBtYXAobXV0YXRlLCBcbiAgIyAgICAgbG9jYWxfcm93X2lkID0gYXMuY2hhcmFjdGVyKGxvY2FsX3Jvd19pZCksXG4gICMgICAgIGNhc2VfbnVtYmVyID0gYXMuY2hhcmFjdGVyKGNhc2VfbnVtYmVyKSkgJT4lIFxuICAjIHJlcG9ydF9zdGF0dXMocGFzdGUoXCJDaGFuZ2VkIGlkZW50aWZpZXJzIHRvIGNoYXJhY3RlciB2ZWN0b3JzIGF0XCIsIFxuICAjICAgICAgICAgICAgICAgICAgICAgYXMuY2hhcmFjdGVyKG5vdygpKSkpICU+JSBcbiAgYmluZF9yb3dzKCkgJT4lIFxuICAjIHJlcG9ydF9zdGF0dXMocGFzdGUoXCJNZXJnZWQgZGF0YSBmcm9tIGluZGl2aWR1YWwgZmlsZXMgYXRcIiwgXG4gICMgICAgICAgICAgICAgICAgICAgICBhcy5jaGFyYWN0ZXIobm93KCkpKSkgJT4lIFxuICBhcnJhbmdlKGNpdHlfbmFtZSwgZGF0ZV9zaW5nbGUpICU+JSBcbiAgIyByZXBvcnRfc3RhdHVzKHBhc3RlKFwiQXJyYW5nZWQgZGF0YSBieSBjaXR5IGFuZCBkYXRlIGF0XCIsIFxuICAjICAgICAgICAgICAgICAgICAgICAgYXMuY2hhcmFjdGVyKG5vdygpKSkpICU+JSBcbiAgZmlsdGVyKFxuICAgIG9mZmVuc2VfYWdhaW5zdCAhPSBcImV4Y2x1ZGVkIGNhc2VzXCIgJiBcbiAgICAhaXMubmEobG9uZ2l0dWRlKSAmXG4gICAgIWlzLm5hKGxhdGl0dWRlKSAmXG4gICAgaW5fY2l0eSA9PSBUUlVFXG4gICkgJT4lXG4gICMgcmVwb3J0X3N0YXR1cyhwYXN0ZShcIlJlbW92ZWQgZXhjbHVkZWQgY2FzZXMgYXRcIiwgYXMuY2hhcmFjdGVyKG5vdygpKSkpICU+JSBcbiAgbXV0YXRlKFxuICAgIHVpZCA9IDE6bnJvdyguKVxuICApICU+JSBcbiAgbXV0YXRlKFxuICAgIG9mZmVuc2VfY29kZSA9IGNhc2Vfd2hlbihcbiAgICAgIG9mZmVuc2VfY29kZSA9PSBcIjEyMFwiIH4gXCIxMlVcIixcbiAgICAgIG9mZmVuc2VfY29kZSA9PSBcIjIyMFwiIH4gXCIyMlVcIixcbiAgICAgIG9mZmVuc2VfY29kZSA9PSBcIjIzVVwiIH4gXCIyM0hcIixcbiAgICAgIFRSVUUgfiBvZmZlbnNlX2NvZGVcbiAgICApXG4gICkgJT4lIFxuICAjIHJlcG9ydF9zdGF0dXMocGFzdGUoXCJBZGRlZCB1bmlxdWUgcm93IElEIGF0XCIsIGFzLmNoYXJhY3Rlcihub3coKSkpKSAlPiUgXG4gIHNlbGVjdChvbmVfb2YoY29tbW9uX3ZhcnMpLCBldmVyeXRoaW5nKCksIC1pbl9jaXR5LCAtbXVsdGlwbGVfZGF0ZXMpXG5gYGAifQ== -->
-<pre class="r"><code># load and merge the dataset for each city
-data &lt;- dir(&quot;../temp_data&quot;, pattern = &quot;^final_&quot;, full.names = TRUE) %&gt;% 
-  # report_status(paste(&quot;Identified files in directory at&quot;, 
-  #                     as.character(now))) %&gt;% 
-  map(read_rds) %&gt;% 
-  # report_status(paste(&quot;Read data from files at&quot;, as.character(now()))) %&gt;% 
-  map(mutate_at, vars(one_of(c(&quot;local_row_id&quot;, &quot;case_number&quot;))), 
-      as.character) %&gt;% 
-  # map(mutate, 
-  #     local_row_id = as.character(local_row_id),
-  #     case_number = as.character(case_number)) %&gt;% 
-  # report_status(paste(&quot;Changed identifiers to character vectors at&quot;, 
-  #                     as.character(now()))) %&gt;% 
-  bind_rows() %&gt;% 
-  # report_status(paste(&quot;Merged data from individual files at&quot;, 
-  #                     as.character(now()))) %&gt;% 
-  arrange(city_name, date_single) %&gt;% 
-  # report_status(paste(&quot;Arranged data by city and date at&quot;, 
-  #                     as.character(now()))) %&gt;% 
-  filter(
-    offense_against != &quot;excluded cases&quot; &amp; 
-    !is.na(longitude) &amp;
-    !is.na(latitude) &amp;
-    in_city == TRUE
-  ) %&gt;%
-  # report_status(paste(&quot;Removed excluded cases at&quot;, as.character(now()))) %&gt;% 
-  mutate(
-    uid = 1:nrow(.)
-  ) %&gt;% 
-  mutate(
-    offense_code = case_when(
-      offense_code == &quot;120&quot; ~ &quot;12U&quot;,
-      offense_code == &quot;220&quot; ~ &quot;22U&quot;,
-      offense_code == &quot;23U&quot; ~ &quot;23H&quot;,
-      TRUE ~ offense_code
-    )
-  ) %&gt;% 
-  # report_status(paste(&quot;Added unique row ID at&quot;, as.character(now()))) %&gt;% 
-  select(one_of(common_vars), everything(), -in_city, -multiple_dates)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IHZlY3RvciBtZW1vcnkgZXhoYXVzdGVkIChsaW1pdCByZWFjaGVkPylcbiJ9 -->
-<pre><code>Error: vector memory exhausted (limit reached?)</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Overall, there are offences in the dataset. This can be broken down by city:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSAlPiUgXG4gIGdyb3VwX2J5KGNpdHlfbmFtZSwgZGF0ZV95ZWFyKSAlPiUgXG4gIHN1bW1hcmlzZShuID0gbigpKSAlPiUgXG4gIHN1bW1hcmlzZShjcmltZXNfcGVyX3llYXIgPSBmb3JtYXQobWVhbihuKSwgc2NpZW50aWZpYyA9IEZBTFNFLCBkaWdpdHMgPSAwLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBiaWcubWFyayA9IFwiLFwiKSlcbmBgYCJ9 -->
-<pre class="r"><code>data %&gt;% 
-  group_by(city_name, date_year) %&gt;% 
-  summarise(n = n()) %&gt;% 
-  summarise(crimes_per_year = format(mean(n), scientific = FALSE, digits = 0, 
-                                     big.mark = &quot;,&quot;))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6MTB9LCJyZGYiOiJINHNJQUFBQUFBQUFBMTFTWFUvQ01CUXRHNGpNb0NUK2dmMkFRZlloMjNoVUNDOFNIOVFvUHBGYUtqVE9sclNieUp1LzJrZXdnMTQwVzdMMm5uTlBUKzl0ZXorYWhzN1VRUWhaeUs3YnlMSjFXTGYwVUVOMTFDcm5MNFRzeTcwQW9ZNytIWk5vRHBlTTRJVUFPS0s1RkN3MzBCa0xtYnZQZWxnYTV1d1djNFdWTzJUNUJxaUpVTzQxWDlDTUtsZzNFUVZUbnl6THFHRk83K2phZlJIeTNlRDJBK2J1V0dKT21DS3crOGxqUVpUZ0JwMC9NYmxnbkdIM2htS3lyQlllUmFFWCt3T0FnUjk3UVJxQzA2RHZKYWwvVEFheDFpWUF3MkRnK1drZnRQMitGeVZIbzZzazhaSW8rZk1OZERZRmJScDZhUm9EaW53dlRzTEtXVGRJaHBVeTVRTHB6SEdPZTI4U2Y5Q3FuR3NPNUpZaFcwU2Y3NnpNR09LQ1NLWmxzeFdWc3czRnNtTFNrbUxkQTZOMmFmU3RoOTF1OTZPbmJVWGNGS3VjQ2E2bFZ2a2tHcFZTYTdKQ2RBcGVXcys3WkZudzkyNFE3SytoekIrK3RvbWRmN0YxMk5QZUdhOEdIQm5sK2s2aHEwYUdYMmtHOTYxNzJMZlFXMG5HajA5UXM2cVhpeHlEemlFaUEyYmZITnIrQXF2VWVnd0JBd0FBIn0= -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["city_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["crimes_per_year"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Chicago","2":"332,609"},{"1":"Detroit","2":"106,182"},{"1":"Fort Worth","2":"95,780"},{"1":"Kansas City","2":"116,607"},{"1":"Los Angeles","2":"219,085"},{"1":"Louisville","2":"55,379"},{"1":"New York","2":"477,737"},{"1":"San Francisco","2":"101,378"},{"1":"Tucson","2":"82,886"},{"1":"Virginia Beach","2":"30,672"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>and by city for each year:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSAlPiUgXG4gIGdyb3VwX2J5KGNpdHlfbmFtZSwgZGF0ZV95ZWFyKSAlPiUgXG4gIHN1bW1hcmlzZShuID0gbigpKSAlPiUgXG4gIHNwcmVhZChkYXRlX3llYXIsIG4pXG5gYGAifQ== -->
-<pre class="r"><code>data %&gt;% 
-  group_by(city_name, date_year) %&gt;% 
-  summarise(n = n()) %&gt;% 
-  spread(date_year, n)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImdyb3VwZWRfZGYiLCJ0YmxfZGYiLCJ0YmwiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjEyLCJucm93IjoxMH0sInJkZiI6Ikg0c0lBQUFBQUFBQUEyV1VUVWdVWVJqSC84L09ycVByRmxzUlFSQ3RkU3B5MDYxY1BSUitzWmZFb3Z6WUtORnBkdG9kSEdka1p0WlZpTEpUU0hTUVBxaERsQ0JDSGpvSVVaQkpFR29vRVNSSlhjd29DS0tMRit2azlvN083TTV1aDNmZS8vTi9mL1BNODM3TnVlWjR4Qi8zQS9DQTgzTHdjRXg2UGV4QjhLTE02Z2NCYmhjVEFkYUNyUG50QWI0cEpZdENVblBDWnNuVU5kbTBRMzlNMDgxUUozdWtiS2Y4dEtBYWdoRnFrczBoeDJyUmpGQ0RtcFFVeVhEZWE5SFNzakVnSzRwa082V3RVaVowUWRONzdYamJlVUVOeFhSQkZXVkRkTDVlMHBZV0RVMjFvKzBkc3A2VVZWa0lOVXFDbUxKZTJpeThaT3pETUt3NXZUeGk5VTRELzI0Uk5MdzdGK2Y0eEtFdC9zVkVJZi9LRHhvWitZLzNmZFhoS1o4RVBlc0JMWXh1algzc0JxL1hnVzR1Zzg1bUN2bXhXNkJmZTBEMzVrRXJ3K0F1clFIZks4Q25ERkFxQ2VwTUZ2THgyNkFaaytVS2d0NjJnb3YrQWI3MWdhOC9DT3BxQngxdEwrVDN2Z2ROUHdJbC9vSVcyUTdYS01EbkJmQnRyUDVyUDBFbkp3cDQ3MU1WOUhnYXBLNkNYcyt4ZlRlQnBTbndrVHVnQngyZ013eS92cFRuRDBkQlYrdEI4U1hRbXdwdysrZUFUNTNnRDV4aWMrb0MxYTBDbWJzNW52djlCYVFScVA0R2FDb05ibWlHMWNPQjN6NE9taFNZL3dNWUxNL25EODZBZWxaQXRheWUyU2ZneHBhQmxWSHdPd09zempWUXd5ekxmekhQbHpZeU5nYUtESUNXOTRFYmp3R0w5MUV5L3hEMGZKM3hPNEQreHFJVDdoTVZ3VERzMCsyWS9vUmdDdUVydXRBbkZlTXE4eHc4WUp0bElqdlYzZGFJYlhnalZWVlJsNjUxNmJxOHJxNXk2V3FYanJqME1aYys3dEluWExyR3BhTkZGWmZwV2lic1ZHMnRsTWZhOVd3MnU4NjZqU0tZMS9wTldWTVo2ckZ1dmE5b1hVZ3ZNb0pwMVVxZHFCUlRhYlcza2hWdTdZUTFuajlaWkh1T0RteDlrOHZhdVh6T0xaWlVkbTJkSmZRcHdtVkpjYTQwbThQbUZNTDl1cXptL2pMTU5jS21aZ29PNXhjMXhYRTJKNGVOZjFWY25iZmtCQUFBIn0= -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["city_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["2007"],"name":[2],"type":["int"],"align":["right"]},{"label":["2008"],"name":[3],"type":["int"],"align":["right"]},{"label":["2009"],"name":[4],"type":["int"],"align":["right"]},{"label":["2010"],"name":[5],"type":["int"],"align":["right"]},{"label":["2011"],"name":[6],"type":["int"],"align":["right"]},{"label":["2012"],"name":[7],"type":["int"],"align":["right"]},{"label":["2013"],"name":[8],"type":["int"],"align":["right"]},{"label":["2014"],"name":[9],"type":["int"],"align":["right"]},{"label":["2015"],"name":[10],"type":["int"],"align":["right"]},{"label":["2016"],"name":[11],"type":["int"],"align":["right"]},{"label":["2017"],"name":[12],"type":["int"],"align":["right"]}],"data":[{"1":"Chicago","2":"434639","3":"418857","4":"384882","5":"369035","6":"350349","7":"334541","8":"305518","9":"272951","10":"257241","11":"266430","12":"264258"},{"1":"Detroit","2":"NA","3":"NA","4":"134058","5":"125463","6":"114292","7":"113821","8":"106428","9":"97344","10":"93953","11":"90334","12":"79942"},{"1":"Fort Worth","2":"112684","3":"112550","4":"110176","5":"103879","6":"100112","7":"91384","8":"93920","9":"88275","10":"82049","11":"80096","12":"78454"},{"1":"Kansas City","2":"NA","3":"NA","4":"117393","5":"122496","6":"115534","7":"117506","8":"114118","9":"114721","10":"111221","11":"116128","12":"120349"},{"1":"Los Angeles","2":"NA","3":"NA","4":"NA","5":"220401","6":"210935","7":"210540","8":"201588","9":"204742","10":"227774","11":"238038","12":"238662"},{"1":"Louisville","2":"NA","3":"NA","4":"53855","5":"58145","6":"57709","7":"55498","8":"54194","9":"54615","10":"55299","11":"56977","12":"52118"},{"1":"New York","2":"510155","3":"506634","4":"487993","5":"485491","6":"475171","7":"480266","8":"471699","9":"467518","10":"462500","11":"463372","12":"444313"},{"1":"San Francisco","2":"98325","3":"100745","4":"100310","5":"92263","6":"89429","7":"98023","8":"104534","9":"103773","10":"109153","11":"106481","12":"112118"},{"1":"Tucson","2":"NA","3":"NA","4":"86135","5":"87911","6":"77653","7":"81318","8":"85888","9":"80352","10":"82148","11":"82373","12":"82193"},{"1":"Virginia Beach","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"32723","9":"30612","10":"30731","11":"30555","12":"28738"}],"options":{"columns":{"min":{},"max":[10],"total":[12]},"rows":{"min":[10],"max":[10],"total":[10]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="output-data" class="section level1">
-<h1>Output data</h1>
-<p>For each year, two files should be exported: one containing all the variables and one containing only the common variables (i.e. those without the city-name prefix).</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJZiB5ZWFyRmlyc3QgaGFzIGJlZW4gc2V0IHRvIGEgdmVyeSBlYXJseSB5ZWFyLCB0aGVyZSBtYXkgYmUgbm8gZGF0YSBmb3IgdGhlIFxuIyBmaXJzdCBmZXcgeWVhcnMsIHByb2R1Y2luZyBlbXB0eSBDU1YgZmlsZXMuIFRvIHN0b3AgdGhpcywgcmVzZXQgeWVhckZpcnN0IGlmIFxuIyBpdCBpcyBiZWZvcmUgdGhlIGZpcnN0IHllYXIgcHJlc2VudCBpbiB0aGUgZGF0YXNldC5cbmlmIChtaW4oZGF0YSRkYXRlX3llYXIpID4geWVhckZpcnN0KSB7XG4gIHllYXJGaXJzdCA8LSBtaW4oZGF0YSRkYXRlX3llYXIpXG59XG5mb3IgKGkgaW4geWVhckZpcnN0OnllYXJMYXN0KSB7XG4gIGZvciAoaiBpbiBjKCdleHRlbmRlZCcsICdjb3JlJykpIHtcbiAgICBpZiAoaiA9PSAnY29yZScpIHtcbiAgICAgIHRoZXNlX3ZhcnMgPSBjb21tb25fdmFyc1xuICAgIH0gZWxzZSB7XG4gICAgICB0aGVzZV92YXJzID0gbmFtZXMoZGF0YSlcbiAgICB9XG4gICAgZmlsZV9uYW1lIDwtIHBhc3RlMChcIi4uL291dHB1dF9kYXRhL2NyaW1lX29wZW5fZGF0YWJhc2VfXCIsIGosIFwiX1wiLCBpLCBcbiAgICAgICAgICAgICAgICAgICAgICAgIFwiLmNzdi5nelwiKVxuICAgIGRhdGEgJT4lXG4gICAgICBmaWx0ZXIoZGF0ZV95ZWFyID09IGkpICU+JVxuICAgICAgc2VsZWN0X2lmKG5hbWVzKGRhdGEpICVpbiUgdGhlc2VfdmFycykgJT4lXG4gICAgICBzZWxlY3QoLWRhdGVfeWVhcikgJT4lIFxuICAgICAgd3JpdGUuY3N2KGd6ZmlsZShmaWxlX25hbWUpLCBuYSA9IFwiXCIsIHJvdy5uYW1lcyA9IEZBTFNFKVxuICAgIGNhdChcIlNhdmVkIGZpbGVcIiwgcGFzdGUwKFwiJ1wiLCBmaWxlX25hbWUsIFwiJyxcIiksIFxuICAgICAgICByb3VuZChmaWxlLnNpemUoZmlsZV9uYW1lKSAvIDEwXjYpLCBcIk1CXFxuXCIpXG4gIH1cbn1cbmBgYCJ9 -->
-<pre class="r"><code># If yearFirst has been set to a very early year, there may be no data for the 
-# first few years, producing empty CSV files. To stop this, reset yearFirst if 
-# it is before the first year present in the dataset.
-if (min(data$date_year) &gt; yearFirst) {
-  yearFirst &lt;- min(data$date_year)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzZXQgcm93IG51bWJlciwgd2hpY2ggc2hvdWxkIGJlIGNvbnRpbnVvdXMgYWNyb3NzIGNpdGllcyBhbmQgeWVhcnMgc28gbXVzdCBiZVxuIyByZW1lbWJlcmVkIGJldHdlZW4gZmlsZXNcbnJvd19udW0gPC0gMVxuXG4jIGZvciBlYWNoIGNpdHksIGxvYWQgdGhlIGRhdGEgYW5kIG91dHB1dCBhbiBSZHMgZmlsZSBmb3IgZWFjaCB5ZWFyXG4jIHRoaXMgbXVzdCBiZSBkb25lIHNlcGFyYXRlbHkgZm9yIGVhY2ggY2l0eSB0byBhdm9pZCB0aGUgJ3ZlY3RvciBtZW1vcnlcbiMgZXhoYXVzdGVkJyBwcm9ibGVtIG9uIG1hY09TIGRlc2NyaWJlZCBhdFxuIyBodHRwOi8vci43ODk2OTUubjQubmFiYmxlLmNvbS9SLTMtNS0wLXZlY3Rvci1tZW1vcnktZXhoYXVzdGVkLWVycm9yLW9uLXJlYWRCaW4tdGQ0NzUwMjM3Lmh0bWxcbmZvciAoY2l0eSBpbiBjaXRpZXMkbmFtZSkge1xuICBcbiAgIyBsb2FkIGFuZCBwcm9jZXNzIGRhdGFcbiAgY2l0eV9kYXRhIDwtIHJlYWRSRFMocGFzdGUwKFwiLi4vdGVtcF9kYXRhL2ZpbmFsX1wiLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cl9yZXBsYWNlX2FsbChzdHJfdG9fbG93ZXIoY2l0eSksIFwiXFxcXHNcIiwgXCJfXCIpLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiX2RhdGEuUmRzXCIpKSAlPiUgXG4gICAgbXV0YXRlX2F0KHZhcnMob25lX29mKGMoXCJsb2NhbF9yb3dfaWRcIiwgXCJjYXNlX251bWJlclwiKSkpLCBhcy5jaGFyYWN0ZXIpICU+JSBcbiAgICBhcnJhbmdlKGRhdGVfc2luZ2xlKSAlPiVcbiAgICBmaWx0ZXIoXG4gICAgICBvZmZlbnNlX2FnYWluc3QgIT0gXCJleGNsdWRlZCBjYXNlc1wiIFxuICAgICAgJiAhaXMubmEobG9uZ2l0dWRlKSBcbiAgICAgICYgIWlzLm5hKGxhdGl0dWRlKSBcbiAgICAgICYgaW5fY2l0eSA9PSBUUlVFXG4gICAgKSAlPiUgXG4gICAgbXV0YXRlKFxuICAgICAgIyBhZGQgYSByb3cgSURcbiAgICAgIHVpZCA9IHJvd19udW06KHJvd19udW0gKyBucm93KC4pIC0gMSksXG4gICAgICAjIG1lcmdlIHRoZSBjZW5zdXMgaWRlbnRpZmllcnNcbiAgICAgIGNlbnN1c19ibG9jayA9IHBhc3RlMChmaXBzX3N0YXRlLCBmaXBzX2NvdW50eSwgdHJhY3QsIGJsb2NrKSxcbiAgICAgICMgY2F0Y2ggYW5kIHJvYmJlcnkvYnVyZ2xhcnkgb2ZmZW5zZXMgaGF2ZSBoYXZlIG5vdCBiZWVuIHJlY2F0ZWdvcmlzZWRcbiAgICAgIG9mZmVuc2VfY29kZSA9IGNhc2Vfd2hlbihcbiAgICAgICAgb2ZmZW5zZV9jb2RlID09IFwiMTIwXCIgfiBcIjEyVVwiLFxuICAgICAgICBvZmZlbnNlX2NvZGUgPT0gXCIyMjBcIiB+IFwiMjJVXCIsXG4gICAgICAgIG9mZmVuc2VfY29kZSA9PSBcIjIzVVwiIH4gXCIyM0hcIixcbiAgICAgICAgVFJVRSB+IG9mZmVuc2VfY29kZVxuICAgICAgKVxuICAgICkgJT4lIFxuICAgIHNlbGVjdChvbmVfb2YoY29tbW9uX3ZhcnMpLCBldmVyeXRoaW5nKCksIC1pbl9jaXR5LCAtbXVsdGlwbGVfZGF0ZXMsXG4gICAgICAgICAgIC1maXBzX3N0YXRlLCAtZmlwc19jb3VudHksIC10cmFjdCwgLWJsb2NrX2dyb3VwLCAtYmxvY2spICU+JSBcbiAgICBtdXRhdGUoeWVhciA9IHllYXIoZGF0ZV9zaW5nbGUpKVxuICBcbiAgIyBvdXRwdXQgZGF0YSBieSB5ZWFyXG4gIGNpdHlfZGF0YSAlPiUgXG4gICAgc3BsaXQoLiR5ZWFyKSAlPiUgXG4gICAgd2FsayhmdW5jdGlvbiAoeCkge1xuXG4gICAgICB0aGlzX3llYXIgPC0geCR5ZWFyWzFdXG4gICAgICB0aGlzX2NpdHkgPC0gc3RyX3JlcGxhY2VfYWxsKHN0cl90b19sb3dlcihjaXR5KSwgXCJcXFxcc1wiLCBcIl9cIilcblxuICAgICAgeCAlPiVcbiAgICAgICAgc2VsZWN0KC15ZWFyKSAlPiUgXG4gICAgICAgICMgZXhwb3J0IGV4dGVuZGVkIGRhdGEgLSB1c2Ugd3JpdGVfcmRzKCkgcmF0aGVyIHRoYW4gc2F2ZVJEUygpIGJlY2F1c2VcbiAgICAgICAgIyBpdCByZXR1cm5zIHRoZSBpbnB1dCBpbnZpc2libHkgZm9yIHVzZSBpbnNpZGUgYSBwaXBlXG4gICAgICAgIHdyaXRlX3JkcyhwYXRoID0gcGFzdGUwKFwiLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF9cIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGhpc19jaXR5LCBcIl9cIiwgdGhpc195ZWFyLCBcIi5SZHNcIiksXG4gICAgICAgICAgICAgICAgICBjb21wcmVzcyA9IFwiYnoyXCIpICU+JVxuICAgICAgICAjIHNlbGVjdCBjb3JlIHZhcmlhYmxlcyBhbmQgZXhwb3J0XG4gICAgICAgIHNlbGVjdChvbmVfb2YoY29tbW9uX3ZhcnMpKSAlPiVcbiAgICAgICAgd3JpdGVfcmRzKHBhdGggPSBwYXN0ZTAoXCIuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRoaXNfY2l0eSwgXCJfXCIsIHRoaXNfeWVhciwgXCIuUmRzXCIpLFxuICAgICAgICAgICAgICAgICAgY29tcHJlc3MgPSBcImJ6MlwiKSAlPiUgXG4gICAgICAgICMgdGFrZSBhIDElIHNhbXBsZSBhbmQgZXhwb3J0XG4gICAgICAgIHNhbXBsZV9mcmFjKDAuMDEpICU+JSBcbiAgICAgICAgYXJyYW5nZSh1aWQpICU+JSBcbiAgICAgICAgd3JpdGVfcmRzKHBhdGggPSBwYXN0ZTAoXCIuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX3NhbXBsZV9cIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGhpc19jaXR5LCBcIl9cIiwgdGhpc195ZWFyLCBcIi5SZHNcIiksXG4gICAgICAgICAgICAgICAgICBjb21wcmVzcyA9IFwiYnoyXCIpXG5cbiAgICAgIG1lc3NhZ2UoXCJcXG5Xcml0dGVuIGRhdGEgZm9yIFwiLCBjaXR5LCBcIiBpbiBcIiwgdGhpc195ZWFyKVxuICAgICAgXG4gICAgfSlcbiAgXG4gIHJvd19udW0gPC0gcm93X251bSArIG5yb3coY2l0eV9kYXRhKVxuICBcbn1cblxuIyBjbGVhbiB1cFxucm0oY2l0eSwgY2l0eV9kYXRhLCByb3dfbnVtKVxuYGBgIn0= -->
+<pre class="r"><code># set row number, which should be continuous across cities and years so must be
+# remembered between files
+row_num &lt;- 1
+
+# for each city, load the data and output an Rds file for each year
+# this must be done separately for each city to avoid the 'vector memory
+# exhausted' problem on macOS described at
+# http://r.789695.n4.nabble.com/R-3-5-0-vector-memory-exhausted-error-on-readBin-td4750237.html
+for (city in cities$name) {
+  
+  # load and process data
+  city_data &lt;- readRDS(paste0(&quot;../temp_data/final_&quot;, 
+                              str_replace_all(str_to_lower(city), &quot;\\s&quot;, &quot;_&quot;), 
+                              &quot;_data.Rds&quot;)) %&gt;% 
+    mutate_at(vars(one_of(c(&quot;local_row_id&quot;, &quot;case_number&quot;))), as.character) %&gt;% 
+    arrange(date_single) %&gt;%
+    filter(
+      offense_against != &quot;excluded cases&quot; 
+      &amp; !is.na(longitude) 
+      &amp; !is.na(latitude) 
+      &amp; in_city == TRUE
+    ) %&gt;% 
+    mutate(
+      # add a row ID
+      uid = row_num:(row_num + nrow(.) - 1),
+      # merge the census identifiers
+      census_block = paste0(fips_state, fips_county, tract, block),
+      # catch and robbery/burglary offenses have have not been recategorised
+      offense_code = case_when(
+        offense_code == &quot;120&quot; ~ &quot;12U&quot;,
+        offense_code == &quot;220&quot; ~ &quot;22U&quot;,
+        offense_code == &quot;23U&quot; ~ &quot;23H&quot;,
+        TRUE ~ offense_code
+      )
+    ) %&gt;% 
+    select(one_of(common_vars), everything(), -in_city, -multiple_dates,
+           -fips_state, -fips_county, -tract, -block_group, -block) %&gt;% 
+    mutate(year = year(date_single))
+  
+  # output data by year
+  city_data %&gt;% 
+    split(.$year) %&gt;% 
+    walk(function (x) {
+
+      this_year &lt;- x$year[1]
+      this_city &lt;- str_replace_all(str_to_lower(city), &quot;\\s&quot;, &quot;_&quot;)
+
+      x %&gt;%
+        select(-year) %&gt;% 
+        # export extended data - use write_rds() rather than saveRDS() because
+        # it returns the input invisibly for use inside a pipe
+        write_rds(path = paste0(&quot;../output_data/crime_open_database_extended_&quot;,
+                                this_city, &quot;_&quot;, this_year, &quot;.Rds&quot;),
+                  compress = &quot;bz2&quot;) %&gt;%
+        # select core variables and export
+        select(one_of(common_vars)) %&gt;%
+        write_rds(path = paste0(&quot;../output_data/crime_open_database_core_&quot;,
+                                this_city, &quot;_&quot;, this_year, &quot;.Rds&quot;),
+                  compress = &quot;bz2&quot;) %&gt;% 
+        # take a 1% sample and export
+        sample_frac(0.01) %&gt;% 
+        arrange(uid) %&gt;% 
+        write_rds(path = paste0(&quot;../output_data/crime_open_database_sample_&quot;,
+                                this_city, &quot;_&quot;, this_year, &quot;.Rds&quot;),
+                  compress = &quot;bz2&quot;)
+
+      message(&quot;\nWritten data for &quot;, city, &quot; in &quot;, this_year)
+      
+    })
+  
+  row_num &lt;- row_num + nrow(city_data)
+  
 }
-for (i in yearFirst:yearLast) {
-  for (j in c('extended', 'core')) {
-    if (j == 'core') {
-      these_vars = common_vars
-    } else {
-      these_vars = names(data)
-    }
-    file_name &lt;- paste0(&quot;../output_data/crime_open_database_&quot;, j, &quot;_&quot;, i, 
-                        &quot;.csv.gz&quot;)
-    data %&gt;%
-      filter(date_year == i) %&gt;%
-      select_if(names(data) %in% these_vars) %&gt;%
-      select(-date_year) %&gt;% 
-      write.csv(gzfile(file_name), na = &quot;&quot;, row.names = FALSE)
-    cat(&quot;Saved file&quot;, paste0(&quot;'&quot;, file_name, &quot;',&quot;), 
-        round(file.size(file_name) / 10^6), &quot;MB\n&quot;)
-  }
+
+# clean up
+rm(city, city_data, row_num)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="check-that-uids-are-consecutive-across-files" class="section level2">
+<h2>Check that UIDs are consecutive across files</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGlyKFwiLi4vb3V0cHV0X2RhdGEvXCIsIFxuICAgICAgICAgICAgICAgICBwYXR0ZXJuID0gXCJeY3JpbWVfb3Blbl9kYXRhYmFzZV9jb3JlXyguKz8pLlJkcyRcIiwgXG4gICAgICAgICAgICAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgXG4gIG1hcF9kZihmdW5jdGlvbiAoeCkge1xuICAgIHJlYWRfcmRzKHgpICU+JSBcbiAgICAgIHN1bW1hcmlzZShjaXR5ID0gZmlyc3QoY2l0eV9uYW1lKSwgeWVhciA9IHllYXIoZmlyc3QoZGF0ZV9zaW5nbGUpKSwgXG4gICAgICAgICAgICAgICAgdWlkX21pbiA9IG1pbih1aWQpLCB1aWRfbWF4ID0gbWF4KHVpZCkpXG4gIH0pICU+JSBcbiAgbXV0YXRlKHVpZF9vayA9IGlmZWxzZSh1aWRfbWluIC0gMSA9PSBsYWcodWlkX21heCksIFwiT0tcIiwgXCJub3QgT0tcIikpICU+JSBcbiAgZmlsdGVyKGNvbXBsZXRlLmNhc2VzKC4pKSAlPiUgXG4gIGdyb3VwX2J5KGNpdHksIHVpZF9vaykgJT4lIFxuICBzdW1tYXJpc2UobiA9IG4oKSkgJT4lIFxuICBzcHJlYWQodWlkX29rLCBuKVxuYGBgIn0= -->
+<pre class="r"><code>dir(&quot;../output_data/&quot;, 
+                 pattern = &quot;^crime_open_database_core_(.+?).Rds$&quot;, 
+                 full.names = TRUE) %&gt;% 
+  map_df(function (x) {
+    read_rds(x) %&gt;% 
+      summarise(city = first(city_name), year = year(first(date_single)), 
+                uid_min = min(uid), uid_max = max(uid))
+  }) %&gt;% 
+  mutate(uid_ok = ifelse(uid_min - 1 == lag(uid_max), &quot;OK&quot;, &quot;not OK&quot;)) %&gt;% 
+  filter(complete.cases(.)) %&gt;% 
+  group_by(city, uid_ok) %&gt;% 
+  summarise(n = n()) %&gt;% 
+  spread(uid_ok, n)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="merge-data-by-year" class="section level1">
+<h1>Merge data by year</h1>
+<p>RDS files can only be used by R, so gzipped CSV files are also needed for those using other software. Since most people will be downloading these manually, the data from all cities are aggregated into one file per year.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yIChmaWxlX3R5cGUgaW4gYyhcImNvcmVcIiwgXCJleHRlbmRlZFwiLCBcInNhbXBsZVwiKSkge1xuICBcbmRpcihcIi4uL291dHB1dF9kYXRhXCIsIFxuICAgIHBhdHRlcm4gPSBwYXN0ZTAoXCJeY3JpbWVfb3Blbl9kYXRhYmFzZV9cIiwgZmlsZV90eXBlLCBcIl8oLis/KS5SZHMkXCIpLCBcbiAgICBmdWxsLm5hbWVzID0gVFJVRSkgJT4lIFxuICBzdHJfZXh0cmFjdChcIlxcXFxkK1wiKSAlPiUgXG4gIHVuaXF1ZSgpICU+JSBcbiAgd2FsayhmdW5jdGlvbiAoeCkge1xuICAgIFxuICAgIGRpcihcIi4uL291dHB1dF9kYXRhXCIsIFxuICAgICAgICBwYXR0ZXJuID0gcGFzdGUwKFwiXmNyaW1lX29wZW5fZGF0YWJhc2VfXCIsIGZpbGVfdHlwZSwgXCJfKC4rPylcIiwgeCwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgXCIuUmRzJFwiKSwgXG4gICAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgXG4gICAgICBtYXBfZGYocmVhZF9yZHMpICU+JSBcbiAgICAgIHdyaXRlX3JkcyhwYXRoID0gcGFzdGUwKFwiLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9cIiwgZmlsZV90eXBlLCBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFwiX2FsbF9cIiwgeCwgXCIuUmRzXCIpLFxuICAgICAgICAgICAgICAgIGNvbXByZXNzID0gXCJiejJcIikgJT4lIFxuICAgICAge1xuICAgICAgICBGQUxTRVxuICAgICAgfVxuICAgICAgIyB3cml0ZS5jc3YoXG4gICAgICAjICAgZ3pmaWxlKHBhc3RlMChcIi4uL291dHB1dF9kYXRhL2NyaW1lX29wZW5fZGF0YWJhc2VfXCIsIGZpbGVfdHlwZSwgXCJfXCIsIHgsIFxuICAgICAgIyAgICAgICAgICAgICAgICAgXCIuY3N2Lmd6XCIpKSwgXG4gICAgICAjICAgbmEgPSBcIlwiLCByb3cubmFtZXMgPSBGQUxTRSwgZmlsZUVuY29kaW5nID0gXCJVVEYtOFwiKVxuICAgIFxuICAgIG1lc3NhZ2UoXCJNZXJnZWQgXCIsIGZpbGVfdHlwZSwgXCIgZGF0YSBmb3IgXCIsIHgsIFwiIGludG8gb25lIFJEUyBhbmQgb25lIENTViBcIixcbiAgICAgICAgICAgIFwiZmlsZVwiKVxuICB9KVxuICBcbn1cbmBgYCJ9 -->
+<pre class="r"><code>for (file_type in c(&quot;core&quot;, &quot;extended&quot;, &quot;sample&quot;)) {
+  
+dir(&quot;../output_data&quot;, 
+    pattern = paste0(&quot;^crime_open_database_&quot;, file_type, &quot;_(.+?).Rds$&quot;), 
+    full.names = TRUE) %&gt;% 
+  str_extract(&quot;\\d+&quot;) %&gt;% 
+  unique() %&gt;% 
+  walk(function (x) {
+    
+    dir(&quot;../output_data&quot;, 
+        pattern = paste0(&quot;^crime_open_database_&quot;, file_type, &quot;_(.+?)&quot;, x, 
+                         &quot;.Rds$&quot;), 
+        full.names = TRUE) %&gt;% 
+      map_df(read_rds) %&gt;% 
+      write_rds(path = paste0(&quot;../output_data/crime_open_database_&quot;, file_type, 
+                              &quot;_all_&quot;, x, &quot;.Rds&quot;),
+                compress = &quot;bz2&quot;) %&gt;% 
+      {
+        FALSE
+      }
+      # write.csv(
+      #   gzfile(paste0(&quot;../output_data/crime_open_database_&quot;, file_type, &quot;_&quot;, x, 
+      #                 &quot;.csv.gz&quot;)), 
+      #   na = &quot;&quot;, row.names = FALSE, fileEncoding = &quot;UTF-8&quot;)
+    
+    message(&quot;Merged &quot;, file_type, &quot; data for &quot;, x, &quot; into one RDS and one CSV &quot;,
+            &quot;file&quot;)
+  })
+  
 }</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDA3LmNzdi5neicsIDY0IE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAwNy5jc3YuZ3onLCA0MCBNQlxuU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDA4LmNzdi5neicsIDYzIE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAwOC5jc3YuZ3onLCA0MCBNQlxuU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDA5LmNzdi5neicsIDc4IE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAwOS5jc3YuZ3onLCA0NyBNQlxuU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDEwLmNzdi5neicsIDkwIE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAxMC5jc3YuZ3onLCA1MyBNQlxuU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDExLmNzdi5neicsIDg2IE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAxMS5jc3YuZ3onLCA1MSBNQlxuU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDEyLmNzdi5neicsIDg2IE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAxMi5jc3YuZ3onLCA1MCBNQlxuU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDEzLmNzdi5neicsIDg2IE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAxMy5jc3YuZ3onLCA1MCBNQlxuU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDE0LmNzdi5neicsIDgzIE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAxNC5jc3YuZ3onLCA0OCBNQlxuU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDE1LmNzdi5neicsIDg0IE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAxNS5jc3YuZ3onLCA0OCBNQlxuU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDE2LmNzdi5neicsIDg1IE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAxNi5jc3YuZ3onLCA0OSBNQlxuU2F2ZWQgZmlsZSAnLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8yMDE3LmNzdi5neicsIDg0IE1CXG5TYXZlZCBmaWxlICcuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfMjAxNy5jc3YuZ3onLCA0OCBNQlxuIn0= -->
-<pre><code>Saved file '../output_data/crime_open_database_extended_2007.csv.gz', 64 MB
-Saved file '../output_data/crime_open_database_core_2007.csv.gz', 40 MB
-Saved file '../output_data/crime_open_database_extended_2008.csv.gz', 63 MB
-Saved file '../output_data/crime_open_database_core_2008.csv.gz', 40 MB
-Saved file '../output_data/crime_open_database_extended_2009.csv.gz', 78 MB
-Saved file '../output_data/crime_open_database_core_2009.csv.gz', 47 MB
-Saved file '../output_data/crime_open_database_extended_2010.csv.gz', 90 MB
-Saved file '../output_data/crime_open_database_core_2010.csv.gz', 53 MB
-Saved file '../output_data/crime_open_database_extended_2011.csv.gz', 86 MB
-Saved file '../output_data/crime_open_database_core_2011.csv.gz', 51 MB
-Saved file '../output_data/crime_open_database_extended_2012.csv.gz', 86 MB
-Saved file '../output_data/crime_open_database_core_2012.csv.gz', 50 MB
-Saved file '../output_data/crime_open_database_extended_2013.csv.gz', 86 MB
-Saved file '../output_data/crime_open_database_core_2013.csv.gz', 50 MB
-Saved file '../output_data/crime_open_database_extended_2014.csv.gz', 83 MB
-Saved file '../output_data/crime_open_database_core_2014.csv.gz', 48 MB
-Saved file '../output_data/crime_open_database_extended_2015.csv.gz', 84 MB
-Saved file '../output_data/crime_open_database_core_2015.csv.gz', 48 MB
-Saved file '../output_data/crime_open_database_extended_2016.csv.gz', 85 MB
-Saved file '../output_data/crime_open_database_core_2016.csv.gz', 49 MB
-Saved file '../output_data/crime_open_database_extended_2017.csv.gz', 84 MB
-Saved file '../output_data/crime_open_database_core_2017.csv.gz', 48 MB</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAwNyBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAwOCBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAwOSBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAxMCBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAxMSBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAxMiBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAxMyBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAxNCBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAxNSBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAxNiBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGNvcmUgZGF0YSBmb3IgMjAxNyBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGV4dGVuZGVkIGRhdGEgZm9yIDIwMDcgaW50byBvbmUgUkRTIGFuZCBvbmUgQ1NWIGZpbGVcbk1lcmdlZCBleHRlbmRlZCBkYXRhIGZvciAyMDA4IGludG8gb25lIFJEUyBhbmQgb25lIENTViBmaWxlXG5NZXJnZWQgZXh0ZW5kZWQgZGF0YSBmb3IgMjAwOSBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGV4dGVuZGVkIGRhdGEgZm9yIDIwMTAgaW50byBvbmUgUkRTIGFuZCBvbmUgQ1NWIGZpbGVcbk1lcmdlZCBleHRlbmRlZCBkYXRhIGZvciAyMDExIGludG8gb25lIFJEUyBhbmQgb25lIENTViBmaWxlXG5NZXJnZWQgZXh0ZW5kZWQgZGF0YSBmb3IgMjAxMiBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGV4dGVuZGVkIGRhdGEgZm9yIDIwMTMgaW50byBvbmUgUkRTIGFuZCBvbmUgQ1NWIGZpbGVcbk1lcmdlZCBleHRlbmRlZCBkYXRhIGZvciAyMDE0IGludG8gb25lIFJEUyBhbmQgb25lIENTViBmaWxlXG5NZXJnZWQgZXh0ZW5kZWQgZGF0YSBmb3IgMjAxNSBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIGV4dGVuZGVkIGRhdGEgZm9yIDIwMTYgaW50byBvbmUgUkRTIGFuZCBvbmUgQ1NWIGZpbGVcbk1lcmdlZCBleHRlbmRlZCBkYXRhIGZvciAyMDE3IGludG8gb25lIFJEUyBhbmQgb25lIENTViBmaWxlXG5NZXJnZWQgc2FtcGxlIGRhdGEgZm9yIDIwMDcgaW50byBvbmUgUkRTIGFuZCBvbmUgQ1NWIGZpbGVcbk1lcmdlZCBzYW1wbGUgZGF0YSBmb3IgMjAwOCBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIHNhbXBsZSBkYXRhIGZvciAyMDA5IGludG8gb25lIFJEUyBhbmQgb25lIENTViBmaWxlXG5NZXJnZWQgc2FtcGxlIGRhdGEgZm9yIDIwMTAgaW50byBvbmUgUkRTIGFuZCBvbmUgQ1NWIGZpbGVcbk1lcmdlZCBzYW1wbGUgZGF0YSBmb3IgMjAxMSBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIHNhbXBsZSBkYXRhIGZvciAyMDEyIGludG8gb25lIFJEUyBhbmQgb25lIENTViBmaWxlXG5NZXJnZWQgc2FtcGxlIGRhdGEgZm9yIDIwMTMgaW50byBvbmUgUkRTIGFuZCBvbmUgQ1NWIGZpbGVcbk1lcmdlZCBzYW1wbGUgZGF0YSBmb3IgMjAxNCBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuTWVyZ2VkIHNhbXBsZSBkYXRhIGZvciAyMDE1IGludG8gb25lIFJEUyBhbmQgb25lIENTViBmaWxlXG5NZXJnZWQgc2FtcGxlIGRhdGEgZm9yIDIwMTYgaW50byBvbmUgUkRTIGFuZCBvbmUgQ1NWIGZpbGVcbk1lcmdlZCBzYW1wbGUgZGF0YSBmb3IgMjAxNyBpbnRvIG9uZSBSRFMgYW5kIG9uZSBDU1YgZmlsZVxuIn0= -->
+<pre><code>Merged core data for 2007 into one RDS and one CSV file
+Merged core data for 2008 into one RDS and one CSV file
+Merged core data for 2009 into one RDS and one CSV file
+Merged core data for 2010 into one RDS and one CSV file
+Merged core data for 2011 into one RDS and one CSV file
+Merged core data for 2012 into one RDS and one CSV file
+Merged core data for 2013 into one RDS and one CSV file
+Merged core data for 2014 into one RDS and one CSV file
+Merged core data for 2015 into one RDS and one CSV file
+Merged core data for 2016 into one RDS and one CSV file
+Merged core data for 2017 into one RDS and one CSV file
+Merged extended data for 2007 into one RDS and one CSV file
+Merged extended data for 2008 into one RDS and one CSV file
+Merged extended data for 2009 into one RDS and one CSV file
+Merged extended data for 2010 into one RDS and one CSV file
+Merged extended data for 2011 into one RDS and one CSV file
+Merged extended data for 2012 into one RDS and one CSV file
+Merged extended data for 2013 into one RDS and one CSV file
+Merged extended data for 2014 into one RDS and one CSV file
+Merged extended data for 2015 into one RDS and one CSV file
+Merged extended data for 2016 into one RDS and one CSV file
+Merged extended data for 2017 into one RDS and one CSV file
+Merged sample data for 2007 into one RDS and one CSV file
+Merged sample data for 2008 into one RDS and one CSV file
+Merged sample data for 2009 into one RDS and one CSV file
+Merged sample data for 2010 into one RDS and one CSV file
+Merged sample data for 2011 into one RDS and one CSV file
+Merged sample data for 2012 into one RDS and one CSV file
+Merged sample data for 2013 into one RDS and one CSV file
+Merged sample data for 2014 into one RDS and one CSV file
+Merged sample data for 2015 into one RDS and one CSV file
+Merged sample data for 2016 into one RDS and one CSV file
+Merged sample data for 2017 into one RDS and one CSV file</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZXBvcnQgdHlwaWNhbCBmaWxlIHNpemVzXG5jYXQoXG4gIFwiXFxuTWVhbiBzaXplIGZvciBjb3JlLWRhdGEgZmlsZXM6XCIsIFxuICBkaXIoXCIuLi9vdXRwdXRfZGF0YVwiLCBwYXR0ZXJuID0gXCJeY3JpbWVfb3Blbl9kYXRhYmFzZV9jb3JlX1wiLCBcbiAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgXG4gICAgZmlsZS5zaXplKCkgJT4lIFxuICAgIHsgcm91bmQobWVhbiguKSAvIDEwXjYpIH0sXG4gIFwiTUJcXG5NZWFuIHNpemUgZm9yIGV4dGVuZGVkLWRhdGEgZmlsZXM6XCIsXG4gIGRpcihcIi4uL291dHB1dF9kYXRhXCIsIHBhdHRlcm4gPSBcIl5jcmltZV9vcGVuX2RhdGFiYXNlX2V4dGVuZGVkX1wiLCBcbiAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgXG4gICAgZmlsZS5zaXplKCkgJT4lIFxuICAgIHsgcm91bmQobWVhbiguKSAvIDEwXjYpIH0sXG4gIFwiTUJcXG5cIlxuKVxuYGBgIn0= -->
-<pre class="r"><code># report typical file sizes
-cat(
-  &quot;\nMean size for core-data files:&quot;, 
-  dir(&quot;../output_data&quot;, pattern = &quot;^crime_open_database_core_&quot;, 
-      full.names = TRUE) %&gt;% 
-    file.size() %&gt;% 
-    { round(mean(.) / 10^6) },
-  &quot;MB\nMean size for extended-data files:&quot;,
-  dir(&quot;../output_data&quot;, pattern = &quot;^crime_open_database_extended_&quot;, 
-      full.names = TRUE) %&gt;% 
-    file.size() %&gt;% 
-    { round(mean(.) / 10^6) },
-  &quot;MB\n&quot;
-)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5NZWFuIHNpemUgZm9yIGNvcmUtZGF0YSBmaWxlczogNDggTUJcbk1lYW4gc2l6ZSBmb3IgZXh0ZW5kZWQtZGF0YSBmaWxlczogODEgTUJcbiJ9 -->
-<pre><code>
-Mean size for core-data files: 48 MB
-Mean size for extended-data files: 81 MB</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjbGVhbiB1cFxucm0oY29tbW9uX3ZhcnMsIHRoZXNlX3ZhcnMsIGksIGopXG5gYGAifQ== -->
-<pre class="r"><code># clean up
-rm(common_vars, these_vars, i, j)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<div id="create-sample-data" class="section level2">
-<h2>Create sample data</h2>
-<p>Since the data files are so large, 1% samples may be useful for exploratory analysis.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGlyKFwiLi4vb3V0cHV0X2RhdGFcIiwgXG4gICAgcGF0dGVybiA9IFwiXmNyaW1lX29wZW5fZGF0YWJhc2VfY29yZVwiLCBmdWxsLm5hbWVzID0gVFJVRSkgJT4lXG4gIHB1cnJyOjptYXAoZnVuY3Rpb24gKHgpIHtcbiAgICBcbiAgICBuZXdfZmlsZV9uYW1lIDwtIHN0cmluZ3I6OnN0cl9yZXBsYWNlKHgsIFwiY29yZVwiLCBcInNhbXBsZVwiKVxuICAgIFxuICAgIHJlYWRyOjpyZWFkX2Nzdih4LCBjb2xfdHlwZXMgPSByZWFkcjo6Y29scyhcbiAgICAgIC5kZWZhdWx0ID0gcmVhZHI6OmNvbF9jaGFyYWN0ZXIoKSxcbiAgICAgIHVpZCA9IHJlYWRyOjpjb2xfaW50ZWdlcigpLFxuICAgICAgZGF0ZV9zaW5nbGUgPSByZWFkcjo6Y29sX2RhdGV0aW1lKGZvcm1hdCA9IFwiXCIpLFxuICAgICAgbG9uZ2l0dWRlID0gcmVhZHI6OmNvbF9kb3VibGUoKSxcbiAgICAgIGxhdGl0dWRlID0gcmVhZHI6OmNvbF9kb3VibGUoKSxcbiAgICAgIGZpcHNfc3RhdGUgPSByZWFkcjo6Y29sX2ludGVnZXIoKSxcbiAgICAgIGJsb2NrX2dyb3VwID0gcmVhZHI6OmNvbF9pbnRlZ2VyKCksXG4gICAgICBibG9jayA9IHJlYWRyOjpjb2xfaW50ZWdlcigpXG4gICAgKSkgJT4lXG4gICAgICBkcGx5cjo6c2FtcGxlX2ZyYWMoMC4wMSkgJT4lXG4gICAgcmVhZHI6OndyaXRlX2NzdihuZXdfZmlsZV9uYW1lLCBuYSA9IFwiXCIpXG4gICAgXG4gICAgY2F0KFwiU2F2ZWQgZmlsZVwiLCBwYXN0ZTAoXCInXCIsIG5ld19maWxlX25hbWUsIFwiJyxcIiksIFxuICAgICAgICByb3VuZChmaWxlLnNpemUobmV3X2ZpbGVfbmFtZSkgLyAxMF42KSwgXCJNQlxcblwiKVxuICAgIFxuICB9KVxuYGBgIn0= -->
-<pre class="r"><code>dir(&quot;../output_data&quot;, 
-    pattern = &quot;^crime_open_database_core&quot;, full.names = TRUE) %&gt;%
-  purrr::map(function (x) {
-    
-    new_file_name &lt;- stringr::str_replace(x, &quot;core&quot;, &quot;sample&quot;)
-    
-    readr::read_csv(x, col_types = readr::cols(
-      .default = readr::col_character(),
-      uid = readr::col_integer(),
-      date_single = readr::col_datetime(format = &quot;&quot;),
-      longitude = readr::col_double(),
-      latitude = readr::col_double(),
-      fips_state = readr::col_integer(),
-      block_group = readr::col_integer(),
-      block = readr::col_integer()
-    )) %&gt;%
-      dplyr::sample_frac(0.01) %&gt;%
-    readr::write_csv(new_file_name, na = &quot;&quot;)
-    
-    cat(&quot;Saved file&quot;, paste0(&quot;'&quot;, new_file_name, &quot;',&quot;), 
-        round(file.size(new_file_name) / 10^6), &quot;MB\n&quot;)
-    
-  })</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm0oZmlsZV90eXBlKSAgXG5gYGAifQ== -->
+<pre class="r"><code>rm(file_type)  </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="report-typical-file-sizes" class="section level2">
-<h2>Report typical file sizes</h2>
+<div id="report-typical-file-sizes" class="section level1">
+<h1>Report typical file sizes</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyByZXBvcnQgdHlwaWNhbCBmaWxlIHNpemVzXG5jYXQoXG4gIFwiXFxuTWVhbiBzaXplIGZvciBjb3JlLWRhdGEgZmlsZXM6XCIsIFxuICBkaXIoXCIuLi9vdXRwdXRfZGF0YVwiLCBwYXR0ZXJuID0gXCJeY3JpbWVfb3Blbl9kYXRhYmFzZV9jb3JlXyguKz8pLmNzdi5neiRcIiwgXG4gICAgICBmdWxsLm5hbWVzID0gVFJVRSkgJT4lIFxuICAgIGZpbGUuc2l6ZSgpICU+JSBcbiAgICB7IHJvdW5kKG1lYW4oLikgLyAxMF42KSB9LFxuICBcIk1CXFxuTWVhbiBzaXplIGZvciBleHRlbmRlZC1kYXRhIGZpbGVzOlwiLFxuICBkaXIoXCIuLi9vdXRwdXRfZGF0YVwiLCBwYXR0ZXJuID0gXCJeY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8oLis/KS5jc3YuZ3okXCIsIFxuICAgICAgZnVsbC5uYW1lcyA9IFRSVUUpICU+JSBcbiAgICBmaWxlLnNpemUoKSAlPiUgXG4gICAgeyByb3VuZChtZWFuKC4pIC8gMTBeNikgfSxcbiAgXCJNQlxcbk1lYW4gc2l6ZSBmb3Igc2FtcGxlLWRhdGEgZmlsZXM6XCIsXG4gIGRpcihcIi4uL291dHB1dF9kYXRhXCIsIHBhdHRlcm4gPSBcIl5jcmltZV9vcGVuX2RhdGFiYXNlX3NhbXBsZV8oLis/KS5jc3YuZ3okXCIsIFxuICAgICAgZnVsbC5uYW1lcyA9IFRSVUUpICU+JSBcbiAgICBmaWxlLnNpemUoKSAlPiUgXG4gICAgeyByb3VuZChtZWFuKC4pIC8gMTBeNikgfSxcbiAgXCJNQlxcblwiXG4pXG5gYGAifQ== -->
-<pre class="r"><code># report typical file sizes
-cat(
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KFxuICBcIlxcbk1lYW4gc2l6ZSBmb3IgY29yZS1kYXRhIGZpbGVzOlwiLCBcbiAgZGlyKFwiLi4vb3V0cHV0X2RhdGFcIiwgcGF0dGVybiA9IFwiXmNyaW1lX29wZW5fZGF0YWJhc2VfY29yZV8oLis/KS5jc3YuZ3okXCIsIFxuICAgICAgZnVsbC5uYW1lcyA9IFRSVUUpICU+JSBcbiAgICBmaWxlLnNpemUoKSAlPiUgXG4gICAgeyByb3VuZChtZWFuKC4pIC8gMTBeNiwgMSkgfSxcbiAgXCJNQlxcbk1lYW4gc2l6ZSBmb3IgZXh0ZW5kZWQtZGF0YSBmaWxlczpcIixcbiAgZGlyKFwiLi4vb3V0cHV0X2RhdGFcIiwgcGF0dGVybiA9IFwiXmNyaW1lX29wZW5fZGF0YWJhc2VfZXh0ZW5kZWRfKC4rPykuY3N2Lmd6JFwiLCBcbiAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgXG4gICAgZmlsZS5zaXplKCkgJT4lIFxuICAgIHsgcm91bmQobWVhbiguKSAvIDEwXjYsIDEpIH0sXG4gIFwiTUJcXG5NZWFuIHNpemUgZm9yIHNhbXBsZS1kYXRhIGZpbGVzOlwiLFxuICBkaXIoXCIuLi9vdXRwdXRfZGF0YVwiLCBwYXR0ZXJuID0gXCJeY3JpbWVfb3Blbl9kYXRhYmFzZV9zYW1wbGVfKC4rPykuY3N2Lmd6JFwiLCBcbiAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgXG4gICAgZmlsZS5zaXplKCkgJT4lIFxuICAgIHsgcm91bmQobWVhbiguKSAvIDEwXjYsIDEpIH0sXG4gIFwiTUJcXG5cIlxuKVxuYGBgIn0= -->
+<pre class="r"><code>cat(
   &quot;\nMean size for core-data files:&quot;, 
   dir(&quot;../output_data&quot;, pattern = &quot;^crime_open_database_core_(.+?).csv.gz$&quot;, 
       full.names = TRUE) %&gt;% 
     file.size() %&gt;% 
-    { round(mean(.) / 10^6) },
+    { round(mean(.) / 10^6, 1) },
   &quot;MB\nMean size for extended-data files:&quot;,
   dir(&quot;../output_data&quot;, pattern = &quot;^crime_open_database_extended_(.+?).csv.gz$&quot;, 
       full.names = TRUE) %&gt;% 
     file.size() %&gt;% 
-    { round(mean(.) / 10^6) },
+    { round(mean(.) / 10^6, 1) },
   &quot;MB\nMean size for sample-data files:&quot;,
   dir(&quot;../output_data&quot;, pattern = &quot;^crime_open_database_sample_(.+?).csv.gz$&quot;, 
       full.names = TRUE) %&gt;% 
     file.size() %&gt;% 
-    { round(mean(.) / 10^6) },
+    { round(mean(.) / 10^6, 1) },
   &quot;MB\n&quot;
 )</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="produce-rds-files" class="section level2">
-<h2>Produce Rds files</h2>
-<p>Rds files are used for downloading within the crimedata R package because they are smaller, albeit not interoperable with other software.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGlyKFwiLi4vb3V0cHV0X2RhdGFcIiwgXG4gICAgcGF0dGVybiA9IFwiLmNzdi5neiRcIiwgZnVsbC5uYW1lcyA9IFRSVUUpICU+JVxuICBwdXJycjo6bWFwKGZ1bmN0aW9uICh4KSB7XG4gICAgXG4gICAgbmV3X2ZpbGVfbmFtZSA8LSBzdHJpbmdyOjpzdHJfcmVwbGFjZSh4LCBcIi5jc3YuZ3pcIiwgXCIuUmRzXCIpXG5cbiAgICByZWFkcjo6cmVhZF9jc3YoeCwgY29sX3R5cGVzID0gcmVhZHI6OmNvbHMoXG4gICAgICAuZGVmYXVsdCA9IHJlYWRyOjpjb2xfY2hhcmFjdGVyKCksXG4gICAgICB1aWQgPSByZWFkcjo6Y29sX2ludGVnZXIoKSxcbiAgICAgIGRhdGVfc2luZ2xlID0gcmVhZHI6OmNvbF9kYXRldGltZShmb3JtYXQgPSBcIlwiKSxcbiAgICAgIGxvbmdpdHVkZSA9IHJlYWRyOjpjb2xfZG91YmxlKCksXG4gICAgICBsYXRpdHVkZSA9IHJlYWRyOjpjb2xfZG91YmxlKCksXG4gICAgICBmaXBzX3N0YXRlID0gcmVhZHI6OmNvbF9pbnRlZ2VyKCksXG4gICAgICBibG9ja19ncm91cCA9IHJlYWRyOjpjb2xfaW50ZWdlcigpLFxuICAgICAgYmxvY2sgPSByZWFkcjo6Y29sX2ludGVnZXIoKVxuICAgICkpICU+JVxuICAgICAgZHBseXI6OnNlbGVjdCgtbG9jYWxfcm93X2lkLCAtY2FzZV9udW1iZXIpICU+JSBcbiAgICAgIHNhdmVSRFMobmV3X2ZpbGVfbmFtZSwgY29tcHJlc3MgPSBcImJ6aXAyXCIpXG4gICAgXG4gICAgY2F0KFwiU2F2ZWQgZmlsZVwiLCBwYXN0ZTAoXCInXCIsIG5ld19maWxlX25hbWUsIFwiJyxcIiksIFxuICAgICAgICByb3VuZChmaWxlLnNpemUobmV3X2ZpbGVfbmFtZSkgLyAxMF42KSwgXCJNQlxcblwiKVxuICAgIFxuICB9KVxuYGBgIn0= -->
-<pre class="r"><code>dir(&quot;../output_data&quot;, 
-    pattern = &quot;.csv.gz$&quot;, full.names = TRUE) %&gt;%
-  purrr::map(function (x) {
-    
-    new_file_name &lt;- stringr::str_replace(x, &quot;.csv.gz&quot;, &quot;.Rds&quot;)
-
-    readr::read_csv(x, col_types = readr::cols(
-      .default = readr::col_character(),
-      uid = readr::col_integer(),
-      date_single = readr::col_datetime(format = &quot;&quot;),
-      longitude = readr::col_double(),
-      latitude = readr::col_double(),
-      fips_state = readr::col_integer(),
-      block_group = readr::col_integer(),
-      block = readr::col_integer()
-    )) %&gt;%
-      dplyr::select(-local_row_id, -case_number) %&gt;% 
-      saveRDS(new_file_name, compress = &quot;bzip2&quot;)
-    
-    cat(&quot;Saved file&quot;, paste0(&quot;'&quot;, new_file_name, &quot;',&quot;), 
-        round(file.size(new_file_name) / 10^6), &quot;MB\n&quot;)
-    
-  })</code></pre>
-<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5NZWFuIHNpemUgZm9yIGNvcmUtZGF0YSBmaWxlczogMzIuMSBNQlxuTWVhbiBzaXplIGZvciBleHRlbmRlZC1kYXRhIGZpbGVzOiA3OS4xIE1CXG5NZWFuIHNpemUgZm9yIHNhbXBsZS1kYXRhIGZpbGVzOiAwLjQgTUJcbiJ9 -->
+<pre><code>
+Mean size for core-data files: 32.1 MB
+Mean size for extended-data files: 79.1 MB
+Mean size for sample-data files: 0.4 MB</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
-</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWVyZ2UgYW5kIG91dHB1dCBkYXRhIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKIyBNZXJnZSBkYXRhCgpUaGlzIGNvZGUgbWVyZ2VzIHRoZSBkYXRhIGZyb20gZWFjaCBjaXR5IGludG8gb25lIG9iamVjdCwgd2hpY2ggY2FuIHRoZW4gYmUgdXNlZAp0byBvdXRwdXQgdGhlIGZpbmFsIGRhdGEuCgpgYGB7cn0KIyByZW5hbWUgdGhlIGNyaW1lIGNhdGVnb3J5IHZhcmlhYmxlcyBiZWNhdXNlIHRoZXkndmUgYmVlbiByZW5hbWVkIGluIHRoZSAKIyBkYXRhc2V0IGJ5IHRoZSBjb252ZXJ0X25hbWVzKCkgZnVuY3Rpb24gaW4gZmlsZSAwNV9oYXJtb25pc2VfZGF0YS5SbWQKY29tbW9uX3ZhcnMgPC0gc2V0ZGlmZihjb21tb25fdmFycywgYygnZ2VvbWV0cnknKSkgJT4lIAogIG1hcHZhbHVlcyhjKCduaWJyc19vZmZlbnNlX2NvZGUnLCAnbmlicnNfb2ZmZW5zZV90eXBlJywgCiAgICAgICAgICAgICAgJ25pYnJzX29mZmVuc2VfY2F0ZWdvcnknLCAnbmlicnNfY3JpbWVfYWdhaW5zdCcpLCAKICAgICAgICAgICAgYygnb2ZmZW5zZV9jb2RlJywgJ29mZmVuc2VfdHlwZScsICdvZmZlbnNlX2dyb3VwJywgCiAgICAgICAgICAgICAgJ29mZmVuc2VfYWdhaW5zdCcpKQoKIyBsb2FkIGFuZCBtZXJnZSB0aGUgZGF0YXNldCBmb3IgZWFjaCBjaXR5CmRhdGEgPC0gZGlyKCIuLi90ZW1wX2RhdGEiLCBwYXR0ZXJuID0gIl5maW5hbF8iLCBmdWxsLm5hbWVzID0gVFJVRSkgJT4lIAogICMgcmVwb3J0X3N0YXR1cyhwYXN0ZSgiSWRlbnRpZmllZCBmaWxlcyBpbiBkaXJlY3RvcnkgYXQiLCAKICAjICAgICAgICAgICAgICAgICAgICAgYXMuY2hhcmFjdGVyKG5vdykpKSAlPiUgCiAgbWFwKHJlYWRfcmRzKSAlPiUgCiAgIyByZXBvcnRfc3RhdHVzKHBhc3RlKCJSZWFkIGRhdGEgZnJvbSBmaWxlcyBhdCIsIGFzLmNoYXJhY3Rlcihub3coKSkpKSAlPiUgCiAgbWFwKG11dGF0ZV9hdCwgdmFycyhvbmVfb2YoYygibG9jYWxfcm93X2lkIiwgImNhc2VfbnVtYmVyIikpKSwgCiAgICAgIGFzLmNoYXJhY3RlcikgJT4lIAogICMgbWFwKG11dGF0ZSwgCiAgIyAgICAgbG9jYWxfcm93X2lkID0gYXMuY2hhcmFjdGVyKGxvY2FsX3Jvd19pZCksCiAgIyAgICAgY2FzZV9udW1iZXIgPSBhcy5jaGFyYWN0ZXIoY2FzZV9udW1iZXIpKSAlPiUgCiAgIyByZXBvcnRfc3RhdHVzKHBhc3RlKCJDaGFuZ2VkIGlkZW50aWZpZXJzIHRvIGNoYXJhY3RlciB2ZWN0b3JzIGF0IiwgCiAgIyAgICAgICAgICAgICAgICAgICAgIGFzLmNoYXJhY3Rlcihub3coKSkpKSAlPiUgCiAgYmluZF9yb3dzKCkgJT4lIAogICMgcmVwb3J0X3N0YXR1cyhwYXN0ZSgiTWVyZ2VkIGRhdGEgZnJvbSBpbmRpdmlkdWFsIGZpbGVzIGF0IiwgCiAgIyAgICAgICAgICAgICAgICAgICAgIGFzLmNoYXJhY3Rlcihub3coKSkpKSAlPiUgCiAgYXJyYW5nZShjaXR5X25hbWUsIGRhdGVfc2luZ2xlKSAlPiUgCiAgIyByZXBvcnRfc3RhdHVzKHBhc3RlKCJBcnJhbmdlZCBkYXRhIGJ5IGNpdHkgYW5kIGRhdGUgYXQiLCAKICAjICAgICAgICAgICAgICAgICAgICAgYXMuY2hhcmFjdGVyKG5vdygpKSkpICU+JSAKICBmaWx0ZXIoCiAgICBvZmZlbnNlX2FnYWluc3QgIT0gImV4Y2x1ZGVkIGNhc2VzIiAmIAogICAgIWlzLm5hKGxvbmdpdHVkZSkgJgogICAgIWlzLm5hKGxhdGl0dWRlKSAmCiAgICBpbl9jaXR5ID09IFRSVUUKICApICU+JQogICMgcmVwb3J0X3N0YXR1cyhwYXN0ZSgiUmVtb3ZlZCBleGNsdWRlZCBjYXNlcyBhdCIsIGFzLmNoYXJhY3Rlcihub3coKSkpKSAlPiUgCiAgbXV0YXRlKAogICAgdWlkID0gMTpucm93KC4pCiAgKSAlPiUgCiAgbXV0YXRlKAogICAgb2ZmZW5zZV9jb2RlID0gY2FzZV93aGVuKAogICAgICBvZmZlbnNlX2NvZGUgPT0gIjEyMCIgfiAiMTJVIiwKICAgICAgb2ZmZW5zZV9jb2RlID09ICIyMjAiIH4gIjIyVSIsCiAgICAgIG9mZmVuc2VfY29kZSA9PSAiMjNVIiB+ICIyM0giLAogICAgICBUUlVFIH4gb2ZmZW5zZV9jb2RlCiAgICApCiAgKSAlPiUgCiAgIyByZXBvcnRfc3RhdHVzKHBhc3RlKCJBZGRlZCB1bmlxdWUgcm93IElEIGF0IiwgYXMuY2hhcmFjdGVyKG5vdygpKSkpICU+JSAKICBzZWxlY3Qob25lX29mKGNvbW1vbl92YXJzKSwgZXZlcnl0aGluZygpLCAtaW5fY2l0eSwgLW11bHRpcGxlX2RhdGVzKQoKIyBkYXRhICU+JQojICAgc2FtcGxlX24oNTApICU+JQojICAgYXJyYW5nZShjaXR5X25hbWUsIGRhdGVfc2luZ2xlKSAlPiUKIyAgIFZpZXcoKQoKY2F0KCJDT0RFIGNvbnRhaW5zIGRhdGEgb24iLCBmb3JtYXQobnJvdyhkYXRhKSwgYmlnLm1hcmsgPSAiLCIpLCAib2ZmZW5zZXNcbiIpCmBgYAoKT3ZlcmFsbCwgdGhlcmUgYXJlIGByIG5yb3coZGF0YSlgIG9mZmVuY2VzIGluIHRoZSBkYXRhc2V0LiBUaGlzIGNhbiBiZSBicm9rZW4KZG93biBieSBjaXR5OgoKYGBge3J9CmRhdGEgJT4lIAogIGdyb3VwX2J5KGNpdHlfbmFtZSwgZGF0ZV95ZWFyKSAlPiUgCiAgc3VtbWFyaXNlKG4gPSBuKCkpICU+JSAKICBzdW1tYXJpc2UoY3JpbWVzX3Blcl95ZWFyID0gZm9ybWF0KG1lYW4obiksIHNjaWVudGlmaWMgPSBGQUxTRSwgZGlnaXRzID0gMCwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBiaWcubWFyayA9ICIsIikpCmBgYAoKYW5kIGJ5IGNpdHkgZm9yIGVhY2ggeWVhcjoKCmBgYHtyfQpkYXRhICU+JSAKICBncm91cF9ieShjaXR5X25hbWUsIGRhdGVfeWVhcikgJT4lIAogIHN1bW1hcmlzZShuID0gbigpKSAlPiUgCiAgc3ByZWFkKGRhdGVfeWVhciwgbikKYGBgCgoKIyBPdXRwdXQgZGF0YQoKRm9yIGVhY2ggeWVhciwgdHdvIGZpbGVzIHNob3VsZCBiZSBleHBvcnRlZDogb25lIGNvbnRhaW5pbmcgYWxsIHRoZSB2YXJpYWJsZXMgCmFuZCBvbmUgY29udGFpbmluZyBvbmx5IHRoZSBjb21tb24gdmFyaWFibGVzIChpLmUuIHRob3NlIHdpdGhvdXQgdGhlIGNpdHktbmFtZSAKcHJlZml4KS4KCmBgYHtyfQojIElmIHllYXJGaXJzdCBoYXMgYmVlbiBzZXQgdG8gYSB2ZXJ5IGVhcmx5IHllYXIsIHRoZXJlIG1heSBiZSBubyBkYXRhIGZvciB0aGUgCiMgZmlyc3QgZmV3IHllYXJzLCBwcm9kdWNpbmcgZW1wdHkgQ1NWIGZpbGVzLiBUbyBzdG9wIHRoaXMsIHJlc2V0IHllYXJGaXJzdCBpZiAKIyBpdCBpcyBiZWZvcmUgdGhlIGZpcnN0IHllYXIgcHJlc2VudCBpbiB0aGUgZGF0YXNldC4KaWYgKG1pbihkYXRhJGRhdGVfeWVhcikgPiB5ZWFyRmlyc3QpIHsKICB5ZWFyRmlyc3QgPC0gbWluKGRhdGEkZGF0ZV95ZWFyKQp9Cgpmb3IgKGkgaW4geWVhckZpcnN0OnllYXJMYXN0KSB7CiAgZm9yIChqIGluIGMoJ2V4dGVuZGVkJywgJ2NvcmUnKSkgewogICAgaWYgKGogPT0gJ2NvcmUnKSB7CiAgICAgIHRoZXNlX3ZhcnMgPSBjb21tb25fdmFycwogICAgfSBlbHNlIHsKICAgICAgdGhlc2VfdmFycyA9IG5hbWVzKGRhdGEpCiAgICB9CiAgICBmaWxlX25hbWUgPC0gcGFzdGUwKCIuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlXyIsIGosICJfIiwgaSwgCiAgICAgICAgICAgICAgICAgICAgICAgICIuY3N2Lmd6IikKICAgIGRhdGEgJT4lCiAgICAgIGZpbHRlcihkYXRlX3llYXIgPT0gaSkgJT4lCiAgICAgIHNlbGVjdF9pZihuYW1lcyhkYXRhKSAlaW4lIHRoZXNlX3ZhcnMpICU+JQogICAgICBzZWxlY3QoLWRhdGVfeWVhcikgJT4lIAogICAgICB3cml0ZS5jc3YoZ3pmaWxlKGZpbGVfbmFtZSksIG5hID0gIiIsIHJvdy5uYW1lcyA9IEZBTFNFKQogICAgY2F0KCJTYXZlZCBmaWxlIiwgcGFzdGUwKCInIiwgZmlsZV9uYW1lLCAiJywiKSwgCiAgICAgICAgcm91bmQoZmlsZS5zaXplKGZpbGVfbmFtZSkgLyAxMF42KSwgIk1CXG4iKQogIH0KfQoKZm9yIChpIGluIHllYXJGaXJzdDp5ZWFyTGFzdCkgewogIGZpbGVfbmFtZSA8LSBwYXN0ZTAoIi4uL291dHB1dF9kYXRhL2NyaW1lX29wZW5fZGF0YWJhc2Vfc2FtcGxlXyIsIGksIAogICAgICAgICAgICAgICAgICAgICAgIi5jc3YuZ3oiKQogIGRhdGEgJT4lIAogICAgZmlsdGVyKGRhdGVfeWVhciA9PSBpKSAlPiUgCiAgICBzZWxlY3RfaWYobmFtZXMoZGF0YSkgJWluJSBjb21tb25fdmFycykgJT4lIAogICAgc2VsZWN0KC1kYXRlX3llYXIpICU+JSAKICAgIHNhbXBsZV9mcmFjKDAuMDEpICU+JSAKICAgIHdyaXRlLmNzdihnemZpbGUoZmlsZV9uYW1lKSwgbmEgPSAiIiwgcm93Lm5hbWVzID0gRkFMU0UsIAogICAgICAgICAgICAgIGZpbGVFbmNvZGluZyA9ICJVVEYtOCIpCiAgY2F0KCJTYXZlZCBmaWxlIiwgcGFzdGUwKCInIiwgZmlsZV9uYW1lLCAiJywiKSwgCiAgICAgIHJvdW5kKGZpbGUuc2l6ZShmaWxlX25hbWUpIC8gMTBeNiksICJNQlxuIikKfQoKIyBjbGVhbiB1cApybShjb21tb25fdmFycywgdGhlc2VfdmFycywgaSwgaikKCmBgYAoKCiMjIENyZWF0ZSBzYW1wbGUgZGF0YQoKU2luY2UgdGhlIGRhdGEgZmlsZXMgYXJlIHNvIGxhcmdlLCAxJSBzYW1wbGVzIG1heSBiZSB1c2VmdWwgZm9yIGV4cGxvcmF0b3J5CmFuYWx5c2lzLgoKYGBge3J9CmRpcigiLi4vb3V0cHV0X2RhdGEiLCAKICAgIHBhdHRlcm4gPSAiXmNyaW1lX29wZW5fZGF0YWJhc2VfY29yZSIsIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUKICBwdXJycjo6bWFwKGZ1bmN0aW9uICh4KSB7CiAgICAKICAgIG5ld19maWxlX25hbWUgPC0gc3RyaW5ncjo6c3RyX3JlcGxhY2UoeCwgImNvcmUiLCAic2FtcGxlIikKICAgIAogICAgcmVhZHI6OnJlYWRfY3N2KHgsIGNvbF90eXBlcyA9IHJlYWRyOjpjb2xzKAogICAgICAuZGVmYXVsdCA9IHJlYWRyOjpjb2xfY2hhcmFjdGVyKCksCiAgICAgIHVpZCA9IHJlYWRyOjpjb2xfaW50ZWdlcigpLAogICAgICBkYXRlX3NpbmdsZSA9IHJlYWRyOjpjb2xfZGF0ZXRpbWUoZm9ybWF0ID0gIiIpLAogICAgICBsb25naXR1ZGUgPSByZWFkcjo6Y29sX2RvdWJsZSgpLAogICAgICBsYXRpdHVkZSA9IHJlYWRyOjpjb2xfZG91YmxlKCksCiAgICAgIGZpcHNfc3RhdGUgPSByZWFkcjo6Y29sX2ludGVnZXIoKSwKICAgICAgYmxvY2tfZ3JvdXAgPSByZWFkcjo6Y29sX2ludGVnZXIoKSwKICAgICAgYmxvY2sgPSByZWFkcjo6Y29sX2ludGVnZXIoKQogICAgKSkgJT4lCiAgICAgIGRwbHlyOjpzYW1wbGVfZnJhYygwLjAxKSAlPiUKICAgIHJlYWRyOjp3cml0ZV9jc3YobmV3X2ZpbGVfbmFtZSwgbmEgPSAiIikKICAgIAogICAgY2F0KCJTYXZlZCBmaWxlIiwgcGFzdGUwKCInIiwgbmV3X2ZpbGVfbmFtZSwgIicsIiksIAogICAgICAgIHJvdW5kKGZpbGUuc2l6ZShuZXdfZmlsZV9uYW1lKSAvIDEwXjYpLCAiTUJcbiIpCiAgICAKICB9KQpgYGAKCgojIyBSZXBvcnQgdHlwaWNhbCBmaWxlIHNpemVzCgpgYGB7cn0KIyByZXBvcnQgdHlwaWNhbCBmaWxlIHNpemVzCmNhdCgKICAiXG5NZWFuIHNpemUgZm9yIGNvcmUtZGF0YSBmaWxlczoiLCAKICBkaXIoIi4uL291dHB1dF9kYXRhIiwgcGF0dGVybiA9ICJeY3JpbWVfb3Blbl9kYXRhYmFzZV9jb3JlXyguKz8pLmNzdi5neiQiLCAKICAgICAgZnVsbC5uYW1lcyA9IFRSVUUpICU+JSAKICAgIGZpbGUuc2l6ZSgpICU+JSAKICAgIHsgcm91bmQobWVhbiguKSAvIDEwXjYpIH0sCiAgIk1CXG5NZWFuIHNpemUgZm9yIGV4dGVuZGVkLWRhdGEgZmlsZXM6IiwKICBkaXIoIi4uL291dHB1dF9kYXRhIiwgcGF0dGVybiA9ICJeY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8oLis/KS5jc3YuZ3okIiwgCiAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgCiAgICBmaWxlLnNpemUoKSAlPiUgCiAgICB7IHJvdW5kKG1lYW4oLikgLyAxMF42KSB9LAogICJNQlxuTWVhbiBzaXplIGZvciBzYW1wbGUtZGF0YSBmaWxlczoiLAogIGRpcigiLi4vb3V0cHV0X2RhdGEiLCBwYXR0ZXJuID0gIl5jcmltZV9vcGVuX2RhdGFiYXNlX3NhbXBsZV8oLis/KS5jc3YuZ3okIiwgCiAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgCiAgICBmaWxlLnNpemUoKSAlPiUgCiAgICB7IHJvdW5kKG1lYW4oLikgLyAxMF42KSB9LAogICJNQlxuIgopCmBgYAoKCiMjIFByb2R1Y2UgUmRzIGZpbGVzCgpSZHMgZmlsZXMgYXJlIHVzZWQgZm9yIGRvd25sb2FkaW5nIHdpdGhpbiB0aGUgY3JpbWVkYXRhIFIgcGFja2FnZSBiZWNhdXNlIHRoZXkKYXJlIHNtYWxsZXIsIGFsYmVpdCBub3QgaW50ZXJvcGVyYWJsZSB3aXRoIG90aGVyIHNvZnR3YXJlLgoKYGBge3J9CmRpcigiLi4vb3V0cHV0X2RhdGEiLCAKICAgIHBhdHRlcm4gPSAiLmNzdi5neiQiLCBmdWxsLm5hbWVzID0gVFJVRSkgJT4lCiAgcHVycnI6Om1hcChmdW5jdGlvbiAoeCkgewogICAgCiAgICBuZXdfZmlsZV9uYW1lIDwtIHN0cmluZ3I6OnN0cl9yZXBsYWNlKHgsICIuY3N2Lmd6IiwgIi5SZHMiKQoKICAgIHJlYWRyOjpyZWFkX2Nzdih4LCBjb2xfdHlwZXMgPSByZWFkcjo6Y29scygKICAgICAgLmRlZmF1bHQgPSByZWFkcjo6Y29sX2NoYXJhY3RlcigpLAogICAgICB1aWQgPSByZWFkcjo6Y29sX2ludGVnZXIoKSwKICAgICAgZGF0ZV9zaW5nbGUgPSByZWFkcjo6Y29sX2RhdGV0aW1lKGZvcm1hdCA9ICIiKSwKICAgICAgbG9uZ2l0dWRlID0gcmVhZHI6OmNvbF9kb3VibGUoKSwKICAgICAgbGF0aXR1ZGUgPSByZWFkcjo6Y29sX2RvdWJsZSgpLAogICAgICBmaXBzX3N0YXRlID0gcmVhZHI6OmNvbF9pbnRlZ2VyKCksCiAgICAgIGJsb2NrX2dyb3VwID0gcmVhZHI6OmNvbF9pbnRlZ2VyKCksCiAgICAgIGJsb2NrID0gcmVhZHI6OmNvbF9pbnRlZ2VyKCkKICAgICkpICU+JQogICAgICBkcGx5cjo6c2VsZWN0KC1sb2NhbF9yb3dfaWQsIC1jYXNlX251bWJlcikgJT4lIAogICAgICBzYXZlUkRTKG5ld19maWxlX25hbWUsIGNvbXByZXNzID0gImJ6aXAyIikKICAgIAogICAgY2F0KCJTYXZlZCBmaWxlIiwgcGFzdGUwKCInIiwgbmV3X2ZpbGVfbmFtZSwgIicsIiksIAogICAgICAgIHJvdW5kKGZpbGUuc2l6ZShuZXdfZmlsZV9uYW1lKSAvIDEwXjYpLCAiTUJcbiIpCiAgICAKICB9KQpgYGAKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWVyZ2UgYW5kIG91dHB1dCBkYXRhIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgoKIyBPdXRwdXQgUkRTIGZpbGVzCgpUaGlzIGNvZGUgb3V0cHV0cyBSRFMgZmlsZXMgZm9yIGVhY2ggY2l0eSBmb3IgZWFjaCB5ZWFyLiBUaGVzZSBjYW4gYmUgdXNlZCB0bwpwcm9kdWNlIENTViBmaWxlcyBmb3IgbXVsdGlwbGUgY2l0aWVzIGV0Yy4KClRocmVlIGZpbGVzIGFyZSBwcm9kdWNlZCBmb3IgZWFjaCBjaXR5IGZvciBlYWNoIHllYXIuIFRoZSAnZXh0ZW5kZWQnIGZpbGUgCmNvbnRhaW5zIGFsbCB0aGUgdmFyaWFibGVzLCB0aGUgJ2NvcmUnIGZpbGUgY29udGFpbnMgb25seSB0aGUgY29tbW9uIHZhcmlhYmxlcyAKKGkuZS4gdGhvc2Ugd2l0aG91dCB0aGUgY2l0eS1uYW1lIHByZWZpeCkgYW5kIHRoZSAnc2FtcGxlJyBmaWxlIGNvbnRhaW5zIGEgMSUgCnNhbXBsZSBvZiBkYXRhIGluIHRoZSBjb3JlIGZpbGUuCgpgYGB7cn0KIyByZW1vdmUgdW5uZWNlc3NhcnkgdmFyaWFibGVzIGZyb20gY29tbW9uX3ZhcnMKY29tbW9uX3ZhcnMgPC0gc2V0ZGlmZigKICBjb21tb25fdmFycywgCiAgYygnZ2VvbWV0cnknLCAibXVsdGlwbGVfZGF0ZXMiLCAiaW5fY2l0eSIsICJhZGRyZXNzIiwgImZpcHNfc3RhdGUiLCAKICAgICJmaXBzX2NvdW50eSIsICJ0cmFjdCIsICJibG9ja19ncm91cCIsICJibG9jayIsICJkYXRlX3llYXIiKQopICU+JSAKICAjIHJlbmFtZSB0aGUgY3JpbWUgY2F0ZWdvcnkgdmFyaWFibGVzIGJlY2F1c2UgdGhleSd2ZSBiZWVuIHJlbmFtZWQgaW4gdGhlIAogICMgZGF0YXNldCBieSB0aGUgY29udmVydF9uYW1lcygpIGZ1bmN0aW9uIGluIGZpbGUgMDVfaGFybW9uaXNlX2RhdGEuUm1kCiAgbWFwdmFsdWVzKGMoJ25pYnJzX29mZmVuc2VfY29kZScsICduaWJyc19vZmZlbnNlX3R5cGUnLCAKICAgICAgICAgICAgICAnbmlicnNfb2ZmZW5zZV9jYXRlZ29yeScsICduaWJyc19jcmltZV9hZ2FpbnN0JyksIAogICAgICAgICAgICBjKCdvZmZlbnNlX2NvZGUnLCAnb2ZmZW5zZV90eXBlJywgJ29mZmVuc2VfZ3JvdXAnLCAKICAgICAgICAgICAgICAnb2ZmZW5zZV9hZ2FpbnN0JykpICU+JSAKICAjIGFkZCBjZW5zdXNfYmxvY2sgdG8gY29tbW9uIHZhcnMgc28gaXQgYXBwZWFycyBpbiB0aGUgY29yZSBkYXRhCiAgYXBwZW5kKCJjZW5zdXNfYmxvY2siKQpgYGAKCmBgYHtyfQojIHNldCByb3cgbnVtYmVyLCB3aGljaCBzaG91bGQgYmUgY29udGludW91cyBhY3Jvc3MgY2l0aWVzIGFuZCB5ZWFycyBzbyBtdXN0IGJlCiMgcmVtZW1iZXJlZCBiZXR3ZWVuIGZpbGVzCnJvd19udW0gPC0gMQoKIyBmb3IgZWFjaCBjaXR5LCBsb2FkIHRoZSBkYXRhIGFuZCBvdXRwdXQgYW4gUmRzIGZpbGUgZm9yIGVhY2ggeWVhcgojIHRoaXMgbXVzdCBiZSBkb25lIHNlcGFyYXRlbHkgZm9yIGVhY2ggY2l0eSB0byBhdm9pZCB0aGUgJ3ZlY3RvciBtZW1vcnkKIyBleGhhdXN0ZWQnIHByb2JsZW0gb24gbWFjT1MgZGVzY3JpYmVkIGF0CiMgaHR0cDovL3IuNzg5Njk1Lm40Lm5hYmJsZS5jb20vUi0zLTUtMC12ZWN0b3ItbWVtb3J5LWV4aGF1c3RlZC1lcnJvci1vbi1yZWFkQmluLXRkNDc1MDIzNy5odG1sCmZvciAoY2l0eSBpbiBjaXRpZXMkbmFtZSkgewogIAogICMgbG9hZCBhbmQgcHJvY2VzcyBkYXRhCiAgY2l0eV9kYXRhIDwtIHJlYWRSRFMocGFzdGUwKCIuLi90ZW1wX2RhdGEvZmluYWxfIiwgCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHN0cl9yZXBsYWNlX2FsbChzdHJfdG9fbG93ZXIoY2l0eSksICJcXHMiLCAiXyIpLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIl9kYXRhLlJkcyIpKSAlPiUgCiAgICBtdXRhdGVfYXQodmFycyhvbmVfb2YoYygibG9jYWxfcm93X2lkIiwgImNhc2VfbnVtYmVyIikpKSwgYXMuY2hhcmFjdGVyKSAlPiUgCiAgICBhcnJhbmdlKGRhdGVfc2luZ2xlKSAlPiUKICAgIGZpbHRlcigKICAgICAgb2ZmZW5zZV9hZ2FpbnN0ICE9ICJleGNsdWRlZCBjYXNlcyIgCiAgICAgICYgIWlzLm5hKGxvbmdpdHVkZSkgCiAgICAgICYgIWlzLm5hKGxhdGl0dWRlKSAKICAgICAgJiBpbl9jaXR5ID09IFRSVUUKICAgICkgJT4lIAogICAgbXV0YXRlKAogICAgICAjIGFkZCBhIHJvdyBJRAogICAgICB1aWQgPSByb3dfbnVtOihyb3dfbnVtICsgbnJvdyguKSAtIDEpLAogICAgICAjIG1lcmdlIHRoZSBjZW5zdXMgaWRlbnRpZmllcnMKICAgICAgY2Vuc3VzX2Jsb2NrID0gcGFzdGUwKGZpcHNfc3RhdGUsIGZpcHNfY291bnR5LCB0cmFjdCwgYmxvY2spLAogICAgICAjIGNhdGNoIGFuZCByb2JiZXJ5L2J1cmdsYXJ5IG9mZmVuc2VzIGhhdmUgaGF2ZSBub3QgYmVlbiByZWNhdGVnb3Jpc2VkCiAgICAgIG9mZmVuc2VfY29kZSA9IGNhc2Vfd2hlbigKICAgICAgICBvZmZlbnNlX2NvZGUgPT0gIjEyMCIgfiAiMTJVIiwKICAgICAgICBvZmZlbnNlX2NvZGUgPT0gIjIyMCIgfiAiMjJVIiwKICAgICAgICBvZmZlbnNlX2NvZGUgPT0gIjIzVSIgfiAiMjNIIiwKICAgICAgICBUUlVFIH4gb2ZmZW5zZV9jb2RlCiAgICAgICkKICAgICkgJT4lIAogICAgc2VsZWN0KG9uZV9vZihjb21tb25fdmFycyksIGV2ZXJ5dGhpbmcoKSwgLWluX2NpdHksIC1tdWx0aXBsZV9kYXRlcywKICAgICAgICAgICAtZmlwc19zdGF0ZSwgLWZpcHNfY291bnR5LCAtdHJhY3QsIC1ibG9ja19ncm91cCwgLWJsb2NrKSAlPiUgCiAgICBtdXRhdGUoeWVhciA9IHllYXIoZGF0ZV9zaW5nbGUpKQogIAogICMgb3V0cHV0IGRhdGEgYnkgeWVhcgogIGNpdHlfZGF0YSAlPiUgCiAgICBzcGxpdCguJHllYXIpICU+JSAKICAgIHdhbGsoZnVuY3Rpb24gKHgpIHsKCiAgICAgIHRoaXNfeWVhciA8LSB4JHllYXJbMV0KICAgICAgdGhpc19jaXR5IDwtIHN0cl9yZXBsYWNlX2FsbChzdHJfdG9fbG93ZXIoY2l0eSksICJcXHMiLCAiXyIpCgogICAgICB4ICU+JQogICAgICAgIHNlbGVjdCgteWVhcikgJT4lIAogICAgICAgICMgZXhwb3J0IGV4dGVuZGVkIGRhdGEgLSB1c2Ugd3JpdGVfcmRzKCkgcmF0aGVyIHRoYW4gc2F2ZVJEUygpIGJlY2F1c2UKICAgICAgICAjIGl0IHJldHVybnMgdGhlIGlucHV0IGludmlzaWJseSBmb3IgdXNlIGluc2lkZSBhIHBpcGUKICAgICAgICB3cml0ZV9yZHMocGF0aCA9IHBhc3RlMCgiLi4vb3V0cHV0X2RhdGEvY3JpbWVfb3Blbl9kYXRhYmFzZV9leHRlbmRlZF8iLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRoaXNfY2l0eSwgIl8iLCB0aGlzX3llYXIsICIuUmRzIiksCiAgICAgICAgICAgICAgICAgIGNvbXByZXNzID0gImJ6MiIpICU+JQogICAgICAgICMgc2VsZWN0IGNvcmUgdmFyaWFibGVzIGFuZCBleHBvcnQKICAgICAgICBzZWxlY3Qob25lX29mKGNvbW1vbl92YXJzKSkgJT4lCiAgICAgICAgd3JpdGVfcmRzKHBhdGggPSBwYXN0ZTAoIi4uL291dHB1dF9kYXRhL2NyaW1lX29wZW5fZGF0YWJhc2VfY29yZV8iLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRoaXNfY2l0eSwgIl8iLCB0aGlzX3llYXIsICIuUmRzIiksCiAgICAgICAgICAgICAgICAgIGNvbXByZXNzID0gImJ6MiIpICU+JSAKICAgICAgICAjIHRha2UgYSAxJSBzYW1wbGUgYW5kIGV4cG9ydAogICAgICAgIHNhbXBsZV9mcmFjKDAuMDEpICU+JSAKICAgICAgICBhcnJhbmdlKHVpZCkgJT4lIAogICAgICAgIHdyaXRlX3JkcyhwYXRoID0gcGFzdGUwKCIuLi9vdXRwdXRfZGF0YS9jcmltZV9vcGVuX2RhdGFiYXNlX3NhbXBsZV8iLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRoaXNfY2l0eSwgIl8iLCB0aGlzX3llYXIsICIuUmRzIiksCiAgICAgICAgICAgICAgICAgIGNvbXByZXNzID0gImJ6MiIpCgogICAgICBtZXNzYWdlKCJcbldyaXR0ZW4gZGF0YSBmb3IgIiwgY2l0eSwgIiBpbiAiLCB0aGlzX3llYXIpCiAgICAgIAogICAgfSkKICAKICByb3dfbnVtIDwtIHJvd19udW0gKyBucm93KGNpdHlfZGF0YSkKICAKfQoKIyBjbGVhbiB1cApybShjaXR5LCBjaXR5X2RhdGEsIHJvd19udW0pCmBgYAoKCiMjIENoZWNrIHRoYXQgVUlEcyBhcmUgY29uc2VjdXRpdmUgYWNyb3NzIGZpbGVzCgpgYGB7cn0KZGlyKCIuLi9vdXRwdXRfZGF0YS8iLCAKICAgICAgICAgICAgICAgICBwYXR0ZXJuID0gIl5jcmltZV9vcGVuX2RhdGFiYXNlX2NvcmVfKC4rPykuUmRzJCIsIAogICAgICAgICAgICAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgCiAgbWFwX2RmKGZ1bmN0aW9uICh4KSB7CiAgICByZWFkX3Jkcyh4KSAlPiUgCiAgICAgIHN1bW1hcmlzZShjaXR5ID0gZmlyc3QoY2l0eV9uYW1lKSwgeWVhciA9IHllYXIoZmlyc3QoZGF0ZV9zaW5nbGUpKSwgCiAgICAgICAgICAgICAgICB1aWRfbWluID0gbWluKHVpZCksIHVpZF9tYXggPSBtYXgodWlkKSkKICB9KSAlPiUgCiAgbXV0YXRlKHVpZF9vayA9IGlmZWxzZSh1aWRfbWluIC0gMSA9PSBsYWcodWlkX21heCksICJPSyIsICJub3QgT0siKSkgJT4lIAogIGZpbHRlcihjb21wbGV0ZS5jYXNlcyguKSkgJT4lIAogIGdyb3VwX2J5KGNpdHksIHVpZF9vaykgJT4lIAogIHN1bW1hcmlzZShuID0gbigpKSAlPiUgCiAgc3ByZWFkKHVpZF9vaywgbikKYGBgCgoKIyBNZXJnZSBkYXRhIGJ5IHllYXIKClJEUyBmaWxlcyBjYW4gb25seSBiZSB1c2VkIGJ5IFIsIHNvIGd6aXBwZWQgQ1NWIGZpbGVzIGFyZSBhbHNvIG5lZWRlZCBmb3IgdGhvc2UKdXNpbmcgb3RoZXIgc29mdHdhcmUuIFNpbmNlIG1vc3QgcGVvcGxlIHdpbGwgYmUgZG93bmxvYWRpbmcgdGhlc2UgbWFudWFsbHksIHRoZQpkYXRhIGZyb20gYWxsIGNpdGllcyBhcmUgYWdncmVnYXRlZCBpbnRvIG9uZSBmaWxlIHBlciB5ZWFyLgoKYGBge3J9CmZvciAoZmlsZV90eXBlIGluIGMoImNvcmUiLCAiZXh0ZW5kZWQiLCAic2FtcGxlIikpIHsKICAKZGlyKCIuLi9vdXRwdXRfZGF0YSIsIAogICAgcGF0dGVybiA9IHBhc3RlMCgiXmNyaW1lX29wZW5fZGF0YWJhc2VfIiwgZmlsZV90eXBlLCAiXyguKz8pLlJkcyQiKSwgCiAgICBmdWxsLm5hbWVzID0gVFJVRSkgJT4lIAogIHN0cl9leHRyYWN0KCJcXGQrIikgJT4lIAogIHVuaXF1ZSgpICU+JSAKICB3YWxrKGZ1bmN0aW9uICh4KSB7CiAgICAKICAgIGRpcigiLi4vb3V0cHV0X2RhdGEiLCAKICAgICAgICBwYXR0ZXJuID0gcGFzdGUwKCJeY3JpbWVfb3Blbl9kYXRhYmFzZV8iLCBmaWxlX3R5cGUsICJfKC4rPykiLCB4LCAKICAgICAgICAgICAgICAgICAgICAgICAgICIuUmRzJCIpLCAKICAgICAgICBmdWxsLm5hbWVzID0gVFJVRSkgJT4lIAogICAgICBtYXBfZGYocmVhZF9yZHMpICU+JSAKICAgICAgd3JpdGVfcmRzKHBhdGggPSBwYXN0ZTAoIi4uL291dHB1dF9kYXRhL2NyaW1lX29wZW5fZGF0YWJhc2VfIiwgZmlsZV90eXBlLCAKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIl9hbGxfIiwgeCwgIi5SZHMiKSwKICAgICAgICAgICAgICAgIGNvbXByZXNzID0gImJ6MiIpICU+JSAKICAgICAgd3JpdGUuY3N2KAogICAgICAgIGd6ZmlsZShwYXN0ZTAoIi4uL291dHB1dF9kYXRhL2NyaW1lX29wZW5fZGF0YWJhc2VfIiwgZmlsZV90eXBlLCAiXyIsIHgsCiAgICAgICAgICAgICAgICAgICAgICAiLmNzdi5neiIpKSwKICAgICAgICBuYSA9ICIiLCByb3cubmFtZXMgPSBGQUxTRSwgZmlsZUVuY29kaW5nID0gIlVURi04IikKICAgIAogICAgbWVzc2FnZSgiTWVyZ2VkICIsIGZpbGVfdHlwZSwgIiBkYXRhIGZvciAiLCB4LCAiIGludG8gb25lIFJEUyBhbmQgb25lIENTViAiLAogICAgICAgICAgICAiZmlsZSIpCgogIH0pCiAgCn0KCnJtKGZpbGVfdHlwZSkgIApgYGAKCgojIFJlcG9ydCB0eXBpY2FsIGZpbGUgc2l6ZXMKCmBgYHtyfQpjYXQoCiAgIlxuTWVhbiBzaXplIGZvciBjb3JlLWRhdGEgZmlsZXM6IiwgCiAgZGlyKCIuLi9vdXRwdXRfZGF0YSIsIHBhdHRlcm4gPSAiXmNyaW1lX29wZW5fZGF0YWJhc2VfY29yZV8oLis/KS5jc3YuZ3okIiwgCiAgICAgIGZ1bGwubmFtZXMgPSBUUlVFKSAlPiUgCiAgICBmaWxlLnNpemUoKSAlPiUgCiAgICB7IHJvdW5kKG1lYW4oLikgLyAxMF42LCAxKSB9LAogICJNQlxuTWVhbiBzaXplIGZvciBleHRlbmRlZC1kYXRhIGZpbGVzOiIsCiAgZGlyKCIuLi9vdXRwdXRfZGF0YSIsIHBhdHRlcm4gPSAiXmNyaW1lX29wZW5fZGF0YWJhc2VfZXh0ZW5kZWRfKC4rPykuY3N2Lmd6JCIsIAogICAgICBmdWxsLm5hbWVzID0gVFJVRSkgJT4lIAogICAgZmlsZS5zaXplKCkgJT4lIAogICAgeyByb3VuZChtZWFuKC4pIC8gMTBeNiwgMSkgfSwKICAiTUJcbk1lYW4gc2l6ZSBmb3Igc2FtcGxlLWRhdGEgZmlsZXM6IiwKICBkaXIoIi4uL291dHB1dF9kYXRhIiwgcGF0dGVybiA9ICJeY3JpbWVfb3Blbl9kYXRhYmFzZV9zYW1wbGVfKC4rPykuY3N2Lmd6JCIsIAogICAgICBmdWxsLm5hbWVzID0gVFJVRSkgJT4lIAogICAgZmlsZS5zaXplKCkgJT4lIAogICAgeyByb3VuZChtZWFuKC4pIC8gMTBeNiwgMSkgfSwKICAiTUJcbiIKKQpgYGAKCg==</div>
 
 
 

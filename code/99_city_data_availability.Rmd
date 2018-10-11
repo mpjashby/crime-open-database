@@ -34,8 +34,8 @@ only covers calls for service over the past month.
 
 # Phoenix, AZ
 
-Data are only [available from November 2015](https://phoenixopendata.com/dataset/crime-data/resource/0ce3411a-2fc6-4302-a33f-167f68608a20)
-and then only for some types of serious crime.
+Only [Part 1 data from November 2015](https://phoenixopendata.com/dataset/crime-data)
+are available.
 
 
 # Philadelphia
@@ -183,7 +183,7 @@ Data are available and included in CODE.
 
 # Baltimore, MD
 
-No open crime data are available.
+[UCR Part 1 only](https://data.baltimorecity.gov/Public-Safety/BPD-Part-1-Victim-Based-Crime-Data/wsfq-mvij).
 
 
 # Milwaukee, WI
