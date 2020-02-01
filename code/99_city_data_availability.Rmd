@@ -10,7 +10,7 @@ as of June 2018. Cities are listed in descending order of population.
 City data are suitable for including in CODE if at least four years of data
 are available on all crimes.
 
-This list was last updated in February 2019.
+This list was last updated on 31 January 2020.
 
 ```{r}
 library(tidyverse)
