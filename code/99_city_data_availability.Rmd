@@ -28,19 +28,19 @@ tribble(
   "Philadelphia, PA", "problem", "Data are [available from 2006 onwards](https://www.opendataphilly.org/dataset/crime-incidents) and appear to include [a code that can be used to match crime types](http://metadata.phila.gov/#home/datasetdetails/5543868920583086178c4f8e/representationdetails/570e7621c03327dc14f4b68d/). However, there is only a dispatch time and no offence time",
   "San Antonio, TX", "unavailable", "No open crime data are available. There is a [San Antonio PD Open Data Initiative](http://www.sanantonio.gov/SAPD/SAPD-Open-Data-Initiative), but it only relates to officer data (e.g. use of force)",
   "San Diego, CA", "unavailable", "No open crime data are available. [CFS data are available](https://data.sandiego.gov/datasets/police-calls-for-service/), but aren't translatable to crimes",
-  "Dallas, TX", "possible", "Crime data are [available from June 2014 onwards](https://www.dallasopendata.com/Public-Safety/Police-Incidents/tbnj-w5hb) and appear to include categories that could be matched to the CODE categories",
+  "Dallas, TX", "problem", "Crime data are [available from June 2014 onwards](https://www.dallasopendata.com/Public-Safety/Police-Incidents/tbnj-w5hb) but exclude all offenses involving juveniles, either as victim or suspect",
   "San Jose, CA", "unavailable", "No open crime data are available",
-  "Austin, TX", "possible", "Data are [available from 2003 onwards](https://data.austintexas.gov/Public-Safety/Crime-Reports-beta-/fdj4-gpfu)",
+  "Austin, TX", "included", "Data are [available onwards](https://data.austintexas.gov/Public-Safety/Crime-Reports-beta-/fdj4-gpfu) and included in CODE",
   "Jacksonville, FL", "unavailable", "No open crime data are available",
   "San Francisco, CA", "included", "Data are available and included in CODE",
   "Columbus, OH", "unavailable", "No open crime data are available",
   "Fort Worth, TX", "included", "Data are available and included in CODE",
   "Indianapolis, IN", "unavailable", "Data are only available for UCR Part 1 crimes",
   "Charlotte, NC", "unavailable", "No open crime data are available",
-  "Seattle, WA", "problem", "Data [appear to be available](https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f), with some cases excluded, for several years. However, the website suggests these data will be removed in September 2018. Since they are CC0 licensed, they can continue to be used even after they are withdrawn from the Seattle Open Data website. Unfortunately there are substantial jumps in the number of crimes of many types between years, suggesting some unknown and changing factor influencing the number of crimes",
+  "Seattle, WA", "problem", "Data [appear to be available](https://data.seattle.gov/Public-Safety/Seattle-Police-Department-Police-Report-Incident/7ais-f98f) but don't have any spatial information",
   "Denver, CO", "problem", "Data are [available for the previous five years](https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-crime). However, 'crimes which by their nature involve juveniles, or which the reports indicate involve juveniles as victims, suspects, or witnesses, are not reported at all.'",
   "Washington, DC", "unavailable", "UCR Part 1 only",
-  "Boston, MA", "possible", "Data are [available from August 2015 onwards](https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system/resource/12cb3883-56f5-47de-afa5-3b1cf61b257b) with fields that could be used to create CODE categories. A previous dataset is available back to 2012, but there is a problem in that a higher proportion of offenses have missing locations in the first six months of 2015, so the data can't be used to produce a continuous time series.",
+  "Boston, MA", "included", "Data are [available](https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system/resource/12cb3883-56f5-47de-afa5-3b1cf61b257b) and included in CODE",
   "El Paso, TX", "unavailable", "No open crime data are available",
   "Detroit, MI", "included", "Data are available and included in CODE",
   "Nashville, TN", "unavailable", "Data [available](https://data.nashville.gov/Police/Metro-Nashville-Police-Department-Incident-Data-20/we5n-wkcf) with NIBRS codes but only from 2018 onwards",
@@ -55,12 +55,12 @@ tribble(
   "Tucson, AZ", "included", "Data are available and included in CODE",
   "Fresno, CA", "unavailable", "Data are [available](https://moto.data.socrata.com/dataset/Fresno-Police-Department/c943-w8up) but there are no categories that can be used to create NIBRS categories",
   "Sacramento, CA", "problem", "Open [data are available](http://data.cityofsacramento.org/datasets?page=2&sort=name&t=Public%20Safety), but only for the most-recent two years and without addresses or co-ordinates",
-  "Mesa, AZ", "possible", "Data are [available from 2016 onwards](https://data.mesaaz.gov/Public-Safety/Police-Incidents/39rt-2rfj) but without time of day",
+  "Mesa, AZ", "included", "Data are [available](https://data.mesaaz.gov/Public-Safety/Police-Incidents/39rt-2rfj) and included in CODE",
   "Kansas City, MO", "included", "Data are available and included in CODE",
   "Atlanta, GA", "unavailable", "Only UCR Part 1 data are available",
   "Long Beach, CA", "unavailable", "No open crime data are available",
   "Omaha, NE", "unavailable", "No open crime data are available",
-  "Raleigh, NC", "problem", "Data are available [from 2005 to May 2014](http://data-ral.opendata.arcgis.com/datasets/raleigh-police-incidents-srs?geometry=-78.67%2C35.78%2C-78.616%2C35.792) and [from June 2014 onwards](http://data-ral.opendata.arcgis.com/datasets/24c0b37fa9bb4e16ba8bcaa7e806c615_0). The former dataset has categories that can be converted to CODE categories and the later has NIBRS codes. However, the data are released under [a non-open license](http://data-ral.opendata.arcgis.com/datasets/24c0b37fa9bb4e16ba8bcaa7e806c615_0)",
+  "Raleigh, NC", "problem", "Data are available [from 2005 to May 2014](http://data-ral.opendata.arcgis.com/datasets/raleigh-police-incidents-srs?geometry=-78.67%2C35.78%2C-78.616%2C35.792) and [from June 2014 onwards](http://data-ral.opendata.arcgis.com/datasets/24c0b37fa9bb4e16ba8bcaa7e806c615_0) but there is no offense-date/time column, only reported date/time",
   "Colorado Springs, CO", "unavailable", "No open crime data are available",
   "Miami, FL", "unavailable", "No open crime data are available",
   "Virginia Beach, VA", "included", "Data are available and included in CODE",
@@ -74,7 +74,7 @@ tribble(
   mutate(Num = row_number()) %>% 
   select(Num, City, Status, Availability) %>% 
   arrange(City) %>% 
-  filter(Status == "possible") %>% 
+  filter(Status != "included") %>% 
   knitr::kable()
 ```
 
