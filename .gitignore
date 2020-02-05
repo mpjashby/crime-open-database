@@ -38,7 +38,7 @@ rsconnect/
 
 # Original data
 /original_data/
-/spatial_data/
+/spatial_data/cities/
 
 # Temporary data files
 /temp_data/
@@ -50,3 +50,6 @@ rsconnect/
 
 # Parsed R Notebook html files
 *.nb.html
+
+# API keys
+code/api_keys.R

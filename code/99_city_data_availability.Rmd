@@ -10,7 +10,7 @@ as of June 2018. Cities are listed in descending order of population.
 City data are suitable for including in CODE if at least four years of data
 are available on all crimes.
 
-This list was last updated in February 2019.
+This list was last updated on 31 January 2020.
 
 ```{r}
 library(tidyverse)
@@ -28,9 +28,9 @@ tribble(
   "Philadelphia, PA", "problem", "Data are [available from 2006 onwards](https://www.opendataphilly.org/dataset/crime-incidents) and appear to include [a code that can be used to match crime types](http://metadata.phila.gov/#home/datasetdetails/5543868920583086178c4f8e/representationdetails/570e7621c03327dc14f4b68d/). However, there is only a dispatch time and no offence time",
   "San Antonio, TX", "unavailable", "No open crime data are available. There is a [San Antonio PD Open Data Initiative](http://www.sanantonio.gov/SAPD/SAPD-Open-Data-Initiative), but it only relates to officer data (e.g. use of force)",
   "San Diego, CA", "unavailable", "No open crime data are available. [CFS data are available](https://data.sandiego.gov/datasets/police-calls-for-service/), but aren't translatable to crimes",
-  "Dallas, TX", "problem", "Crime data are [available from June 2014 onwards](https://www.dallasopendata.com/Public-Safety/Police-Incidents/tbnj-w5hb) but exclude all offenses involving juveniles, either as victim or suspect",
-  "San Jose, CA", "unavailable", "No open crime data are available",
-  "Austin, TX", "included", "Data are [available onwards](https://data.austintexas.gov/Public-Safety/Crime-Reports-beta-/fdj4-gpfu) and included in CODE",
+  "Dallas, TX", "unavailable", "Crime data are [available from June 2014 onwards](https://www.dallasopendata.com/Public-Safety/Police-Incidents/tbnj-w5hb) and appear to include categories that could be matched to the CODE categories but exclude all incidents involving juveniles",
+  "San Jose, CA", "unavailable", "No open crime data are available (calls for service are available)",
+  "Austin, TX", "included", "Data are available and included in CODE",
   "Jacksonville, FL", "unavailable", "No open crime data are available",
   "San Francisco, CA", "included", "Data are available and included in CODE",
   "Columbus, OH", "unavailable", "No open crime data are available",
@@ -43,9 +43,9 @@ tribble(
   "Boston, MA", "included", "Data are [available](https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system/resource/12cb3883-56f5-47de-afa5-3b1cf61b257b) and included in CODE",
   "El Paso, TX", "unavailable", "No open crime data are available",
   "Detroit, MI", "included", "Data are available and included in CODE",
-  "Nashville, TN", "unavailable", "Data [available](https://data.nashville.gov/Police/Metro-Nashville-Police-Department-Incident-Data-20/we5n-wkcf) with NIBRS codes but only from 2018 onwards",
-  "Memphis, TN", "unavailable", "No open crime data are available",
-  "Portland, OR", "problem", "Data are [available back to at least 2015](https://www.portlandoregon.gov/police/71978) but are *slightly* difficult to download due to being run on Tableau Public. A substantial minority of cases have neither co-ordinates nor addresses.",
+  "Nashville, TN", "possible", "Data [appear to be available in annual files](https://data.nashville.gov/Police/Metro-Nashville-Police-Department-Incidents-2013-/hsz5-g34u) with NIBRS codes from 2013 onwards",
+  "Memphis, TN", "possible", "Data appear to be [available from 2006 onwards](https://memphisinternal.data.socrata.com/Public-Safety/Memphis-Police-Department-Public-Safety-Incidents/ybsi-jur4) but will require manual categorisation and geocoding",
+  "Portland, OR", "problem", "Data are [available back to at least 2015](https://www.portlandoregon.gov/police/71978) but are *slightly* difficult to download due to being run on Tableau Public. A substantial minority of cases have neither co-ordinates nor addresses. **This should be investigated further**.",
   "Oklahoma City, OK", "unavailable", "No open crime data are available",
   "Las Vegas, NV", "unavailable", "[UCR Part 1](https://opendata.lasvegasnevada.gov/API-Integration-/Las-Vegas-Metropolitan-Police-calls-for-service/mapc-ixca) only",
   "Louisville, KY", "included", "Data are available and included in CODE",
@@ -53,7 +53,7 @@ tribble(
   "Milwaukee, WI", "unavailable", "Data are [available from 2005 onwards](https://data.milwaukee.gov/dataset/wibr/resource/87843297-a6fa-46d4-ba5d-cb342fb2d3bb) but only for UCR Part 1 crimes",
   "Albuquerque, NM", "unavailable", "Data are [available](https://www.cabq.gov/abq-data) but only for rolling 180 days.",
   "Tucson, AZ", "included", "Data are available and included in CODE",
-  "Fresno, CA", "unavailable", "Data are [available](https://moto.data.socrata.com/dataset/Fresno-Police-Department/c943-w8up) but there are no categories that can be used to create NIBRS categories",
+  "Fresno, CA", "unavailable", "No open crime data are available",
   "Sacramento, CA", "problem", "Open [data are available](http://data.cityofsacramento.org/datasets?page=2&sort=name&t=Public%20Safety), but only for the most-recent two years and without addresses or co-ordinates",
   "Mesa, AZ", "included", "Data are [available](https://data.mesaaz.gov/Public-Safety/Police-Incidents/39rt-2rfj) and included in CODE",
   "Kansas City, MO", "included", "Data are available and included in CODE",
@@ -66,7 +66,7 @@ tribble(
   "Virginia Beach, VA", "included", "Data are available and included in CODE",
   "Oakland, CA", "problem", "Data are [available but only for 2012, 2013 and 2015](https://data.oaklandnet.com/browse?category=Public+Safety&limitTo=datasets&sortBy=alpha&utf8=✓&page=2)",
   "Minneapolis, MN", "unavailable", "Data are [available from 2010 onwards](http://opendata.minneapolismn.gov/datasets?page=2&sort=name&t=public%20safety), but may refer only to UCR Part 1 crimes",
-  "Tulsa, OK", "problem", "Data are [available, but only from 2010 to 2014](https://www.cityoftulsa.org/government/departments/information-technology/open-tulsa/open-tulsa-dataset-list/) and are in Shapefile format so haven't been checked",
+  "Tulsa, OK", "problem", "Data are [available, but for the rolling previous two years](http://gis-cityoftulsa.opendata.arcgis.com/search?tags=Public%20Safety)",
   "Arlington, TX", "unavailable", "No open crime data are available, but the open data portal says that a 'Public Safety' section is under construction",
   "New Orleans, LA", "problem", "Data are available but some records a duplicated many times, and the staff at the open data portal didn't know why",
   "Wichita, KS", "unavailable", "Data are [available, but only for the most recent 90 days](http://opendata.wichita.gov/datasets/wichita-crime-incidents/data)"
