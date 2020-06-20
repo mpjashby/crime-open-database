@@ -1,4 +1,4 @@
-STATUTDESC,NIBRS_Offense_Code,NIBRS_Offense_Type,NIBRS_Offense_Category,NIBRS_Crime_Against
+statutdesc,NIBRS_Offense_Code,NIBRS_Offense_Type,NIBRS_Offense_Category,NIBRS_Crime_Against
 HOMICIDE/MURDER,09A,09A Murder and Nonnegligent Manslaughter,Homicide Offenses,Crimes against person
 HOMICIDE/MANSLAUGHTER,09B,09B Negligent Manslaughter,Homicide Offenses,Crimes against person
 SEXUAL ASSAULT/FORCIBLE RAPE,11A,11A Rape (except Statutory Rape),Sex Offenses,Crimes against person
@@ -297,3 +297,6 @@ LARCENY/AUTO PARTS & ACCESSORIES,23G,23G Theft of Motor Vehicle Parts or Accesso
 LIQUOR LAWS/FURNISHING LIQUOR TO MINOR,90G,90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),Liquor Law Violations (except Driving Under the Influence and Drunkenness),Crimes against society
 LOST/PROPERTY,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases
 OTHER OFFENSES/OTHER MISDEMEANORS DV,90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+"AGG SOLICIT - OBSTRUCT SAFE/FREE PASS, CAUSE EVASIVE ACTI ON",90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+GAMBLING/LOTTERY VIOLATIONS,39A,39A Betting/Wagering,Gambling Offenses,Crimes against society
+TRAFFIC ACCIDENT/FATAL/HIT-AND-RUN/OTHER,99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases

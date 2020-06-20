@@ -1,4 +1,4 @@
-PREMISE_TYPE,location_type,location_category
+premise_type,location_type,location_category
 CONSTRUCTION SITE,construction,commercial
 INDUSTRIAL SITE,factory/warehouse,commercial
 BANK / SAVINGS & LOAN,finance,commercial

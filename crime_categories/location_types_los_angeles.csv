@@ -1,4 +1,4 @@
-Premise Description,location_type,location_category
+premise_description,location_type,location_category
 CONSTRUCTION SITE,construction,commercial
 CHEMICAL STORAGE/MANUFACTURING PLANT,factory/warehouse,commercial
 FACTORY,factory/warehouse,commercial

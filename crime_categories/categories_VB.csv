@@ -1,4 +1,4 @@
-NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type,Offense Code
+NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type,offense_code
 09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,09A
 09B,Crimes against person,Homicide Offenses,09B Negligent Manslaughter,09B1
 09B,Crimes against person,Homicide Offenses,09B Negligent Manslaughter,09B2

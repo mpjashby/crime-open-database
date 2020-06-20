@@ -1,0 +1,48 @@
+﻿location_type_raw,location_type,location_category
+ABANDONED/CONDEMNED STRUCTURE,abandoned,other
+AMUSEMENT PARK,entertainment,leisure
+ARENA / STADIUM / FAIRGROUNDS / COLISEUM,entertainment,leisure
+ATM SEPARATE FROM BANK,finance,commercial
+AUTO DEALERSHIP NEW / USED,auto dealer,retail
+BANKS / SAVINGS & LOAN,finance,commercial
+BAR / NIGHT CLUB,bar/club,leisure
+CAMP / CAMPGROUND,green space,open space
+CHURCH / SYNAGOGUE / TEMPLE / MOSQUE,religious,other
+COMMERCIAL / OFFICE BUILDING,office,commercial
+COMMUNITY CENTER,other,other
+CONSTRUCTION SITE,construction,commercial
+CONVENIENCE STORE,convenience store,retail
+DAYCARE FACILITY,child care,education
+DEPARTMENT / DISCOUNT STORE,other retail,retail
+DOCK / WHARF / FREIGHT / MODAL TERMINAL,storage,commercial
+DRUG STORE / DR. OFFICE / HOSPITAL,healthcare,healthcare
+FARM FACILITY,green space,open space
+FIELD / WOODS,green space,open space
+GAMBLING FACILITY / CASINO / RACE TRACK,entertainment,leisure
+GAS / SERVICE STATIONS,gas station,retail
+GOVERNMENT / PUBLIC BUILDING,government,government
+GROCERY / SUPERMARKET,supermarket,retail
+HOTEL / MOTEL / ETC.,hotel,hotel
+INDUSTRIAL SITE,factory/warehouse,commercial
+JAIL / PRISON,government,government
+LAKE / WATERWAY,green space,open space
+LIQUOR STORE,convenience store,retail
+MILITARY INSTALLATION,government,government
+OTHER / UNKNOWN,other,other
+PARK / PLAYGROUND,green space,open space
+PARKING LOTS / GARAGE,vehicle parking,open space
+RENTAL STORAGE FACILITY,storage,commercial
+RESIDENCE / HOME,residence,residence
+REST AREA,other transportation,transportation
+RESTAURANTS,restaurant,leisure
+SCHOOL - COLLEGE / UNIVERSITY,college,education
+SCHOOL - ELEMENTARY / SECONDARY,school,education
+SCHOOLS / COLLEGES,school,education
+SHELTER-MISSION / HOMELESS,healthcare,healthcare
+SHOPPING MALL,mall,retail
+SPECIALTY STORE (TV FUR ETC.),other retail,retail
+SPECIALTY  STORE (TV  FUR ETC.),other retail,retail
+STREETS / HWY / ROAD / ALLEY,street,street
+TRANSPORTATION (AIR / BUS / TRAIN - TERMINALS),other transportation,transportation
+TRIBAL LANDS,other,other
+,,

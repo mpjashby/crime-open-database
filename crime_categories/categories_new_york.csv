@@ -1,4 +1,4 @@
-NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type,OFNS_DESC,PD_DESC
+NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type,ofns_desc,pd_desc
 09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,MURDER & NON-NEGL. MANSLAUGHTER,
 09B,Crimes against person,Homicide Offenses,09B Negligent Manslaughter,"HOMICIDE-NEGLIGENT,UNCLASSIFIE","HOMICIDE,NEGLIGENT,UNCLASSIFIE"
 100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,KIDNAPPING,LURING A CHILD
@@ -472,3 +472,5 @@ NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type
 13A,Crimes against person,Assault Offenses,13A Aggravated Assault,FELONY ASSAULT,ASSAULT SCHOOL SAFETY AGENT
 13A,Crimes against person,Assault Offenses,13A Aggravated Assault,FELONY ASSAULT,ASSAULT TRAFFIC AGENT
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,,"NOISE,UNECESSARY"
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,ADMINISTRATIVE CODE,UNLAWFUL DISCLOSURE OF AN INTIMATE IMAGE
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,DANGEROUS WEAPONS,WEAPONS DISPOSITION OF

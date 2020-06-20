@@ -1,0 +1,71 @@
+nibrs_offense_code,nibrs_offense_type,nibrs_offense_category,nibrs_crime_against
+09A,09A Murder and Nonnegligent Manslaughter,Homicide Offenses,Crimes against person
+09B,09B Negligent Manslaughter,Homicide Offenses,Crimes against person
+100,100 Kidnapping/Abduction,Kidnapping/Abduction,Crimes against person
+11A,11A Rape (except Statutory Rape),Sex Offenses,Crimes against person
+11B,11B Sodomy,Sex Offenses,Crimes against person
+11C,11C Sexual Assault With An Object,Sex Offenses,Crimes against person
+11D,11D Fondling,Sex Offenses,Crimes against person
+11U,11U Sexual Assault by Penetration (including rape),Sex Offenses,Crimes against person
+120,120 Robbery,Robbery,Crimes against property
+12A,12A Personal Robbery,Robbery,Crimes against property
+12B,12B Commercial Robbery,Robbery,Crimes against property
+12U,12U Other Robbery,Robbery,Crimes against property
+13A,13A Aggravated assault,Assault Offenses,Crimes against person
+13B,13B Simple assault,Assault Offenses,Crimes against person
+13C,13C Intimidation,Assault Offenses,Crimes against person
+200,200 Arson,Arson,Crimes against property
+210,210 Extortion/Blackmail,Extortion/Blackmail,Crimes against property
+220,220 Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22A,22A Residential Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22B,22B Non-residential Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+22U,22U Other Burglary/Breaking & Entering,Burglary/Breaking & Entering,Crimes against property
+23A,23A Pocket-picking,Larceny/Theft Offenses,Crimes against property
+23B,23B Purse-snatching,Larceny/Theft Offenses,Crimes against property
+23C,23C Shoplifting,Larceny/Theft Offenses,Crimes against property
+23D,23D Theft From Building,Larceny/Theft Offenses,Crimes against property
+23E,23E Theft From Coin-Operated Machine or Device,Larceny/Theft Offenses,Crimes against property
+23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),Larceny/Theft Offenses,Crimes against property
+23G,23G Theft of Motor Vehicle Parts or Accessories,Larceny/Theft Offenses,Crimes against property
+23H,23H All Other Larceny,Larceny/Theft Offenses,Crimes against property
+23U,23U Other Theft,Larceny/Theft Offenses,Crimes against property
+240,240 Motor Vehicle Theft,Motor Vehicle Theft,Crimes against property
+250,250 Counterfeiting/Forgery,Counterfeiting/Forgery,Crimes against property
+26A,26A False Pretenses/Swindle/Confidence Game,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+26B,26B Credit Card/Automated Teller Machine Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+26C,26C Impersonation,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+26D,26D Welfare Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+26E,26E Wire Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+26U,26U Other Fraud,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),Crimes against property
+270,270 Embezzlement,Embezzlement,Crimes against property
+280,280 Stolen Property Offenses,Stolen Property Offenses,Crimes against property
+290,290 Destruction/Damage/Vandalism of Property (except Arson),Destruction/Damage/Vandalism of Property (except Arson),Crimes against property
+35A,35A Drug/Narcotic Violations,Drug/Narcotic Offenses,Crimes against society
+35B,35B Drug Equipment Violations,Drug/Narcotic Offenses,Crimes against society
+36A,36A Incest,"Sex Offenses, Nonforcible",Crimes against person
+36B,36B Statutory Rape,"Sex Offenses, Nonforcible",Crimes against person
+370,370 Pornography/Obscene Material,Pornography/Obscene Material,Crimes against society
+39A,39A Betting/Wagering,Gambling Offenses,Crimes against society
+39B,39B Operating/Promoting/Assisting Gambling,Gambling Offenses,Crimes against society
+39C,39C Gambling Equipment Violations,Gambling Offenses,Crimes against society
+39D,39D Sports Tampering,Gambling Offenses,Crimes against society
+40A,40A Prostitution,Prostitution Offenses,Crimes against society
+40B,40B Assisting or Promoting Prostitution,Prostitution Offenses,Crimes against society
+40C,40C Purchasing Prostitution,Prostitution Offenses,Crimes against society
+510,510 Bribery,Bribery,Crimes against property
+520,520 Weapon Law Violations,Weapon Law Violations,Crimes against society
+64A,"64A Human Trafficking, Commercial Sex Acts",Human Trafficking,Crimes against person
+64B,"64B Human Trafficking, Involuntary Servitude",Human Trafficking,Crimes against person
+90A,90A Bad Checks (except Counterfeit Checks or Forged Checks),Bad Checks (except Counterfeit Checks or Forged Checks),Crimes against property
+90B,90B Curfew/Loitering/Vagrancy Violations,Curfew/Loitering/Vagrancy Violations,Crimes against society
+90C,90C Disorderly Conduct,Disorderly Conduct,Crimes against society
+90D,90D Driving Under the Influence,Driving Under the Influence,Crimes against society
+90E,90E Drunkenness (except Driving Under the Influence),Drunkenness (except Driving Under the Influence),Crimes against society
+90F,"90F Family Offenses, Nonviolent","Family Offenses, Nonviolent",Crimes against society
+90G,90G Liquor Law Violations (except Driving Under the Influence and Drunkenness),Liquor Law Violations (except Driving Under the Influence and Drunkenness),Crimes against society
+90H,90H Peeping Tom,Peeping Tom,Crimes against society
+90J,90J Trespass of Real Property,Trespass of Real Property,Crimes against society
+90Z,90Z All Other Offenses,All Other Offenses,All Other Offenses
+99X,99X Non-Categorisable Offenses,Excluded cases,Excluded cases
+99Y,99Y Non-Reportable Crimes,Excluded cases,Excluded cases
+99Z,99Z Non-Criminal Matters,Excluded cases,Excluded cases

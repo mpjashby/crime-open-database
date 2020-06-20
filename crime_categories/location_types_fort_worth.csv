@@ -1,47 +1,88 @@
-Location Description,location_type,location_category
-Construction site,construction,commercial
-Industrial Site,factory/warehouse,commercial
+location_description,location_type,location_category
+Abandoned/Condemned Structure,abandoned,other
+"Airplane, bus, train terminal",other transportation,transportation
+Amusement Park,entertainment,leisure
+Arena/Stadium/Fairgrounds/Coliseum,entertainment,leisure
+ATM separate from Bank,finance,commercial
+Auto Dealership New/Used,auto dealer,retail
 "Bank, Savings & Loan",finance,commercial
+"Bar, nightclub",bar/club,leisure
+Camp/Campground,green space,open space
+"Church, synagogue, temple",religious,other
 "Commercial, office building",office,commercial
-Dock/Wharf/Freight/Modal Terminal,other commercial,commercial
-Farm Facility,other commercial,commercial
-Rental storage facility,storage,commercial
+Community Center,other,other
+Construction site,construction,commercial
+Convenience store,convenience store,retail
+Cyberspace,other,other
 Daycare Facility,child care,education
+"Department, discount store",other retail,retail
+Dock/Wharf/Freight/Modal Terminal,other commercial,commercial
+"Drug store, doctors office, hospital",healthcare,healthcare
+Farm Facility,other commercial,commercial
+"Field, woods",green space,open space
+Gambling Facility/Casino/Race Track,entertainment,leisure
+"Government, public building",government,government
+"Grocery, supermarket",supermarket,retail
+"Highway, street, roadway, alley",street,street
+"Hotel, motel, etc",hotel,hotel
+Industrial Site,factory/warehouse,commercial
+"Jail, prison",government,government
+"Lake, waterway",green space,open space
+Liquor store,convenience store,retail
+Military Installation,government,government
+"Other, unknown",other,other
+Park/Playground,green space,open space
+"Parking lot, garage",vehicle parking,open space
+Rental storage facility,storage,commercial
+"Residence, home",residence,residence
+Rest Area,other open space,open space
+Restaurant,restaurant,leisure
 School-College/University,college,education
 School-Elementary/Secondary,school,education
 "School, college",school,education
-"Government, public building",government,government
-"Jail, prison",government,government
-Military Installation,government,government
-"Drug store, doctors office, hospital",healthcare,healthcare
-"Hotel, motel, etc",hotel,hotel
-"Bar, nightclub",bar/club,leisure
-Amusement Park,entertainment,leisure
-Arena/Stadium/Fairgrounds/Coliseum,entertainment,leisure
-Gambling Facility/Casino/Race Track,entertainment,leisure
-Restaurant,restaurant,leisure
-Rest Area,other open space,open space
-Camp/Campground,green space,open space
-"Field, woods",green space,open space
-"Lake, waterway",green space,open space
-Park/Playground,green space,open space
-"Parking lot, garage",vehicle parking,open space
-Tribal Lands,other open space,open space
-Cyberspace,other,other
-"Other, unknown",other,other
-"Residence, home",residence,residence
-Shelter-Mission/Homeless,residence,residence
 "Service, gas station",gas station,retail
+Shelter-Mission/Homeless,residence,residence
 Shopping Mall,mall,retail
-Auto Dealership New/Used,auto dealer,retail
-Convenience store,convenience store,retail
-"Department, discount store",other retail,retail
-"Grocery, supermarket",supermarket,retail
-Liquor store,convenience store,retail
 Speciality store,other retail,retail
-"Highway, street, roadway, alley",street,street
-"Airplane, bus, train terminal",other transportation,transportation
-Abandoned/Condemned Structure,abandoned,other
-ATM separate from Bank,finance,commercial
-"Church, synagogue, temple",religious,other
-Community Center,other,other
+Tribal Lands,other open space,open space
+01 AIR/BUS/TRAIN TERMINAL,other transportation,transportation
+02 BANK/SAVINGS AND LOAN,finance,commercial
+03 BAR/NIGHT CLUB,bar/club,leisure
+04 CHURCH/SYNAGOGUE/TEMPLE,religious,other
+05 COMMERCIAL/OFFICE BUILDING,office,commercial
+06 CONSTRUCTION SITE,construction,commercial
+07 CONVENIENCE STORE,convenience store,retail
+08 DEPARTMENT/DISCOUNT STORE,other retail,retail
+09 DRUG STORE/DOCTOR'S OFFICE/HOSPITAL,healthcare,healthcare
+10 FIELD/WOODS,green space,open space
+11 GOVERNMENT/PUBLIC BUILDING,government,government
+12 GROCERY/SUPERMARKET,supermarket,retail
+13 HIGHWAY/ROAD/ALLEY,street,street
+14 HOTEL/MOTEL/ETC.,hotel,hotel
+15 JAIL/PRISON,government,government
+17 LIQUOR STORE,convenience store,retail
+18 PARKING LOT/GARAGE,vehicle parking,open space
+19 RENTAL STORAGE FACILITY,storage,commercial
+20 RESIDENCE/HOME,residence,residence
+21 RESTAURANT,restaurant,leisure
+23 SERVICE/GAS STATION,gas station,retail
+24 SPECIALTY STORE,other retail,retail
+25 OTHER/UNKNOWN,other,other
+37 ABANDONED/CONDEMNED STRUCTURE,abandoned,other
+39 ARENA/STADIUM/FAIRGROUNDS/COLISEUM,entertainment,leisure
+40 ATM SEPARATE FROM BANK,finance,commercial
+41 AUTO DEALERSHIP NEW/USED,auto dealer,retail
+42 CAMP/CAMPGROUND,green space,open space
+44 DAYCARE FACILITY,child care,education
+45 DOCK/WHARF/FREIGHT/MODAL TERMINAL,other commercial,commercial
+46 FARM FACILITY,other commercial,commercial
+47 GAMBLING FACILITY/CASINO/RACE TRACK,entertainment,leisure
+48 INDUSTRIAL SITE,factory/warehouse,commercial
+50 PARK/PLAYGROUND,green space,open space
+52 SCHOOL-COLLEGE/UNIVERSITY,college,education
+53 SCHOOL-ELEMENTARY/SECONDARY,school,education
+54 SHELTER-MISSION/HOMELESS,residence,residence
+55 SHOPPING MALL,mall,retail
+57 COMMUNITY CENTER,other,other
+58 CYBERSPACE,other,other
+INVALID VALUE (DO NOT REMOVE),other,other
