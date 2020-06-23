@@ -1,4 +1,4 @@
-nibrs_offense_code,nibrs_crime_against,nibrs_offense_cactegory,nibrs_offense_type,ofns_desc,pd_desc
+nibrs_offense_code,nibrs_crime_against,nibrs_offense_category,nibrs_offense_type,ofns_desc,pd_desc
 09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,MURDER & NON-NEGL. MANSLAUGHTER,
 09B,Crimes against person,Homicide Offenses,09B Negligent Manslaughter,"HOMICIDE-NEGLIGENT,UNCLASSIFIE","HOMICIDE,NEGLIGENT,UNCLASSIFIE"
 100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,KIDNAPPING,LURING A CHILD
@@ -95,6 +95,7 @@ nibrs_offense_code,nibrs_crime_against,nibrs_offense_cactegory,nibrs_offense_typ
 220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,"BURGLARY,RESIDENCE,UNKNOWN TIM"
 220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,"BURGLARY,TRUCK DAY"
 220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,"BURGLARY,TRUCK NIGHT"
+220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,"BURGLARY, TRUCK UNKNOWN TIME"
 220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,"BURGLARY,UNCLASSIFIED,DAY"
 220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,"BURGLARY,UNCLASSIFIED,NIGHT"
 220,Crimes against property,Burglary/Breaking & Entering,220 Burglary/Breaking & Entering,BURGLARY,"BURGLARY,UNCLASSIFIED,UNKNOWN"
@@ -117,6 +118,10 @@ nibrs_offense_code,nibrs_crime_against,nibrs_offense_cactegory,nibrs_offense_typ
 23D,Crimes against property,Larceny/Theft Offenses,23D Theft From Building,GRAND LARCENY,"LARCENY,GRAND FROM RESIDENCE, UNATTENDED"
 23D,Crimes against property,Larceny/Theft Offenses,23D Theft From Building,GRAND LARCENY,"LARCENY,GRAND FROM RETAIL STORE, UNATTENDED"
 23D,Crimes against property,Larceny/Theft Offenses,23D Theft From Building,PETIT LARCENY,"LARCENY,PETIT FROM BUILDING,UN"
+23D,Crimes against property,Larceny/Theft Offenses,23D Theft From Building,GRAND LARCENY,"LARCENY,GRAND FROM RESIDENCE/BUILDING,UNATTENDED, PACKAGE THEFT INSIDE"
+23D,Crimes against property,Larceny/Theft Offenses,23D Theft From Building,GRAND LARCENY,"LARCENY,GRAND FROM RESIDENCE/BUILDING,UNATTENDED, PACKAGE THEFT OUTSIDE"
+23D,Crimes against property,Larceny/Theft Offenses,23D Theft From Building,PETIT LARCENY,"LARCENY,PETIT FROM BUILDING,UNATTENDED, PACKAGE THEFT INSIDE"
+23D,Crimes against property,Larceny/Theft Offenses,23D Theft From Building,PETIT LARCENY,"LARCENY,PETIT FROM BUILDING,UNATTENDED, PACKAGE THEFT OUTSIDE"
 23E,Crimes against property,Larceny/Theft Offenses,23E Theft From Coin-Operated Machine or Device,GRAND LARCENY,"LARCENY,GRAND FROM COIN MACHIN"
 23E,Crimes against property,Larceny/Theft Offenses,23E Theft From Coin-Operated Machine or Device,GRAND LARCENY,"LARCENY,GRAND FROM PARKING MET"
 23E,Crimes against property,Larceny/Theft Offenses,23E Theft From Coin-Operated Machine or Device,PETIT LARCENY,"LARCENY,PETIT FROM COIN MACHIN"
@@ -257,6 +262,7 @@ nibrs_offense_code,nibrs_crime_against,nibrs_offense_cactegory,nibrs_offense_typ
 35B,Crimes against society,Drug/Narcotic Offenses,35B Drug Equipment Violations,DANGEROUS DRUGS,POSS METH MANUFACT MATERIAL
 35B,Crimes against society,Drug/Narcotic Offenses,35B Drug Equipment Violations,DANGEROUS DRUGS,POSSESSION HYPODERMIC INSTRUME
 36A,Crimes against person,"Sex Offenses, Nonforcible",36A Incest,SEX CRIMES,INCEST
+36A,Crimes against person,"Sex Offenses, Nonforcible",36A Incest,SEX CRIMES,INCEST 3
 370,Crimes against society,Pornography/Obscene Material,370 Pornography/Obscene Material,,MATERIAL              OFFENSIV
 370,Crimes against society,Pornography/Obscene Material,370 Pornography/Obscene Material,,OBSCENITY 1
 370,Crimes against society,Pornography/Obscene Material,370 Pornography/Obscene Material,OFF. AGNST PUB ORD SENSBLTY &,MATERIAL              OFFENSIV
@@ -463,6 +469,7 @@ nibrs_offense_code,nibrs_crime_against,nibrs_offense_cactegory,nibrs_offense_typ
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX CRIMES,SEX CRIMES
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,SEX CRIMES,"SEXUAL MISCONDUCT,DEVIATE"
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,UNDER THE INFLUENCE OF DRUGS,UNDER THE INFLUENCE OF DRUGS
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,FELONY SEX CRIMES,STALKING COMMIT SEX OFFENSE
 99Y,Excluded cases,Excluded cases,99Y Non-Reportable Crimes,OTHER TRAFFIC INFRACTION,"TRAFFIC,UNCLASSIFIED INFRACTIO"
 99Y,Excluded cases,Excluded cases,99Y Non-Reportable Crimes,VEHICLE AND TRAFFIC LAWS,LEAVING SCENE-ACCIDENT-PERSONA
 99Y,Excluded cases,Excluded cases,99Y Non-Reportable Crimes,VEHICLE AND TRAFFIC LAWS,RECKLESS DRIVING
