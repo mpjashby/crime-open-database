@@ -276,9 +276,8 @@ read_crime_data("chicago") %>%
   # filter by year
   filter_by_year(yearFirst, yearLast) %>% 
   # add crime categories
-  join_nibrs_cats("../crime_categories/categories_chicago.csv",
-                  by = c("primary_type" = "Primary Type", 
-                         "description" = "Description")) %>% 
+  join_nibrs_cats("crime_categories/categories_chicago.csv",
+                  by = c("primary_type", "description")) %>% 
   # separate burglaries and robberies into sub-categories
   mutate(nibrs_offense_type = case_when(
     # residential burglary
@@ -359,12 +358,16 @@ read_crime_data("chicago") %>%
 
 # save data from website
 download_crime_data(
+  "https://opendata.arcgis.com/datasets/0825badfe6304620a998d162be0e135e_0.csv",
+  "detroit"
+)
+download_crime_data(
   "https://data.detroitmi.gov/api/views/invm-th67/rows.csv?accessType=DOWNLOAD", 
-  "detroit_early.csv"
+  "detroit_early"
 )
 download_crime_data(
   "https://data.detroitmi.gov/api/views/6gdg-y3kf/rows.csv?accessType=DOWNLOAD", 
-  "detroit_late.csv"
+  "detroit_late"
 )
 
 # process data
@@ -655,7 +658,7 @@ here::here("original_data") %>%
 
 # save data from website
 download_crime_data(
-  "https://data.lacity.org/api/views/y8tr-7khq/rows.csv?accessType=DOWNLOAD", 
+  "https://data.lacity.org/api/views/63jg-8b9z/rows.csv?accessType=DOWNLOAD", 
   "los_angeles"
 )
 
@@ -664,47 +667,36 @@ read_crime_data(
   "los_angeles",
   col_types = cols(
     .default = col_character(),
-    `Crime Code` = col_integer(),
-    `Victim Age` = col_integer(),
-    `Premise Code` = col_integer(),
-    `Weapon Used Code` = col_integer(),
-    `Crime Code 1` = col_integer(),
-    `Crime Code 2` = col_integer(),
-    `Crime Code 3` = col_integer(),
-    `Crime Code 4` = col_integer()
+    `Crm Cd` = col_integer(),
+    `Vict Age` = col_integer(),
+    `Premis Cd` = col_integer(),
+    `Weapon Used Cd` = col_integer(),
+    `Crm Cd 1` = col_integer(),
+    `Crm Cd 2` = col_integer(),
+    `Crm Cd 3` = col_integer(),
+    `Crm Cd 4` = col_integer()
   )
 ) %>% 
   # convert from wide to long
-  # This code converts the four crime-code fields into wide format while 
-  # duplicating all the other columns across each new row. The `gather` function 
-  # requires that all variables to be left alone be specified, so a `setdiff` 
-  # function is used to return all the variables that are not one of the 
-  # crime-code fields.
-  gather(
-    which_crime, 
-    crime_type, 
-    crime_code_1, 
-    crime_code_2, 
-    crime_code_3, 
-    crime_code_4, 
-    -one_of(setdiff(
-      names(.), 
-      c('crime_code_1', 'crime_code_2', 'crime_code_3', 'crime_code_4')
-    )), 
-    na.rm = TRUE
+  pivot_longer(
+    c("crm_cd_1", "crm_cd_2", "crm_cd_3", "crm_cd_4"), 
+    names_to = "crime_code_ord", 
+    names_prefix = "crm_cd_", 
+    values_to = "crime_code", 
+    values_drop_na = TRUE
   ) %>% 
-  mutate(
-    address = str_replace_all(address, "\\s+?", " "),
-    location = str_replace(location, "\\((.+?)\\)", "\\1"),
-    date_occurred = paste(date_occurred, time_occurred)
+  # add crime descriptions to each record
+  left_join(
+    read_csv(here::here("crime_categories/local_categories_los_angeles.csv")),
+    by = c("crime_code" = "crm_cd")
   ) %>% 
-  separate(location, c("latitude", "longitude"), ", ") %>% 
-  mutate_at(vars(c("latitude", "longitude")), as.double) %>% 
-  # add date var
-  add_date_var("date_occurred", "mdY R", "America/Los_Angeles") %>% 
+  # add date
+  mutate(date_occurred = paste(str_sub(date_occ, end = 10), time_occ)) %>%
+  add_date_var("date_occurred", "mdY R", "America/Los_Angeles") %>%
   # filter by year
-  filter_by_year(yearFirst, yearLast) %>% 
+  filter_by_year(yearFirst, yearLast) %>%
   # categorize crimes
+  rename(mo_codes = mocodes, premise_description = premis_desc) %>% 
   mutate(
     # convert empty `MO Codes` fields from NA to an empty string, which makes it 
     # easier to search that field later
@@ -995,7 +987,7 @@ read_crime_data(
                                     'VIOLATION OF COURT ORDER', 'VIOLATION OF RESTRAINING ORDER', 
                                     'VIOLATION OF TEMPORARY RESTRAINING ORDER', 'LETTERS, LEWD', 
                                     'OTHER MISCELLANEOUS CRIME') ~ '90Z All Other Offenses',
-      is.na(crime_code_description) ~ "90Z All Other Offenses",
+      # is.na(crime_code_description) ~ "90Z All Other Offenses",
       
       # Not-categorisable offences
       # Where it is clear that not all the offences that should be present are 
@@ -1007,27 +999,16 @@ read_crime_data(
       
       # Non-reportable crimes
       crime_code_description %in% c('FAILURE TO YIELD', 'RECKLESS DRIVING') ~
-        '99Y Non-Reportable Crimes'
+        '99Y Non-Reportable Crimes',
+      
+      # everything else
+      TRUE ~ "99X Non-Categorisable Offenses"
       
     )
   ) %>% 
-  left_join(nibrs_categories, by = "nibrs_offense_type") %>%
-  check_nibrs_cats(
-    file = "crime_categories/categories_LA",
-    by = "crime_code_description",
-    city_tag = "los_angeles"
-  ) %>% 
-  # where necessary, update the NIBRS code to match the new type
-  mutate(nibrs_offense_code = case_when(
-    nibrs_offense_type == "22A Residential Burglary/Breaking & Entering" ~ 
-      "22A",
-    nibrs_offense_type == "22B Non-residential Burglary/Breaking & Entering" ~
-      "22B",
-    nibrs_offense_type == "12A Personal Robbery" ~ "12A",
-    nibrs_offense_type == "12B Commercial Robbery" ~ "12B",
-    nibrs_offense_type == "12U Other Robbery" ~ "12U",
-    TRUE ~ nibrs_offense_code
-  )) %>%
+  mutate(nibrs_offense_code = str_sub(nibrs_offense_type, end = 3)) %>% 
+  select(-nibrs_offense_type) %>% 
+  join_nibrs_cats() %>% 
   # identify location types
   join_location_types(
     file = "crime_categories/location_types_los_angeles.csv",
@@ -1064,13 +1045,14 @@ tribble(
   "2015", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2015.csv",
   "2016", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2016_39.csv",
   "2017", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2017_9.csv",
-  "2018", "http://lky-open-data.s3.amazonaws.com/LMPD/Crime_Data_2018.csv"
+  "2018", "http://lky-open-data.s3.amazonaws.com/LMPD/Crime_Data_2018.csv",
+  "2019", "https://data.louisvilleky.gov/sites/default/files/27091/Crime_Data_2019.csv"
 ) %>% 
   mutate(year = str_glue("louisville_{year}")) %>% 
-  pmap(~ download_crime_data(..2, ..1))
+  pwalk(~ download_crime_data(..2, ..1))
 
 # process data
-here::here("original_data") %>% 
+lv_data <- here::here("original_data") %>% 
   dir(pattern = "^raw_louisville_", full.names = TRUE) %>% 
   map_dfr(
     read_crime_data, 
@@ -1084,6 +1066,10 @@ here::here("original_data") %>%
   # filter by year
   filter_by_year(yearFirst, yearLast) %>% 
   # categorize crimes
+  # in 2019, some crimes that could previously be matched by checking that 
+  # nibrs_code == "999" and then testing the value of uor_desc failed to match
+  # because nibrs_code == "000", so we change this first
+  mutate(nibrs_code = recode(nibrs_code, "000" = "999")) %>% 
   mutate(nibrs_offense_type = case_when(
     
     # homicide
@@ -1094,21 +1080,29 @@ here::here("original_data") %>%
       "09B Negligent Manslaughter",
     
     # kidnapping
-    nibrs_code == "999" & uor_desc %in% c("UNLAWFUL IMPRISONMENT-1ST DEGREE",
-                                          "UNLAWFUL IMPRISONMENT-2ND DEGREE", 
-                                          "KIDNAPPING-WITH SERIOUS PHYSICAL INJURY") ~ "100 Kidnapping/Abduction",
+    nibrs_code == "999" & uor_desc %in% c(
+      "UNLAWFUL IMPRISONMENT-1ST DEGREE", "UNLAWFUL IMPRISONMENT-2ND DEGREE", 
+      "KIDNAPPING-WITH SERIOUS PHYSICAL INJURY", "KIDNAPPING-MINOR") ~ 
+      "100 Kidnapping/Abduction",
     
     # sex offences
     # it seems to be safe to search on the word 'rape', since there aren't any
     # crimes coded as 999 and described as statutory rape
     nibrs_code == "999" & str_detect(uor_desc, "\\bRAPE\\b") == TRUE ~ 
       "11A Rape (except Statutory Rape)",
-    nibrs_code == "999" & uor_desc %in% c("SODOMY - 1ST DEGREE",
-                                          "SODOMY - 1ST DEGREE - DOMESTIC VIOLENCE", 
-                                          "SODOMY - 1ST DEGREE - VICTIM U/12 YEARS OF AGE") ~ "11B Sodomy",
-    nibrs_code == "999" & uor_desc %in% c("SEXUAL ABUSE - 1ST DEGREE",
-                                          "SEXUAL ABUSE - 1ST DEGREE- VICTIM U/12 YOA", 
-                                          "SEXUAL ABUSE - 3RD DEGREE") ~ "11D Fondling",
+    nibrs_code == "999" & uor_desc %in% c(
+      "SODOMY - 1ST DEGREE", "SODOMY - 1ST DEGREE - DOMESTIC VIOLENCE", 
+      "SODOMY - 1ST DEGREE - VICTIM U/12 YEARS OF AGE",
+      "SODOMY - 1ST DEGREE - DOMESTIC VIOLENCE -W/SERIOUS PHYSICAL",
+      "SODOMY - 1ST DEGREE W/SERIOUS PHYSICAL INJURY",
+      "SODOMY - 2ND DEGREE", "SODOMY - 2ND DEGREE (MENTALLY INCAPACITATED)",
+      "SODOMY - 3RD DEGREE"
+    ) ~ "11B Sodomy",
+    nibrs_code == "999" & uor_desc %in% c(
+      "SEXUAL ABUSE - 1ST DEGREE", "SEXUAL ABUSE - 1ST DEGREE- VICTIM U/12 YOA", 
+      "SEXUAL ABUSE - 3RD DEGREE", "SEXUAL ABUSE - 2ND DEGREE",
+      "SEXUAL ABUSE-1ST DEGREE"
+    ) ~ "11D Fondling",
     
     # robbery
     (nibrs_code == "120" | str_detect(uor_desc, "\\bROBBERY\\b")) & 
@@ -1144,6 +1138,10 @@ here::here("original_data") %>%
                                           "STALKING-1ST DEGREE", "STALKING-2ND DEGREE") ~
       "13C Intimidation",
     
+    # extortion
+    nibrs_code == "999" & uor_desc == "THEFT BY EXTORTION" ~ 
+      "210 Extortion/Blackmail",
+    
     # burglary
     (nibrs_code == "220" | str_detect(uor_desc, "\\bBURGLARY\\b") == TRUE) & 
       premise_type %in% c("RESIDENCE / HOME", 
@@ -1155,23 +1153,29 @@ here::here("original_data") %>%
     
     # theft
     nibrs_code == "999" & uor_desc %in% c(
-      "THEFT BY UNLAWFUL TAKING/DISP-PURSESNATCHING  FELONY CLASS D") ~ 
+      "THEFT BY UNLAWFUL TAKING/DISP-PURSESNATCHING  FELONY CLASS D",
+      "THEFT BY UNLAWFUL TAKING/DISP-PURSESNATCHING - MISD"
+    ) ~ 
       "23B Purse-snatching",
     nibrs_code == "999" & uor_desc %in% c(
       "THEFT BY UNLAWFUL TAKING/DISP-SHOPLIFTING - FELONY CLASS D",
-      "THEFT BY UNLAWFUL TAKING/DISP-SHOPLIFTING -MISD") ~ "23C Shoplifting",
+      "THEFT BY UNLAWFUL TAKING/DISP-SHOPLIFTING -MISD",
+      "THEFT BY UNLAWFUL TAKING/DISP-SHOPLIFTING - U/ $300"
+    ) ~ "23C Shoplifting",
     nibrs_code == "999" & uor_desc %in% c(
       "THEFT BY UNLAWFUL TAKING/DISP - FROM BUILDING - MISD", 
       "THEFT BY UNLAWFUL TAKING/DISP-FROM BUILDING - $10,000 OR >",
-      "THEFT BY UNLAWFUL TAKING/DISP-FROM BUILDING - FELONY D") ~ "23D Theft From Building",
+      "THEFT BY UNLAWFUL TAKING/DISP-FROM BUILDING - FELONY D"
+    ) ~ "23D Theft From Building",
     nibrs_code == "999" & uor_desc %in% c(
       "THEFT BY UNLAWFUL TAKING/DISP-CONTENTS FROM AUTO - FELONY", 
-      "THEFT BY UNLAWFUL TAKING/DISP-CONTENTS FROM AUTO - MISD") ~ 
-      "23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories)",
+      "THEFT BY UNLAWFUL TAKING/DISP-CONTENTS FROM AUTO - MISD"
+    ) ~ "23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories)",
     nibrs_code == "999" & uor_desc %in% c(
       "THEFT BY UNLAW TAKING/DISP-PARTS FROM VEHICLE $10,000 OR >",
       "THEFT BY UNLAWFUL TAKING/DISP-PARTS FROM VEHICLE - MISD",
-      "THEFT OF MOTOR VEHICLE REGISTRATION PLATE/DECAL") ~ "23G Theft of Motor Vehicle Parts or Accessories",
+      "THEFT OF MOTOR VEHICLE REGISTRATION PLATE/DECAL"
+    ) ~ "23G Theft of Motor Vehicle Parts or Accessories",
     nibrs_code == "999" & uor_desc %in% c(
       "THEFT BY UNLAWFUL TAKING - GASOLINE - 1ST OFFENSE", 
       "THEFT BY UNLAWFUL TAKING - GASOLINE - U/$10,000", 
@@ -1187,8 +1191,11 @@ here::here("original_data") %>%
       "THEFT OF PROP LOST/MISLAID/DELIVERED BY MISTAKE FELONY D", 
       "THEFT OF PROPERTY LOST/MISLAID/DELIVERED BY MISTAKE MISD",
       "THEFT OF SERVICES - FELONY CLASS D", "THEFT OF SERVICES - MISD",
-      "LESSER INCLUDED THEFT", "TBUT OR DISP FIREARM") ~ 
-      "23H All Other Larceny",
+      "LESSER INCLUDED THEFT", "TBUT OR DISP FIREARM",
+      "THEFT BY FAIL TO MAKE REQ DISPOSITION OF PROPERTY", 
+      "THEFT BY UNLAWFUL TAKING/DISP-BICYCLES - MISD",
+      "THEFT OF A LEGEND DRUG 1ST OFFENSE OR VALUE < THAN $300"
+    ) ~ "23H All Other Larceny",
     
     # motor vehicle theft
     nibrs_code == "999" & uor_desc %in% c(
@@ -1220,18 +1227,19 @@ here::here("original_data") %>%
     nibrs_code == "999" & uor_desc %in% c("IMPERSONATING A PEACE OFFICER") ~
       "26C Impersonation",
     nibrs_code == "999" & uor_desc %in% c(
-      "UNLAWFUL ACCESS TO COMPUTER-1ST DEGREE") ~ "26E Wire Fraud",
+      "UNLAWFUL ACCESS TO COMPUTER-1ST DEGREE", "MISUSE OF ELECTRONIC INFO-AUTOMATIC BANKING FUND TRANSFER") ~ "26E Wire Fraud",
     
     # criminal damage
-    nibrs_code == "999" & uor_desc %in% c("CRIMINAL MISCHIEF - 1ST DEGREE",
-                                          "CRIMINAL MISCHIEF-2ND DEGREE", "CRIMINAL MISCHIEF-3RD DEGREE",
-                                          "CRIMINAL USE OF NOXIOUS SUBSTANCE") ~ 
-      "290 Destruction/Damage/Vandalism of Property (except Arson)",
+    nibrs_code == "999" & uor_desc %in% c(
+      "CRIMINAL MISCHIEF - 1ST DEGREE", "CRIMINAL MISCHIEF-2ND DEGREE", 
+      "CRIMINAL MISCHIEF-3RD DEGREE", "CRIMINAL USE OF NOXIOUS SUBSTANCE",
+      "CRIMINAL MISCHIEF - 3RD DEGREE"
+    ) ~ "290 Destruction/Damage/Vandalism of Property (except Arson)",
     
     # Drugs
     # There are lots of drug offences listed under nibrs_code 999 (which does
     # not exist) and for which uor_desc involves variations on the phrase
-    # possession of a controlled substance (typically abbreivated)
+    # possession of a controlled substance (typically abbreviated)
     str_detect(uor_desc, "\\bPOS.+?\\bCON.+?\\bSUB") == TRUE | 
       str_detect(uor_desc, "\\bTRAF.+?\\bCON.+?\\bSUB") == TRUE | 
       str_detect(uor_desc, "\\bTRF.+?\\bCON.+?\\bSUB") == TRUE |
@@ -1294,7 +1302,8 @@ here::here("original_data") %>%
     # prostitution
     nibrs_code == "999" & uor_desc %in% c(
       "LOITERING FOR PROSTITUTION PURPOSES - 1ST OFFENSE",
-      "LOITERING FOR PROSTITUTION PURPOSES - 2ND > OFFENSE", "PROSTITUTION") ~ 
+      "LOITERING FOR PROSTITUTION PURPOSES - 2ND > OFFENSE", "PROSTITUTION",
+      "PERMITTING PROSTITUTION") ~ 
       "40A Prostitution",
     
     # weapons violations
@@ -1311,11 +1320,13 @@ here::here("original_data") %>%
       "520 Weapon Law Violations",
     
     # bad checks
-    nibrs_code == "999" & uor_desc %in% c("THEFT BY DECEPTION-INCL COLD CHECKS",
-                                          "THEFT BY DECEPTION-INCL COLD CHECKS $10,000 OR MORE",
-                                          "THEFT BY DECEPTION-INCL COLD CHECKS U/$10,000",
-                                          "THEFT BY DECEPTION-INCL COLD CHECKS U/$500") ~ 
-      "90A Bad Checks (except Counterfeit Checks or Forged Checks)",
+    nibrs_code == "999" & uor_desc %in% c(
+      "THEFT BY DECEPTION-INCL COLD CHECKS", 
+      "THEFT BY DECEPTION-INCL COLD CHECKS $10,000 OR MORE",
+      "THEFT BY DECEPTION-INCL COLD CHECKS U/$10,000",
+      "THEFT BY DECEPTION-INCL COLD CHECKS U/$500", 
+      "THEFT BY DECEPTION-INCLUDE COLD CHECKS O/$300"
+    ) ~ "90A Bad Checks (except Counterfeit Checks or Forged Checks)",
     
     # loitering
     nibrs_code == "999" & uor_desc %in% c("JUVENILE CURFEW ORD 17 & UNDER") ~ 
@@ -1331,97 +1342,171 @@ here::here("original_data") %>%
     # Child abuse (non-violent)
     nibrs_code == "999" & uor_desc %in% c(
       "CONTROLLED SUBSTANCE ENDANGERMENT TO CHILD 2ND DEGREE",
-      "CONTROLLED SUBSTANCE ENDANGERMENT TO CHILD 4TH DEGREE") ~ 
-      "90F Family Offenses, Nonviolent",
+      "CONTROLLED SUBSTANCE ENDANGERMENT TO CHILD 4TH DEGREE",
+      "PROMOTING A MINOR U/16 IN SEX PERFORMANCE",
+      "USE OF A MINOR U/16 IN A SEXUAL PERFORMANCE"
+    ) ~ "90F Family Offenses, Nonviolent",
     
     # trespass
-    nibrs_code == "999" & uor_desc %in% c("CRIMINAL TRESPASSING-3RD DEGREE") ~ 
+    nibrs_code == "999" & uor_desc %in% c("CRIMINAL TRESPASSING-3RD DEGREE", "IN PARK AFTER CLOSING HOURS") ~ 
       "90J Trespass of Real Property",
     
     # All other offences
-    uor_desc %in% c("ANY FELONY CATEGORY NOT LISTED", 
-                    "ADVERTISING MATTER PORTRAY SEX PERFORMANCE BY MINOR 1ST OFF",
-                    "CONTEMPT OF COURT - VIOL EMERGENCY PROTECTIVE ORDER",
-                    "CRUELTY TO ANIMALS - 2ND DEGREE", "DANGEROUS ANIMAL",
-                    "DANGEROUS DOG-CONTROL OF DOG", "DISARMING A PEACE OFFICER",
-                    "FAILURE TO COMPLY W/SEX OFFENDER REGISTRATION - 1ST OFF",
-                    "FLEEING OR EVADING POLICE - 1ST DEGREE (MOTOR VEHICLE)",
-                    "FLEEING OR EVADING POLICE - 1ST DEGREE (ON FOOT)",
-                    "FLEEING OR EVADING POLICE - 2ND DEGREE (MOTOR VEHICLE)",
-                    "ILLEGAL DUMPING LOUISVILLE METRO ORDINANCE",
-                    "LEAVING SCENE OF ACCIDENT - HIT & RUN",
-                    "LEAVING SCENE OF ACCIDENT/FAILURE TO RENDER AID OR ASSISTANC",
-                    "OBSTRUCTING GOVERNMENTAL OPERATIONS",
-                    "WANTON ENDANGERMENT-1ST DEGREE", 
-                    "WANTON ENDANGERMENT-1ST DEGREE-POLICE OFFICER", 
-                    "WANTON ENDANGERMENT-2ND DEGREE",
-                    "WANTON ENDANGERMENT-2ND DEGREE-POLICE OFFICER",
-                    "VIOLATING GRAVES", "VIOLATION UNKNOWN", 
-                    "WANTON ABUSE/NEGLECT OF ADULT BY PERON", 
-                    "INTERFERE W/ENFORCEMENT PROHI", "INTERMEDIATE LICENSING VIOLATIONS",
-                    "LICENSEE PERMIT NUDE PERFORMA", "OFFENSES AGAINST PUBLIC PEACE",
-                    "OWNER TO CONTROL ANIMAL", "PROBATION VIOLATION (FOR FELONY OFFENSE)",
-                    "PROBATION VIOLATION (FOR MISDEMEANOR OFFENSE)", 
-                    "PROBATION VIOLATION (JUVENILE PUBLIC OFFENSE)",
-                    "VIOLATION OF KENTUCKY EPO/DVO") ~ 
-      "90Z All Other Offenses",
+    uor_desc %in% c(
+      "ANY FELONY CATEGORY NOT LISTED", 
+      "ADVERTISING MATTER PORTRAY SEX PERFORMANCE BY MINOR 1ST OFF",
+      "CONTEMPT OF COURT - VIOL EMERGENCY PROTECTIVE ORDER",
+      "CRUELTY TO ANIMALS - 2ND DEGREE", "DANGEROUS ANIMAL",
+      "DANGEROUS DOG-CONTROL OF DOG", "DISARMING A PEACE OFFICER",
+      "FAILURE TO COMPLY W/SEX OFFENDER REGISTRATION - 1ST OFF",
+      "FLEEING OR EVADING POLICE - 1ST DEGREE (MOTOR VEHICLE)",
+      "FLEEING OR EVADING POLICE - 1ST DEGREE (ON FOOT)",
+      "FLEEING OR EVADING POLICE - 2ND DEGREE (MOTOR VEHICLE)",
+      "ILLEGAL DUMPING LOUISVILLE METRO ORDINANCE", 
+      "LEAVING SCENE OF ACCIDENT - HIT & RUN",
+      "LEAVING SCENE OF ACCIDENT/FAILURE TO RENDER AID OR ASSISTANC",
+      "OBSTRUCTING GOVERNMENTAL OPERATIONS", "WANTON ENDANGERMENT-1ST DEGREE", 
+      "WANTON ENDANGERMENT-1ST DEGREE-POLICE OFFICER", 
+      "WANTON ENDANGERMENT-2ND DEGREE", 
+      "WANTON ENDANGERMENT-2ND DEGREE-POLICE OFFICER", "VIOLATING GRAVES", 
+      "VIOLATION UNKNOWN", "WANTON ABUSE/NEGLECT OF ADULT BY PERON", 
+      "INTERFERE W/ENFORCEMENT PROHI", "INTERMEDIATE LICENSING VIOLATIONS",
+      "LICENSEE PERMIT NUDE PERFORMA", "OFFENSES AGAINST PUBLIC PEACE",
+      "OWNER TO CONTROL ANIMAL", "PROBATION VIOLATION (FOR FELONY OFFENSE)",
+      "PROBATION VIOLATION (FOR MISDEMEANOR OFFENSE)", 
+      "PROBATION VIOLATION (JUVENILE PUBLIC OFFENSE)",
+      "VIOLATION OF KENTUCKY EPO/DVO", "MASSAGE PARLOR LICENSE REQUIRE",
+      "CONTEMPT OF COURT (JUVENILE PUBLIC OFFENSE)", 
+      "CRUELTY TO ANIMALS - 1ST DEGREE", "CRUELTY, EXHIBITION FIGHT PROHI", 
+      "DANGEROUS DOG/POTENTIALLY DA", "DOG FIGHTING VIOLATIONS", 
+      "REGULATIONS/LIC ESCORT BUREAUS", "SOLICITATION FOR MURDER",
+      "TAMPERING WITH PHYSICAL EVIDENCE", 
+      "TORTURE DOG/CAT W/SERIOUS PHYS INJ OR DEATH"
+    ) ~ "90Z All Other Offenses",
     
     # Non-categorisable offences
     uor_desc %in% c("DOMESTIC VIOLENCE INVOLVED INCIDENT") ~ 
       "99X Non-Categorisable Offenses",
     
     # Non-reportable crimes
-    uor_desc %in% c('DISPLAY OF ILLEGAL/ALTERED REGISTRATION PLATE',
-                    'FAIL OF NON-OWNER/OPER TO MAINTAIN REQ INS/SECURITY 1ST OFF',
-                    'FAIL OF TRANSFEREE OF VEH TO PROMPTLY APPLY FOR NEW TITLE',
-                    'FAILURE OF OWNER TO MAINTAIN REQUIRED INS/SECURITY 1ST OFF',
-                    'FAILURE OF OWNER TO MAINTAIN REQUIRED INS/SECURITY 2ND OFF',
-                    'FAILURE OF SELLER TO DELIVER REGISTRATION W/ASSIGNMENT FORM',
-                    'IMPROPER EMERGENCY/SAFETY LIGHTS',
-                    'LEAV SCENE OF ACCIDENT/FAIL TO RNDR AID/ASSIST W/DEATH OR SJ',
-                    'MOTOR VEH DEALER REQ TO GIVE TITLE TO PURCHASER',
-                    'MOTOR VEHICLE DEALER LICENSE REQUIRED',
-                    'POSSESSING LICENSE WHEN PRIVILEGES ARE REVOKED', 
-                    "OPERATING ON SUSPENDED/REVOKED OPERATORS LICENSE", "RECKLESS DRIVING",
-                    "FAILURE TO OR IMPROPER SIGNAL", "NO OR EXPIRED REGISTRATION PLATES",
-                    "NO OPERATORS/MOPED LICENSE", "FAILURE TO WEAR SEAT BELTS",
-                    "FAILURE TO REGISTER TRANSFER OF MOTOR VEHICLE", 
-                    "FAILURE TO NOTIFY ADDRESS CHANGE TO DEPT OF TRANSPORTATION",
-                    "DISREGARDING STOP SIGN", "REAR LICENSE NOT ILLUMINATED",
-                    "DISREGARDING TRAFFIC CONTROL DEVICE, TRAFFIC LIGHT", "CARELESS DRIVING",
-                    "EXCESSIVE WINDSHIELD/ WINDOW TINTING", "FAILURE TO ILLUMINATE HEAD LAMPS",
-                    "IMPROPER DISPLAY OF REGISTRATION PLATES", "NO CARRIER PERMIT",
-                    "FAIL OF TRANSFEROR OF VEH TO PROP EXECUTE TITLE",
-                    "FAILURE TO NOTIFY OWNER OF DAMAGE TO UNATTENDED VEHICLE",
-                    "UNAUTHORIZED USE OF VEHICLE UNDER HARDSHIP DRIVERS LICENSE",
-                    "FAILURE TO PRODUCE INSURANCE CARD", "IMPROPER REGISTRATION PLATE",
-                    "HITCHHIKING/DISREGARDING TRAFFIC REGULATIONS BY PEDESTRIAN",
-                    "IMPROPER TURNING", "OBSTRUCTED VISION AND/OR WINDSHIELD",
-                    "ONE HEADLIGHT", "OPERATING VEHICLE WITH EXPIRED OPERATORS LICENSE",
-                    "SPEEDING 15 MPH OVER LIMIT", "ABANDONMENT OF VEHICLE ON PUBLIC ROAD",
-                    "LOCAL VIOLATION CODES 80000 - 80999", "SPEEDING - SPEED NO SPECIFIED",
-                    "SPEEDING 12 MPH OVER LIMIT", "SPEEDING 14 MPH OVER LIMIT",
-                    "SPEEDING 20 MPH OVER LIMIT", "SPEEDING 26 MPH OR GREATER OVER LIMIT",
-                    "SPEEDING 7 MPH OVER LIMIT - LIMITED ACCESS HWY",
-                    "DISPLAY/POSSESSOIN OF CANCELLED/FICTITIOUS OPERATOR LICENSE",
-                    "DRIVING TOO FAST FOR TRAFFIC CONDITIONS", 
-                    "FAIL TO GIVE RT OF WY TO VESS APPR SHORELINE", 
-                    "FOLLOWING ANOTHER VEHICLE TOO CLOSELY",
-                    "FAILURE TO GIVE RIGHT OF WAY TO EMERGENCY VEHICLE",
-                    "FAILURE TO REPORT TRAFFIC ACCIDENT",
-                    "FAILURE TO USE CHILD RESTRAINT DEVICE IN VEHICLE",
-                    "IMPROPER SOUND DEVICE (WHISTLE, BELL, SIREN)",
-                    "IMPROPER STOPPING AT FLASHING RED LIGHT", "IMPROPER USE OF BLUE LIGHTS",
-                    "IMPROPER USE OF RED LIGHTS", "IMPROPERLY ON LEFT SIDE OF ROAD",
-                    "HITCHHIKING ON LIMITED ACCESS FACILITIES", 
-                    "INSTRUCTIONAL PERMIT VIOLATIONS", "LICENSE TO BE IN POSSESSION",
-                    "NO PERSON SHALL HAVE MORE THAN ONE OPERATORS LICENSE", 
-                    "NO REAR VIEW MIRROR", "NO/EXPIRED KENTUCKY REGISTRATION RECEIPT",
-                    "PERMIT UNLICENSED OPERATOR TO OPERATE MOTOR VEHICLE",
-                    "REPRESENTING AS ONES OWN ANOTHERS OPER LIC",
-                    "RIM OR FRAME OBSCURING LETTERING OR DECAL ON PLATE",
-                    "SEAT BELT ANCHORS,CHILD RESTRAINTS") ~ 
-      '99Y Non-Reportable Crimes',
+    uor_desc %in% c(
+      'DISPLAY OF ILLEGAL/ALTERED REGISTRATION PLATE',
+      'FAIL OF NON-OWNER/OPER TO MAINTAIN REQ INS/SECURITY 1ST OFF',
+      'FAIL OF TRANSFEREE OF VEH TO PROMPTLY APPLY FOR NEW TITLE',
+      'FAILURE OF OWNER TO MAINTAIN REQUIRED INS/SECURITY 1ST OFF',
+      'FAILURE OF OWNER TO MAINTAIN REQUIRED INS/SECURITY 2ND OFF',
+      'FAILURE OF SELLER TO DELIVER REGISTRATION W/ASSIGNMENT FORM',
+      'IMPROPER EMERGENCY/SAFETY LIGHTS',
+      'LEAV SCENE OF ACCIDENT/FAIL TO RNDR AID/ASSIST W/DEATH OR SJ',
+      'MOTOR VEH DEALER REQ TO GIVE TITLE TO PURCHASER',
+      'MOTOR VEHICLE DEALER LICENSE REQUIRED',
+      'POSSESSING LICENSE WHEN PRIVILEGES ARE REVOKED', 
+      "OPERATING ON SUSPENDED/REVOKED OPERATORS LICENSE", "RECKLESS DRIVING",
+      "FAILURE TO OR IMPROPER SIGNAL", "NO OR EXPIRED REGISTRATION PLATES",
+      "NO OPERATORS/MOPED LICENSE", "FAILURE TO WEAR SEAT BELTS",
+      "FAILURE TO REGISTER TRANSFER OF MOTOR VEHICLE", 
+      "FAILURE TO NOTIFY ADDRESS CHANGE TO DEPT OF TRANSPORTATION",
+      "DISREGARDING STOP SIGN", "REAR LICENSE NOT ILLUMINATED",
+      "DISREGARDING TRAFFIC CONTROL DEVICE, TRAFFIC LIGHT", "CARELESS DRIVING",
+      "EXCESSIVE WINDSHIELD/ WINDOW TINTING", "FAILURE TO ILLUMINATE HEAD LAMPS",
+      "IMPROPER DISPLAY OF REGISTRATION PLATES", "NO CARRIER PERMIT",
+      "FAIL OF TRANSFEROR OF VEH TO PROP EXECUTE TITLE",
+      "FAILURE TO NOTIFY OWNER OF DAMAGE TO UNATTENDED VEHICLE",
+      "UNAUTHORIZED USE OF VEHICLE UNDER HARDSHIP DRIVERS LICENSE",
+      "FAILURE TO PRODUCE INSURANCE CARD", "IMPROPER REGISTRATION PLATE",
+      "HITCHHIKING/DISREGARDING TRAFFIC REGULATIONS BY PEDESTRIAN",
+      "IMPROPER TURNING", "OBSTRUCTED VISION AND/OR WINDSHIELD",
+      "ONE HEADLIGHT", "OPERATING VEHICLE WITH EXPIRED OPERATORS LICENSE",
+      "SPEEDING 15 MPH OVER LIMIT", "ABANDONMENT OF VEHICLE ON PUBLIC ROAD",
+      "LOCAL VIOLATION CODES 80000 - 80999", "SPEEDING - SPEED NO SPECIFIED",
+      "SPEEDING 12 MPH OVER LIMIT", "SPEEDING 14 MPH OVER LIMIT",
+      "SPEEDING 20 MPH OVER LIMIT", "SPEEDING 26 MPH OR GREATER OVER LIMIT",
+      "SPEEDING 7 MPH OVER LIMIT - LIMITED ACCESS HWY",
+      "DISPLAY/POSSESSOIN OF CANCELLED/FICTITIOUS OPERATOR LICENSE",
+      "DRIVING TOO FAST FOR TRAFFIC CONDITIONS", 
+      "FAIL TO GIVE RT OF WY TO VESS APPR SHORELINE", 
+      "FOLLOWING ANOTHER VEHICLE TOO CLOSELY",
+      "FAILURE TO GIVE RIGHT OF WAY TO EMERGENCY VEHICLE",
+      "FAILURE TO REPORT TRAFFIC ACCIDENT",
+      "FAILURE TO USE CHILD RESTRAINT DEVICE IN VEHICLE",
+      "IMPROPER SOUND DEVICE (WHISTLE, BELL, SIREN)",
+      "IMPROPER STOPPING AT FLASHING RED LIGHT", "IMPROPER USE OF BLUE LIGHTS",
+      "IMPROPER USE OF RED LIGHTS", "IMPROPERLY ON LEFT SIDE OF ROAD",
+      "HITCHHIKING ON LIMITED ACCESS FACILITIES", 
+      "INSTRUCTIONAL PERMIT VIOLATIONS", "LICENSE TO BE IN POSSESSION",
+      "NO PERSON SHALL HAVE MORE THAN ONE OPERATORS LICENSE", 
+      "NO REAR VIEW MIRROR", "NO/EXPIRED KENTUCKY REGISTRATION RECEIPT",
+      "PERMIT UNLICENSED OPERATOR TO OPERATE MOTOR VEHICLE",
+      "REPRESENTING AS ONES OWN ANOTHERS OPER LIC",
+      "RIM OR FRAME OBSCURING LETTERING OR DECAL ON PLATE",
+      "SEAT BELT ANCHORS,CHILD RESTRAINTS", "PROPERTY NO ARREST", 
+      "EXCESSIVE WINDOW TINTING", "LICENSE PLATE NOT LEGIBLE", "NO TAIL LAMPS", 
+      "SPEEDING 10 MPH OVER LIMIT", "REGULATIONS/LIC ESCORT BUREAUS", 
+      "NO INSURANCE-1ST OFFENSE", "SPEEDING 17 MPH OVER LIMIT", 
+      "IMPROPER EQUIPMENT", "NO OPERATORS LICENSE", 
+      "FAILURE TO SURRENDER REVOKED OPERATORS LICENSE", 
+      "NO BRAKE LIGHTS (PASSENGER VEHICLES)", 
+      "OFFICER NEEDS TO COMPLETE ACCIDENT REPORT", "SPEEDING 16 MPH OVER LIMIT", 
+      "WRONG WAY ON A ONE WAY STREET", "FAILURE TO DIM HEADLIGHTS", 
+      "OBSCURING THE IDENTITY OF A MACHINE O/$300", 
+      "SPEEDING 25 MPH OVER LIMIT", "INADEQUATE SILENCER (MUFFLER)", 
+      "SPEEDING 19 MPH OVER LIMIT", "IMPROPER PARKING VIOLATIONS", 
+      "IMPROPER START FROM PARKED POSITION", "SPEEDING 18 MPH OVER LIMIT", 
+      "SPEEDING 23 MPH OVER LIMIT", "IMPROPER PASSING", 
+      "SPEEDING 13 MPH OVER LIMIT", "MASSAGIST LICENSE REQUIRED", 
+      "LOCAL VIOLATION CODES 80000 - 80999 ORDINANCE", 
+      "NO TINTING LABEL ON VEHICLE", "SPEEDING", "SPEEDING 22 MPH OVER LIMIT", 
+      "UNAUTHORIZED PARKING IN A HANDICAPPED ZONE", 
+      "VEHICLE A NUISANCE, NOISY, ETC.", "DISREGARDING YIELD RIGHT OF WAY SIGN", 
+      "NO JC3 COMPLETED", "NO MOTORCYCLE OPERATORS LICENSE", 
+      "PERMIT MOTOR VEHICLE TO RUN UNATTENDED", "SPEEDING 11 MPH OVER LIMIT", 
+      "SPEEDING 24 MPH OVER LIMIT", "SPEEDING 5 MPH OVER LIMIT", 
+      "IMPROPER LANE USAGE/VEHICLES KEEP RIGHT EXCEPT TO PASS", 
+      "NONE/IMPROPER USE OF TEMPORARY TAG WHEN REQUIRED", 
+      "SPEEDING 20 MPH OVER LIMIT - LIMITED ACCESS HWY", 
+      "DISREGARDING RR CROSSING FLASHER LIGHTS", 
+      "ESCAPING CONTENTS, SHIFTING/SPILLING LOADS", 
+      "FAIL TO GIVE RIGHT OF WAY AT INTERSECTION", 
+      "FAILURE TO GIVE RIGHT OF WAY TO EMERGENCY STOPPED VEHICLE", 
+      "FOLLOWING EMERGENCY VEHICLE TOO CLOSELY", "INSUFFICIENT HEAD LAMPS", 
+      "NO FLAG ON MOPED", "OBSTRUCTING A HIGHWAY", "ON WRONG SIDE OF ROAD", 
+      "OWNER TO NOTIFY CLERK OF RESIDENCE/NAME CHANGE", 
+      "RACING MOTOR VEHICLE ON PUBLIC HIGHWAY", "SPEEDING 1 MPH OVER LIMIT", 
+      "SPEEDING 18 MPH OVER LIMIT - LIMITED ACCESS HWY", 
+      "SPEEDING 21 MPH OVER LIMIT", "SPEEDING 7 MPH OVER LIMIT", 
+      "WINDOWS NOT SAFETY GLASS", "DEFECTIVE STEERING GEAR", 
+      "DISREGARDING COMPULSARY TURN LANE", "FAIL REPAIR/REPLACE DOWNSPOUT", 
+      "DRIVING FROM SIDE TO SIDE OF HIGHWAY", "EPISODE REPORTING", 
+      "FAIL TO GIVE RIGHT OF WAY TO VEH PASSING OPPOSITE DIRECTION", 
+      "FAILURE TO COMPLY W/HELMET LAW OVER 21 YEARS OF AGE", 
+      "FAILURE TO COMPLY W/HELMET LAW UNDER 21 YEARS OF AGE", 
+      "FAILURE TO RENDER AID OR ASSIST (TRAFFIC ACCIDENT)", 
+      "FALSE STATEMENT/FRAUD IN APPLICATION FOR OPERATOR LICENSE", 
+      "FLAMMABLE LIA/EXPLOSIVE TRANSPORT FAIL TO STOP AT RR CROSS", 
+      "HOLDING SECOND LANE", "IMPROPER GROSS WEIGHT REGISTRATION", 
+      "IMPROPER PARKING FIRELANE/BLOCK TRAVELED PORTION OF HWY", 
+      "IMPROPER PARKING ON TRAVELED PORTION OF ROAD", "NO FLAGS/FLARES", 
+      "IMPROPER PARKING, WHERE OFFICIAL SIGNS PROHIBIT", "OVERTIME PARKING", 
+      "IMPROPER PARKING, WITHIN AN INTERSECITON", "IMPROPER/NO WINDSHIELD", 
+      "IMPROPERLY TURNING/DRIVING LANE OR ENTERING LIMITED ACCESS H", 
+      "MOTOR RUNNING UNATTENDED", "OPERATING A MOPED WITHOUT A LICENSE", 
+      "NO PERMANENT SEAT FOR PASSENGER (MOTORCYCLE)", 
+      "PASSING LOADING/UNLOADING SCHOOL/CHURCH BUS-1ST OFFENSE", 
+      "PERMIT USE OF OPER LIC BY ONE NOT ENTITLED THERETO", 
+      "PERMITTING OPERATION OF MOT VEH WITH IMPROPER REG", "RAN OVER FIRE HOSE", 
+      "PROHIBIT USE OF ELECT COMM SYS PROCURE MINOR/PEACE OFF RESEX", 
+      "REG & TITLE REQUIREMENTS VEH NOT OPER ON HWY", 
+      "RENTING MOTOR VEHICLE TO DRUNK OR DRUG ADDICT", 
+      "RESIDENT REGISTER/TITLE VEH OTHER STATE-EVADE VEH TAX U/100", 
+      "SCHOOL BUS NOT PAINTED ON REAR DOOR OF BUS", 
+      "SPEEDING 15 MPH OVER LIMIT - LIMITED ACCESS HWY", 
+      "SPEEDING 16 MPH OVER LIMIT - LIMITED ACCESS HWY", 
+      "SPEEDING 19 MPH OVER LIMIT - LIMITED ACCESS HWY", 
+      "SPEEDING 2 MPH OVER LIMIT - LIMITED ACCESS HWY", 
+      "SPEEDING 25 MPH OVER LIMIT - LIMITED ACCESS HWY", 
+      "SPEEDING 5 MPH OVER LIMIT - LIMITED ACCESS HWY", 
+      "SPEEDING 6 MPH OVER LIMIT", "SPEEDING 8 MPH OVER LIMIT"
+    ) ~ '99Y Non-Reportable Crimes',
     
     # Non-criminal matters
     uor_desc %in% c('ACCIDENTAL DEATH (DROWNING)', 
@@ -1468,7 +1553,7 @@ here::here("original_data") %>%
                     "GARBAGE AND RUBBISH", "EMA INCIDENT", "FUGITIVE - WARRANT NOT REQUIRED",
                     "FUGITIVE FROM ANOTHER STATE - WARRANT REQUIRED",
                     "INJURED PERSON (LMPD INVOLVED)", "NARC UNSUBSTANTIATED CASES",
-                    "NCIC NOT NOTIFIED", "SEE KRS ENTRY") ~ 
+                    "NCIC NOT NOTIFIED", "SEE KRS ENTRY", "DEATH INVESTIGATION  (OVERDOSE)", "IN-CUSTODY DEATH - LMPD INVOLVED", "MURDER - JUSTIFIABLE") ~ 
       '99Z Non-Criminal Matters',
     
     # all other crimes keep their existing code
@@ -1480,6 +1565,7 @@ here::here("original_data") %>%
   # is nibrs_offense_code, which is the first three characters of 
   # nibrs_offense_type, so we extract that
   mutate(nibrs_offense_code = str_sub(nibrs_offense_type, end = 3)) %>% 
+  select(-nibrs_offense_type) %>% 
   join_nibrs_cats() %>% 
   # identify location types
   join_location_types(

@@ -8,7 +8,7 @@
 # MapChi is used for US Census geocoding
 # this package is from GitHub, installed using
 # remotes::install_github("dmwelgus/MapChi")
-library("MapChi")
+# library("MapChi")
 # NOTE: since plyr is not formally part of the tidyverse, it must be loaded
 # before tidyverse or dplyr
 # library('plyr') # merge data in a tidyverse way 
@@ -16,16 +16,32 @@ library("MapChi")
 # loaded (as part of tidyverse) after this
 # library('stringi') # advanced string manipulation 
 # library('reshape2') # for creating tables of offence categories
+library("censusxy") # US Census geocoding
 library("lubridate") # date handling
 library('sf') # handle spatial data
 library('tidyverse') # load tidyverse last
 
 
 
+# SET UP DIRECTORIES
+
+if (!dir.exists(here::here("failure_records")))
+  dir.create(here::here("failure_records"))
+if (!dir.exists(here::here("geocoding_data")))
+  dir.create(here::here("geocoding_data"))
+if (!dir.exists(here::here("original_data")))
+  dir.create(here::here("original_data"))
+if (!dir.exists(here::here("output_data")))
+  dir.create(here::here("output_data"))
+if (!dir.exists(here::here("temp_data")))
+  dir.create(here::here("temp_data"))
+
+
+
 # SET PARAMETERS
 
 # Load API keys
-source(here::here("code/api_keys.R"))
+# source(here::here("code/api_keys.R"))
 
 yearFirst <- 2007
 yearLast <- 2019
@@ -133,14 +149,15 @@ download_crime_data <- function (url, city) {
 
 
 # Read crime data into memory, cleaning file names by default
-read_crime_data <- function (city, col_types = NULL, clean_names = TRUE) {
+read_crime_data <- function (city, col_types = NULL, clean_names = TRUE, ...) {
   
   if (str_sub(city, end = 1) == "/") {
-    file_data <- readr::read_csv(city, col_types = col_types)
+    file_data <- readr::read_csv(city, col_types = col_types, ...)
   } else {
     file_data <- readr::read_csv(
       here::here(str_glue("original_data/raw_{city}.csv")),
-      col_types = col_types
+      col_types = col_types,
+      ...
     )
   }
   
