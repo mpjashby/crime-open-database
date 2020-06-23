@@ -262,7 +262,8 @@ filter_by_year <- function (data, year_first, year_last) {
 join_nibrs_cats <- function (
   data, 
   file = "crime_categories/nibrs_categories.csv", 
-  by = "nibrs_offense_code"
+  by = "nibrs_offense_code",
+  check = TRUE
 ) {
   
   cats <- readr::read_csv(
@@ -272,7 +273,7 @@ join_nibrs_cats <- function (
   
   data <- dplyr::left_join(data, cats, by = by)
   
-  check_nibrs_cats(data, file, by)
+  if (check) check_nibrs_cats(data, file, by)
   
   report_status(NULL, "Matched cases to NIBRS categories")
   
@@ -297,10 +298,10 @@ check_nibrs_cats <- function (data, file, by) {
     warning(str_glue("✖ some cases could not be matched to NIBRS categories\n",
                      "see {failure_file_name} for details\n"))
     data %>% filter(
-      is.na(data$nibrs_offense_code) |
-        is.na(data$nibrs_offense_type) |
-        is.na(data$nibrs_offense_category) |
-        is.na(data$nibrs_crime_against)
+      is.na(nibrs_offense_code) |
+        is.na(nibrs_offense_type) |
+        is.na(nibrs_offense_category) |
+        is.na(nibrs_crime_against)
     ) %>% 
       group_by_at(vars(one_of(c(by, "date_year")))) %>% 
       summarise(n = n()) %>% 

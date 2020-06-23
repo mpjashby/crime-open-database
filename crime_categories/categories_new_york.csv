@@ -1,4 +1,4 @@
-NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type,ofns_desc,pd_desc
+nibrs_offense_code,nibrs_crime_against,nibrs_offense_cactegory,nibrs_offense_type,ofns_desc,pd_desc
 09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,MURDER & NON-NEGL. MANSLAUGHTER,
 09B,Crimes against person,Homicide Offenses,09B Negligent Manslaughter,"HOMICIDE-NEGLIGENT,UNCLASSIFIE","HOMICIDE,NEGLIGENT,UNCLASSIFIE"
 100,Crimes against person,Kidnapping/Abduction,100 Kidnapping/Abduction,KIDNAPPING,LURING A CHILD

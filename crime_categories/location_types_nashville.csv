@@ -1,0 +1,64 @@
+location_description,location_type,location_category
+Abandoned/Condemned Structure,abandoned,other
+"AIR, BUS, TRAIN TERMINAL",other transportation,transportation
+Amusement Park,entertainment,leisure
+APARTMENT,residence,residence
+Arena/Stadium/Fairgrounds/Coliseum,entertainment,leisure
+ATM Separate from Bank,finance,commercial
+Auto Dealership New/Used,auto dealer,retail
+Auto Salvage/Junkyard,other commercial,commercial
+"BANK, SAVINGS AND LOAN",finance,commercial
+"BAR, NIGHT CLUB",bar/club,leisure
+Camp/Campground,green space,open space
+Carport,residence,residence
+CEMETERY,other open space,open space
+"CHURCH, SYNAGOGUE, TEMPLE",religious,other
+"COMMERCIAL, OFFICE BUILDING",office,commercial
+Community Center,other,other
+CONSTRUCTION SITE,construction,commercial
+CONVENIENCE STORE,convenience store,retail
+Daycare Facility,child care,education
+"DEPARTMENT, DISCOUNT STORE",other retail,retail
+Dock/Wharf/Freight/Modal Terminal,factory/warehouse,commercial
+DOCTORS'S OFFICE,healthcare,healthcare
+"DRUG, STORE, DOCTOR'S OFFICE, HOSPITAL",healthcare,healthcare
+Farm Facility,green space,open space
+"FIELD, WOODS",green space,open space
+Firearms Retail Store,other retail,retail
+Gambling Facility,entertainment,leisure
+"GOVERNMENT, PUBLIC BUILDING",government,government
+"GROCERY, SUPERMARKET",convenience store,retail
+"HIGHWAY, ROAD, ALLEY",street,street
+HOSPITAL,healthcare,healthcare
+"HOTEL, MOTEL, ETC.",hotel,hotel
+Industrial Site,factory/warehouse,commercial
+"JAIL, PRISON",government,government
+"LAKE, WATERWAY",green space,open space
+"LAKE, WATERWAY/BEACH",green space,open space
+Library,government,government
+LIQUOR STORE,convenience store,retail
+Loan/Cash Advance,finance,commercial
+LOCKER ROOM,other,other
+Military Installation,government,government
+MUSEUM,entertainment,leisure
+"OTHER, UNKNOWN",other,other
+OUTBUILDING,other,other
+PARK,green space,open space
+Park/Playground,green space,open space
+"PARKING LOT, GARAGE",vehicle parking,open space
+Pawn Shop,other retail,retail
+PHARMACY,healthcare,healthcare
+RENTAL STORAGE FACILITY,storage,commercial
+"RESIDENCE, HOME",residence,residence
+Rest Area,other transportation,transportation
+RESTAURANT,restaurant,leisure
+School-College/University,college,education
+School-Elementary/Secondary,school,education
+"SERVICE, GAS STATION",gas station,retail
+Shelter-Mission/Homeless,residence,residence
+Shopping Mall,mall,retail
+SPECIALTY STORE,other retail,retail
+Tattoo Parlor,other retail,retail
+Tribal Lands,other,other
+"UNIVERSITY, COLLEGE CAMPUS",college,education
+ZOO,entertainment,leisure

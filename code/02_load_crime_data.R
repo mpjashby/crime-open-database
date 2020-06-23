@@ -1676,6 +1676,7 @@ read_crime_data("memphis", col_types = cols(.default = col_character())) %>%
   # is nibrs_offense_code, which is the first three characters of 
   # nibrs_offense_type, so we extract that
   mutate(nibrs_offense_code = str_sub(nibrs_offense_type, end = 3)) %>% 
+  select(-nibrs_offense_type) %>% 
   join_nibrs_cats() %>% 
   # save data
   save_city_data("Memphis") %>% 
@@ -1754,13 +1755,13 @@ tribble(
   "2018", "https://data.nashville.gov/api/views/we5n-wkcf/rows.csv?accessType=DOWNLOAD",
   "2019", "https://data.nashville.gov/api/views/a88c-cc2y/rows.csv?accessType=DOWNLOAD"
 ) %>% 
-  mutate(year = str_glue("kansas_city_{year}")) %>% 
-  pmap(~ download_crime_data(..2, ..1))
+  mutate(year = str_glue("nashville_{year}")) %>% 
+  pwalk(~ download_crime_data(..2, ..1))
 
 # process data
-here::here("original_data") %>% 
+nv_data <- here::here("original_data") %>% 
   dir(pattern = "^raw_nashville_", full.names = TRUE) %>% 
-  map(read_crime_data, col_types = cols(
+  map_dfr(read_crime_data, col_types = cols(
     .default = col_character(),
     Latitude = col_double(),
     Longitude = col_double()
@@ -1781,9 +1782,23 @@ here::here("original_data") %>%
       "13D" = "13C",
       "26F" = "26C",
       "26G" = "26E",
+      "620" = "99Z",
+      "680" = "99Z",
+      "685" = "99Z",
+      "690" = "99Z",
+      "695" = "99Z",
+      "700" = "99Z",
+      "715" = "99Z",
       "720" = "90Z",
       "730" = "90Z",
-      "850" = "90Z"
+      "735" = "99Z",
+      "740" = "99Z",
+      "760" = "99Z",
+      "780" = "99Z",
+      "810" = "99Z",
+      "850" = "90Z",
+      "90I" = "99Z",
+      .missing = "99X"
     )
   ) %>% 
   join_nibrs_cats() %>% 
@@ -1838,31 +1853,35 @@ here::here("original_data") %>%
   report_status("Impossible times changed") %>% 
   # Now we can convert the date strings to date objects
   mutate(
-    Date.Start.Temp = parse_date_time(paste(cmplnt_fr_dt, cmplnt_fr_tm), 'mdY T', 
-                                      tz = 'America/New_York'),
-    Date.End.Temp = parse_date_time(paste(cmplnt_to_dt, cmplnt_to_tm), 'mdY T', 
+    date_start_temp = parse_date_time(paste(cmplnt_fr_dt, cmplnt_fr_tm), 
+                                      'mdY T', tz = 'America/New_York'),
+    date_end_temp = parse_date_time(paste(cmplnt_to_dt, cmplnt_to_tm), 'mdY T', 
                                     tz = 'America/New_York'),
-    Date.Temp = strftime(Date.Start.Temp + ((Date.End.Temp - Date.Start.Temp)/2), 
-                         format = '%Y-%m-%d %H:%M', tz = 'America/New_York'),
-    Date.Temp = ifelse(is.na(Date.Temp), 
-                       strftime(Date.Start.Temp, format = "%Y-%m-%d %H:%M", 
+    date_temp = strftime(
+      date_start_temp + ((date_end_temp - date_start_temp)/2), 
+      format = '%Y-%m-%d %H:%M', 
+      tz = 'America/New_York'
+    ),
+    date_temp = ifelse(is.na(date_temp), 
+                       strftime(date_start_temp, format = "%Y-%m-%d %H:%M", 
                                 tz = 'America/New_York'), 
-                       Date.Temp),
-    Date.Year = year(Date.Temp),
-    date_start = strftime(Date.Start.Temp, format = '%Y-%m-%d %H:%M', 
+                       date_temp),
+    date_year = year(date_temp),
+    date_start = strftime(date_start_temp, format = '%Y-%m-%d %H:%M', 
                           tz = 'America/New_York'),
-    date_end = strftime(Date.End.Temp, format = '%Y-%m-%d %H:%M', 
+    date_end = strftime(date_end_temp, format = '%Y-%m-%d %H:%M', 
                         tz = 'America/New_York'),
-    date_single = strftime(Date.Temp, format = '%Y-%m-%d %H:%M', 
+    date_single = strftime(date_temp, format = '%Y-%m-%d %H:%M', 
                            tz = 'America/New_York'),
     multiple_dates = TRUE
   ) %>% 
-  select(-Date.Start.Temp, -Date.End.Temp, -Date.Temp) %>% 
+  select(-date_start_temp, -date_end_temp, -date_temp) %>% 
   report_status("Strings converted to dates") %>% 
   {
-    cat("  Failures:  Date.Start:", sum(is.na(.$Date.Start)), " Date.End:", 
-        sum(is.na(.$Date.End)), " Date.Single:", sum(is.na(.$Date.Single)), 
-        "\n")
+    message(str_glue(
+      "  Failures: date_start: {sum(is.na(.$date_start))}, date_end: ",
+      "{sum(is.na(.$date_end))}, date_single: {sum(is.na(.$date_single))}"
+    ))
     .
   } %>% 
   # filter data by year
@@ -1872,9 +1891,10 @@ here::here("original_data") %>%
                   by = c('ofns_desc', 'pd_desc')) %>% 
   mutate(nibrs_offense_type = case_when(
     # burglary
-    nibrs_offense_code == "220" & pd_desc %in% c("BURGLARY,RESIDENCE,DAY", 
-                                                 "BURGLARY,RESIDENCE,NIGHT", "BURGLARY,RESIDENCE,UNKNOWN TIM") ~ 
-      "22A Residential Burglary/Breaking & Entering",
+    nibrs_offense_code == "220" & pd_desc %in% c(
+      "BURGLARY,RESIDENCE,DAY", "BURGLARY,RESIDENCE,NIGHT", 
+      "BURGLARY,RESIDENCE,UNKNOWN TIM"
+    ) ~ "22A Residential Burglary/Breaking & Entering",
     nibrs_offense_code == "220" ~ 
       "22B Non-residential Burglary/Breaking & Entering",
     
