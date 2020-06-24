@@ -359,16 +359,13 @@ read_crime_data("chicago") %>%
 # save data from website
 download_crime_data(
   "https://opendata.arcgis.com/datasets/0825badfe6304620a998d162be0e135e_0.csv",
-  "detroit"
-)
-download_crime_data(
-  "https://data.detroitmi.gov/api/views/invm-th67/rows.csv?accessType=DOWNLOAD", 
-  "detroit_early"
-)
-download_crime_data(
-  "https://data.detroitmi.gov/api/views/6gdg-y3kf/rows.csv?accessType=DOWNLOAD", 
   "detroit_late"
 )
+
+here::here("original_data") %>% 
+  dir("raw_detroit", full.names = TRUE) %>% 
+  map(read_crime_data, col_types = cols(.default = col_character()), n_max = 10) %>% 
+  map(names)
 
 # process data
 list(
@@ -378,50 +375,53 @@ list(
     separate(location, into = c("incident_address", "location"), 
              sep = "\\n") %>% 
     mutate(
+      location = str_remove_all(location, "[\\(\\)]"),
       hour = str_glue("{str_pad(hour, width = 2, side = 'left', pad = '0')}00"),
       sca = str_pad(sca, width = 4, side = "left", pad = "0"),
       precinct = str_pad(precinct, width = 2, side = "left", pad = "0"),
       council = str_remove(council, "City Council District ")
-    ),
+    ) %>% 
+    separate(location, into = c("latitude", "longitude"), sep = ", "),
   read_crime_data("detroit_late", 
                   col_types = cols(.default = col_character())) %>% 
-    select(-day_of_week_sunday_is_1, -hour_of_day, -year, -census_block_geoid`, 
-           -longitude, -latitude, -zip_code) %>% 
+    select(-hour_of_day, -year, -x, -y, -block_id, -day_of_week) %>% 
     rename(
       crimeid = crime_id,
       crno = report_number,
       offensedescription = offense_description,
       category = offense_category,
       stateoffensefileclass = state_offense_code,
-      incidentdate = incident_date_time,
-      hour = incident_time_24h,
+      incidentdate = incident_timestamp,
       sca = scout_car_area,
-      precinct = precinct_number,
-      location = location,
+      incident_address = address,
+      hour = incident_time,
       neighborhood = neighborhood,
       council = council_district
     ) %>% 
     mutate(
-      neighborhood = str_to_upper(neighborhood),
-      location = str_remove(location, "^location\\n"),
-      incident_address = str_remove_all(incident_address, "block of ")
+      hour = str_sub(str_remove_all(hour, ":"), end = 4),
+      neighborhood = str_to_upper(neighborhood)
     )
 ) %>% 
   bind_rows() %>% 
   mutate(
-    location = str_replace(location, ".*\\((.+)\\)", "\\1"),
-    incident_date = paste(parse_date(incidentdate, "%m/%d/%Y %I:%M:%S %p"), 
-                          hour)
+    # the date format is different in the two files, so we harmonize them here
+    # before parsing them again with add_date_var() later
+    incidentdate = strftime(
+      parse_date_time(
+        paste(str_sub(incidentdate, end = 10), hour), 
+        c("mdY HM", "Ymd HM")
+      ),
+      "%Y-%m-%d %H:%M")
   ) %>% 
-  separate(location, c("latitude", "longitude"), ", ") %>% 
   # add data var
-  add_date_var("incident_date", "Ymd R", "America/Detroit") %>%
+  add_date_var("incidentdate", "Ymd R", "America/Detroit") %>%
   # filter by year
   filter_by_year(2009, yearLast) %>% 
   # categorize crimes
-  join_nibrs_cats("../crime_categories/categories_detroit.csv", 
-                  by = c("category" = "CATEGORY", 
-                         "offensedescription" = "OFFENSEDESCRIPTION")) %>% 
+  join_nibrs_cats("crime_categories/categories_detroit.csv", 
+                  by = c("category" = "category", 
+                         "offensedescription" = "offensedescription")) %>% 
   # save data
   save_city_data("Detroit") %>% 
   glimpse()
@@ -441,77 +441,82 @@ list(
 # offense codes and NIBRS codes as there is for other cities.
 
 # save data from website
-# download_crime_data(
-#   "https://data.fortworthtexas.gov/api/views/k6ic-7kp7/rows.csv?accessType=DOWNLOAD", 
-#   "fort_worth"
-# )
+download_crime_data(
+  "https://data.fortworthtexas.gov/api/views/k6ic-7kp7/rows.csv?accessType=DOWNLOAD",
+  "fort_worth_late"
+)
 
 # process data
-# read_crime_data(
-#   "fort_worth",
-#   col_types = cols(
-#     .default = col_character(),
-#     `Case Number` = col_integer(),
-#     `Council District` = col_integer(),
-#     `Location Type` = col_integer()
-#   )
-# ) %>% 
-#   mutate(location = str_replace(location, ".*\\((.+)\\)", "\\1")) %>% 
-#   separate(location, c("latitude", "longitude"), ", ") %>% 
-#   mutate_at(vars(c("latitude", "longitude")), as.double) %>% 
-#   rename(nibrs_offense_code = offense, location_type_raw = location_type) %>% 
-#   # add date variable
-#   add_date_var("from_date", 'mdY T', "America/Chicago") %>% 
-#   # filter by year
-#   filter_by_year(yearFirst, yearLast) %>% 
-#   # categorize crimes
-#   mutate(
-#     nibrs_offense_code = recode(
-#       nibrs_offense_code, 
-#       "09C" = "99Z", 
-#       "26F" = "26C", 
-#       "26G" = "26E", 
-#       "720" = "90Z",
-#       "90I" = "99Z"
-#       "TRC" = "99Z"
-#       "WAR" = "99Z"
-#     )
-#   ) %>% 
-#   join_nibrs_cats() %>% 
-#   mutate(nibrs_offense_type = case_when(
-#     nibrs_offense_code == "220" & location_description == "Residence, home" ~ 
-#       "22A Residential Burglary/Breaking & Entering",
-#     nibrs_offense_code == "220" ~ 
-#       "22B Non-residential Burglary/Breaking & Entering",
-#     nibrs_offense_code == "120" & location_description %in% c(
-#       "Highway, street, roadway, alley", "Parking lot, garage", 
-#       "Residence, home", "Field, woods", "Park/Playground", 
-#       "Airplane, bus, train terminal", "School, college", "Shopping Mall",
-#       "Lake, waterway", "School-Elementary/Secondary", "ATM separate from Bank",
-#       "Rest Area", "School-College/University") ~ "12A Personal Robbery",
-#     nibrs_offense_code == "120" & location_description == "Other, unknown" ~ 
-#       "12U Other Robbery",
-#     nibrs_offense_code == "120" ~ "12B Commercial Robbery",
-#     TRUE ~ nibrs_offense_type
-#   ),
-#   # where necessary, update the NIBRS code to match the new type
-#   nibrs_offense_code = case_when(
-#     nibrs_offense_type == "22A Residential Burglary/Breaking & Entering" ~ 
-#       "22A",
-#     nibrs_offense_type == "22B Non-residential Burglary/Breaking & Entering" ~ 
-#       "22B",
-#     nibrs_offense_type == "12A Personal Robbery" ~ "12A",
-#     nibrs_offense_type == "12B Commercial Robbery" ~ "12B",
-#     nibrs_offense_type == "12U Other Robbery" ~ "12U",
-#     TRUE ~ nibrs_offense_code
-#   )) %>% 
-#   # identify location types
-#   join_location_types(
-#     file = "crime_categories/location_types_fort_worth.csv",
-#     by = "location_description"
-#   ) %>% 
-#   save_city_data("Fort Worth") %>% 
-#   glimpse()
+here::here("original_data") %>% 
+  dir(pattern = "^raw_fort_worth_", full.names = TRUE) %>% 
+  set_names() %>% 
+  map_dfr(read_crime_data, col_types = cols(.default = col_character()), .id = "file") %>% 
+  mutate(date_temp = parse_date_time(from_date, "mdY IMS p")) %>%
+  filter(
+    # record is from early file and from 2018 or earlier
+    (str_detect(file, "fort_worth_early") & 
+       date_temp <= ymd_hms("2018-11-30 23:59:59"))
+    # record is from late file and from 2019 or later
+    | (str_detect(file, "fort_worth_late") & 
+         date_temp >= ymd_hms("2018-12-01 00:00:00"))
+  ) %>%
+  select(-date_temp, -file) %>% 
+  mutate(location = str_replace(location, ".*\\((.+)\\)", "\\1")) %>%
+  separate(location, c("latitude", "longitude"), ", ") %>%
+  mutate_at(vars(c("latitude", "longitude")), as.double) %>%
+  rename(nibrs_offense_code = offense, location_type_raw = location_type) %>%
+  # add date variable
+  add_date_var("from_date", 'mdY IMS p', "America/Chicago") %>%
+  # filter by year
+  filter_by_year(yearFirst, yearLast) %>%
+  # categorize crimes
+  mutate(
+    nibrs_offense_code = recode(
+      nibrs_offense_code,
+      "09C" = "99Z",
+      "26F" = "26C",
+      "26G" = "26E",
+      "720" = "90Z",
+      "90I" = "99Z",
+      "TRC" = "99Z",
+      "WAR" = "99Z"
+    )
+  ) %>%
+  join_nibrs_cats() %>%
+  mutate(nibrs_offense_type = case_when(
+    nibrs_offense_code == "220" & location_description == "Residence, home" ~
+      "22A Residential Burglary/Breaking & Entering",
+    nibrs_offense_code == "220" ~
+      "22B Non-residential Burglary/Breaking & Entering",
+    nibrs_offense_code == "120" & location_description %in% c(
+      "Highway, street, roadway, alley", "Parking lot, garage",
+      "Residence, home", "Field, woods", "Park/Playground",
+      "Airplane, bus, train terminal", "School, college", "Shopping Mall",
+      "Lake, waterway", "School-Elementary/Secondary", "ATM separate from Bank",
+      "Rest Area", "School-College/University") ~ "12A Personal Robbery",
+    nibrs_offense_code == "120" & location_description == "Other, unknown" ~
+      "12U Other Robbery",
+    nibrs_offense_code == "120" ~ "12B Commercial Robbery",
+    TRUE ~ nibrs_offense_type
+  ),
+  # where necessary, update the NIBRS code to match the new type
+  nibrs_offense_code = case_when(
+    nibrs_offense_type == "22A Residential Burglary/Breaking & Entering" ~
+      "22A",
+    nibrs_offense_type == "22B Non-residential Burglary/Breaking & Entering" ~
+      "22B",
+    nibrs_offense_type == "12A Personal Robbery" ~ "12A",
+    nibrs_offense_type == "12B Commercial Robbery" ~ "12B",
+    nibrs_offense_type == "12U Other Robbery" ~ "12U",
+    TRUE ~ nibrs_offense_code
+  )) %>%
+  # identify location types
+  join_location_types(
+    file = "crime_categories/location_types_fort_worth.csv",
+    by = "location_description"
+  ) %>%
+  save_city_data("Fort Worth") %>%
+  glimpse()
 
 
 
@@ -2065,13 +2070,13 @@ here::here("original_data/raw_st_louis") %>%
 # San Francisco ---------------------------------------------------------------
 
 # save data from website
-read_crime_data(
+download_crime_data(
   "https://data.sfgov.org/api/views/tmnf-yvry/rows.csv?accessType=DOWNLOAD", 
   "san_francisco_early"
 )
-read_crime_data(
+download_crime_data(
   "https://data.sfgov.org/api/views/wg3w-h783/rows.csv?accessType=DOWNLOAD", 
-  "raw_san_francisco_late"
+  "san_francisco_late"
 )
 
 # process data
@@ -2133,7 +2138,7 @@ list(
   ) %>% 
   add_date_var("incident_date_time", "Ymd HM", "America/Los_Angeles") %>% 
   filter_by_year(yearFirst, yearLast) %>% 
-  join_nibrs_cats("../crime_categories/categories_SF.csv",
+  join_nibrs_cats("crime_categories/categories_SF.csv",
                   by = c('incident_category', 'incident_description')) %>% 
   save_city_data("San Francisco") %>%
   glimpse()
@@ -2229,21 +2234,31 @@ tribble(
   "2015", "https://opendata.arcgis.com/datasets/705cd0b16c0141259a73c12266e28792_31.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
   "2016", "https://opendata.arcgis.com/datasets/ff59ac036cc14689923596abf88f3e24_32.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
   "2017", "https://opendata.arcgis.com/datasets/ef95666c825645868d0f9db6770af969_33.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
-  "2018", "https://opendata.arcgis.com/datasets/6a11fe12a2f9444fa16e7b7ac810727e_40.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D"
+  "2018", "https://opendata.arcgis.com/datasets/6a11fe12a2f9444fa16e7b7ac810727e_40.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
+  "2019", "https://opendata.arcgis.com/datasets/9205a32aeab34091b1cd9bcea08eccfe_48.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D"
 ) %>% 
   mutate(year = str_glue("tucson_{year}")) %>% 
-  pmap(~ download_crime_data(..2, ..1))
+  pwalk(~ download_crime_data(..2, ..1))
 
 # process data
-here::here("original_data") %>% 
+tucson_data <- here::here("original_data") %>% 
   dir(pattern = '^raw_tucson_', full.names = TRUE) %>% 
   map_dfr(read_crime_data, col_types = cols(.default = col_character())) %>% 
   rename(longitude = x, latitude = y) %>% 
   mutate(
     address_public = ifelse(is.na(address_public), addrress_public, 
                             address_public),
-    date_occurred = paste(
-      parse_date(date_occu, format = "%Y-%m-%d%.%H:%M:%S%+"), hour_occu),
+    date_occu = case_when(
+      !is.na(date_occu) ~ date_occu,
+      !is.na(date_fnd) ~ date_fnd,
+      TRUE ~ date_rept
+    ),
+    hour_occu = case_when(
+      !is.na(hour_occu) ~ hour_occu,
+      !is.na(hour_fnd) ~ hour_fnd,
+      TRUE ~ hour_rept
+    ),
+    date_occurred = paste(str_sub(date_occu, end = 10), hour_occu),
     loc_method = ifelse(is.na(loc_method), loc_status, loc_method),
     # The field statutdesc has triple quotes around it in the CSV file, only two
     # pairs of which are removed by read_csv, so the remainder are removed here
@@ -2277,7 +2292,7 @@ here::here("original_data") %>%
   ) %>% 
   st_set_geometry(NULL) %>% 
   # join NIBRS categories
-  join_nibrs_cats("../crime_categories/categories_Tucson.csv",
+  join_nibrs_cats("crime_categories/categories_Tucson.csv",
                   by = 'statutdesc') %>% 
   save_city_data("Tucson") %>% 
   glimpse()
@@ -2294,18 +2309,20 @@ here::here("original_data") %>%
 
 # save data from website
 download_crime_data(
-  "https://data.vbgov.com/api/views/iqkq-gr5p/rows.csv?accessType=DOWNLOAD", 
+  "https://s3.amazonaws.com/vbgov-ckan-open-data/Police+Incident+Reports.csv", 
   "virginia_beach_late"
 )
 
 # process data
 list(
-  read_crime_data("virinia_beach_early") %>% 
+  read_crime_data("virginia_beach_early", 
+                  col_types = cols(.default = col_character())) %>% 
     mutate(year = year(parse_date_time(date_occured, "mdY T", 
                                        tz = "America/New_York"))) %>% 
     filter(year < 2016),
-  read_crime_data("virinia_beach_late") %>% 
-    mutate(year = year(parse_date_time(date_occured, "mdY T", 
+  read_crime_data("virginia_beach_late", 
+                  col_types = cols(.default = col_character())) %>% 
+    mutate(year = year(parse_date_time(date_occured, "Ymd T", 
                                        tz = "America/New_York"))) %>% 
     filter(year >= 2016)
 ) %>% 
@@ -2313,13 +2330,17 @@ list(
   mutate(
     address = str_replace_all(location, "\\n", " ") %>% trimws(),
     location = str_extract(location, "\\(.+?\\)$") %>% 
-      str_replace("\\((.+?)\\)", "\\1")
+      str_replace("\\((.+?)\\)", "\\1"),
+    # the date format is different in the two files, so we harmonize them here
+    # before parsing them again with add_date_var() later
+    date_occured = strftime(parse_date_time(date_occured, c("mdY T", "Ymd T")),
+                            "%Y-%m-%d %H:%M")
   ) %>%
   separate(location, c("latitude", "longitude"), ", ") %>%
   mutate_at(vars(c("latitude", "longitude")), as.double) %>%
-  add_date_var("date_occured", "mdY T", "America/New_York") %>%
+  add_date_var("date_occured", "Ymd HM", "America/New_York") %>%
   filter_by_year(2013, yearLast) %>% 
-  join_nibrs_cats(here::here("crime_categories/categories_VB.csv"),
+  join_nibrs_cats("crime_categories/categories_VB.csv",
                   by = 'offense_code') %>% 
   save_city_data("Virginia Beach") %>% 
   glimpse()

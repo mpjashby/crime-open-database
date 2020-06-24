@@ -1,4 +1,4 @@
-NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type,CATEGORY,OFFENSEDESCRIPTION
+nibrs_offense_code,nibrs_crime_against,nibrs_offense_category,nibrs_offense_type,category,offensedescription
 09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,NEGLIGENT HOMICIDE,FELONY DEATH BY DRUNK DRIVING -VEHICLE 
 09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,HOMICIDE,HOMICIDE - (OTHER) 
 09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,HOMICIDE,HOMICIDE-FATAL SHOOTING
