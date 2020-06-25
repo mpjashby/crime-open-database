@@ -5,17 +5,9 @@
 
 # LOAD PACKAGES
 
-# MapChi is used for US Census geocoding
-# this package is from GitHub, installed using
-# remotes::install_github("dmwelgus/MapChi")
-# library("MapChi")
-# NOTE: since plyr is not formally part of the tidyverse, it must be loaded
-# before tidyverse or dplyr
-# library('plyr') # merge data in a tidyverse way 
-# NOTE: it's usually better to use the wrappers in stringr, which is why that is 
-# loaded (as part of tidyverse) after this
-# library('stringi') # advanced string manipulation 
-# library('reshape2') # for creating tables of offence categories
+# install non-CRAN packages
+# remotes::install_github("hrbrmstr/rgeocodio")
+
 library("censusxy") # US Census geocoding
 library("lubridate") # date handling
 library('sf') # handle spatial data
