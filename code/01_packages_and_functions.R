@@ -10,6 +10,7 @@
 
 library("censusxy") # US Census geocoding
 library("lubridate") # date handling
+library("rgeocodio") # geocod.io geocoding
 library('sf') # handle spatial data
 library('tidyverse') # load tidyverse last
 
