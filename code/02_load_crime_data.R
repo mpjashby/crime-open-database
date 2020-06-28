@@ -53,7 +53,7 @@ read_crime_data(
   filter_by_year(yearFirst, yearLast) %>%
   # remove variables containing duplicate information
   select(-occurred_date, -occurred_time, -report_date, -report_time, 
-         -x_coordinate, -y_coordinate, -location) %>% 
+         -x_coordinate, -y_coordinate, -location, -census_tract) %>% 
   # categorize crimes
   mutate(
     nibrs_offense_code = case_when(

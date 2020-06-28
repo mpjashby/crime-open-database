@@ -7,11 +7,15 @@
 
 # install non-CRAN packages
 # remotes::install_github("hrbrmstr/rgeocodio")
+# remotes::install_github("hrbrmstr/slugify")
 
-library("censusxy") # US Census geocoding
+library("censusxy")  # US Census geocoding
+library("here")      # full file paths
 library("lubridate") # date handling
 library("rgeocodio") # geocod.io geocoding
-library('sf') # handle spatial data
+library('sf')        # handle spatial data
+library("slackr")    # send Slack messages
+library("slugify")   # make strings URL-safe
 library('tidyverse') # load tidyverse last
 
 
@@ -32,6 +36,7 @@ if (!dir.exists(here::here("temp_data")))
 
 
 # SET PARAMETERS
+slackr_setup()
 
 # Load API keys
 # source(here::here("code/api_keys.R"))
@@ -52,11 +57,13 @@ cities <- tribble(
   "Kansas City",    "29", "kcm",
   "Los Angeles",    "06", "lax",
   "Louisville",     "21", "lou",
-  "Memphis",        "47", "mem",
+  # "Memphis",        "47", "mem",
   "Mesa",           "04", "mes",
   "Nashville",      "47", "nvl",
   "New York",       "36", "nyc",
   "San Francisco",  "06", "sfo",
+  "Seattle",        "53", "sea",
+  "St Louis",       "29", "stl",
   "Tucson",         "04", "tus",
   "Virginia Beach", "51", "vib"
 )
@@ -518,3 +525,7 @@ convert_names <- function (data, common_vars, prefix) {
   data
   
 }
+
+# print format number of rows
+row_count <- function (x) scales::comma(nrow(x))
+

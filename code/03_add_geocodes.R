@@ -330,11 +330,3 @@ data_lo_final %>%
 # save data
 write_rds(data_lo_final, here::here("temp_data/raw_louisville_data.Rds"))
 
-
-
-
-
-# Memphis ---------------------------------------------------------------------
-
-# load data
-data_mm <- read_rds(here::here("temp_data/raw_memphis_data.Rds"))
