@@ -269,8 +269,12 @@ download_crime_data(
 )
 
 # process data
-read_crime_data("chicago") %>% 
+read_crime_data("chicago", col_types = cols(.default = col_character())) %>% 
   rename(address = block) %>% 
+  # remove redundant variables
+  select(-x_coordinate, -y_coordinate, -year, -location) %>% 
+  # convert co-ordinates to numeric
+  mutate_at(c("latitude", "longitude"), as.double) %>% 
   # add date variable
   add_date_var("date", "mdY T", "America/Chicago") %>% 
   # filter by year
@@ -682,6 +686,8 @@ read_crime_data(
     `Crm Cd 4` = col_integer()
   )
 ) %>% 
+  # convert variable names
+  rename(latitude = lat, longitude = lon) %>% 
   # convert from wide to long
   pivot_longer(
     c("crm_cd_1", "crm_cd_2", "crm_cd_3", "crm_cd_4"), 

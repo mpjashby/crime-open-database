@@ -33,6 +33,28 @@ rm(data_dt)
 
 
 
+## St Louis -------------
+
+# St Louis data has co-ordinates in the Missouri East State Plane projection,
+# in which co-ordinates are distances in feet from a false origin.
+
+data_sl <- read_rds(here("temp_data/raw_st_louis_data.Rds"))
+
+data_sl <- data_sl %>% 
+  st_as_sf(coords = c("x_coord", "y_coord"), crs = 102696) %>% 
+  st_transform(4326) %>% 
+  mutate(
+    longitude = st_coordinates(.)[, 1],
+    latitude = st_coordinates(.)[, 2]
+  ) %>% 
+  st_set_geometry(NULL)
+
+write_rds(data_sl, here("temp_data/raw_st_louis_data.Rds"))
+
+rm(data_sl)
+
+
+
 
 
 # Strip offenses outside cities and add census identifiers --------------------
@@ -54,11 +76,8 @@ setdiff(
       str_to_title()
     
     start_time <- now()
-    message(str_glue("\nProcessing {city_name} data\nStarting at ",
-                     format(start_time, "%F %T")))
-    
-    # send Slack message
-    slackr_bot(str_glue("Starting processing for {city_name}"))
+    message(str_glue("\n\nPROCESSING {str_to_upper(city_name)} DATA\n",
+                     "Starting at ", format(start_time, "%F %T")))
     
     # get city metadata
     city_fips <- cities$fips[cities$name == city_name]
@@ -89,22 +108,29 @@ setdiff(
               scales::comma(no_coords), " rows without co-ordinates")
     }
     
+    # deal with strange name of Nashville in the US Census shapefiles
+    city_name_usgs <- recode(
+      city_name,
+      "Nashville" = "Nashville-Davidson metropolitan government (balance)",
+      "St Louis" = "St. Louis"
+    )
+
     # create a spatial object for the city outline
     outline <- str_glue("spatial_data/cities/tl_2016_{city_fips}_place.shp") %>% 
       here() %>% 
       read_sf() %>% 
       janitor::clean_names() %>% 
-      filter(name == city_name) %>%
+      filter(name == city_name_usgs) %>%
       st_transform(3082)
     message("✔︎ Created SF object for city outline")
     
-    # identify whether each offence is within the city boundary
+    # identify whether each offense is within the city boundary
     message("🕣 Identifying rows outside the city")
     offences$in_city <- offences %>% 
       st_covered_by(outline, sparse = FALSE) %>% 
       as.logical()
     
-    # filter out offences outside the city boundary
+    # filter out offenses outside the city boundary
     outside_city <- nrow(offences) - sum(offences$in_city) - no_coords
 
     if (nrow(offences) > initial_rows) {
@@ -162,6 +188,11 @@ setdiff(
               " rows of crime data")
     }
     
+    message(
+      scales::percent(sum(!is.na(data$block)) / nrow(data), accuracy = 0.01), 
+      " of rows have census identifiers"
+    )
+    
     # store data
     write_rds(
       data,
@@ -173,7 +204,72 @@ setdiff(
     message("Finished at ", format(now(), "%F %T"), " after ", 
             round(duration, digits = 1), " ", units(duration))
     
-    # send Slack message
-    slackr_bot(str_glue("Finished processing for {city_name}"))
+  })
+
+
+
+
+
+# Check data ------------------------------------------------------------------
+
+here("temp_data") %>% 
+  dir(pattern = "^spatial_") %>% 
+  str_remove("^spatial_") %>% 
+  str_remove("_data.Rds$") %>% 
+  walk(function (city) {
+
+    # deal with strange name of Nashville in the US Census shapefiles
+    city_name <- str_to_title(str_replace_all(city, "_", " "))
+    city_name_usgs <- recode(
+      city_name,
+      "Nashville" = "Nashville-Davidson metropolitan government (balance)",
+      "St Louis" = "St. Louis"
+    )
+    
+    message(str_glue("\nProducing map for {city_name} at ",
+                     "{format(now(), '%F %T')}"))
+    
+    crimes <- str_glue("temp_data/spatial_{city}_data.Rds") %>% 
+      here() %>% 
+      read_rds() %>% 
+      sample_frac(0.1) %>% 
+      filter(!is.na(latitude) & !is.na(longitude)) %>% 
+      st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+    
+    message(
+      str_glue("\tSampled {scales::comma(nrow(crimes))} rows (10% of total)"))
+    
+    outline <- str_glue("spatial_data/cities/tl_2016_",
+                        "{cities$fips[cities$name == city_name]}_place.shp") %>% 
+      here() %>% 
+      read_sf() %>% 
+      janitor::clean_names() %>% 
+      filter(name == city_name_usgs)
+    
+    outline_bbox <- st_bbox(outline)
+    
+    ggplot() +
+      geom_sf(data = outline, fill = NA) +
+      geom_sf(aes(shape = in_city), data = crimes, alpha = 0.5) +
+      theme_minimal() +
+      theme(
+        legend.position = "none",
+        panel.grid.major = element_line(colour = "#CCCCCC")
+      ) +
+      labs(title = str_glue("Offence locations in {city_name} data")) +
+      xlim(outline_bbox$xmin - ((outline_bbox$xmax - outline_bbox$xmin) / 5), 
+           outline_bbox$xmax + ((outline_bbox$xmax - outline_bbox$xmin) / 5)) +
+      ylim(outline_bbox$ymin - ((outline_bbox$ymax - outline_bbox$ymin) / 5), 
+           outline_bbox$ymax + ((outline_bbox$ymax - outline_bbox$ymin) / 5))
+    
+    message("\tGenerated plot")
+    
+    ggsave(here(str_glue("temp_data/plot_{city}.pdf")),
+           width = 11.69, height = 16.53, units = "in")
+    
+    message("\tSaved plot")
     
   })
+
+
+

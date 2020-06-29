@@ -34,16 +34,16 @@ nibrs_offense_code,nibrs_crime_against,nibrs_offense_category,nibrs_offense_type
 11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIM SEXUAL ASSAULT,PREDATORY
 11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),OFFENSE INVOLVING CHILDREN,AGG SEX ASSLT OF CHILD FAM MBR
 11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),OFFENSE INVOLVING CHILDREN,SEX ASSLT OF CHILD BY FAM MBR
-11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,AGGRAVATED - HANDGUN,1,1,NA,1,1,1,NA,2,NA,NA,4,5,10
-11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,AGGRAVATED - KNIFE / CUTTING INSTRUMENT,2,NA,NA,2,NA,NA,NA,1,1,1,1,6,4
-11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,AGGRAVATED - OTHER,8,1,2,2,NA,2,7,2,2,5,9,25,58
-11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,AGGRAVATED - OTHER DANGEROUS WEAPON,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,1
-11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,AGGRAVATED: KNIFE / CUTTING INSTRUMENT,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,ATTEMPT AGGRAVATED - OTHER,NA,NA,NA,NA,NA,NA,NA,NA,1,NA,NA,1,1
-11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,ATTEMPT AGGRAVATED - OTHER DANGEROUS WEAPON,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1
-11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,ATTEMPT NON-AGGRAVATED,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,1,3
-11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,NON-AGGRAVATED,4,6,1,2,3,7,2,4,6,14,34,70,242
-11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,PREDATORY,13,2,4,4,5,3,7,9,12,6,6,15,35
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,AGGRAVATED - HANDGUN
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,AGGRAVATED - KNIFE / CUTTING INSTRUMENT
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,AGGRAVATED - OTHER
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,AGGRAVATED - OTHER DANGEROUS WEAPON
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,AGGRAVATED: KNIFE / CUTTING INSTRUMENT
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,ATTEMPT AGGRAVATED - OTHER
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,ATTEMPT AGGRAVATED - OTHER DANGEROUS WEAPON
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,ATTEMPT NON-AGGRAVATED
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,NON-AGGRAVATED
+11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),CRIMINAL SEXUAL ASSAULT,PREDATORY
 11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),OFFENSE INVOLVING CHILDREN,AGGRAVATED CRIMINAL SEXUAL ABUSE BY FAMILY MEMBER
 11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),OFFENSE INVOLVING CHILDREN,AGGRAVATED SEXUAL ASSAULT OF CHILD BY FAMILY MEMBER
 11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),OFFENSE INVOLVING CHILDREN,SEXUAL ASSAULT OF CHILD BY FAMILY MEMBER
