@@ -1,0 +1,401 @@
+---
+title: "Crime Open Database data summary: `r params$city`"
+date: "`r format(lubridate::now(), '%e %B %Y')`"
+output: pdf_document
+always_allow_html: true
+header-includes:
+   - \usepackage{tabu}
+   - \usepackage{booktabs}
+   - \usepackage{longtable}
+params:
+  city: Austin
+---
+
+```{r setup, echo = FALSE, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, include = FALSE)
+
+source(here::here("code/01_packages_and_functions.R"))
+
+library("kableExtra")
+library("scales")
+```
+
+```{r}
+this_city <- params$city
+this_city_usgs <- recode(
+  this_city,
+  "Nashville" = "Nashville-Davidson metropolitan government (balance)",
+  "St Louis" = "St. Louis"
+)
+
+data <- str_glue("temp_data/final_{slugify(this_city, '_')}_data.Rds") %>% 
+  here() %>% 
+  read_rds()
+```
+
+The data for `r this_city` included in the Crime Open Database (CODE)
+includes records for `r comma(nrow(data))` offenses between 
+`r min(data$date_year)` and `r max(data$date_year)`.
+
+
+
+# Excluded cases
+
+```{r}
+excluded_cases <- data %>% 
+  filter(is.na(latitude) | is.na(longitude) | in_city == FALSE | 
+           offense_group == "excluded cases") %>% 
+  nrow()
+```
+
+Cases are excluded from the final dataset for various reasons. Overall 
+`r comma(excluded_cases)` (`r percent((excluded_cases/nrow(data)))` of the 
+total) cases have been excluded.
+
+```{r include=TRUE}
+data %>% 
+  replace_na(list(in_city = FALSE)) %>% 
+  mutate(
+    Total = TRUE,
+    `Incomplete co-ordinates` = is.na(latitude) | is.na(longitude),
+    `Location outside city` = !`Incomplete co-ordinates` & !in_city,
+    `Non-criminal matters` = !`Incomplete co-ordinates` & 
+      !`Location outside city` & offense_code == "99Z",
+    `Non-Reportable Crimes` = !`Incomplete co-ordinates` & 
+      !`Location outside city` & offense_code == "99Y", 
+    `Non-Categorisable Offenses` = !`Incomplete co-ordinates` & 
+      !`Location outside city` & offense_code == "99X"
+  ) %>% 
+  select(Total, `Incomplete co-ordinates`, `Location outside city`, 
+         `Non-criminal matters`, `Non-Reportable Crimes`, 
+         `Non-Categorisable Offenses`) %>% 
+  summarise_all(sum, na.rm = TRUE) %>%
+  gather(key = "Reason", value = "Cases") %>%
+  replace_na(list(Cases = 0)) %>% 
+  mutate(Cases = comma(Cases)) %>% 
+  kable(format = "latex", align = "lr", booktabs = TRUE, linesep = "") %>% 
+  kable_styling(full_width = TRUE, latex_options = c("repeat_header"))
+```
+
+```{r}
+## 
+## THIS LINE FILTERS THE DATA TO REMOVE EXCLUDED CASES
+## If any changes are made above, this line must be re-run before running any
+## code below
+## 
+data <- data %>% 
+  filter(
+    !is.na(latitude) & 
+      !is.na(longitude) & 
+      in_city == TRUE & 
+      offense_group != "excluded cases"
+  )
+```
+
+**This leaves a total of `r comma(nrow(data))` genuine cases included in the 
+data.**
+
+
+
+# Temporal distribution
+
+```{r}
+annual_counts <- data %>% 
+  select(date_year) %>% 
+  group_by(date_year) %>% 
+  summarise(`Cases` = n()) %>% 
+  rename(Year = date_year)
+
+daily_counts <- data %>% 
+  mutate(date = as_date(ymd_hm(date_single))) %>% 
+  group_by(date) %>% 
+  summarise(n = n())
+```
+
+```{r include=TRUE, fig.height=4}
+ggplot(daily_counts, aes(x = date, y = n)) +
+  geom_line(size = 0.25) +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y", 
+               expand = expansion(mult = c(0, 0.02))) +
+  scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, 0))) +
+  labs(
+    title = str_wrap(str_glue(
+      "{this_city} had between {min(daily_counts$n)} and {max(daily_counts$n)}",
+      " offenses per day (median = {median(daily_counts$n)})"
+    )), 
+    subtitle = "crimes per day, all offences", 
+    x = "date", 
+    y = "offenses per day"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+```
+
+
+
+```{r include=TRUE, fig.height=4}
+data %>% 
+  mutate(
+    week = week(date_single),
+    week = ifelse(week > 52, 1, week)
+  ) %>% 
+  count(date_year, week) %>% 
+  ggplot(aes(x = week, y = n, group = week)) +
+  geom_boxplot() +
+  # ggthemes::geom_tufteboxplot(median.type = "line", hoffset = 0, size = 0.67) +
+  scale_y_continuous(limits = c(0, NA), labels = comma_format()) +
+  labs(
+    title = "Variation in overall crime frequency through the year", 
+    subtitle = "crimes per week, all offences",
+    x = "week of the year", 
+    y = "offenses per week"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+  
+```
+
+
+
+```{r include=TRUE, fig.height=4}
+daily_counts %>% 
+  mutate(weekday = weekdays(date, abbreviate = TRUE)) %>% 
+  ggplot(aes(x = weekday, y = n)) +
+  geom_violin(draw_quantiles = c(0.50)) +
+  ylim(0, NA) +
+  labs(
+    title = "Variation in overall crime frequency across weekdays", 
+    subtitle = "crimes per weekday, all offences", 
+    x = "weekday", 
+    y = "offenses per day"
+  ) +
+  scale_x_discrete(limits = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank()
+  )
+```
+
+and hours of the day:
+
+```{r include=TRUE, fig.height=4}
+data %>% 
+  mutate(
+    date_time = ymd_hm(date_single),
+    date = date(date_time),
+    hour = hour(date_time)
+  ) %>% 
+  count(date, hour) %>% 
+  select(-date) %>% 
+  ggplot(aes(x = hour, y = n, group = hour)) +
+  geom_boxplot() +
+  scale_x_continuous(n.breaks = 24, expand = expansion(mult = c(0, 0))) +
+  scale_y_continuous(limits = c(0, NA)) +
+  labs(
+    title = "Variation in overall crime frequency across hours of the day", 
+    subtitle = "crimes per hour of the day, all offences", 
+    x = "hour", 
+    y = "offenses per hour"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+```
+
+
+
+
+
+# Spatial distribution
+
+```{r message=FALSE, warning=FALSE}
+city_outline <- str_glue(
+  "spatial_data/cities/tl_2016_{cities$fips[cities$name == this_city]}",
+  "_place.shp"
+) %>% 
+  here() %>% 
+  read_sf() %>% 
+  filter(NAME == this_city_usgs)
+
+city_bbox <- st_bbox(city_outline)
+
+city_data <- data %>% 
+  sample_frac(0.1) %>% 
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+
+city_map <- ggplot() +
+  geom_sf(data = tigris::states(year = 2016, class = "sf"), 
+          fill = NA, colour = "#999999") +
+  geom_hex(
+    mapping = aes(x = longitude, y = latitude),
+    data = filter(data, !is.na(latitude) & !is.na(longitude)),
+    bins = 50,
+    na.rm = TRUE
+  ) +
+  geom_sf(data = city_outline, fill = NA) +
+  # geom_sf(data = city_data, size = 0.2, alpha = 0.5) +
+  lims(x = c(city_bbox$xmin, city_bbox$xmax), 
+       y = c(city_bbox$ymin, city_bbox$ymax)) +
+  scale_fill_continuous(low = "#FFFFFF", high = "#000000", 
+                        label = scales::comma) +
+  labs(title = "Spatial distribution of crimes", 
+       subtitle = "all offences, 10% sample", x = "", y = "") +
+  theme_minimal() +
+  theme(
+    panel.grid.major = element_line(colour = "#CCCCCC")
+  )
+```
+
+```{r include=TRUE, fig.height=8}
+city_map
+```
+
+
+
+
+
+# Crime types
+
+Offenses in the CODE data are split into three categories: crimes against people,
+property and society. These categories are then split into smaller categories
+for different offense types.
+
+
+
+```{r include=TRUE, fig.cap="Crimes against people"}
+data %>% 
+  filter(!is.na(latitude) & !is.na(!longitude) & in_city == TRUE & 
+           offense_against == "persons") %>% 
+  count(offense_group, offense_code, offense_type, name = "Cases") %>% 
+  arrange(offense_code) %>% 
+  mutate(
+    offense_group = ifelse(
+      offense_group != lag(offense_group) | row_number() == 1, 
+      offense_group, 
+      ""
+    ),
+    Cases = comma(Cases)
+  ) %>% 
+  rename(Code = offense_code, Group = offense_group, Type = offense_type) %>% 
+  kable(format = "latex", align = "lllr", booktabs = TRUE, longtable = TRUE, 
+        linesep = "\\addlinespace", caption = "Crimes against people") %>% 
+  kable_styling(full_width = TRUE, latex_options = c("repeat_header")) %>% 
+  column_spec(1, width = "5cm") %>% 
+  column_spec(2, width = "1cm") %>% 
+  column_spec(4, width = "1.5cm")
+```
+
+
+
+```{r include=TRUE}
+data %>% 
+  filter(!is.na(latitude) & !is.na(!longitude) & in_city == TRUE & 
+           offense_against == "property") %>% 
+  count(offense_group, offense_code, offense_type, name = "Cases") %>% 
+  arrange(offense_code) %>% 
+  mutate(
+    offense_group = ifelse(
+      offense_group != lag(offense_group) | row_number() == 1, 
+      offense_group, 
+      ""
+    ),
+    Cases = comma(Cases)
+  ) %>% 
+  rename(Code = offense_code, Group = offense_group, Type = offense_type) %>% 
+  kable(format = "latex", align = "lllr", booktabs = TRUE, longtable = TRUE, 
+        linesep = "\\addlinespace", caption = "Crimes against property") %>% 
+  kable_styling(full_width = TRUE, latex_options = c("repeat_header")) %>% 
+  column_spec(1, width = "5cm") %>% 
+  column_spec(2, width = "1cm") %>% 
+  column_spec(4, width = "1.5cm")
+```
+
+
+
+```{r include=TRUE}
+data %>% 
+  filter(!is.na(latitude) & !is.na(!longitude) & in_city == TRUE & 
+           offense_against == "society") %>% 
+  count(offense_group, offense_code, offense_type, name = "Cases") %>% 
+  arrange(offense_code) %>% 
+  mutate(
+    offense_group = ifelse(
+      offense_group != lag(offense_group) | row_number() == 1, 
+      offense_group, 
+      ""
+    ),
+    Cases = comma(Cases)
+  ) %>% 
+  rename(Code = offense_code, Group = offense_group, Type = offense_type) %>% 
+  kable(format = "latex", align = "lllr", booktabs = TRUE, longtable = TRUE, 
+        linesep = "\\addlinespace", caption = "Crimes against society") %>% 
+  kable_styling(full_width = TRUE, latex_options = c("repeat_header")) %>% 
+  column_spec(1, width = "5cm") %>% 
+  column_spec(2, width = "1cm") %>% 
+  column_spec(4, width = "1.5cm")
+```
+
+
+
+```{r include=FALSE}
+nibrs_categories <- read_csv(here("crime_categories/nibrs_categories.csv"), 
+         col_types = cols(.default = col_character())) %>% 
+  filter(
+    nibrs_crime_against != "Excluded cases" &
+    !nibrs_offense_code %in% c("120", "220")
+  )
+
+missing_types <- setdiff(
+  nibrs_categories %>% 
+    filter(str_sub(nibrs_offense_type, 3, 3) != "U") %>% 
+    pluck("nibrs_offense_type") %>% 
+    unique() %>% 
+    { paste(str_sub(., 0, 3), str_to_lower(str_sub(., 5))) },
+  unique(paste(data$offense_code, data$offense_type))
+)
+```
+
+```{r include=TRUE, results="asis"}
+if (length(missing_types) > 0) {
+  cat("Some types of crime are missing from the", this_city, "data:\n\n")
+  cat(paste("  *", missing_types), sep = "\n")
+}
+```
+
+```{r include=TRUE, results="asis"}
+other_cats <- data %>%
+  filter(str_sub(offense_code, 3, 3) == "U") %>%
+  mutate(Type = paste(offense_code, offense_type)) %>%
+  count(Type, name = "Cases") %>%
+  mutate(Cases = comma(Cases))
+
+if (nrow(other_cats) > 0) {
+  str_glue(
+    "Due to limitations in the matching process between crime types in the ",
+    "original data and the CODE crime categories, some crimes have been coded ",
+    "to an 'other' category within the relevent higher-level category. ",
+    "Specifically, crimes have been coded to the following 'other' ",
+    "categories:\n\n"
+  )
+}
+```
+
+```{r include=TRUE}
+if (nrow(other_cats) > 0) {
+  other_cats %>%
+    kable(format = "latex", align = "lr", booktabs = TRUE, 
+          linesep = "\\addlinespace", 
+          caption = "Crime types missing from the data") %>%
+    kable_styling(full_width = TRUE, latex_options = c("repeat_header")) %>%
+    column_spec(2, width = "1.5cm")
+}
+```
+

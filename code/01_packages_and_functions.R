@@ -479,8 +479,8 @@ save_city_data <- function (data, name) {
 # Convert variables names to a common format
 convert_names <- function (data, common_vars, prefix) {
   
-  # get existing column names, converted to lower case without spaces
-  col_names <- names(janitor::clean_names(data))
+  # get existing column names
+  col_names <- names(data)
 
   # add prefix to city-specific column names
   names(data) <- ifelse(
