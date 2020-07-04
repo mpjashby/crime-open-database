@@ -11,24 +11,17 @@ crimedata::get_crime_data(
   type = "extended"
 ) %>% 
   # restore data to the same format as produced by 05_harmonze_data.R
-  rename_at(
-    vars("offense_code", "offense_type", "offense_group", "offense_against"),
-    ~ str_glue("nibrs_{.}")
-  ) %>% 
-  rename_at(vars(starts_with("vib_")), ~ str_remove(., "^vib_")) %>% 
-  # rename(
-  #   'nibrs_offense_code' = 'offense_code', 
-  #   'nibrs_offense_type' = 'offense_type', 
-  #   'nibrs_offense_category' = 'offense_group', 
-  #   'nibrs_crime_against' = 'offense_against'
-  # ) %>% 
   mutate(
     in_city = TRUE,
+    multiple_dates = FALSE,
     fips_state = str_sub(census_block, 0, 2), 
     fips_county = str_sub(census_block, 3, 5), 
     tract = str_sub(census_block, 6, 11), 
+    block_group = str_sub(census_block, 12, 12),
     block = str_sub(census_block, -4)
   ) %>% 
+  mutate_if(is.POSIXt, format, "%Y-%m-%d %H:%M") %>% 
+  mutate_if(is.factor, as.character) %>% 
   select(-uid, -census_block) %>% 
   split(.$city_name) %>% 
   walk(function (x) {
@@ -85,7 +78,7 @@ row_num <- 1
 # this must be done separately for each city to avoid the 'vector memory
 # exhausted' problem on macOS described at
 # http://r.789695.n4.nabble.com/R-3-5-0-vector-memory-exhausted-error-on-readBin-td4750237.html
-walk(cities$name, function (city) {
+walk(tail(cities$name, 1), function (city) {
 
   this_city <- slugify(city, "_")
   
@@ -212,3 +205,48 @@ walk(c("core", "extended", "sample"), function (file_type) {
     })
   
 })
+
+
+
+
+
+# Report typical file sizes ---------------------------------------------------
+
+here("output_data/") %>% 
+  dir("^crime_open_database_core_(.+?).csv.gz$", full.names = TRUE) %>% 
+  file.size() %>% 
+  mean() %>% 
+  number(accuracy = 0.1, scale = 1 / 10^6) %>% 
+  { 
+    str_glue("Mean size for core-data files: {.}")
+  } %>% 
+  message()
+
+here("output_data/") %>% 
+  dir("^crime_open_database_extended_(.+?).csv.gz$", full.names = TRUE) %>% 
+  file.size() %>% 
+  mean() %>% 
+  number(accuracy = 0.1, scale = 1 / 10^6) %>% 
+  { 
+    str_glue("Mean size for extended-data files: {.}")
+  } %>% 
+  message()
+
+cat(
+  "\nMean size for core-data files:", 
+  dir("../output_data", pattern = "^crime_open_database_core_(.+?).csv.gz$", 
+      full.names = TRUE) %>% 
+    file.size() %>% 
+    { round(mean(.) / 10^6, 1) },
+  "MB\nMean size for extended-data files:",
+  dir("../output_data", pattern = "^crime_open_database_extended_(.+?).csv.gz$", 
+      full.names = TRUE) %>% 
+    file.size() %>% 
+    { round(mean(.) / 10^6, 1) },
+  "MB\nMean size for sample-data files:",
+  dir("../output_data", pattern = "^crime_open_database_sample_(.+?).csv.gz$", 
+      full.names = TRUE) %>% 
+    file.size() %>% 
+    { round(mean(.) / 10^6, 1) },
+  "MB\n"
+)

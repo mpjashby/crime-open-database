@@ -1,8 +1,9 @@
 walk(
   c(
-    "Austin", "Boston", "Chicago", "Detroit", "Fort Worth", "Kansas City", 
-    "Los Angeles", "Louisville", "Mesa", "Nashville", "New York",
-    "San Francisco", "Seattle", "St Louis", "Tucson"
+    # "Austin", "Boston", "Chicago", "Detroit", "Fort Worth", "Kansas City", 
+    # "Los Angeles", "Louisville", "Mesa", "Nashville", "New York",
+    # "San Francisco", "Seattle", "St Louis", "Tucson"
+    "Virginia Beach"
   ),
   function (city) {
     rmarkdown::render(
