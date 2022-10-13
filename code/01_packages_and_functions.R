@@ -8,17 +8,11 @@
 # MapChi is used for US Census geocoding
 # this package is from GitHub, installed using
 # remotes::install_github("dmwelgus/MapChi")
-library("MapChi")
-# NOTE: since plyr is not formally part of the tidyverse, it must be loaded
-# before tidyverse or dplyr
-# library('plyr') # merge data in a tidyverse way 
-# NOTE: it's usually better to use the wrappers in stringr, which is why that is 
-# loaded (as part of tidyverse) after this
-# library('stringi') # advanced string manipulation 
-# library('reshape2') # for creating tables of offence categories
-library("lubridate") # date handling
-library('sf') # handle spatial data
-library('tidyverse') # load tidyverse last
+# library(MapChi)
+library(lubridate) # date handling
+library(sf) # handle spatial data
+library(tidygeocoder) # geocode addresses
+library(tidyverse) # load tidyverse last
 
 
 
@@ -28,29 +22,38 @@ library('tidyverse') # load tidyverse last
 source(here::here("code/api_keys.R"))
 
 yearFirst <- 2007
-yearLast <- 2019
+yearLast <- 2021
 
 nibrs_categories <- here::here("crime_categories/nibrs_categories.csv") %>% 
   read_csv()
 
 cities <- tribble(
   ~name, ~fips, ~prefix,
-  "Austin",         "48", "aus",
-  "Boston",         "25", "bos",
-  "Chicago",        "17", "chi",
-  "Detroit",        "26", "dtt",
-  "Fort Worth",     "48", "ftw",
-  "Kansas City",    "29", "kcm",
-  "Los Angeles",    "06", "lax",
-  "Louisville",     "21", "lou",
-  "Memphis",        "47", "mem",
-  "Mesa",           "04", "mes",
-  "Nashville",      "47", "nvl",
-  "New York",       "36", "nyc",
-  "San Francisco",  "06", "sfo",
-  "Tucson",         "04", "tus",
-  "Virginia Beach", "51", "vib"
-)
+  "Austin",           "48", "aus",
+  "Boston",           "25", "bos",
+  "Chicago",          "17", "chi",
+  "Colorado Springs", "08", "cos",
+  "Detroit",          "26", "dtt",
+  "Fort Worth",       "48", "ftw",
+  "Kansas City",      "29", "kcm",
+  "Los Angeles",      "06", "lax",
+  "Louisville",       "21", "lou",
+  "Memphis",          "47", "mem",
+  "Mesa",             "04", "mes",
+  "Nashville",        "47", "nvl",
+  "New York",         "36", "nyc",
+  # "Oakland",          "06", "oak",
+  "San Francisco",    "06", "sfo",
+  "Seattle",          "53", "sea",
+  "St Louis",         "29", "stl",
+  "Tucson",           "04", "tus",
+  "Virginia Beach",   "51", "vib"
+) %>% 
+  mutate(census_name = case_when(
+    name == "Nashville" ~ "Nashville-Davidson metropolitan government (balance)",
+    name == "St Louis" ~ "St. Louis",
+    TRUE ~ name
+  ))
 
 common_vars <- c(
   'uid',
@@ -89,18 +92,21 @@ report_status <- function(data, message, summary = FALSE) {
   
   # if necessary, add a summary of the object to the message
   if (summary == TRUE) {
-    message <- paste0(
+    message <- c(
       message, 
-      " (data is ", 
-      class(data), 
-      ifelse(is.null(nrow(data)) | is.null(ncol(data)), 
-             paste(" of length", length(data)),
-             paste(" with", ncol(data), "columns and", nrow(data), "rows")), 
-      ")")
+      str_glue(
+        "data is {class(data)}",
+        ifelse(
+          is.null(nrow(data)) | is.null(ncol(data)),
+          str_glue(" of length {length(data)}"),
+          str_glue(" with {ncol(data)} columns and {nrow(data)} rows")
+        )
+      )
+    )
   }
   
   # print message
-  message(message, appendLF = TRUE)
+  rlang::inform(message)
   
   # return the object unchanged
   data
@@ -133,14 +139,15 @@ download_crime_data <- function (url, city) {
 
 
 # Read crime data into memory, cleaning file names by default
-read_crime_data <- function (city, col_types = NULL, clean_names = TRUE) {
+read_crime_data <- function (city, col_types = NULL, clean_names = TRUE, ...) {
   
   if (str_sub(city, end = 1) == "/") {
-    file_data <- readr::read_csv(city, col_types = col_types)
+    file_data <- readr::read_csv(city, col_types = col_types, ...)
   } else {
     file_data <- readr::read_csv(
       here::here(str_glue("original_data/raw_{city}.csv")),
-      col_types = col_types
+      col_types = col_types,
+      ...
     )
   }
   
@@ -186,8 +193,8 @@ add_date_var <- function (data, field_name, date_format, tz) {
     select(-date_temp)
   
   if (sum(is.na(data$date_single)) > 0) {
-    message("\n✖︎", format(sum(is.na(data$date_single)), big.mark = ","), 
-            "dates could not be parsed. Sample of original field:\n")
+    message("\n✖︎ ", format(sum(is.na(data$date_single)), big.mark = ","), 
+            " dates could not be parsed. Sample of original field:\n")
     data %>% 
       filter(is.na(data$date_single)) %>% 
       sample_n(ifelse(sum(is.na(data$date_single)) > 10, 10, 
@@ -248,10 +255,10 @@ join_nibrs_cats <- function (
   by = "nibrs_offense_code"
 ) {
   
-  cats <- readr::read_csv(
-    here::here(file), 
-    col_types = cols(.default = col_character())
-  )
+  cats <- file %>% 
+    here::here() %>% 
+    readr::read_csv(col_types = cols(.default = col_character())) %>% 
+    janitor::clean_names()
   
   data <- dplyr::left_join(data, cats, by = by)
   
@@ -279,14 +286,15 @@ check_nibrs_cats <- function (data, file, by) {
   ) {
     warning(str_glue("✖ some cases could not be matched to NIBRS categories\n",
                      "see {failure_file_name} for details\n"))
-    data %>% filter(
-      is.na(data$nibrs_offense_code) |
-        is.na(data$nibrs_offense_type) |
-        is.na(data$nibrs_offense_category) |
-        is.na(data$nibrs_crime_against)
-    ) %>% 
+    data %>% 
+      filter(
+        is.na(nibrs_offense_code) |
+          is.na(nibrs_offense_type) |
+          is.na(nibrs_offense_category) |
+          is.na(nibrs_crime_against)
+      ) %>% 
       group_by_at(vars(one_of(c(by, "date_year")))) %>% 
-      summarise(n = n()) %>% 
+      summarise(n = n(), .groups = "drop") %>% 
       spread(date_year, n) %>% 
       write_csv(here::here(failure_file_name))
   } else {
@@ -450,7 +458,7 @@ save_city_data <- function (data, name) {
   data %>% 
     nrow() %>% 
     format(big.mark = ',') %>% 
-    message("Data for", str_to_title(name), "contains", ., "rows\n")
+    message("Data for ", str_to_title(name), " contains ", ., " rows\n")
   
   data
   
@@ -507,3 +515,4 @@ convert_names <- function (data, common_vars, prefix) {
   data
   
 }
+

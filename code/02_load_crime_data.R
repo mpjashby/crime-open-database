@@ -32,6 +32,7 @@
 # Austin data are in one large CSV file from 2003 onward
 
 # save data from website
+# Source: 
 download_crime_data(
   "https://data.austintexas.gov/api/views/fdj4-gpfu/rows.csv?accessType=DOWNLOAD", 
   "austin"
@@ -165,13 +166,22 @@ read_crime_data(
 # Boston ----------------------------------------------------------------------
 
 # save data from website
-download_crime_data(
-  "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/12cb3883-56f5-47de-afa5-3b1cf61b257b/download/tmp8gpf5rgj.csv", 
-  "boston"
-)
+tribble(
+  ~year, ~url,
+  "2016", "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/b6c4e2c3-7b1e-4f4a-b019-bef8c6a0e882/download/crime-incident-reports-2016.csv",
+  "2017", "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/64ad0053-842c-459b-9833-ff53d568f2e3/download/crime-incident-reports-2017.csv",
+  "2018", "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/e86f8e38-a23c-4c1a-8455-c8f94210a8f1/download/crime-incident-reports-2018.csv",
+  "2019", "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/34e0ae6b-8c94-4998-ae9e-1b51551fe9ba/download/script_113631134_20210423192813_combine.csv",
+  "2020", "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/be047094-85fe-4104-a480-4fa3d03f9623/download/script_113631134_20210423193017_combine.csv",
+  "2021", "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/f4495ee9-c42c-4019-82c1-d067f07e45d2/download/tmp7_f32p54.csv"
+) %>% 
+  mutate(year = str_glue("boston_{year}")) %>% 
+  pwalk(~ download_crime_data(..2, ..1))
 
 # process data
-read_crime_data("boston", cols(.default = col_character())) %>% 
+here::here("original_data") %>% 
+  dir(pattern = "^raw_boston_", full.names = TRUE) %>% 
+  map_dfr(read_crime_data, col_types = cols(.default = col_character())) %>% 
   rename(latitude = lat, longitude = long) %>% 
   # add date variable
   add_date_var("occurred_on_date", "Ymd T", "America/New_York") %>% 
@@ -181,88 +191,119 @@ read_crime_data("boston", cols(.default = col_character())) %>%
   select(-year, -month, -day_of_week, -hour, -location) %>% 
   # categorize crimes
   mutate(
+    # Pad `offense_code` to be five figures since some years are padded and some
+    # are not
+    offense_code = str_pad(offense_code, 5, side = "left", pad = "0"),
     nibrs_offense_code = case_when(
-      offense_code_group == "Arson" ~ "200",
+      offense_code_group == "Arson" | offense_code == "00900" ~ "200",
       offense_code_group == "Burglary - No Property Taken" ~ "22U",
       offense_code %in% c("00121", "00123") ~ "09B", # negligent manslaughter
       # this line must be after the lines above otherwise some incidents listed
       # as being UCR Part 3 but actually being within Part 2 will be incorrectly
       # excluded
       ucr_part %in% c("Other", "Part Three") ~ "99Z", # non-criminal incidents
-      offense_code_group == "Aggravated Assault" ~ "13A",
-      offense_code_group == "Auto Theft" ~ "240",
+      offense_code %in% c("00423", "00400", "00402", "00403", "00404", "00413") ~ "13A", # aggravated assault
+      offense_code_group == "Simple Assault" | offense_code %in% c("00800", "00801") ~ "13B", # simple assault
+      offense_code_group == "Biological Threat" |
+        offense_code %in% c("02648", "03170") ~ "13C", # intimidation
+      offense_code_group == "Auto Theft" | offense_code %in% c("00706", "00724", "00727") ~ "240",
       offense_code_group == "Ballistics" ~ "99Z",
-      offense_code_group == "Biological Threat" ~ "13C",
       offense_code_group == "Commercial Burglary" ~ "22B",
-      offense_code_group == "Homicide" ~ "09A",
+      offense_code == "00111" ~ "09A",
       offense_code == "00611" ~ "23A", # Pocket-picking
       offense_code == "00612" ~ "23B", # Purse-snatching
-      offense_code %in% c("00613", "0633") ~ "23C", # Shoplifting
-      offense_code %in% c("00617", "0617", "0627", "0637") ~ "23D", # Theft From Building
+      offense_code %in% c("00613", "00633") ~ "23C", # Shoplifting
+      offense_code %in% c("00617", "00617", "00627", "00637") ~ "23D", # Theft From Building
       offense_code == "00618" ~ "23E", # Theft From Coin-Operated Machine
-      offense_code %in% c("00614", "0614", "0634") ~ "23F", # Theft From Motor Vehicle except Parts
+      offense_code %in% c("00614", "00634", "00531", "00641") ~ "23F", # Theft From Motor Vehicle except Parts
       offense_code == "00615" ~ "23G", # Theft of Motor Vehicle Parts
-      offense_code %in% c("00616", "0616", "0619", "0629", "00619") ~ "23H", # All Other Larceny
-      offense_code_group == "Other Burglary" ~ "22U",
-      offense_code_group == "Residential Burglary" ~ "22A",
-      offense_code %in% c("00301", "00371", "00381", "0338", "0339") ~ "12A", # personal robbery
-      offense_code %in% c("00311", "00351", "0335") ~ "12B", # commercial robbery
-      offense_code %in% c("00361") ~ "12U", # other robbery
+      offense_code %in% c("00616", "00619", "00629", "00600", "02632") ~ "23H", # All Other Larceny
+      offense_code_group == "Other Burglary" | offense_code == "00500" ~ "22U",
+      offense_code_group == "Residential Burglary" | offense_code == "00520" ~ "22A",
+      offense_code == "00540" ~ "22B",
+      offense_code %in% c("00301", "00371", "00381", "00338", "00339") ~ "12A", # personal robbery
+      offense_code %in% c("00311", "00351", "00335") ~ "12B", # commercial robbery
+      offense_code %in% c("00361", "00300") ~ "12U", # other robbery
       offense_code_group == "Bomb Hoax" ~ "13C", 
       offense_code_group == "Confidence Games" ~ "26A", 
-      offense_code_group == "Counterfeiting" ~ "250", 
-      offense_code_group == "Criminal Harassment" ~ "90Z", 
-      offense_code_group == "Disorderly Conduct" ~ "90C", 
-      offense_code_group == "Drug Violation" ~ "35A", 
+      offense_code_group == "Counterfeiting" | offense_code == "01001" ~ "250", 
+      offense_code_group == "Criminal Harassment" | 
+        offense_code %in% c("02670", "02671") ~ "90Z", 
+      offense_code_group == "Disorderly Conduct" | 
+        offense_code %in% c("02401", "02403", "03304") ~ "90C", 
+      offense_code_group == "Drug Violation" | 
+        offense_code %in% c("01800", "01810", "01825") ~ "35A", 
       offense_code_group == "Evading Fare" ~ "23H",
-      offense_code_group == "Embezzlement" ~ "270",
-      offense_code_group %in% c("Explosives", "Firearm Violations") ~ "520", 
-      offense_code %in% c("01102", "1102") ~ "26A", 
+      offense_code_group == "Embezzlement" | offense_code == "01201" ~ "270",
+      offense_code_group %in% c("Explosives", "Firearm Violations") | 
+        offense_code == "02618" ~ "520", 
+      offense_code %in% c("01102") ~ "26A", 
+      offense_code == "01106" ~ "26B",
       offense_code == "01107" ~ "26C", 
       offense_code == "01108" ~ "26D", 
       offense_code == "01109" ~ "26E", 
       offense_code_group == "Gambling" ~ "39A", 
+      offense_code_group == "Operating Under the Influence" |
+        offense_code %in% c("02101", "02102") ~ "90D", 
+      offense_code == "03305" ~ "90E",
+      offense_code_group == "Offenses Against Child / Family" | 
+        offense_code %in% c("02006", "02007") ~ "90F", 
+      offense_code_group == "Liquor Violation" | 
+        offense_code %in% c("02204", "02646", "03111") ~ "90G", 
       offense_code_group == "Harassment" ~ "90Z", 
-      offense_code_group == "Liquor Violation" ~ "90G", 
-      offense_code_group == "Offenses Against Child / Family" ~ "90F", 
-      offense_code_group == "Operating Under the Influence" ~ "90D", 
-      offense_code == "01504" ~ "520",
+      offense_code %in% c("01500", "01501", "01504") ~ "520",
       offense_code %in% c("02511", "02611", "02622", "02664") ~ "100",
       offense_code == "02604" ~ "210",
-      offense_code %in% c("02610", "2610") ~ "90J",
+      offense_code == "02610" ~ "90J",
+      offense_code %in% c("02905", "02907", "02914") ~ "99Y",
       offense_code %in% c("02613", "02616", "02641", "02657", "02660", "02663", 
-                          "02900", "2616", "02628") ~ "90Z",
+                          "02900", "02628") ~ "90Z",
       offense_code == "02623" ~ "370",
-      offense_code %in% c("02647", "2647") ~ "13C",
-      offense_code_group == "Prisoner Related Incidents" ~ "90Z",
-      offense_code %in% c("01601", "01602", "01605", "1601", "1602", 
-                          "1605") ~ "40A",
+      offense_code == "02647" ~ "13C",
+      offense_code_group == "Prisoner Related Incidents" |
+        offense_code %in% c("02600", "02612", "02619") ~ "90Z", # all other offenses
+      offense_code %in% c("01601", "01602", "01605") ~ "40A",
       offense_code == "01603" ~ "40B",
-      offense_code_group == "Recovered Stolen Property" ~ "280",
+      offense_code_group == "Recovered Stolen Property" | offense_code %in% c("01300", "01304") ~ "280",
       offense_code_group == "Restraining Order Violations" ~ "90Z",
-      offense_code_group == "Simple Assault" ~ "13B",
-      offense_code_group == "Vandalism" ~ "290",
+      offense_code_group == "Vandalism" | 
+        offense_code %in% c("01400", "01415") |
+        offense_description %in% c("M/V - LEAVING SCENE - PROPERTY DAMAGE", "VANDALISM") ~ "290",
       offense_code_group == "Violations" ~ "90Z",
       offense_code_group == "HOME INVASION" ~ "12A",
       offense_code_group == "HUMAN TRAFFICKING" ~ "64A",
       offense_code_group == "HUMAN TRAFFICKING - INVOLUNTARY SERVITUDE" ~ "64B",
       offense_code_group %in% c("INVESTIGATE PERSON", "Missing Person Reported", 
                                 "Fire Related Reports") ~ "99Z",
+      offense_code %in% c(
+        "00735", "00736", "00990", "01832", "02608", "02642", "02950", "03001", 
+        "03004", "02662", "03007", "03008", "03018", "03029", "03100", "03106", 
+        "03108", "03110", "03112", "03116", "03119", "03122", "03123", "03125",
+        "03126", "03130", "03200", "03202", "03203", "03205", "03207", "03300",
+        "03402", "03403", "03501", "03502", "03503", "03625", "99999"
+      ) | str_detect(offense_code, "^038") ~ "99Z", # non-criminal matters
+      offense_description %in% c(
+        "INVESTIGATE PERSON", "INVESTIGATE PROPERTY", "SICK ASSIST",
+        "TOWED MOTOR VEHICLE", "SICK/INJURED/MEDICAL - PERSON",
+        "PROPERTY - LOST/ MISSING", "M/V ACCIDENT - PROPERTY DAMAGE",
+        "VERBAL DISPUTE"
+      ) ~ "99Z",
       TRUE ~ NA_character_
     )
   ) %>% 
-  join_nibrs_cats() %>% 
+  join_nibrs_cats() %>%
   # save data
-  save_city_data("Boston") %>% 
+  save_city_data("Boston") %>%
   glimpse()
 
 
 
 
 
-# Chicago ---------------------------------------------------------------------
+# Chicago ----------------------------------------------------------------------
 
 # save data from website
+# Source: https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-Present/ijzp-q8t2
 download_crime_data(
   "https://data.cityofchicago.org/api/views/ijzp-q8t2/rows.csv?accessType=DOWNLOAD", 
   "chicago"
@@ -276,9 +317,8 @@ read_crime_data("chicago") %>%
   # filter by year
   filter_by_year(yearFirst, yearLast) %>% 
   # add crime categories
-  join_nibrs_cats("../crime_categories/categories_chicago.csv",
-                  by = c("primary_type" = "Primary Type", 
-                         "description" = "Description")) %>% 
+  join_nibrs_cats("crime_categories/categories_chicago.csv",
+                  by = c("primary_type", "description")) %>% 
   # separate burglaries and robberies into sub-categories
   mutate(nibrs_offense_type = case_when(
     # residential burglary
@@ -323,9 +363,66 @@ read_crime_data("chicago") %>%
   join_location_types(
     file = "crime_categories/location_types_chicago.csv", 
     by = c("location_description" = "Location Description")
-  ) %>% 
+  ) %>%
   # save data
-  save_city_data("Chicago") %>% 
+  save_city_data("Chicago") %>%
+  glimpse()
+
+
+
+
+
+# Colorado Springs -------------------------------------------------------------
+
+# Save data from website
+# Source: https://policedata.coloradosprings.gov/Crime/Crime-Level-Data/bc88-hemr
+download_crime_data(
+  "https://policedata.coloradosprings.gov/api/views/bc88-hemr/rows.csv?accessType=DOWNLOAD",
+  "colorado_springs"
+)
+
+# Process data
+read_crime_data("colorado_springs") %>% 
+  # Since Colorado Springs includes both start and end dates, so we will process 
+  # the dates manually rather than using add_date_var()
+  mutate(
+    date_start = parse_date_time(occurred_from_date, "mdY IMS p"),
+    date_end = parse_date_time(occurred_through_date, "mdY IMS p"),
+    date_single = date_start + ((date_end - date_start) / 2),
+    date_year = year(date_single),
+    multiple_dates = TRUE
+  ) %>% 
+  # Filter by year
+  filter_by_year(2016, yearLast) %>% 
+  # Add crime categories
+  rename(nibrs_offense_code = crime_code) %>% 
+  mutate(
+    # Replace codes that aren't used in CODE
+    nibrs_offense_code = recode(
+      nibrs_offense_code,
+      "09C" = "99Z",
+      "26F" = "26C",
+      "26G" = "26E",
+      "720" = "90Z",
+      "90I" = "99Z",
+      "99" = "99Z"
+    ),
+    # Split burglaries into res/non-res and robberies into personal/business
+    nibrs_offense_code = case_when(
+      nibrs_offense_code == "120" & str_detect(ncic_code_description, "Carjacking|Purse|Residence|Street") ~ "12A",
+      nibrs_offense_code == "120" & str_detect(ncic_code_description, "Banking|Business") ~ "12B",
+      nibrs_offense_code == "120" ~ "12U",
+      nibrs_offense_code == "220" & str_detect(ncic_code_description, "Residence") ~ "22A",
+      nibrs_offense_code == "220" ~ "22B",
+      TRUE ~ nibrs_offense_code
+    )
+  ) %>%
+  join_nibrs_cats() %>% 
+  # Remove cases that were unfounded, which are left in the data because of
+  # repeated public requests to the city
+  filter(disposition != "Unfounded") %>% 
+  # save data
+  save_city_data("Colorado Springs") %>%
   glimpse()
 
 
@@ -333,6 +430,9 @@ read_crime_data("chicago") %>%
 
 
 # Detroit ---------------------------------------------------------------------
+
+# Data prior to 2017 is no longer available on the city data portal. Instead we
+# combine existing data in CODE with new data from the city portal.
 
 # Detroit data changed format at the end of 2016. Although the column names
 # changed, the information provided in the two files is largely the same.
@@ -358,69 +458,68 @@ read_crime_data("chicago") %>%
 # * There is a large increase in 90F Family Offenses, Nonviolent offenses.
 
 # save data from website
+# download_crime_data(
+#   "https://data.detroitmi.gov/api/views/invm-th67/rows.csv?accessType=DOWNLOAD", 
+#   "detroit_early"
+# )
 download_crime_data(
-  "https://data.detroitmi.gov/api/views/invm-th67/rows.csv?accessType=DOWNLOAD", 
-  "detroit_early.csv"
-)
-download_crime_data(
-  "https://data.detroitmi.gov/api/views/6gdg-y3kf/rows.csv?accessType=DOWNLOAD", 
-  "detroit_late.csv"
+  "https://opendata.arcgis.com/api/v3/datasets/871c66cb1faf458b9d80b5dba1fc08c8_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1", 
+  "detroit_late"
 )
 
-# process data
-list(
-  read_crime_data("detroit_early", 
-                  col_types = cols(.default = col_character())) %>% 
-    select(-rownum, -caseid, -censustract) %>% 
-    separate(location, into = c("incident_address", "location"), 
-             sep = "\\n") %>% 
-    mutate(
-      hour = str_glue("{str_pad(hour, width = 2, side = 'left', pad = '0')}00"),
-      sca = str_pad(sca, width = 4, side = "left", pad = "0"),
-      precinct = str_pad(precinct, width = 2, side = "left", pad = "0"),
-      council = str_remove(council, "City Council District ")
-    ),
-  read_crime_data("detroit_late", 
-                  col_types = cols(.default = col_character())) %>% 
-    select(-day_of_week_sunday_is_1, -hour_of_day, -year, -census_block_geoid`, 
-           -longitude, -latitude, -zip_code) %>% 
-    rename(
-      crimeid = crime_id,
-      crno = report_number,
-      offensedescription = offense_description,
-      category = offense_category,
-      stateoffensefileclass = state_offense_code,
-      incidentdate = incident_date_time,
-      hour = incident_time_24h,
-      sca = scout_car_area,
-      precinct = precinct_number,
-      location = location,
-      neighborhood = neighborhood,
-      council = council_district
-    ) %>% 
-    mutate(
-      neighborhood = str_to_upper(neighborhood),
-      location = str_remove(location, "^location\\n"),
-      incident_address = str_remove_all(incident_address, "block of ")
-    )
+# There is (as of 2022) a bug in `get_crime_data()` that means data for Detroit
+# for 2010 is missing when downloaded separately, so this has to be extracted 
+# from the all-cities file for 2010
+detroit_2010 <- crimedata::get_crime_data(years = 2010, type = "extended") %>% 
+  filter(city_name == "Detroit") %>% 
+  discard(~ all(is.na(.x)))
+
+# Download existing data from CODE and format it to look like the raw data
+detroit_old <- crimedata::get_crime_data(
+  years = 2009:2016, 
+  cities = "Detroit", 
+  type = "extended"
 ) %>% 
-  bind_rows() %>% 
-  mutate(
-    location = str_replace(location, ".*\\((.+)\\)", "\\1"),
-    incident_date = paste(parse_date(incidentdate, "%m/%d/%Y %I:%M:%S %p"), 
-                          hour)
+  bind_rows(detroit_2010) %>% 
+  rename_all(~ str_remove(., "^dtt_")) %>% 
+  select(
+    x = longitude, 
+    y = latitude, 
+    crime_id = local_row_id, 
+    report_number = case_number,
+    address,
+    offense_description,
+    offense_category,
+    arrest_charge,
+    charge_description,
+    incident_timestamp,
+    scout_car_area,
+    precinct,
+    neighborhood,
+    council_district,
+    zip_code,
+    oid
   ) %>% 
-  separate(location, c("latitude", "longitude"), ", ") %>% 
+  mutate(across(everything(), as.character))
+
+# process data
+read_crime_data("detroit_late", col_types = cols(.default = col_character())) %>% 
+  mutate(
+    incident_timestamp = str_glue("{str_sub(incident_timestamp, 1, 10)} {incident_time}"),
+    neighborhood = str_to_upper(neighborhood)
+  ) %>% 
+  bind_rows(detroit_old) %>% 
   # add data var
-  add_date_var("incident_date", "Ymd R", "America/Detroit") %>%
+  add_date_var("incident_timestamp", "Ymd T", "America/Detroit") %>%
   # filter by year
   filter_by_year(2009, yearLast) %>% 
   # categorize crimes
-  join_nibrs_cats("../crime_categories/categories_detroit.csv", 
-                  by = c("category" = "CATEGORY", 
-                         "offensedescription" = "OFFENSEDESCRIPTION")) %>% 
+  join_nibrs_cats(
+    "crime_categories/categories_detroit.csv", 
+    by = c("offense_category" = "category", "offense_description" = "offensedescription")
+  ) %>%
   # save data
-  save_city_data("Detroit") %>% 
+  save_city_data("Detroit") %>%
   glimpse()
 
 
@@ -535,7 +634,9 @@ tribble(
   "2016", "https://data.kcmo.org/api/views/wbz8-pdv7/rows.csv?accessType=DOWNLOAD",
   "2017", "https://data.kcmo.org/api/views/98is-shjt/rows.csv?accessType=DOWNLOAD",
   "2018", "https://data.kcmo.org/api/views/dmjw-d28i/rows.csv?accessType=DOWNLOAD",
-  "2019", "https://data.kcmo.org/api/views/pxaa-ahcm/rows.csv?accessType=DOWNLOAD"
+  "2019", "https://data.kcmo.org/api/views/pxaa-ahcm/rows.csv?accessType=DOWNLOAD",
+  "2020", "https://data.kcmo.org/api/views/vsgj-uufz/rows.csv?accessType=DOWNLOAD",
+  "2021", "https://data.kcmo.org/api/views/w795-ffu6/rows.csv?accessType=DOWNLOAD"
 ) %>% 
   mutate(year = str_glue("kansas_city_{year}")) %>% 
   pwalk(~ download_crime_data(..2, ..1))
@@ -595,7 +696,7 @@ here::here("original_data") %>%
     ),
     # when end time is missing, use start time
     date_end = as.POSIXct(
-      ifelse(is.na(date_start), date_start, date_start),
+      ifelse(is.na(date_end), date_start, date_end),
       origin = "1970-01-01",
       tz = "America/Chicago"
     ),
@@ -629,7 +730,7 @@ here::here("original_data") %>%
   ) %>% 
   join_nibrs_cats() %>% 
   # save data
-  save_city_data("Kansas City") %>% 
+  save_city_data("Kansas City") %>%
   glimpse()
 
 
@@ -655,55 +756,41 @@ here::here("original_data") %>%
 
 # save data from website
 download_crime_data(
-  "https://data.lacity.org/api/views/y8tr-7khq/rows.csv?accessType=DOWNLOAD", 
-  "los_angeles"
+  "https://data.lacity.org/api/views/63jg-8b9z/rows.csv?accessType=DOWNLOAD", 
+  "los_angeles_old"
+)
+download_crime_data(
+  "https://data.lacity.org/api/views/2nrs-mtv8/rows.csv?accessType=DOWNLOAD",
+  "los_angeles_new"
 )
 
 # process data
-read_crime_data(
-  "los_angeles",
-  col_types = cols(
-    .default = col_character(),
-    `Crime Code` = col_integer(),
-    `Victim Age` = col_integer(),
-    `Premise Code` = col_integer(),
-    `Weapon Used Code` = col_integer(),
-    `Crime Code 1` = col_integer(),
-    `Crime Code 2` = col_integer(),
-    `Crime Code 3` = col_integer(),
-    `Crime Code 4` = col_integer()
-  )
-) %>% 
-  # convert from wide to long
-  # This code converts the four crime-code fields into wide format while 
-  # duplicating all the other columns across each new row. The `gather` function 
-  # requires that all variables to be left alone be specified, so a `setdiff` 
-  # function is used to return all the variables that are not one of the 
-  # crime-code fields.
-  gather(
-    which_crime, 
-    crime_type, 
-    crime_code_1, 
-    crime_code_2, 
-    crime_code_3, 
-    crime_code_4, 
-    -one_of(setdiff(
-      names(.), 
-      c('crime_code_1', 'crime_code_2', 'crime_code_3', 'crime_code_4')
-    )), 
-    na.rm = TRUE
+la_data <- here::here("original_data") %>% 
+  dir(pattern = "^raw_los_angeles_", full.names = TRUE) %>% 
+  map_dfr(read_crime_data, col_types = cols(.default = col_character())) %>% 
+  pivot_longer(
+    cols = c(crm_cd_1, crm_cd_2, crm_cd_3, crm_cd_4), 
+    names_to = NULL, 
+    values_to = "crime_type", 
+    values_drop_na = TRUE
   ) %>% 
   mutate(
-    address = str_replace_all(address, "\\s+?", " "),
-    location = str_replace(location, "\\((.+?)\\)", "\\1"),
-    date_occurred = paste(date_occurred, time_occurred)
+    date_occurred = paste(str_sub(date_occ, 1, 10), time_occ),
+    location = str_replace_all(location, "\\s+?", " "),
+    across(c(lon, lat), as.numeric)
   ) %>% 
-  separate(location, c("latitude", "longitude"), ", ") %>% 
-  mutate_at(vars(c("latitude", "longitude")), as.double) %>% 
   # add date var
-  add_date_var("date_occurred", "mdY R", "America/Los_Angeles") %>% 
+  add_date_var("date_occurred", "mdY HM", "America/Los_Angeles") %>% 
   # filter by year
   filter_by_year(yearFirst, yearLast) %>% 
+  # Rename some variables for use in the code below, since the variable names in
+  # the data have changed since the code was written and it is safer to rename
+  # the columns than change all the code and track-down side effects
+  rename(
+    crime_code_description = crm_cd_desc, 
+    mo_codes = mocodes,
+    premise_description = premis_desc
+  ) %>% 
   # categorize crimes
   mutate(
     # convert empty `MO Codes` fields from NA to an empty string, which makes it 
@@ -1014,8 +1101,7 @@ read_crime_data(
   left_join(nibrs_categories, by = "nibrs_offense_type") %>%
   check_nibrs_cats(
     file = "crime_categories/categories_LA",
-    by = "crime_code_description",
-    city_tag = "los_angeles"
+    by = "crime_code_description"
   ) %>% 
   # where necessary, update the NIBRS code to match the new type
   mutate(nibrs_offense_code = case_when(
@@ -1033,6 +1119,8 @@ read_crime_data(
     file = "crime_categories/location_types_los_angeles.csv",
     by = "premise_description"
   ) %>% 
+  # Rename variables that need consistent names in the next stage of processing
+  rename(longitude = lon, latitude = lat) %>% 
   # save data
   save_city_data("Los Angeles") %>%
   glimpse()
@@ -1051,26 +1139,30 @@ read_crime_data(
 # that offense. These need to be reallocated manually.
 
 # save data from website
+# Source: https://data.louisvilleky.gov/search?tags=Category%2Clmpd
 tribble(
   ~year, ~url,
-  "2007", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2007.csv",
-  "2008", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2008.csv",
-  "2009", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2009.csv",
-  "2010", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2010.csv",
-  "2011", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2011.csv",
-  "2012", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2012.csv",
-  "2013", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2013.csv",
-  "2014", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2014.csv",
-  "2015", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2015.csv",
-  "2016", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2016_39.csv",
-  "2017", "https://data.louisvilleky.gov/sites/default/files/Crime_Data_2017_9.csv",
-  "2018", "http://lky-open-data.s3.amazonaws.com/LMPD/Crime_Data_2018.csv"
+  "2007", "https://opendata.arcgis.com/api/v3/datasets/68a6bffe2f4849a2bb43e716de0b3109_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2008", "https://opendata.arcgis.com/api/v3/datasets/2ae5ed2569b34dca887e3aa78bd393e6_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2009", "https://opendata.arcgis.com/api/v3/datasets/d9900fb6c88a4bab891b6f33abe5ca5e_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2010", "https://opendata.arcgis.com/api/v3/datasets/cf42137603c84880a29561b98ac5d77d_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2011", "https://opendata.arcgis.com/api/v3/datasets/fc45166a9c794b4090dfca6551f1f07a_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2012", "https://opendata.arcgis.com/api/v3/datasets/459df206b0a04283831bf1ad7436b262_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2013", "https://opendata.arcgis.com/api/v3/datasets/ca0d48cd2b2f43dc810e4af2f94c27d6_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2014", "https://opendata.arcgis.com/api/v3/datasets/bc88775238fc4b1db84beff34ef43c77_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2015", "https://opendata.arcgis.com/api/v3/datasets/1c94ff45cfde43db999c0dc3fdfe8cd8_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2016", "https://opendata.arcgis.com/api/v3/datasets/3a84cb35fc9a4f209732ceff6d8ae7ea_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2017", "https://opendata.arcgis.com/api/v3/datasets/2bb69cd2c40444738c46110c03411439_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2018", "https://opendata.arcgis.com/api/v3/datasets/497405bfa80047ee95690107ca4ae003_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2019", "https://opendata.arcgis.com/api/v3/datasets/34a5c3d4a4c54dbb80a467645ddf242f_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2020", "https://opendata.arcgis.com/api/v3/datasets/43cf1d2647aa4b1c9b98579b83da4ec5_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1",
+  "2021", "https://opendata.arcgis.com/api/v3/datasets/99c95d815ee24ed19c15ad408efb7a76_0/downloads/data?format=csv&spatialRefId=4326&where=1%3D1"
 ) %>% 
   mutate(year = str_glue("louisville_{year}")) %>% 
-  pmap(~ download_crime_data(..2, ..1))
+  pwalk(~ download_crime_data(..2, ..1))
 
 # process data
-here::here("original_data") %>% 
+louisville_data <- here::here("original_data") %>% 
   dir(pattern = "^raw_louisville_", full.names = TRUE) %>% 
   map_dfr(
     read_crime_data, 
@@ -1080,7 +1172,7 @@ here::here("original_data") %>%
     )
   ) %>% 
   # add date var
-  add_date_var("date_occured", "Ymd T", "America/Kentucky/Louisville") %>% 
+  add_date_var("date_occured", c("Ymd T", "mdy IM p"), "America/Kentucky/Louisville") %>% 
   # filter by year
   filter_by_year(yearFirst, yearLast) %>% 
   # categorize crimes
@@ -1480,14 +1572,15 @@ here::here("original_data") %>%
   # is nibrs_offense_code, which is the first three characters of 
   # nibrs_offense_type, so we extract that
   mutate(nibrs_offense_code = str_sub(nibrs_offense_type, end = 3)) %>% 
-  join_nibrs_cats() %>% 
+  select(-nibrs_offense_type) %>% 
+  join_nibrs_cats() %>%
   # identify location types
   join_location_types(
     file = "crime_categories/location_types_louisville.csv",
     by = "premise_type"
-  ) %>% 
+  ) %>%
   # save data
-  save_city_data("Louisville") %>% 
+  save_city_data("Louisville") %>%
   glimpse()
 
 
@@ -1590,6 +1683,7 @@ read_crime_data("memphis", col_types = cols(.default = col_character())) %>%
   # is nibrs_offense_code, which is the first three characters of 
   # nibrs_offense_type, so we extract that
   mutate(nibrs_offense_code = str_sub(nibrs_offense_type, end = 3)) %>% 
+  select(-nibrs_offense_type) %>% 
   join_nibrs_cats() %>% 
   # save data
   save_city_data("Memphis") %>% 
@@ -1626,11 +1720,57 @@ read_crime_data(
          -location_1, -row_id) %>% 
   rename(nibrs_offense_code = 
            national_incident_based_crime_reporting_system_code) %>% 
+  # Data for 2019 onwards sometimes has multiple offenses in one row, so we have
+  # to separate those into multiple rows where every variable is the same except
+  # the offense code. To do this …
+  # Separate the codes into multiple columns, with the number of columns set as
+  # the maximum number of ', ' separators in the data, plus 1
+  separate(
+    nibrs_offense_code, 
+    into = str_glue(
+      "nibrs_code_", 
+      "{1:(max(str_count(.$nibrs_offense_code, ', '), na.rm = TRUE) + 1)}"
+    ), 
+    fill = "right"
+  ) %>% 
+  # Pivot longer so that each offense in a row is now on a separate row
+  pivot_longer(
+    starts_with("nibrs_code_"), 
+    names_to = "nibrs_code_num", 
+    values_to = "nibrs_offense_code", 
+    values_drop_na = TRUE
+  ) %>% 
+  # Remove the variable that contains the column names, since are superfluous
+  select(-nibrs_code_num) %>% 
   mutate(
     nibrs_offense_code = case_when(
+      nibrs_offense_code %in% c(
+        "720", # animal cruelty
+        "0908", # accident
+        "1038", # warrant arrest
+        "2000", # assist other agency
+        "3002", "3003", "3004", "3005", "3006", # sudden death
+        "3031", "3425", # info
+        "4044", # injunction
+        "4045", # "OOP SERVICE"
+        "4046", # mental health
+        "4010", "4015", "4020", "4025", "4030", "4040", "4050", "4055", # info
+        "4070", "4080", "4090", # info
+        "5000", "5010", "5020", "5025", "5030", # lost/found/seized property
+        "5040", "5050", "5060", "5070", "5080", # lost/found/seized property
+        "5081", "5082", "5090", "5091", "5092", # lost/found/seized property
+        "5093", "5094", # lost/found/seized property
+        "5499", # accident
+        "6001", "6002", # missing
+        "7477", "7478", "7500", # skeleton cases
+        "8001", # officer-involved shooting
+        "9900", "9905", "9906", "9909", "9910", "9912" # minor violations
+      ) ~ "99Z", # non-criminal matters
       nibrs_offense_code %in% c("09C", "90I") ~ "99Z",
       nibrs_offense_code == "120" ~ "12U",
       nibrs_offense_code == "220" ~ "22U",
+      nibrs_offense_code == "26F" ~ "26C",
+      nibrs_offense_code == "26G" ~ "26E",
       national_incident_based_crime_reporting_system_description == 
         "AGGRAVATED ROBBERY" ~ "12U",
       national_incident_based_crime_reporting_system_description == 
@@ -1641,6 +1781,7 @@ read_crime_data(
         "STOLEN PROPERTY OFFENSE" ~ "280",
       national_incident_based_crime_reporting_system_description %in% 
         c("NOT REPORTABLE", "NOT REPOTABLE") ~ "99Z",
+      nibrs_offense_code == "90" ~ "99X", # a single case with multiple descriptions, so not possible to identify what this code means
       is.na(nibrs_offense_code) ~ "99X",
       TRUE ~ nibrs_offense_code
     )
@@ -1648,7 +1789,7 @@ read_crime_data(
   join_nibrs_cats() %>% 
   select(-national_incident_based_crime_reporting_system_description) %>%
   # save data
-  save_city_data("Mesa") %>% 
+  save_city_data("Mesa") %>%
   glimpse()
 
 
@@ -1657,30 +1798,72 @@ read_crime_data(
 
 # Nashville -------------------------------------------------------------------
 
+# It appears that Nashville is progressively deleting old data from the data
+# file, so we will download the old data from CODE itself and then re-upload it
+# later
+
 # save data from website
-tribble(
-  ~year, ~url,
-  "2013", "https://data.nashville.gov/api/views/hsz5-g34u/rows.csv?accessType=DOWNLOAD",
-  "2014", "https://data.nashville.gov/api/views/sguy-xf8k/rows.csv?accessType=DOWNLOAD",
-  "2015", "https://data.nashville.gov/api/views/ce74-dvvv/rows.csv?accessType=DOWNLOAD",
-  "2016", "https://data.nashville.gov/api/views/tpvn-3k6v/rows.csv?accessType=DOWNLOAD",
-  "2017", "https://data.nashville.gov/api/views/ei8z-vngg/rows.csv?accessType=DOWNLOAD",
-  "2018", "https://data.nashville.gov/api/views/we5n-wkcf/rows.csv?accessType=DOWNLOAD",
-  "2019", "https://data.nashville.gov/api/views/a88c-cc2y/rows.csv?accessType=DOWNLOAD"
+# Source: https://data.nashville.gov/Police/Metro-Nashville-Police-Department-Incidents/2u6v-ujjs
+download_crime_data(
+  "https://data.nashville.gov/api/views/2u6v-ujjs/rows.csv?accessType=DOWNLOAD", 
+  "nashville"
+)
+# tribble(
+#   ~year, ~url,
+#   "2013", "https://data.nashville.gov/api/views/hsz5-g34u/rows.csv?accessType=DOWNLOAD",
+#   "2014", "https://data.nashville.gov/api/views/sguy-xf8k/rows.csv?accessType=DOWNLOAD",
+#   "2015", "https://data.nashville.gov/api/views/ce74-dvvv/rows.csv?accessType=DOWNLOAD",
+#   "2016", "https://data.nashville.gov/api/views/tpvn-3k6v/rows.csv?accessType=DOWNLOAD",
+#   "2017", "https://data.nashville.gov/api/views/ei8z-vngg/rows.csv?accessType=DOWNLOAD",
+#   "2018", "https://data.nashville.gov/api/views/we5n-wkcf/rows.csv?accessType=DOWNLOAD",
+#   "2019", "https://data.nashville.gov/api/views/a88c-cc2y/rows.csv?accessType=DOWNLOAD"
+# ) %>% 
+#   mutate(year = str_glue("nashville_{year}")) %>% 
+#   pmap(~ download_crime_data(..2, ..1))
+
+nashville_old <- crimedata::get_crime_data(
+  years = 2013:2014, 
+  cities = "Nashville", 
+  type = "extended"
 ) %>% 
-  mutate(year = str_glue("kansas_city_{year}")) %>% 
-  pmap(~ download_crime_data(..2, ..1))
+  rename_all(~ str_remove(., "^nvl_")) %>% 
+  select(
+    -uid,
+    -city_name,
+    -offense_type,
+    -offense_group,
+    -offense_against,
+    -location_type,
+    -location_category,
+    -census_block,
+    -date_year,
+    -address,
+    -zip
+  ) %>% 
+  rename(
+    offense_nibrs = offense_code,
+    incident_occurred = date_single,
+    primary_key = local_row_id,
+    incident_number = case_number
+  ) %>% 
+  mutate(
+    across(everything(), as.character),
+    across(c(longitude, latitude), as.double)
+  )
+
 
 # process data
-here::here("original_data") %>% 
-  dir(pattern = "^raw_nashville_", full.names = TRUE) %>% 
-  map(read_crime_data, col_types = cols(
+nashville_data <- read_crime_data(
+  "nashville",
+  col_types = cols(
     .default = col_character(),
     Latitude = col_double(),
     Longitude = col_double()
-  )) %>% 
+  )
+) %>% 
+  bind_rows(nashville_old) %>% 
   # add date variable
-  add_date_var("incident_occurred", "mdY IMS p", "America/Chicago") %>% 
+  add_date_var("incident_occurred", c("Ymd T", "mdY IMS p"), "America/Chicago") %>% 
   # add year variable and remove offenses before start date
   filter_by_year(2013, yearLast) %>%
   # remove variables containing duplicate information
@@ -1698,6 +1881,25 @@ here::here("original_data") %>%
       "720" = "90Z",
       "730" = "90Z",
       "850" = "90Z"
+    ),
+    nibrs_offense_code = ifelse(
+      nibrs_offense_code %in% c(
+        "620", # accident
+        "680", "685", "690", "695", # sudden death,
+        "700", # escape
+        "715", "780", "810", # lost/found property
+        "735", # civil case
+        "740", # admin,
+        "760", # overdose
+        "90I" # runaway
+      ),
+      "99Z",
+      nibrs_offense_code
+    ),
+    nibrs_offense_code = ifelse(
+      is.na(nibrs_offense_code), 
+      "99X", 
+      nibrs_offense_code
     )
   ) %>% 
   join_nibrs_cats() %>% 
@@ -1721,6 +1923,7 @@ download_crime_data(
   "https://data.cityofnewyork.us/api/views/qgea-i56i/rows.csv?accessType=DOWNLOAD", 
   "new_york_early"
 )
+# Source: https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243
 download_crime_data(
   "https://data.cityofnewyork.us/api/views/5uac-w243/rows.csv?accessType=DOWNLOAD", 
   "new_york_late"
@@ -1729,7 +1932,11 @@ download_crime_data(
 # process data
 here::here("original_data") %>% 
   dir(pattern = "^raw_new_york_", full.names = TRUE) %>% 
-  map_dfr(read_crime_data, col_types= cols(.default = col_character())) %>% 
+  map_dfr(
+    read_crime_data, 
+    col_types = cols(.default = col_character()),
+    na = c("", "NA", "(null)")
+  ) %>% 
   # since NYC includes both start and end dates, so we will process the dates
   # manually rather than using add_date_var()
   mutate(
@@ -1762,7 +1969,7 @@ here::here("original_data") %>%
                        strftime(Date.Start.Temp, format = "%Y-%m-%d %H:%M", 
                                 tz = 'America/New_York'), 
                        Date.Temp),
-    Date.Year = year(Date.Temp),
+    date_year = year(Date.Temp),
     date_start = strftime(Date.Start.Temp, format = '%Y-%m-%d %H:%M', 
                           tz = 'America/New_York'),
     date_end = strftime(Date.End.Temp, format = '%Y-%m-%d %H:%M', 
@@ -1774,8 +1981,8 @@ here::here("original_data") %>%
   select(-Date.Start.Temp, -Date.End.Temp, -Date.Temp) %>% 
   report_status("Strings converted to dates") %>% 
   {
-    cat("  Failures:  Date.Start:", sum(is.na(.$Date.Start)), " Date.End:", 
-        sum(is.na(.$Date.End)), " Date.Single:", sum(is.na(.$Date.Single)), 
+    cat("  Failures:  Date.Start:", sum(is.na(.$date_start)), " Date.End:", 
+        sum(is.na(.$date_end)), " Date.Single:", sum(is.na(.$date_single)), 
         "\n")
     .
   } %>% 
@@ -1786,9 +1993,11 @@ here::here("original_data") %>%
                   by = c('ofns_desc', 'pd_desc')) %>% 
   mutate(nibrs_offense_type = case_when(
     # burglary
-    nibrs_offense_code == "220" & pd_desc %in% c("BURGLARY,RESIDENCE,DAY", 
-                                                 "BURGLARY,RESIDENCE,NIGHT", "BURGLARY,RESIDENCE,UNKNOWN TIM") ~ 
-      "22A Residential Burglary/Breaking & Entering",
+    nibrs_offense_code == "220" & pd_desc %in% c(
+      "BURGLARY,RESIDENCE,DAY", 
+      "BURGLARY,RESIDENCE,NIGHT", 
+      "BURGLARY,RESIDENCE,UNKNOWN TIM"
+    ) ~ "22A Residential Burglary/Breaking & Entering",
     nibrs_offense_code == "220" ~ 
       "22B Non-residential Burglary/Breaking & Entering",
     
@@ -1834,7 +2043,9 @@ here::here("original_data") %>%
 
 # St Louis has data back to 2008 in *monthly* CSV files, but without NIBRS or
 # location-type codes and hidden behind a web form. Fortunately, they left
-# directory listing turned on.
+# directory listing turned on until 2019. Unfortunately, they've now turned off
+# directory listing so the 2020 data have to be downloaded manually and added to
+# the existing directory of files previously scraped from the website.
 
 # There is a useful FAQ at http://www.slmpd.org/crime/CrimeReferenceDocument.pdf
 
@@ -1843,7 +2054,7 @@ if (!dir.exists(here::here("original_data/raw_st_louis/")))
   dir.create(here::here("original_data/raw_st_louis/"))
 
 # save data from website
-xml2::read_html("http://www.slmpd.org/crime/") %>%
+xml2::read_html("https://slmpd.org/CrimeReport.aspx") %>%
   rvest::html_nodes("a") %>%
   rvest::html_attr("href") %>%
   str_subset("(CSV|csv)$") %>% 
@@ -1949,6 +2160,31 @@ here::here("original_data/raw_st_louis") %>%
   )) %>% 
   select(-crime2, -crime3) %>% 
   join_nibrs_cats() %>% 
+  # St Louis data have co-ordinates in a local CRS, so convert these to lat/long
+  # First convert missing co-ordinates to a fixed value, since NAs aren't 
+  # allowed in SF object co-ordinates.
+  replace_na(list(x_coord = 0, y_coord = 0)) %>% 
+  # Set a flag for the crimes with missing co-ordinates so we can extract them
+  # later for geocoding, since the zero co-ordinates are about to be converted
+  # to lat/lon pairs
+  mutate(needs_geocoding = x_coord == 0) %>% 
+  # This proj string is from https://stackoverflow.com/a/57559562/8222654 and
+  # has been checked against the addresses in the data
+  st_as_sf(
+    coords = c("x_coord", "y_coord"), 
+    crs = "+proj=tmerc +lat_0=35.83333333333334 +lon_0=-90.5 +k=0.9999333333333333 +x_0=250000 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs"
+  ) %>% 
+  st_transform(4326) %>% 
+  mutate(
+    longitude = sapply(st_geometry(.), function (x) x[[1]]), 
+    latitude = sapply(st_geometry(.), function (x) x[[2]]),
+    # Replace co-ordinates with NAs for cases that need geocoding because the
+    # co-ordinates have been transformed from zeros
+    longitude = ifelse(needs_geocoding, NA, longitude),
+    latitude = ifelse(needs_geocoding, NA, latitude)
+  ) %>% 
+  select(-needs_geocoding) %>% 
+  st_drop_geometry() %>% 
   save_city_data("St Louis") %>%
   glimpse()
 
@@ -1959,20 +2195,20 @@ here::here("original_data/raw_st_louis") %>%
 # San Francisco ---------------------------------------------------------------
 
 # save data from website
-read_crime_data(
+download_crime_data(
   "https://data.sfgov.org/api/views/tmnf-yvry/rows.csv?accessType=DOWNLOAD", 
   "san_francisco_early"
 )
-read_crime_data(
+download_crime_data(
   "https://data.sfgov.org/api/views/wg3w-h783/rows.csv?accessType=DOWNLOAD", 
-  "raw_san_francisco_late"
+  "san_francisco_late"
 )
 
 # process data
 list(
   read_crime_data(
     "san_francisco_early",
-    col_types= cols(.default = col_character())
+    col_types = cols(.default = col_character())
   ) %>% 
     rename(
       incident_number = incidnt_num,
@@ -1990,7 +2226,7 @@ list(
     filter(incident_date_time < ymd("2018-01-01")),
   read_crime_data(
     "san_francisco_late",
-    col_types= cols(.default = col_character())
+    col_types = cols(.default = col_character())
   ) %>% 
     rename(
       address = intersection,
@@ -2027,7 +2263,7 @@ list(
   ) %>% 
   add_date_var("incident_date_time", "Ymd HM", "America/Los_Angeles") %>% 
   filter_by_year(yearFirst, yearLast) %>% 
-  join_nibrs_cats("../crime_categories/categories_SF.csv",
+  join_nibrs_cats("crime_categories/categories_SF.csv",
                   by = c('incident_category', 'incident_description')) %>% 
   save_city_data("San Francisco") %>%
   glimpse()
@@ -2056,35 +2292,45 @@ read_crime_data("seattle") %>%
   ) %>% 
   # Seattle data has start and end dates, so we process the dates manually
   mutate(
-    # if both start date is missing, use reported date
-    offense_start_date_time = as_datetime(ifelse(
-      is.na(offense_start_date_time), 
-      report_date_time, 
-      offense_start_date_time
-    )),
+    # if start date is missing, use end date
     # if end date is missing, use start date
-    offense_end_date_time = as_datetime(ifelse(
-      is.na(offense_end_date_time), 
-      offense_start_date_time, 
-      offense_end_date_time
-    )),
-    # calculate mid-point time
-    date_mid = offense_start_date_time + 
-      ((offense_end_date_time - offense_start_date_time) / 2),
-    # create final dates, stored as strings
-    date_start = strftime(offense_start_date_time, format = "%Y-%m-%d %H:%M", 
-                          tz = "America/Los_Angeles"),
-    date_end = strftime(offense_end_date_time, format = "%Y-%m-%d %H:%M",
-                        tz = "America/Los_Angeles"),
-    date_single = strftime(date_mid, format = "%Y-%m-%d %H:%M",
-                           tz = "America/Los_Angeles"),
+    # if start and end date are missing, use reported date for both
+    date_start_chr = case_when(
+      is.na(offense_start_date_time) & is.na(offense_end_date_time) ~ report_date_time,
+      is.na(offense_start_date_time) ~ as.character(offense_end_date_time),
+      TRUE ~ as.character(offense_start_date_time)
+    ),
+    date_end_chr = case_when(
+      is.na(offense_start_date_time) & is.na(offense_end_date_time) ~ report_date_time,
+      is.na(offense_end_date_time) ~ as.character(offense_start_date_time),
+      TRUE ~ offense_end_date_time
+    ),
+    # Process the dates into date-time objects to validate them
+    across(
+      c(date_start_chr, date_end_chr),
+      as_datetime,
+      format = "%m/%d/%Y %I:%M:%S %p",
+      tz = "America/Los_Angeles",
+      .names = "{str_remove(.col, '_chr')}"
+    ),
+    # Calculate the mid-point and year
+    date_single = date_start + ((date_end - date_start) / 2),
     date_year = year(date_single),
+    # Convert dates back into strings in ISO format so they can be stored 
+    # robustly
+    across(c(date_start, date_single, date_end), as.character),
+    # Flag that there are multiple dates
     multiple_dates = TRUE
   ) %>% 
-  select(-offense_start_date_time, -offense_end_date_time, -date_mid) %>% 
-  # filter by year
-  filter_by_year(2008, yearLast) %>% 
-  # categorize crimes
+  select(
+    -offense_start_date_time, 
+    -offense_end_date_time, 
+    -date_start_chr, 
+    -date_end_chr
+  ) %>%
+  # Filter by year
+  filter_by_year(2008, yearLast) %>%
+  # Categorize crimes
   mutate(
     nibrs_offense_code = recode(
       nibrs_offense_code, 
@@ -2106,7 +2352,7 @@ read_crime_data("seattle") %>%
 
 # Data are from
 # http://gisdata.tucsonaz.gov/datasets?group_ids=b6a49faa168647d8b56e1a06bd53600f&page=2&sort=name&t=police
-# in invidiual files for each year from 2009. The variable names are not
+# in individual files for each year from 2009. The variable names are not
 # consistent across years, so some adjustment is required before rows are bound
 # together. Columns are in a different order in some files, so `row_bind()` is
 # used to bind by column names.
@@ -2120,38 +2366,65 @@ tribble(
   "2012", "https://opendata.arcgis.com/datasets/a2365412f9624f79afa09efd7138ea37_28.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
   "2013", "https://opendata.arcgis.com/datasets/292605340f6846459aa2b1bf3a7b478a_29.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
   "2014", "https://opendata.arcgis.com/datasets/771c37cda6ab4df28b15d685361d4aa5_30.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
-  "2015", "https://opendata.arcgis.com/datasets/705cd0b16c0141259a73c12266e28792_31.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
+  # "2015", "https://opendata.arcgis.com/datasets/705cd0b16c0141259a73c12266e28792_31.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
   "2016", "https://opendata.arcgis.com/datasets/ff59ac036cc14689923596abf88f3e24_32.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
   "2017", "https://opendata.arcgis.com/datasets/ef95666c825645868d0f9db6770af969_33.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
-  "2018", "https://opendata.arcgis.com/datasets/6a11fe12a2f9444fa16e7b7ac810727e_40.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D"
+  "2018", "https://opendata.arcgis.com/datasets/6a11fe12a2f9444fa16e7b7ac810727e_40.csv?outSR=%7B%22latestWkid%22%3A2868%2C%22wkid%22%3A2868%7D",
+  "2019", "https://opendata.arcgis.com/api/v3/datasets/9205a32aeab34091b1cd9bcea08eccfe_48/downloads/data?format=csv&spatialRefId=2868",
+  "2020", "https://opendata.arcgis.com/api/v3/datasets/0cd8b23211b84cdb9334a6b548916623_54/downloads/data?format=csv&spatialRefId=2868"
 ) %>% 
   mutate(year = str_glue("tucson_{year}")) %>% 
-  pmap(~ download_crime_data(..2, ..1))
+  pwalk(~ download_crime_data(..2, ..1))
 
 # process data
-here::here("original_data") %>% 
+tucson_data <- here::here("original_data") %>% 
   dir(pattern = '^raw_tucson_', full.names = TRUE) %>% 
   map_dfr(read_crime_data, col_types = cols(.default = col_character())) %>% 
   rename(longitude = x, latitude = y) %>% 
   mutate(
-    address_public = ifelse(is.na(address_public), addrress_public, 
+    # In some files, `address` is mis-spelled in the variable names, which 
+    # results in multiple variables after binding. Deal with this by putting all
+    # variables into the correctly spelled one.
+    address_public = ifelse(is.na(address_public), addrress_public,
                             address_public),
-    date_occurred = paste(
-      parse_date(date_occu, format = "%Y-%m-%d%.%H:%M:%S%+"), hour_occu),
-    loc_method = ifelse(is.na(loc_method), loc_status, loc_method),
+    # Occasionally `hour_occu` starts with a `-`, so replace these with a zero
+    hour_occu = str_replace(hour_occu, "^\\-", "0"),
+    # When `date_occu` or `hour_occu` is missing, use `date_fnd` or `hour_fnd` 
+    # instead. If those as missing, too, use `date_rept` or `hour_rept`.
+    date_occu = case_when(
+      is.na(date_occu) & is.na(date_fnd) ~ date_rept,
+      is.na(date_occu) ~ date_fnd,
+      TRUE ~ date_occu
+    ),
+    hour_occu = case_when(
+      is.na(hour_occu) & is.na(hour_fnd) ~ hour_rept,
+      is.na(hour_occu) ~ hour_fnd,
+      TRUE ~ hour_occu
+    ),
+    # Merge the date and time strings into a single date-time object
+    date_occurred = paste(str_sub(date_occu, 1, 10), hour_occu),
     # The field statutdesc has triple quotes around it in the CSV file, only two
     # pairs of which are removed by read_csv, so the remainder are removed here
-    statutdesc = str_remove_all(statutdesc, "\"")
+    statutdesc = str_remove_all(statutdesc, "\""),
+    loc_method = ifelse(is.na(loc_method), loc_status, loc_method),
   ) %>% 
-  add_date_var("date_occurred", "Ymd HM", "America/Phoenix") %>%
+  add_date_var("date_occurred", "Ymd HM", "America/Phoenix") %>% 
   filter_by_year(2009, yearLast) %>% 
   # A few crimes have no offense category listed. We will remove these now to
   # make joining the NIBRS variables easier. This also removes the large number
   # of cases in the 2017 file that do not relate to crime (e.g. traffic stops)
   # and for which the statutdesc field is set to the string 'N/A'
   filter(!is.na(statutdesc) & statutdesc != "N/A") %>% 
-  select(-addrress_public, -point_x, -point_y, -month_rept, -year_rept, 
-         -dow_rept, -time_rept, -loc_status, -date_occurred) %>% 
+  # There are many variables that are either duplicates or are NA for the vast
+  # majority of rows, so we'll remove these to save space
+  select(
+    -addrress_public, -point_x, -point_y, -month_rept, -year_rept, -dow_rept, 
+    -time_rept, -loc_method, -loc_status, -date_occurred, -city, -state,
+    -datetime_occu, -datetime_rept, -lat, -long, -city_geo, -secure, -replace,
+    -month_occu, -month_occu_string, -year_occu, -dow_occu, -dow_occu_string,
+    -time_occu, -censustract, -censusblock, -datasource, -emunit, 
+    -address_100blk
+  ) %>% 
   # Transform co-ordinates if not in WGS84 (i.e. if the co-ordinates are so much
   # larger than is possible for Lat/Lon pairs that it can't be due to rounding
   # errors or similar). This code creates an SF object from the existing tibble,
@@ -2159,7 +2432,7 @@ here::here("original_data") %>%
   # object back to a tibble. The custom CRS is taken from the shapefile used to
   # obtain the 2016 data (see above). sf_as_sf() doesn't allow missing values,
   # so we must first remove any rows that don't have co-ordinates
-  filter(!is.na(longitude) & !is.na(latitude)) %>% 
+  drop_na(longitude, latitude) %>% 
   st_as_sf(coords = c("longitude", "latitude"), 
            crs = paste("+proj=tmerc +lat_0=31 +lon_0=-111.9166666666667", 
                        "+k=0.9999 +x_0=213360 +y_0=0 +ellps=GRS80",
@@ -2171,9 +2444,11 @@ here::here("original_data") %>%
   ) %>% 
   st_set_geometry(NULL) %>% 
   # join NIBRS categories
-  join_nibrs_cats("../crime_categories/categories_Tucson.csv",
-                  by = 'statutdesc') %>% 
-  save_city_data("Tucson") %>% 
+  join_nibrs_cats(
+    "crime_categories/categories_Tucson.csv", 
+    by = "statutdesc"
+  ) %>% 
+  save_city_data("Tucson") %>%
   glimpse()
 
 
@@ -2184,25 +2459,36 @@ here::here("original_data") %>%
 
 # Virginia Beach moved to a new data file in 2017, and appear to have deleted
 # the old file from their open data website. New data are from
-# https://data.vbgov.com/Public-Safety/Police-Incident-Reports/iqkq-gr5p
+# https://data.vbgov.com/dataset/police-incident-reports
 
 # save data from website
 download_crime_data(
-  "https://data.vbgov.com/api/views/iqkq-gr5p/rows.csv?accessType=DOWNLOAD", 
+  "https://s3.amazonaws.com/vbgov-ckan-open-data/Police+Incident+Reports.csv", 
   "virginia_beach_late"
 )
 
 # process data
 list(
-  read_crime_data("virinia_beach_early") %>% 
-    mutate(year = year(parse_date_time(date_occured, "mdY T", 
-                                       tz = "America/New_York"))) %>% 
-    filter(year < 2016),
-  read_crime_data("virinia_beach_late") %>% 
-    mutate(year = year(parse_date_time(date_occured, "mdY T", 
-                                       tz = "America/New_York"))) %>% 
-    filter(year >= 2016)
+  filter(
+    read_crime_data("virginia_beach_early"),
+    year(parse_date_time(date_occured, "mdY T", tz = "America/New_York")) < 2016
+  ),
+  filter(
+    read_crime_data("virginia_beach_mid"),
+    between(year(date_occured), 2016, 2019)
+  ),
+  filter(
+    read_crime_data("virginia_beach_late"),
+    year(date_occured) >= 2020
+  )
 ) %>% 
+  map(
+    mutate, 
+    across(
+      any_of(c("date_reported", "date_occured", "date_found", "zip")), 
+      as.character
+    )
+  ) %>% 
   bind_rows() %>% 
   mutate(
     address = str_replace_all(location, "\\n", " ") %>% trimws(),
@@ -2211,10 +2497,12 @@ list(
   ) %>%
   separate(location, c("latitude", "longitude"), ", ") %>%
   mutate_at(vars(c("latitude", "longitude")), as.double) %>%
-  add_date_var("date_occured", "mdY T", "America/New_York") %>%
+  add_date_var("date_occured", c("mdY T", "Ymd T"), "America/New_York") %>%
   filter_by_year(2013, yearLast) %>% 
-  join_nibrs_cats(here::here("crime_categories/categories_VB.csv"),
-                  by = 'offense_code') %>% 
-  save_city_data("Virginia Beach") %>% 
+  join_nibrs_cats(
+    here::here("crime_categories/categories_VB.csv"),
+    by = "offense_code"
+  ) %>% 
+  save_city_data("Virginia Beach") %>%
   glimpse()
 
