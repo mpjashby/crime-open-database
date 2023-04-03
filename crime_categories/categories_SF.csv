@@ -663,7 +663,7 @@ NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type
 520,Crimes against society,Weapon Law Violations,542 Weapon Law Violations,WEAPONS CARRYING ETC,"FIREARM, TAMPERING WITH MARKS"
 99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,NON-CRIMINAL,"FIREARM, TURNED IN BY PUBLIC"
 520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,ASSAULT,"FIREARM,¬†DISCHARGING IN GROSSLY NEGLIGENT MANNER"
-520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,ASSAULT,"FIREARM,Ã‚Â DISCHARGING IN GROSSLY NEGLIGENT MANNER"
+520,Crimes against society,Weapon Law Violations,520 Weapon Law Violations,ASSAULT,"FIREARM,????DISCHARGING IN GROSSLY NEGLIGENT MANNER"
 99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,OTHER OFFENSES,"FIREARMS, SEIZING AT SCENE OF DV"
 99Z,Excluded cases,Excluded cases,99Z Non-Criminal Matters,OFFENCES AGAINST THE FAMILY AND CHILDREN,"FIREARMS, SEIZING AT SCENE OF DVU"
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OTHER MISCELLANEOUS,"FIREFIGHTER, INTERFERING WITH"

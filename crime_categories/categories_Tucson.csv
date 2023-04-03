@@ -1,4 +1,4 @@
-statutdesc,NIBRS_Offense_Code,NIBRS_Offense_Type,NIBRS_Offense_Category,NIBRS_Crime_Against
+statutdesc,nibrs_offense_code,nibrs_offense_type,nibrs_offense_category,nibrs_crime_against
 HOMICIDE/MURDER,09A,09A Murder and Nonnegligent Manslaughter,Homicide Offenses,Crimes against person
 HOMICIDE/MANSLAUGHTER,09B,09B Negligent Manslaughter,Homicide Offenses,Crimes against person
 SEXUAL ASSAULT/FORCIBLE RAPE,11A,11A Rape (except Statutory Rape),Sex Offenses,Crimes against person

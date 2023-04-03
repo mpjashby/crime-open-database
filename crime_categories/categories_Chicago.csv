@@ -61,6 +61,32 @@ NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type
 13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED: OTHER DANG WEAPON
 13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED: OTHER FIREARM
 13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED:KNIFE/CUTTING INSTR
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,RITUALISM,AGG RIT MUT: HANDS/FIST/FEET NO/MINOR INJURY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,RITUALISM,AGG RIT MUT: HANDS/FIST/FEET SERIOUS INJURY
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,RITUALISM,AGG RITUAL MUT:HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,RITUALISM,AGG RITUAL MUT:KNIFE/CUTTING I
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,RITUALISM,AGG RITUAL MUT:OTH DANG WEAPON
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED - HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED - KNIFE / CUTTING INSTRUMENT
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED - OTHER DANGEROUS WEAPON
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED - OTHER FIREARM
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,ASSAULT,AGGRAVATED POLICE OFFICER - HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,"AGG. DOMESTIC BATTERY - HANDS, FISTS, FEET, SERIOUS INJURY"
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,"AGG. PROTECTED EMPLOYEE - HANDS, FISTS, FEET, SERIOUS INJURY"
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED - HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,"AGGRAVATED - HANDS, FISTS, FEET, SERIOUS INJURY"
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED - KNIFE / CUTTING INSTRUMENT
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED - OTHER DANGEROUS WEAPON
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED - OTHER FIREARM
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED DOMESTIC BATTERY - HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED DOMESTIC BATTERY - KNIFE / CUTTING INSTRUMENT
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED DOMESTIC BATTERY - OTHER DANGEROUS WEAPON
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,"AGGRAVATED P.O. - HANDS, FISTS, FEET, NO / MINOR INJURY"
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,"AGGRAVATED P.O. - HANDS, FISTS, FEET, SERIOUS INJURY"
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED POLICE OFFICER - HANDGUN
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED POLICE OFFICER - OTHER DANGEROUS WEAPON
+13A,Crimes against person,Assault Offenses,13A Aggravated assault,BATTERY,AGGRAVATED PROTECTED EMPLOYEE - OTHER DANGEROUS WEAPON
+13B,Crimes against person,Assault Offenses,13B Simple assault,ASSAULT,SIMPLE
 13B,Crimes against person,Assault Offenses,13B Simple assault,BATTERY,DOMESTIC BATTERY SIMPLE
 13B,Crimes against person,Assault Offenses,13B Simple assault,BATTERY,OF UNBORN CHILD
 13B,Crimes against person,Assault Offenses,13B Simple assault,BATTERY,PRO EMP HANDS NO/MIN INJURY
@@ -163,6 +189,11 @@ NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type
 26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,"THEFT BY LESSEE,MOTOR VEH"
 26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,"THEFT BY LESSEE,NON-VEH"
 26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,THEFT OF LABOR/SERVICES
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,FINANCIAL EXPLOITATION OF AN ELDERLY OR DISABLED PERSON
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,STOLEN PROPERTY BUY / RECEIVE / POSSESS
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,"THEFT BY LESSEE, MOTOR VEHICLE"
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,THEFT OF LABOR / SERVICES
+26A,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26A False Pretenses/Swindle/Confidence Game,DECEPTIVE PRACTICE,THEFT OF LOST / MISLAID PROPERTY
 26B,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26B Credit Card/Automated Teller Machine Fraud,DECEPTIVE PRACTICE,CREDIT CARD FRAUD
 26B,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26B Credit Card/Automated Teller Machine Fraud,DECEPTIVE PRACTICE,ILLEGAL USE CASH CARD
 26C,Crimes against property,Fraud Offenses (except Counterfeiting/Forgery and Bad Checks),26C Impersonation,DECEPTIVE PRACTICE,AGGRAVATED FINANCIAL IDENTITY THEFT
@@ -362,10 +393,13 @@ NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,CHILD PORNOGRAPHY
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,CONTRIBUTE CRIM DELINQUENCY JUVENILE
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,CONTRIBUTE DELINQUENCY OF A CHILD
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,CONTRIBUTE TO THE DELINQUENCY OF CHILD
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,ENDANGERING LIFE/HEALTH CHILD
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,ENDANGERING LIFE / HEALTH OF CHILD
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,HARBOR RUNAWAY
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,OTHER OFFENSE
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,POS: PORNOGRAPHIC PRINT
+90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,POSSESSION OF PORNOGRAPHIC PRINT
 90Z,All Other Offenses,All Other Offenses,90Z All Other Offenses,OFFENSE INVOLVING CHILDREN,SALE TOBACCO PRODUCTS TO MINOR
 11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),OFFENSE INVOLVING CHILDREN,AGGRAVATED CRIMINAL SEXUAL ABUSE BY FAMILY MEMBER
 11U,Crimes against person,Sex Offenses,11U Sexual Assault by Penetration (including rape),OFFENSE INVOLVING CHILDREN,AGGRAVATED SEXUAL ASSAULT OF CHILD BY FAMILY MEMBER

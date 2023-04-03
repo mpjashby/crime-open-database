@@ -1,4 +1,4 @@
-NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type,offense_code
+nibrs_offense_code,nibrs_crime_against,nibrs_offense_category,nibrs_offense_type,offense_code
 09A,Crimes against person,Homicide Offenses,09A Murder and Nonnegligent Manslaughter,09A
 09B,Crimes against person,Homicide Offenses,09B Negligent Manslaughter,09B1
 09B,Crimes against person,Homicide Offenses,09B Negligent Manslaughter,09B2
@@ -76,6 +76,7 @@ NIBRS_Offense_Code,NIBRS_Crime_Against,NIBRS_Offense_Category,NIBRS_Offense_Type
 36B,Crimes against person,"Sex Offenses, Nonforcible",36B Statutory Rape,36B
 370,Crimes against society,Pornography/Obscene Material,370 Pornography/Obscene Material,370
 39A,Crimes against society,Gambling Offenses,39A Betting/Wagering,39A1
+39A,Crimes against society,Gambling Offenses,39A Betting/Wagering,39A2
 39B,Crimes against society,Gambling Offenses,39B Operating/Promoting/Assisting Gambling,39B
 40A,Crimes against society,Prostitution Offenses,40A Prostitution,40A
 40B,Crimes against society,Prostitution Offenses,40B Assisting or Promoting Prostitution,40B
