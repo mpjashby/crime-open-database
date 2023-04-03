@@ -16,10 +16,26 @@ library(tidyverse) # load tidyverse last
 
 
 
+# SET UP DIRECTORIES
+
+if (!dir.exists(here::here("failure_records")))
+  dir.create(here::here("failure_records"))
+if (!dir.exists(here::here("geocoding_data")))
+  dir.create(here::here("geocoding_data"))
+if (!dir.exists(here::here("original_data")))
+  dir.create(here::here("original_data"))
+if (!dir.exists(here::here("output_data")))
+  dir.create(here::here("output_data"))
+if (!dir.exists(here::here("temp_data")))
+  dir.create(here::here("temp_data"))
+
+
+
 # SET PARAMETERS
+slackr_setup()
 
 # Load API keys
-source(here::here("code/api_keys.R"))
+# source(here::here("code/api_keys.R"))
 
 yearFirst <- 2007
 yearLast <- 2021
@@ -252,7 +268,8 @@ filter_by_year <- function (data, year_first, year_last) {
 join_nibrs_cats <- function (
   data, 
   file = "crime_categories/nibrs_categories.csv", 
-  by = "nibrs_offense_code"
+  by = "nibrs_offense_code",
+  check = TRUE
 ) {
   
   cats <- file %>% 
@@ -262,7 +279,7 @@ join_nibrs_cats <- function (
   
   data <- dplyr::left_join(data, cats, by = by)
   
-  check_nibrs_cats(data, file, by)
+  if (check) check_nibrs_cats(data, file, by)
   
   report_status(NULL, "Matched cases to NIBRS categories")
   
@@ -469,8 +486,8 @@ save_city_data <- function (data, name) {
 # Convert variables names to a common format
 convert_names <- function (data, common_vars, prefix) {
   
-  # get existing column names, converted to lower case without spaces
-  col_names <- names(janitor::clean_names(data))
+  # get existing column names
+  col_names <- names(data)
 
   # add prefix to city-specific column names
   names(data) <- ifelse(
@@ -516,3 +533,5 @@ convert_names <- function (data, common_vars, prefix) {
   
 }
 
+# print format number of rows
+row_count <- function (x) scales::comma(nrow(x))

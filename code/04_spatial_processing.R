@@ -73,7 +73,7 @@ walk(
       str_glue("\nProcessing {city_name} data "), 
       str_glue("Starting at {format(start_time, '%F %T')}")
     ))
-    
+
     # get city metadata
     city_fips <- cities$fips[cities$name == city_name]
     
@@ -147,7 +147,7 @@ walk(
       ) %>% 
       st_transform(4326)
     rlang::inform("✔︎ Created SF object for census blocks")
-    
+
     # join census blocks to offences
     # Some crimes will fall on the boundary of multiple census blocks, so the
     # following code simply takes the first block in each case
@@ -207,4 +207,3 @@ walk(
     
   }
 )
-

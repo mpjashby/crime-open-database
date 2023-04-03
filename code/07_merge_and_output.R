@@ -91,7 +91,7 @@ for (city in cities$name) {
     walk(function (x) {
       
       this_year <- pluck(x, "year", 1)
-      
+
       x %>%
         select(-year) %>% 
         # export extended data - use write_rds() rather than saveRDS() because
@@ -192,7 +192,7 @@ walk(c("core", "extended", "sample"), function (file_type) {
         message(str_glue("Merged {file_type} data for {x} into one RDS and one CSV file"))
         
       }
-      
+
     })
   
 })
@@ -238,4 +238,3 @@ cat(
     mean() %>% 
     scales::number_bytes(),
   "\n"
-)
