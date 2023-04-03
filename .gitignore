@@ -16,6 +16,7 @@
 
 # RStudio files
 .Rproj.user/
+.Rproj.user-old/
 
 # produced vignettes
 vignettes/*.html
@@ -38,10 +39,12 @@ rsconnect/
 
 # Original data
 /original_data/
+/original_data_old/
 /spatial_data/cities/
 
 # Temporary data files
 /temp_data/
+/failure_records/
 
 # Output files
 # These are stored on OSF so needn't be stored on Git Hub as well
