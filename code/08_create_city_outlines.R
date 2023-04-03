@@ -9,7 +9,6 @@ library(tigris)
 # Extract city boundaries and save as file
 cities |> 
   select(name, fips, census_name) |> 
-  head(1) |> 
   pmap(function(name, fips, census_name) {
     
     places(state = fips, year = 2016) |> 
@@ -20,4 +19,5 @@ cities |>
     
   }) |> 
   bind_rows() |> 
-  write_sf(here::here("spatial_data/city_outlines.gpkg"))
+  write_sf(here::here("spatial_data/city_outlines.gpkg")) |> 
+  print()
